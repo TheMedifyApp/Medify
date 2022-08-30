@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "664762172591",
+    "project_id": "medify-28dac",
+    "storage_bucket": "medify-28dac.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:664762172591:android:314457721fbd773cfd405a",
+        "android_client_info": {
+          "package_name": "com.geekymusketeers.medify"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "664762172591-cieoc14ihdk1ocq650e851el2p1qaqb9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.geekymusketeers.medify",
+            "certificate_hash": "fd28bb7958553070a4f348a9e24d0551193a8f1d"
+          }
+        },
+        {
+          "client_id": "664762172591-j480kmafq2f2ak07k9r9knla4f9vgvfr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGnv9DHdJAJ_xfXy4uNCMoQw3_S_G2l30"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "664762172591-j480kmafq2f2ak07k9r9knla4f9vgvfr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
