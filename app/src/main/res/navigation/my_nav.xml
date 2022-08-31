@@ -7,17 +7,17 @@
 
     <fragment
         android:id="@+id/home"
-        android:name="com.geekymusketeers.medify.HomeFragment"
+        android:name="com.geekymusketeers.medify.mainFragments.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/reminder"
-        android:name="com.geekymusketeers.medify.ReminderFragment"
+        android:name="com.geekymusketeers.medify.mainFragments.ReminderFragment"
         android:label="fragment_reminder"
         tools:layout="@layout/fragment_reminder" />
     <fragment
         android:id="@+id/settings"
-        android:name="com.geekymusketeers.medify.SettingsFragment"
+        android:name="com.geekymusketeers.medify.mainFragments.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
 </navigation>

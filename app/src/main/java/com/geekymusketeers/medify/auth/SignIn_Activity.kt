@@ -4,8 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.geekymusketeers.medify.HomeActivity
-import com.geekymusketeers.medify.R
+import com.geekymusketeers.medify.MainActivity
 import com.geekymusketeers.medify.databinding.ActivitySignInBinding
 import com.google.firebase.auth.FirebaseAuth
 
@@ -36,7 +35,7 @@ class SignIn_Activity : AppCompatActivity() {
                     firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
                         if (it.isSuccessful) {
                             if (firebaseAuth.currentUser?.isEmailVerified!!) {
-                                startActivity(Intent(this, HomeActivity::class.java))
+                                startActivity(Intent(this, MainActivity::class.java))
                             } else {
                                 val u = firebaseAuth.currentUser
                                 u?.sendEmailVerification()

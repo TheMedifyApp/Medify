@@ -7,21 +7,21 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.geekymusketeers.medify.databinding.ActivityHomeBinding
+import com.geekymusketeers.medify.databinding.ActivityMainBinding
 
-class HomeActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityHomeBinding
+    private lateinit var _binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityHomeBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        _binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(_binding.root)
 
         //Hides action bar
         supportActionBar?.hide()
 
-        val bottomNavigationView = binding.bottomNav
+        val bottomNavigationView = _binding.bottomNav
         val navController: NavController = findNavController(R.id.fragmentContainerView)
         val appBarConfiguration =
             AppBarConfiguration(setOf(R.id.home, R.id.reminder, R.id.settings))
