@@ -25,7 +25,7 @@ class SignUp_Activity : AppCompatActivity() {
 
         val isDoctor = intent.extras!!.getString("isDoctor")
         val age = intent.extras!!.getString("age")
-        initialization(isDoctor!!)
+        initialization()
 
         binding.toSignIn.setOnClickListener {
             val intent = Intent(this, SignIn_Activity::class.java)
@@ -52,12 +52,16 @@ class SignUp_Activity : AppCompatActivity() {
                             db.child(u?.uid!!).setValue(user).addOnCompleteListener { it1 ->
                                 if (it1.isSuccessful) {
                                     u.sendEmailVerification()
-                                    Toast.makeText(
-                                        this,
-                                        "Email Verification sent to your mail",
-                                        Toast.LENGTH_LONG
-                                    ).show()
+                                    Toast.makeText(this, "Email Verification sent to your mail", Toast.LENGTH_LONG).show()
                                     startActivity(Intent(this, SignIn_Activity::class.java))
+
+                                    if (isDoctor == "Doctor") {
+                                        fd.getReference(isDoctor).child(u.uid).setValue(user).addOnSuccessListener {
+                                            Toast.makeText(this, "Doctor added", Toast.LENGTH_SHORT).show()
+                                        }
+
+                                    }
+
                                 } else
                                     Log.e("Not successful", "Unsuccessful")
                             }
@@ -75,10 +79,10 @@ class SignUp_Activity : AppCompatActivity() {
 
     }
 
-    private fun initialization(isDoctor : String) {
+    private fun initialization() {
         supportActionBar?.hide()
         firebaseAuth = FirebaseAuth.getInstance()
         fd = FirebaseDatabase.getInstance()
-        db = fd.getReference("Users").child(isDoctor)
+        db = fd.getReference("Users")
     }
 }
