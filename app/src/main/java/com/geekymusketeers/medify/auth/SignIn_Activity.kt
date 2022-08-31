@@ -22,7 +22,7 @@ class SignIn_Activity : AppCompatActivity() {
         initialization()
 
         binding.toSignUp.setOnClickListener {
-            val intent = Intent(this, SignUp_Activity::class.java)
+            val intent = Intent(this, SignUp_First::class.java)
             startActivity(intent)
         }
 
@@ -31,7 +31,7 @@ class SignIn_Activity : AppCompatActivity() {
             val password = binding.SignInPassword.text.toString()
 
             if (email.isNotEmpty() && password.isNotEmpty()) {
-                if (password.length > 8) {
+                if (password.length > 7) {
 
                     firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
                         if (it.isSuccessful) {

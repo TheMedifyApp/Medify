@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".auth.SignUp_First">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="124dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/signUpHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/dm_sans_bold"
+            android:text="Tell us about you"
+            android:textColor="@color/black"
+            android:textSize="35sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.099"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/loginIllustration" />
+
+        <TextView
+            android:id="@+id/signUph2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/dm_sans"
+            android:text="Please choose the relevant option"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/signUpHeader"
+            app:layout_constraintTop_toBottomOf="@+id/signUpHeader" />
+
+    </LinearLayout>
+
+    <io.ghyeok.stickyswitch.widget.StickySwitch
+        android:id="@+id/stickySwitch"
+        android:layout_width="178dp"
+        android:layout_height="122dp"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="130dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginRight="130dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:ss_animationDuration="600"
+        app:ss_animationType="curved"
+        app:ss_iconPadding="18dp"
+        app:ss_iconSize="22dp"
+        app:ss_leftIcon="@drawable/person"
+        app:ss_leftText="Patient"
+        app:ss_rightIcon="@drawable/doctor"
+        app:ss_rightText="Doctor"
+        app:ss_selectedTextSize="18sp"
+        app:ss_sliderBackgroundColor="@color/black"
+        app:ss_switchColor="@color/light_blue"
+        app:ss_textColor="@color/black"
+        app:ss_textSize="15sp"
+        app:ss_textVisibility="visible" />
+
+    <Button
+        android:id="@+id/nextButton"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/primary_button"
+        android:fontFamily="@font/dm_sans_medium"
+        android:text="Next"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/ageInput"
+        app:layout_constraintHorizontal_bias="0.584"
+        app:layout_constraintStart_toStartOf="@+id/ageInput"
+        app:layout_constraintTop_toBottomOf="@+id/ageInput" />
+
+    <EditText
+        android:id="@+id/ageInput"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginTop="48dp"
+        android:paddingLeft="10dp"
+        android:background="@drawable/editfield"
+        android:ems="10"
+        android:textColor="@color/black"
+        android:fontFamily="@font/dm_sans"
+        android:hint="Enter your age"
+        android:textColorHint="@android:color/darker_gray"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="@+id/stickySwitch"
+        app:layout_constraintStart_toStartOf="@+id/stickySwitch"
+        app:layout_constraintTop_toBottomOf="@+id/stickySwitch" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

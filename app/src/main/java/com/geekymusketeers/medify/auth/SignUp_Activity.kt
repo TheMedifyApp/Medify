@@ -1,13 +1,11 @@
 package com.geekymusketeers.medify.auth
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
 import android.widget.Toast
-import com.geekymusketeers.medify.R
-import com.geekymusketeers.medify.databinding.ActivitySignInBinding
+import androidx.appcompat.app.AppCompatActivity
 import com.geekymusketeers.medify.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -26,6 +24,8 @@ class SignUp_Activity : AppCompatActivity() {
         setContentView(binding.root)
 
         initialization()
+        val isDoctor = intent.extras!!.getString("isDoctor")
+        val age = intent.extras!!.getString("age")
 
         binding.toSignIn.setOnClickListener {
             val intent = Intent(this, SignIn_Activity::class.java)
@@ -39,10 +39,10 @@ class SignUp_Activity : AppCompatActivity() {
             val password = binding.SignUpPassword.text.toString().trim()
 
             //Create user object
-            val user = User(name, email, phone)
+            val user = User(name, email, phone, isDoctor, age)
 
             if (name.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                if (password.length > 8) {
+                if (password.length > 7) {
                     firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
                         if (it.isSuccessful) {
 
