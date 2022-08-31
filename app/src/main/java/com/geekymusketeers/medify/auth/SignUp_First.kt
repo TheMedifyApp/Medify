@@ -21,11 +21,20 @@ class SignUp_First : AppCompatActivity() {
         supportActionBar?.hide()
 
         binding.nextButton.setOnClickListener {
+            val age = binding.ageInput.text.toString().trim()
+            val isDoctor = binding.stickySwitch.getText()
 
-            val intent = Intent(this, SignUp_Activity::class.java)
-            intent.putExtra("isDoctor", (binding.stickySwitch.getText() == "Doctor").toString())
-            intent.putExtra("age", binding.ageInput.text.toString().trim())
-            startActivity(intent)
+            if (isDoctor == "Doctor" && (Integer.parseInt(age) < 23)) {
+                Toast.makeText(baseContext, "23 is the minimum age of a Doctor" ,Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+
+            } else {
+
+                val intent = Intent(this, SignUp_Activity::class.java)
+                intent.putExtra("isDoctor", isDoctor)
+                intent.putExtra("age", age)
+                startActivity(intent)
+            }
 
         }
 

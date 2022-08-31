@@ -26,9 +26,9 @@ class HomeFragment : Fragment() {
 
         db = FirebaseDatabase.getInstance().reference!!.child("Users")
 
-        val userreference = db.child(user?.uid!!)
+        val userRef = db.child(user?.uid!!)
 
-        userreference.addValueEventListener(object: ValueEventListener {
+        userRef.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val data = snapshot.child("email").value.toString() + "\n" + snapshot.child("name").value.toString()
                 Toast.makeText(requireActivity(), data, Toast.LENGTH_SHORT).show()
