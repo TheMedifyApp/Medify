@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "664762172591",
+    "firebase_url": "https://medify-28dac-default-rtdb.firebaseio.com",
     "project_id": "medify-28dac",
     "storage_bucket": "medify-28dac.appspot.com"
   },
@@ -19,6 +20,14 @@
           "android_info": {
             "package_name": "com.geekymusketeers.medify",
             "certificate_hash": "fd28bb7958553070a4f348a9e24d0551193a8f1d"
+          }
+        },
+        {
+          "client_id": "664762172591-i6ip89ftgk80jk9lk275247dc0ugg4mu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.geekymusketeers.medify",
+            "certificate_hash": "b173ac0895ca8a013f2878558ea080755d04fe3a"
           }
         },
         {
