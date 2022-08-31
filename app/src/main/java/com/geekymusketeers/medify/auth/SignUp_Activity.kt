@@ -23,9 +23,9 @@ class SignUp_Activity : AppCompatActivity() {
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        initialization()
         val isDoctor = intent.extras!!.getString("isDoctor")
         val age = intent.extras!!.getString("age")
+        initialization(isDoctor!!)
 
         binding.toSignIn.setOnClickListener {
             val intent = Intent(this, SignIn_Activity::class.java)
@@ -75,10 +75,10 @@ class SignUp_Activity : AppCompatActivity() {
 
     }
 
-    private fun initialization() {
+    private fun initialization(isDoctor : String) {
         supportActionBar?.hide()
         firebaseAuth = FirebaseAuth.getInstance()
         fd = FirebaseDatabase.getInstance()
-        db = fd.getReference("Users")
+        db = fd.getReference("Users").child(isDoctor)
     }
 }

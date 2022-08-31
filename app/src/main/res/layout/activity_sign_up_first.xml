@@ -75,6 +75,7 @@
 
     <Button
         android:id="@+id/nextButton"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_marginLeft="30dp"
@@ -83,6 +84,7 @@
         android:fontFamily="@font/dm_sans_medium"
         android:text="Next"
         android:textAllCaps="false"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/ageInput"
         app:layout_constraintHorizontal_bias="0.584"
@@ -94,14 +96,14 @@
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginTop="48dp"
-        android:paddingLeft="10dp"
         android:background="@drawable/editfield"
         android:ems="10"
-        android:textColor="@color/black"
         android:fontFamily="@font/dm_sans"
         android:hint="Enter your age"
-        android:textColorHint="@android:color/darker_gray"
         android:inputType="number"
+        android:paddingLeft="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="@+id/stickySwitch"
         app:layout_constraintStart_toStartOf="@+id/stickySwitch"
         app:layout_constraintTop_toBottomOf="@+id/stickySwitch" />
