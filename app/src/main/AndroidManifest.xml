@@ -17,10 +17,10 @@
         tools:targetApi="31">
         <activity
             android:name=".auth.SignInActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".auth.SignUpActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".HomeActivity"
             android:exported="true">
