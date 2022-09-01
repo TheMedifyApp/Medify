@@ -54,4 +54,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics'
 
     implementation 'com.github.GwonHyeok:StickySwitch:0.0.16'
+
+
+    implementation 'com.github.imtuann:FloatingActionButtonExpandable:1.1.2'
 }

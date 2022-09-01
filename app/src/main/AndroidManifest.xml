@@ -36,7 +36,7 @@
             android:name=".auth.SignUp_Activity"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".HomeActivity"
             android:exported="true" />
 
         <meta-data

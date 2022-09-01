@@ -4,7 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import com.geekymusketeers.medify.MainActivity
+import com.geekymusketeers.medify.HomeActivity
 import com.geekymusketeers.medify.R
 import com.geekymusketeers.medify.auth.SignIn_Activity
 import com.google.firebase.auth.FirebaseAuth
@@ -27,7 +27,7 @@ class Splashscreen : AppCompatActivity() {
             //If user was logged in last time
             Handler().postDelayed({
                 val loginIntent: Intent
-                if (currentUser.isEmailVerified) loginIntent = Intent(this, MainActivity::class.java) //If the user email is verified
+                if (currentUser.isEmailVerified) loginIntent = Intent(this, HomeActivity::class.java) //If the user email is verified
                 else loginIntent = Intent(this, SignIn_Activity::class.java) //If the user email is not verified
                 loginIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                 startActivity(loginIntent)
