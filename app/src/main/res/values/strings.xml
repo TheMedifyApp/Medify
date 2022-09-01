@@ -2,4 +2,8 @@
     <string name="app_name">Medify</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="reminder_text">%1$s: %2$s pill(s)</string>
+    <string name="pill_time_reminders_format">%1$s at %2$s</string>
+    <string name="it_is_time_to_take">It is time to take %1$s pill(s)!</string>
 </resources>
