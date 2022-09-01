@@ -129,6 +129,8 @@
                 android:inputType="textPassword"
                 android:paddingStart="20dp"
                 android:textColor="@color/black"
+                android:drawableRight="@drawable/visibility_off"
+                android:paddingRight="15dp"
                 android:textColorHint="@android:color/darker_gray"
                 app:layout_constraintEnd_toEndOf="@+id/SignUp_Email"
                 app:layout_constraintHorizontal_bias="0.0"

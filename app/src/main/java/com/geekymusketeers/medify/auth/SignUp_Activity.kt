@@ -1,11 +1,16 @@
 package com.geekymusketeers.medify.auth
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import android.util.Log
 import android.util.Patterns
+import android.view.MotionEvent
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.geekymusketeers.medify.R
 import com.geekymusketeers.medify.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -18,6 +23,7 @@ class SignUp_Activity : AppCompatActivity() {
     private lateinit var db: DatabaseReference
     private lateinit var fd: FirebaseDatabase
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySignUpBinding.inflate(layoutInflater)
@@ -26,6 +32,48 @@ class SignUp_Activity : AppCompatActivity() {
         val isDoctor = intent.extras!!.getString("isDoctor")
         val age = intent.extras!!.getString("age")
         initialization()
+
+        // Hide and Show Password
+        var passwordVisible = false
+        binding.SignUpPassword.setOnTouchListener { v, event ->
+            val Right = 2
+            if (event.getAction() === MotionEvent.ACTION_UP) {
+                if (event.getRawX() >= binding.SignUpPassword.getRight() - binding.SignUpPassword.getCompoundDrawables()
+                        .get(Right).getBounds().width()
+                ) {
+                    val selection: Int = binding.SignUpPassword.getSelectionEnd()
+                    //Handles Multiple option popups
+                    if (passwordVisible) {
+                        //set drawable image here
+                        binding.SignUpPassword.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                            0,
+                            0,
+                            R.drawable.visibility_off,
+                            0
+                        )
+                        //for hide password
+                        binding.SignUpPassword.setTransformationMethod(PasswordTransformationMethod.getInstance())
+                        passwordVisible = false
+                    } else {
+                        //set drawable image here
+                        binding.SignUpPassword.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                            0,
+                            0,
+                            R.drawable.visibility,
+                            0
+                        )
+                        //for show password
+                        binding.SignUpPassword.setTransformationMethod(
+                            HideReturnsTransformationMethod.getInstance())
+                        passwordVisible = true
+                    }
+                    binding.SignUpPassword.setLongClickable(false) //Handles Multiple option popups
+                    binding.SignUpPassword.setSelection(selection)
+                    return@setOnTouchListener true
+                }
+            }
+            false
+        }
 
         binding.toSignIn.setOnClickListener {
             val intent = Intent(this, SignIn_Activity::class.java)
