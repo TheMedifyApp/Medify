@@ -16,17 +16,22 @@
         android:theme="@style/Theme.Medify"
         tools:targetApi="31">
         <activity
-            android:name=".auth.SignUp_First"
-            android:exported="true" />
-        <activity
-            android:name=".auth.SignIn_Activity"
+            android:name=".introduction.Splashscreen"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
+        <activity
+            android:name=".auth.SignUp_First"
+            android:exported="true" />
+        <activity
+            android:name=".auth.SignIn_Activity"
+            android:exported="true"/>
         <activity
             android:name=".auth.SignUp_Activity"
             android:exported="true" />
