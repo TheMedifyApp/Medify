@@ -1,14 +1,12 @@
 package com.geekymusketeers.medify
 
 import android.app.DatePickerDialog
-import android.app.TimePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
 import com.geekymusketeers.medify.databinding.ActivityAppointmentBookingBinding
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
-import java.text.SimpleDateFormat
 import java.util.*
 
 class AppointmentBooking : AppCompatActivity() {
@@ -113,5 +111,4 @@ class AppointmentBooking : AppCompatActivity() {
     }
 
 }
-
 

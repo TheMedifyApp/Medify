@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.geekymusketeers.medify.AppointmentBooking
+import com.geekymusketeers.medify.RemoveCountryCode
 import com.geekymusketeers.medify.databinding.FragmentHomeBinding
 import com.google.firebase.FirebaseError
 import com.google.firebase.auth.FirebaseAuth
@@ -56,7 +57,7 @@ class HomeFragment : Fragment() {
         binding.searchButton.setOnClickListener {
             searchedData = binding.doctorData.text.toString().trim()
             if (searchedData.isNotEmpty()) {
-                if (searchedData == userPhone || searchedData == userEmail) {
+                if (RemoveCountryCode.remove(searchedData) == userPhone || searchedData == userPhone || searchedData == userEmail) {
                     Toast.makeText(requireActivity(), "Stop searching yourself", Toast.LENGTH_SHORT).show()
                     binding.cardView.isVisible = false
                     binding.slider.isVisible = false
@@ -95,7 +96,7 @@ class HomeFragment : Fragment() {
                     val name = map["name"].toString().trim()
                     val email = map["email"].toString().trim()
                     val phone = map["phone"].toString().trim()
-                    if (searchedData == email || searchedData == phone) {
+                    if (searchedData == email || searchedData == phone || RemoveCountryCode.remove(searchedData) == phone) {
                         searchedName = name
                         searchedEmail = email
                         searchedPhone = phone

@@ -11,6 +11,7 @@ import android.view.MotionEvent
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.geekymusketeers.medify.R
+import com.geekymusketeers.medify.RemoveCountryCode
 import com.geekymusketeers.medify.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -83,7 +84,10 @@ class SignUp_Activity : AppCompatActivity() {
         binding.createAccount.setOnClickListener {
             val name = binding.SignUpName.text.toString().trim()
             val email = binding.SignUpEmail.text.toString().trim()
-            val phone = binding.SignUpPhone.text.toString().trim()
+            val tempPhone = binding.SignUpPhone.text.toString().trim()
+            val phone = RemoveCountryCode.remove(tempPhone)
+            Toast.makeText(baseContext, tempPhone, Toast.LENGTH_SHORT).show()
+            Toast.makeText(baseContext, phone, Toast.LENGTH_SHORT).show()
             val password = binding.SignUpPassword.text.toString().trim()
 
             //Create user object
