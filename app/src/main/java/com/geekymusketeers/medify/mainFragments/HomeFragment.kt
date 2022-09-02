@@ -33,6 +33,7 @@ class HomeFragment : Fragment() {
     private lateinit var userEmail : String
     private lateinit var userPhone : String
     private lateinit var userPosition: String
+    private lateinit var userType: String
 
     //Searched doctor's data
     private lateinit var searchedName : String
@@ -95,7 +96,8 @@ class HomeFragment : Fragment() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 for (child in dataSnapshot.children) {
                     val map = child.value as HashMap<*, *>
-                    val name = map["name"].toString().trim()
+                    val name = "Dr. " +map["name"].toString().trim()
+                    val type = map["specialist"].toString().trim()
                     val email = map["email"].toString().trim()
                     val phone = map["phone"].toString().trim()
                     if (searchedData == email || searchedData == phone || RemoveCountryCode.remove(searchedData) == phone) {
@@ -107,6 +109,7 @@ class HomeFragment : Fragment() {
                         binding.cardView.isVisible = true
                         binding.slider.isVisible = true
                         binding.doctorName.text = name
+                        binding.doctortype.text = type
                         binding.doctorEmail.text = email
                         binding.doctorPhone.text = phone
                         return

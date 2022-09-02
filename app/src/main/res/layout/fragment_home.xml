@@ -129,13 +129,12 @@
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
         android:layout_marginRight="30dp"
-        android:layout_marginBottom="30dp"
-        android:visibility="gone"
         android:background="@drawable/cardview_background"
         android:backgroundTint="#F0F6F8"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
@@ -166,10 +165,19 @@
                 android:textColor="@color/black" />
 
             <TextView
+                android:id="@+id/doctortype"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/dm_sans"
+                android:text="Specialist: Loading name"
+                android:textColor="@color/black" />
+
+            <TextView
                 android:id="@+id/doctorEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:fontFamily="@font/dm_sans"
                 android:text="Email: Loading email"
                 android:textColor="@color/black" />
@@ -178,11 +186,12 @@
                 android:id="@+id/doctorPhone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginBottom="20dp"
                 android:fontFamily="@font/dm_sans"
                 android:text="Phone: Loading phone"
                 android:textColor="@color/black" />
+
 
         </LinearLayout>
 

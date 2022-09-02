@@ -95,7 +95,7 @@
         android:layout_height="60dp"
         android:layout_marginTop="20dp"
         app:boxBackgroundColor="#F5F8FA"
-        android:textColorHint="@color/light_blue"
+        android:textColorHint="@android:color/darker_gray"
         android:hint="@string/disease_name"
         app:layout_constraintEnd_toEndOf="@+id/select_time"
         app:layout_constraintStart_toStartOf="@+id/select_time"
@@ -119,7 +119,7 @@
         android:layout_marginTop="20dp"
         app:boxBackgroundColor="#F5F8FA"
         android:hint="@string/situation"
-        android:textColorHint="@color/light_blue"
+        android:textColorHint="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="@+id/menu_disease"
         app:layout_constraintStart_toStartOf="@+id/menu_disease"
         app:layout_constraintTop_toBottomOf="@+id/menu_disease">

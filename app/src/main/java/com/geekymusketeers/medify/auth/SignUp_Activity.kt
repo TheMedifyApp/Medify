@@ -8,8 +8,10 @@ import android.text.method.PasswordTransformationMethod
 import android.util.Log
 import android.util.Patterns
 import android.view.MotionEvent
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import com.geekymusketeers.medify.R
 import com.geekymusketeers.medify.RemoveCountryCode
 import com.geekymusketeers.medify.databinding.ActivitySignUpBinding
@@ -33,6 +35,10 @@ class SignUp_Activity : AppCompatActivity() {
         val isDoctor = intent.extras!!.getString("isDoctor")
         val age = intent.extras!!.getString("age")
         initialization()
+
+        if (isDoctor == "Doctor"){
+            binding.SignUpTypeOfDoctor.visibility = View.VISIBLE
+        }
 
         // Hide and Show Password
         var passwordVisible = false
@@ -85,13 +91,12 @@ class SignUp_Activity : AppCompatActivity() {
             val name = binding.SignUpName.text.toString().trim()
             val email = binding.SignUpEmail.text.toString().trim()
             val tempPhone = binding.SignUpPhone.text.toString().trim()
+            val specialist = binding.SignUpTypeOfDoctor.text.toString().trim()
             val phone = RemoveCountryCode.remove(tempPhone)
-            Toast.makeText(baseContext, tempPhone, Toast.LENGTH_SHORT).show()
-            Toast.makeText(baseContext, phone, Toast.LENGTH_SHORT).show()
             val password = binding.SignUpPassword.text.toString().trim()
 
             //Create user object
-            val user = User(name, email, phone, isDoctor, age)
+            val user = User(name, email, phone, isDoctor, age, specialist)
 
             if (name.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                 if (password.length > 7) {
