@@ -1,6 +1,7 @@
 package com.geekymusketeers.medify.auth
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,6 +13,10 @@ import com.geekymusketeers.medify.HomeActivity
 import com.geekymusketeers.medify.R
 import com.geekymusketeers.medify.databinding.ActivitySignInBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class SignIn_Activity : AppCompatActivity() {
 
@@ -82,12 +87,35 @@ class SignIn_Activity : AppCompatActivity() {
 
                     firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
                         if (it.isSuccessful) {
-                            if (firebaseAuth.currentUser?.isEmailVerified!!) {
+                            val u = firebaseAuth.currentUser
+                            if (u?.isEmailVerified!!) {
+
+                                val db = FirebaseDatabase.getInstance().reference
+
+                                db.child("Users").child(u.uid).addValueEventListener(object: ValueEventListener {
+                                    override fun onDataChange(snapshot: DataSnapshot) {
+
+                                        val sharedPreference =  getSharedPreferences("UserData", Context.MODE_PRIVATE)
+                                        val editor = sharedPreference.edit()
+                                        editor.putString("uid", u.uid)
+                                        editor.putString("name", snapshot.child("name").value.toString().trim())
+                                        editor.putString("email", snapshot.child("email").value.toString().trim())
+                                        editor.putString("phone", snapshot.child("phone").value.toString().trim())
+                                        editor.commit()
+                                        editor.apply()
+
+                                    }
+
+                                    override fun onCancelled(error: DatabaseError) {
+                                        TODO("Not yet implemented")
+                                    }
+                                })
+
                                 startActivity(Intent(this, HomeActivity::class.java))
                                 finish()
+
                             } else {
-                                val u = firebaseAuth.currentUser
-                                u?.sendEmailVerification()
+                                u.sendEmailVerification()
                                 Toast.makeText(
                                     this,
                                     "Email Verification sent to your mail",

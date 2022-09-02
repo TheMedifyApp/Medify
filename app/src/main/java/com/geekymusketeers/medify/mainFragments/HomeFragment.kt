@@ -1,6 +1,8 @@
 package com.geekymusketeers.medify.mainFragments
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -34,6 +36,7 @@ class HomeFragment : Fragment() {
     private lateinit var searchedData : String
     private lateinit var searchedUID : String
 
+    private lateinit var sharedPreference : SharedPreferences
 
 
     override fun onCreateView(
@@ -44,20 +47,12 @@ class HomeFragment : Fragment() {
         val user = firebaseAuth.currentUser
 
         db = FirebaseDatabase.getInstance().reference
+        sharedPreference = requireActivity().getSharedPreferences("UserData", Context.MODE_PRIVATE)
 
-        db.child("Users").child(user?.uid!!).addValueEventListener(object: ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                userName = snapshot.child("name").value.toString().trim()
-                userEmail = snapshot.child("email").value.toString().trim()
-                userPhone = snapshot.child("phone").value.toString().trim()
-                binding.namePreview.text = userName
-
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-        })
+         userName = sharedPreference.getString("name","Not found").toString()
+         userEmail = sharedPreference.getString("email","Not found").toString()
+         userPhone = sharedPreference.getString("phone","Not found").toString()
+         binding.namePreview.text = userName
 
         binding.searchButton.setOnClickListener {
             searchedData = binding.doctorData.text.toString().trim()
