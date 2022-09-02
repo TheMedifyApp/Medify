@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".mainFragments.AppointmentBooking">
+    tools:context=".AppointmentBooking">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -113,7 +113,7 @@
         android:layout_height="60dp"
         android:layout_marginTop="20dp"
         app:boxBackgroundColor="#F5F8FA"
-        android:hint="@string/disease_name"
+        android:hint="@string/situation"
         app:layout_constraintEnd_toEndOf="@+id/menu_disease"
         app:layout_constraintStart_toStartOf="@+id/menu_disease"
         app:layout_constraintTop_toBottomOf="@+id/menu_disease">

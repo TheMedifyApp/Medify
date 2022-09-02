@@ -8,6 +8,7 @@
     <string name="it_is_time_to_take">It is time to take %1$s pill(s)!</string>
     <string name="dropdown_label">Disease Name:</string>
     <string name="disease_name">Disease Name</string>
+    <string name="situation">Situation</string>
     <string-array name="dropdown_items">
         <item>Fever</item>
         <item>Cold</item>

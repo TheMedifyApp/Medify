@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import com.geekymusketeers.medify.AppointmentBooking
 import com.geekymusketeers.medify.databinding.FragmentHomeBinding
 import com.google.firebase.FirebaseError
 import com.google.firebase.auth.FirebaseAuth

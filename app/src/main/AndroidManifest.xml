@@ -30,7 +30,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".mainFragments.AppointmentBooking"
+            android:name=".AppointmentBooking"
             android:exported="true" />
         <activity
             android:name=".auth.SignUp_First"
