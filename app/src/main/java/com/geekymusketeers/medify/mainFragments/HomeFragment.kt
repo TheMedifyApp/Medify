@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -49,10 +50,7 @@ class HomeFragment : Fragment() {
         db = FirebaseDatabase.getInstance().reference
         sharedPreference = requireActivity().getSharedPreferences("UserData", Context.MODE_PRIVATE)
 
-         userName = sharedPreference.getString("name","Not found").toString()
-         userEmail = sharedPreference.getString("email","Not found").toString()
-         userPhone = sharedPreference.getString("phone","Not found").toString()
-         binding.namePreview.text = userName
+        getDataFromSharedPreference()
 
         binding.searchButton.setOnClickListener {
             searchedData = binding.doctorData.text.toString().trim()
@@ -116,6 +114,20 @@ class HomeFragment : Fragment() {
             override fun onCancelled(error: DatabaseError) {}
             fun onCancelled(firebaseError: FirebaseError?) {}
         })
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Handler().postDelayed({
+            getDataFromSharedPreference()
+        }, 1000)
+    }
+
+    private fun getDataFromSharedPreference() {
+        userName = sharedPreference.getString("name","Not found").toString()
+        userEmail = sharedPreference.getString("email","Not found").toString()
+        userPhone = sharedPreference.getString("phone","Not found").toString()
+        binding.namePreview.text = userName
     }
 
 }

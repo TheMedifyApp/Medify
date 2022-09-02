@@ -97,12 +97,10 @@ class SignIn_Activity : AppCompatActivity() {
                                 db.child("Users").child(u.uid).addValueEventListener(object: ValueEventListener {
                                     override fun onDataChange(snapshot: DataSnapshot) {
 
-                                        editor.clear()
                                         editor.putString("uid", u.uid)
                                         editor.putString("name", snapshot.child("name").value.toString().trim())
                                         editor.putString("email", snapshot.child("email").value.toString().trim())
                                         editor.putString("phone", snapshot.child("phone").value.toString().trim())
-                                        editor.commit()
                                         editor.apply()
 
                                     }
