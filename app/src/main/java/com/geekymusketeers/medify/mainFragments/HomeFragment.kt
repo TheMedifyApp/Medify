@@ -1,5 +1,6 @@
 package com.geekymusketeers.medify.mainFragments
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -31,6 +32,7 @@ class HomeFragment : Fragment() {
     private lateinit var userName : String
     private lateinit var userEmail : String
     private lateinit var userPhone : String
+    private lateinit var userPosition: String
 
     //Searched doctor's data
     private lateinit var searchedName : String
@@ -125,11 +127,18 @@ class HomeFragment : Fragment() {
         }, 1000)
     }
 
+    @SuppressLint("SetTextI18n")
     private fun getDataFromSharedPreference() {
         userName = sharedPreference.getString("name","Not found").toString()
         userEmail = sharedPreference.getString("email","Not found").toString()
         userPhone = sharedPreference.getString("phone","Not found").toString()
-        binding.namePreview.text = userName
+        userPosition = sharedPreference.getString("isDoctor", "Not fount").toString()
+
+        if (userPosition == "Doctor")
+            binding.namePreview.text = "Dr. $userName"
+        else
+            binding.namePreview.text = userName
+
     }
 
 }

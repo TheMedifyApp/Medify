@@ -101,6 +101,7 @@ class SignIn_Activity : AppCompatActivity() {
                                         editor.putString("name", snapshot.child("name").value.toString().trim())
                                         editor.putString("email", snapshot.child("email").value.toString().trim())
                                         editor.putString("phone", snapshot.child("phone").value.toString().trim())
+                                        editor.putString("isDoctor", snapshot.child("doctor").value.toString().trim())
                                         editor.apply()
 
                                     }
