@@ -30,6 +30,8 @@ class SignIn_Activity : AppCompatActivity() {
         setContentView(binding.root)
 
         initialization()
+        val sharedPreference =  getSharedPreferences("UserData", Context.MODE_PRIVATE)
+        val editor = sharedPreference.edit()
 
         // Hide and Show Password
         var passwordVisible = false
@@ -95,8 +97,7 @@ class SignIn_Activity : AppCompatActivity() {
                                 db.child("Users").child(u.uid).addValueEventListener(object: ValueEventListener {
                                     override fun onDataChange(snapshot: DataSnapshot) {
 
-                                        val sharedPreference =  getSharedPreferences("UserData", Context.MODE_PRIVATE)
-                                        val editor = sharedPreference.edit()
+                                        editor.clear()
                                         editor.putString("uid", u.uid)
                                         editor.putString("name", snapshot.child("name").value.toString().trim())
                                         editor.putString("email", snapshot.child("email").value.toString().trim())
