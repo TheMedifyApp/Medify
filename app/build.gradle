@@ -62,42 +62,7 @@ dependencies {
     //Swipe/Slide button
     implementation "com.ncorti:slidetoact:0.9.0"
 
-//    // Room Database
-//    implementation "androidx.room:room-runtime:2.4.3"
-//    kapt "androidx.room:room-compiler:2.4.3"
-//    implementation "androidx.room:room-ktx:2.4.3"
-//
-//    // Hilt
-//    implementation 'com.google.dagger:hilt-android:2.34-beta'
-//    kapt 'com.google.dagger:hilt-android-compiler:2.34-beta'
-//    kapt 'androidx.hilt:hilt-compiler:1.0.0-beta01'
-//
-//    // LifeCycle
-//    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"
-//    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.3.1"
-//    implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1"
-//
-//    // Permissions
-//    implementation "pub.devrel:easypermissions:3.0.0"
-//
-//    // Number picker
-//    implementation "com.shawnlin:number-picker:2.4.11"
-//
-//    // ViewBinding delegate
-//    implementation 'com.github.Zhuinden:fragmentviewbindingdelegate-kt:1.0.0'
-//
-//    // Recycler loading skeletons
-//    implementation 'com.faltenreich:skeletonlayout:4.0.0'
-//
-//    // Popup Menu
-//    implementation 'com.github.zawadz88.materialpopupmenu:material-popup-menu:4.1.0'
-//
-//    // Timber logging
-//    implementation "com.jakewharton.timber:timber:4.7.1"
-//
-//    // Shared preferences
-//    implementation ("com.marcinmoskala.PreferenceHolder:preferenceholder:1.51") {
-//        exclude group: 'org.jetbrains.kotlin', module: 'kotlin-reflect'
-//    }
+    // Material Design
+    implementation 'com.google.android.material:material:1.6.1'
 
 }

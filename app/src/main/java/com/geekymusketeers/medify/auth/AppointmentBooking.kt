@@ -20,10 +20,15 @@ class AppointmentBooking : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
 
+
+
+
+        // Disease List
         val items = listOf("Fever", "Cold", "Diarrhea", "Allergies", "Stomach Aches")
         val adapter = ArrayAdapter(this, R.layout.list_items, items)
         binding.diseaseDropdown.setAdapter(adapter)
 
+        // Situation List
         val situationItems = listOf("Critical", "Urgent", "Under-control")
         val situationAdapter = ArrayAdapter(this, R.layout.list_items, situationItems)
         binding.situationDropdown.setAdapter(situationAdapter)
