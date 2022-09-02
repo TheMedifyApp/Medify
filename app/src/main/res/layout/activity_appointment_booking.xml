@@ -7,65 +7,152 @@
     android:background="@color/white"
     tools:context=".mainFragments.AppointmentBooking">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="228dp"
-        android:layout_marginRight="30dp"
-        android:background="@drawable/cardview_background"
-        android:backgroundTint="#F0F6F8"
+        android:layout_marginTop="40dp"
+        android:gravity="start"
+        android:orientation="vertical"
+        android:paddingLeft="30dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/book"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/dm_sans_bold"
+            android:text="Book Appointment"
+            android:textColor="@color/black"
+            android:textSize="35sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.099"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/loginIllustration" />
+
+        <TextView
+            android:id="@+id/signUph2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/dm_sans"
+            android:text="Add patients details"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/signUpHeader"
+            app:layout_constraintTop_toBottomOf="@+id/signUpHeader" />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/select_date"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/editfield"
+        android:ems="10"
+        android:fontFamily="@font/dm_sans"
+        android:drawableRight="@drawable/date"
+        android:paddingRight="15dp"
+        android:hint="Select Date"
+        android:inputType="textPersonName"
+        android:paddingLeft="20dp"
+        android:textColor="@color/black"
+        android:textColorHint="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <EditText
+        android:id="@+id/select_time"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/editfield"
+        android:drawableRight="@drawable/time"
+        android:ems="10"
+        android:fontFamily="@font/dm_sans"
+        android:hint="Select Time"
+        android:inputType="textPersonName"
+        android:paddingLeft="20dp"
+        android:paddingRight="15dp"
+        android:textColor="@color/black"
+        android:textColorHint="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="@+id/select_date"
+        app:layout_constraintStart_toStartOf="@+id/select_date"
+        app:layout_constraintTop_toBottomOf="@+id/select_date" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/menu_disease"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        app:boxBackgroundColor="#F5F8FA"
+        android:hint="@string/disease_name"
+        app:layout_constraintEnd_toEndOf="@+id/select_time"
+        app:layout_constraintStart_toStartOf="@+id/select_time"
+        app:layout_constraintTop_toBottomOf="@+id/select_time">
+
+        <AutoCompleteTextView
+            android:id="@+id/disease_dropdown"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:layout_marginLeft="20dp"
-            android:orientation="vertical">
+            android:inputType="none" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/dm_sans_medium"
-                android:text="Doctor Found!"
-                android:textColor="@color/light_blue"
-                android:textSize="20dp" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:id="@+id/doctorName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:fontFamily="@font/dm_sans"
-                android:text="Name: Loading name"
-                android:textColor="@color/black" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/menu_situation"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        app:boxBackgroundColor="#F5F8FA"
+        android:hint="@string/disease_name"
+        app:layout_constraintEnd_toEndOf="@+id/menu_disease"
+        app:layout_constraintStart_toStartOf="@+id/menu_disease"
+        app:layout_constraintTop_toBottomOf="@+id/menu_disease">
 
-            <TextView
-                android:id="@+id/doctorEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/dm_sans"
-                android:text="Email: Loading email"
-                android:textColor="@color/black" />
+        <AutoCompleteTextView
+            android:id="@+id/situation_dropdown"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none" />
 
-            <TextView
-                android:id="@+id/doctorPhone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="20dp"
-                android:fontFamily="@font/dm_sans"
-                android:text="Phone: Loading phone"
-                android:textColor="@color/black" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-        </LinearLayout>
+    <Button
+        android:id="@+id/add_prescription"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/primary_button"
+        android:text="Add Your Prescription"
+        android:drawableRight="@drawable/ic_baseline_upload_file_24"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/menu_situation"
+        app:layout_constraintStart_toStartOf="@+id/menu_situation"
+        app:layout_constraintTop_toBottomOf="@+id/menu_situation" />
 
-    </androidx.cardview.widget.CardView>
+    <Button
+        android:id="@+id/book_appointment"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/primary_button"
+        android:text="Book"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="@+id/menu_situation"
+        app:layout_constraintTop_toBottomOf="@+id/add_prescription" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
