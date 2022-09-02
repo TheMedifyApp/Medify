@@ -84,6 +84,7 @@ class SignIn_Activity : AppCompatActivity() {
                         if (it.isSuccessful) {
                             if (firebaseAuth.currentUser?.isEmailVerified!!) {
                                 startActivity(Intent(this, HomeActivity::class.java))
+                                finish()
                             } else {
                                 val u = firebaseAuth.currentUser
                                 u?.sendEmailVerification()

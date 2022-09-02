@@ -25,11 +25,12 @@ class SignUp_First : AppCompatActivity() {
             val isDoctor = binding.stickySwitch.getText()
 
             if (isDoctor == "Doctor" && (Integer.parseInt(age) < 23)) {
-                Toast.makeText(baseContext, "23 is the minimum age of a Doctor" ,Toast.LENGTH_SHORT).show()
+                Toast.makeText(baseContext, "23 is the minimum age of a Doctor", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
-
+            }else if (age.isEmpty()) {
+                Toast.makeText(baseContext, "Enter age", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
             } else {
-
                 val intent = Intent(this, SignUp_Activity::class.java)
                 intent.putExtra("isDoctor", isDoctor)
                 intent.putExtra("age", age)

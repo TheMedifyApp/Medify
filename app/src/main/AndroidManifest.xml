@@ -28,14 +28,18 @@
             </intent-filter>
 
         </activity>
+        <activity android:name=".mainFragments.AppointmentBooking"
+            android:exported="true"/>
         <activity
             android:name=".auth.SignUp_First"
             android:exported="true" />
         <activity
             android:name=".auth.SignIn_Activity"
+            android:windowSoftInputMode="stateHidden|adjustResize"
             android:exported="true"/>
         <activity
             android:name=".auth.SignUp_Activity"
+            android:windowSoftInputMode="stateHidden|adjustResize"
             android:exported="true" />
         <activity
             android:name=".HomeActivity"
