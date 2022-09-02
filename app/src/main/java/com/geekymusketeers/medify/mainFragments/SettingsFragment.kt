@@ -34,6 +34,10 @@ class SettingsFragment : Fragment() {
             logoutFun()
         }
 
+        binding.createUPI.setOnClickListener {
+            startActivity(Intent(requireActivity(), UPImanager::class.java))
+        }
+
 
 
 

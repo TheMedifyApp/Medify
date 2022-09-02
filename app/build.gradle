@@ -62,6 +62,10 @@ dependencies {
     //Swipe/Slide button
     implementation "com.ncorti:slidetoact:0.9.0"
 
+    //QR Code generator
+    implementation 'com.google.zxing:core:3.4.1'
+    implementation 'com.journeyapps:zxing-android-embedded:4.3.0@aar'
+
 //    // Room Database
 //    implementation "androidx.room:room-runtime:2.4.3"
 //    kapt "androidx.room:room-compiler:2.4.3"

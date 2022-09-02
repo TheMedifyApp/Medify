@@ -4,7 +4,6 @@
     package="com.geekymusketeers.medify">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
 
     <application
@@ -18,29 +17,32 @@
         android:theme="@style/Theme.Medify"
         tools:targetApi="31">
         <activity
+            android:name=".mainFragments.UPImanager"
+            android:exported="true"
+            android:windowSoftInputMode="stateHidden|adjustResize"/>
+        <activity
             android:name=".introduction.Splashscreen"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-        <activity android:name=".mainFragments.AppointmentBooking"
-            android:exported="true"/>
+        <activity
+            android:name=".mainFragments.AppointmentBooking"
+            android:exported="true" />
         <activity
             android:name=".auth.SignUp_First"
             android:exported="true" />
         <activity
             android:name=".auth.SignIn_Activity"
-            android:windowSoftInputMode="stateHidden|adjustResize"
-            android:exported="true"/>
+            android:exported="true"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name=".auth.SignUp_Activity"
-            android:windowSoftInputMode="stateHidden|adjustResize"
-            android:exported="true" />
+            android:exported="true"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name=".HomeActivity"
             android:exported="true" />
