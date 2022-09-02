@@ -95,6 +95,7 @@
         android:layout_height="60dp"
         android:layout_marginTop="20dp"
         app:boxBackgroundColor="#F5F8FA"
+        android:textColorHint="@color/light_blue"
         android:hint="@string/disease_name"
         app:layout_constraintEnd_toEndOf="@+id/select_time"
         app:layout_constraintStart_toStartOf="@+id/select_time"
@@ -104,6 +105,8 @@
             android:id="@+id/disease_dropdown"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:fontFamily="@font/dm_sans"
             android:inputType="none" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -116,6 +119,7 @@
         android:layout_marginTop="20dp"
         app:boxBackgroundColor="#F5F8FA"
         android:hint="@string/situation"
+        android:textColorHint="@color/light_blue"
         app:layout_constraintEnd_toEndOf="@+id/menu_disease"
         app:layout_constraintStart_toStartOf="@+id/menu_disease"
         app:layout_constraintTop_toBottomOf="@+id/menu_disease">
@@ -124,6 +128,8 @@
             android:id="@+id/situation_dropdown"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/dm_sans"
+            android:textColor="@color/black"
             android:inputType="none" />
 
     </com.google.android.material.textfield.TextInputLayout>
