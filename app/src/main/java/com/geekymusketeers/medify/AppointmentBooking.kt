@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
 import com.geekymusketeers.medify.databinding.ActivityAppointmentBookingBinding
+import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
+import java.text.SimpleDateFormat
 import java.util.*
 
 class AppointmentBooking : AppCompatActivity() {
@@ -21,16 +23,31 @@ class AppointmentBooking : AppCompatActivity() {
         supportActionBar?.hide()
 
         // Date Picker
-        val c = Calendar.getInstance()
-        val year = c.get(Calendar.YEAR)
-        val month = c.get(Calendar.MONTH)
-        val day = c.get(Calendar.DAY_OF_MONTH)
-
         binding.selectDate.setOnClickListener {
-            val dpd = DatePickerDialog(this,DatePickerDialog.OnDateSetListener{view , mYear,mMonth,mDay->
-                binding.selectDate.setText(""+mDay +"/"+mMonth +"/"+mYear)
-            }, year,month,day)
-            dpd.show()
+            // Initiation date picker with
+            // MaterialDatePicker.Builder.datePicker()
+            // and building it using build()
+            val datePicker = MaterialDatePicker.Builder.datePicker().build()
+            datePicker.show(supportFragmentManager, "DatePicker")
+
+            // Setting up the event for when ok is clicked
+            datePicker.addOnPositiveButtonClickListener {
+                // formatting date in dd-mm-yyyy format.
+                val dateFormatter = SimpleDateFormat("dd-MM-yyyy")
+                val date = dateFormatter.format(Date(it))
+                binding.selectDate.setText(date)
+
+            }
+
+            // Setting up the event for when cancelled is clicked
+            datePicker.addOnNegativeButtonClickListener {
+                Toast.makeText(this, "${datePicker.headerText} is cancelled", Toast.LENGTH_LONG).show()
+            }
+
+            // Setting up the event for when back button is pressed
+            datePicker.addOnCancelListener {
+                Toast.makeText(this, "Date Picker Cancelled", Toast.LENGTH_LONG).show()
+            }
         }
 
         // Time Picker

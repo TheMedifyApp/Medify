@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Medify/app/src/main/res/drawable/banner.xml" value="0.3665" />
         <entry key="..\:/Medify/app/src/main/res/drawable/editfield.xml" value="0.3675" />
         <entry key="..\:/Medify/app/src/main/res/drawable/editfield_book.xml" value="0.1" />
         <entry key="..\:/Medify/app/src/main/res/drawable/ic_pill.xml" value="0.328" />
@@ -15,6 +16,7 @@
         <entry key="..\:/Medify/app/src/main/res/layout/activity_sign_in.xml" value="0.35260416666666666" />
         <entry key="..\:/Medify/app/src/main/res/layout/activity_sign_up.xml" value="0.36666666666666664" />
         <entry key="..\:/Medify/app/src/main/res/layout/activity_sign_up_first.xml" value="0.36666666666666664" />
+        <entry key="..\:/Medify/app/src/main/res/layout/activity_splashscreen.xml" value="0.36666666666666664" />
         <entry key="..\:/Medify/app/src/main/res/layout/activity_upimanager.xml" value="0.36666666666666664" />
         <entry key="..\:/Medify/app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="..\:/Medify/app/src/main/res/layout/fragment_reminder.xml" value="0.33" />
