@@ -11,7 +11,7 @@
         <item name="colorSecondaryVariant">#30E0DF</item>
         <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">@color/white</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/dull_blue</item>
         <!-- Customize your theme here. -->
     </style>
 </resources>
