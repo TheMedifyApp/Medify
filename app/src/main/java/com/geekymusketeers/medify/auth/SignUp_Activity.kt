@@ -95,8 +95,7 @@ class SignUp_Activity : AppCompatActivity() {
             val phone = RemoveCountryCode.remove(tempPhone)
             val password = binding.SignUpPassword.text.toString().trim()
 
-            //Create user object
-            val user = User(name, email, phone, isDoctor, age, specialist)
+
 
             if (name.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                 if (password.length > 7) {
@@ -104,6 +103,9 @@ class SignUp_Activity : AppCompatActivity() {
                         if (it.isSuccessful) {
 
                             val u = firebaseAuth.currentUser
+                            val uid = firebaseAuth.currentUser?.uid.toString()
+                            //Create user object
+                            val user = User(name, email, phone, uid, isDoctor, age, specialist)
 
                             //add user data in the Realtime Database
                             db.child(u?.uid!!).setValue(user).addOnCompleteListener { it1 ->

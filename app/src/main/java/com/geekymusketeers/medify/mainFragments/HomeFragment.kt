@@ -36,6 +36,7 @@ class HomeFragment : Fragment() {
     private lateinit var userPhone : String
     private lateinit var userPosition: String
     private lateinit var userType: String
+    private lateinit var userID: String
 
     //Searched doctor's data
     private lateinit var searchedName : String
@@ -85,10 +86,10 @@ class HomeFragment : Fragment() {
         binding.slider.onSlideCompleteListener = object : SlideToActView.OnSlideCompleteListener {
             override fun onSlideComplete(view: SlideToActView) {
                 val intent =  Intent(requireActivity(), AppointmentBooking::class.java)
-                intent.putExtra("uid", searchedUID)
-                intent.putExtra("name", searchedName)
-                intent.putExtra("email", searchedEmail)
-                intent.putExtra("phone", searchedPhone)
+                intent.putExtra("Duid", searchedUID)
+                intent.putExtra("Dname", searchedName)
+                intent.putExtra("Demail", searchedEmail)
+                intent.putExtra("Dphone", searchedPhone)
                 startActivity(intent)
                 binding.slider.resetSlider()
             }
@@ -104,22 +105,23 @@ class HomeFragment : Fragment() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 for (child in dataSnapshot.children) {
                     val map = child.value as HashMap<*, *>
-                    val name = "Dr. " +map["name"].toString().trim()
-                    val type = map["specialist"].toString().trim()
-                    val email = map["email"].toString().trim()
-                    val phone = map["phone"].toString().trim()
-                    if (searchedData == email || searchedData == phone || RemoveCountryCode.remove(searchedData) == phone) {
-                        searchedName = name
-                        searchedEmail = email
-                        searchedPhone = phone
-                        searchedUID = child.value.toString().trim()
+                    val sName = "Dr. " +map["name"].toString().trim()
+                    val sType = map["specialist"].toString().trim()
+                    val sEmail = map["email"].toString().trim()
+                    val sPhone = map["phone"].toString().trim()
+                    val sUid = map["uid"].toString().trim()
+                    if (searchedData == sEmail || searchedData == sPhone || RemoveCountryCode.remove(searchedData) == sPhone) {
+                        searchedName = sName
+                        searchedEmail = sEmail
+                        searchedPhone = sPhone
+                        searchedUID = sUid
                         binding.textView3.isVisible = false
                         binding.cardView.isVisible = true
                         binding.slider.isVisible = true
-                        binding.doctorName.text = name
-                        binding.doctortype.text = type
-                        binding.doctorEmail.text = email
-                        binding.doctorPhone.text = phone
+                        binding.doctorName.text = sName
+                        binding.doctortype.text = sType
+                        binding.doctorEmail.text = sName
+                        binding.doctorPhone.text = sPhone
                         return
                     } else
                         binding.textView3.isVisible = true
@@ -140,6 +142,7 @@ class HomeFragment : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun getDataFromSharedPreference() {
+        userID = sharedPreference.getString("uid","Not found").toString()
         userName = sharedPreference.getString("name","Not found").toString()
         userEmail = sharedPreference.getString("email","Not found").toString()
         userPhone = sharedPreference.getString("phone","Not found").toString()

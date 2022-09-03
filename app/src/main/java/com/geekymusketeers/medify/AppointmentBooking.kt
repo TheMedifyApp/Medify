@@ -31,9 +31,9 @@ class AppointmentBooking : AppCompatActivity() {
         sharedPreference = baseContext.getSharedPreferences("UserData", Context.MODE_PRIVATE)
 
         val doctorUid = intent.extras!!.getString("Duid")
-//        val nameUid = intent.extras!!.getString("Dname")
-//        val emailUid = intent.extras!!.getString("Demail")
-//        val phoneUid = intent.extras!!.getString("Dphone")
+        val nameUid = intent.extras!!.getString("Dname")
+        val emailUid = intent.extras!!.getString("Demail")
+        val phoneUid = intent.extras!!.getString("Dphone")
 
         // Date Picker
         binding.selectDate.setOnClickListener {
@@ -132,36 +132,28 @@ class AppointmentBooking : AppCompatActivity() {
         // Booking Appointment
         binding.btnFinalbook.onSlideCompleteListener = object : SlideToActView.OnSlideCompleteListener{
 
-
             override fun onSlideComplete(view: SlideToActView) {
                 val userName = sharedPreference.getString("name","").toString()
                 val userPhone = sharedPreference.getString("phone","").toString()
-                val uid = sharedPreference.getString("uid","").toString()
+                val userid = sharedPreference.getString("uid","").toString()
 
                 val date = binding.selectDate.text.toString()
                 val time = binding.selectTime.text.toString()
                 val disease = binding.diseaseDropdown.text.toString()
                 val situation = binding.situationDropdown.text.toString()
 
-                //Toast.makeText(baseContext, "Pahuch gaye", Toast.LENGTH_LONG).show()
-                //val appointment = DocAppointment(userName,userPhone,date,time,disease,situation)
                 val appointment:HashMap<String,String> = HashMap<String,String>() //define empty hashmap
-                appointment.put("PatientName",userName)
-                appointment.put("PatientPhone",userPhone)
-                appointment.put("Time",time)
-                appointment.put("Date",date)
-                appointment.put("Disease",disease)
-                appointment.put("PatientCondition",situation)
+                appointment["PatientName"] = userName
+                appointment["PatientPhone"] = userPhone
+                appointment["Time"] = time
+                appointment["Date"] = date
+                appointment["Disease"] = disease
+                appointment["PatientCondition"] = situation
 
+                Toast.makeText(baseContext, doctorUid, Toast.LENGTH_LONG).show()
+                appointmentdb = FirebaseDatabase.getInstance().getReference("Doctor").child(doctorUid!!).child("DoctorsAppointments").child(date)
 
-                Toast.makeText(baseContext, doctorUid.toString(), Toast.LENGTH_LONG).show()
-                appointmentdb = FirebaseDatabase.getInstance().getReference("Doctor").child(doctorUid.toString()).child("DoctorsAppointments").child(date)
-
-                appointmentdb.child(uid).setValue(appointment).addOnCompleteListener {
-                    if (it.isSuccessful){
-                        Toast.makeText(baseContext, "Booking Done", Toast.LENGTH_LONG).show()
-                    }
-                }
+                appointmentdb.child(userid).setValue(appointment)
             }
         }
 
