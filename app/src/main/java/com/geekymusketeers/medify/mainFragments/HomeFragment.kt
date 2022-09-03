@@ -9,6 +9,8 @@ import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.widget.EditText
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -57,21 +59,27 @@ class HomeFragment : Fragment() {
 
         getDataFromSharedPreference()
 
-        binding.searchButton.setOnClickListener {
-            searchedData = binding.doctorData.text.toString().trim()
-            if (searchedData.isNotEmpty()) {
-                if (RemoveCountryCode.remove(searchedData) == userPhone || searchedData == userPhone || searchedData == userEmail) {
-                    Toast.makeText(requireActivity(), "Stop searching yourself", Toast.LENGTH_SHORT).show()
-                    binding.cardView.isVisible = false
-                    binding.slider.isVisible = false
-                    return@setOnClickListener
-                }
-                doctorIsPresent()
-            } else {
-                Toast.makeText(requireActivity(), "Enter doctor's email / phone", Toast.LENGTH_SHORT).show()
-            }
 
+        binding.doctorData.setOnEditorActionListener { textView, i, keyEvent ->
+            if (i == EditorInfo.IME_ACTION_DONE) {
+                // Call your code here
+                searchedData = binding.doctorData.text.toString().trim()
+                if (searchedData.isNotEmpty()) {
+                    if (RemoveCountryCode.remove(searchedData) == userPhone || searchedData == userPhone || searchedData == userEmail) {
+                        Toast.makeText(requireActivity(), "Stop searching yourself", Toast.LENGTH_SHORT).show()
+                        binding.cardView.isVisible = false
+                        binding.slider.isVisible = false
+                    }else {
+                        doctorIsPresent()
+                    }
+                } else {
+                    Toast.makeText(requireActivity(), "Enter doctor's email / phone", Toast.LENGTH_SHORT).show()
+                }
+                true
+            }
+            false
         }
+
 
         binding.slider.animDuration = 150
         binding.slider.onSlideCompleteListener = object : SlideToActView.OnSlideCompleteListener {

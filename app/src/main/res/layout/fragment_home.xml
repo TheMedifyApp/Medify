@@ -28,7 +28,7 @@
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="20dp"
         android:gravity="left"
         android:orientation="vertical"
         android:paddingLeft="30dp"
@@ -69,7 +69,7 @@
         android:id="@+id/linearLayout4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="110dp"
         android:gravity="left"
         android:orientation="vertical"
         android:paddingLeft="30dp"
@@ -97,12 +97,13 @@
 
             <EditText
                 android:id="@+id/doctorData"
-                android:layout_width="250dp"
+                android:layout_width="350dp"
                 android:layout_height="55dp"
                 android:background="@drawable/editfield"
                 android:ems="10"
                 android:fontFamily="@font/dm_sans"
                 android:hint="Doctor's email/phone"
+                android:imeOptions="actionDone"
                 android:inputType="textPersonName"
                 android:paddingLeft="10dp"
                 android:textColor="@color/black"
@@ -111,14 +112,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageButton
-                android:id="@+id/searchButton"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@drawable/search_button"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
