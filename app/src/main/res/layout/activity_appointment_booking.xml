@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/book"
+            android:id="@+id/book_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/dm_sans_bold"
@@ -145,7 +145,7 @@
 
 
         <com.ncorti.slidetoact.SlideToActView
-            android:id="@+id/slider"
+            android:id="@+id/btn_finalbook"
             android:layout_width="350dp"
             android:layout_height="60dp"
             android:layout_marginTop="40dp"
