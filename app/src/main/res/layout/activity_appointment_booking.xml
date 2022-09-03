@@ -134,33 +134,19 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
-        android:id="@+id/add_prescription"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/primary_button"
-        android:text="Add Your Prescription"
-        android:drawableRight="@drawable/ic_baseline_upload_file_24"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/menu_situation"
-        app:layout_constraintStart_toStartOf="@+id/menu_situation"
-        app:layout_constraintTop_toBottomOf="@+id/menu_situation" />
 
-    <Button
-        android:id="@+id/book_appointment"
-        style="?android:attr/borderlessButtonStyle"
+    <com.ncorti.slidetoact.SlideToActView
+        android:id="@+id/slider"
         android:layout_width="350dp"
         android:layout_height="60dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/primary_button"
-        android:text="Book"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="20dp"
+        android:layout_marginTop="40dp"
+        android:visibility="visible"
+        app:inner_color="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/menu_situation"
         app:layout_constraintStart_toStartOf="@+id/menu_situation"
-        app:layout_constraintTop_toBottomOf="@+id/add_prescription" />
+        app:layout_constraintTop_toBottomOf="@+id/menu_situation"
+        app:outer_color="@color/light_blue"
+        app:text="      Confirm your appointment"
+        app:text_color="@color/white" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
