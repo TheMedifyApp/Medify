@@ -20,4 +20,14 @@
         android:name="com.geekymusketeers.medify.mainFragments.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/statistics"
+        android:name="com.geekymusketeers.medify.mainFragments.StatisticsFragment"
+        android:label="fragment_statistics"
+        tools:layout="@layout/fragment_statistics" />
+    <fragment
+        android:id="@+id/appointment"
+        android:name="com.geekymusketeers.medify.mainFragments.AppointmentFragment"
+        android:label="fragment_appointment"
+        tools:layout="@layout/fragment_appointment" />
 </navigation>

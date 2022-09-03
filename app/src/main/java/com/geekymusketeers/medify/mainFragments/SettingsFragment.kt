@@ -37,12 +37,6 @@ class SettingsFragment : Fragment() {
         binding.createUPI.setOnClickListener {
             startActivity(Intent(requireActivity(), UPImanager::class.java))
         }
-
-
-
-
-
-
         return binding.root
     }
 

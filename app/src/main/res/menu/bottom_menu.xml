@@ -3,6 +3,12 @@
     <item android:id="@+id/home"
         android:icon="@drawable/home_icon"
         android:title="Home"/>
+    <item android:id="@+id/stats"
+        android:icon="@drawable/graph"
+        android:title="Statistics"/>
+    <item android:id="@+id/appointment"
+        android:icon="@drawable/appointment"
+        android:title="Appointment"/>
     <item android:id="@+id/reminder"
         android:icon="@drawable/bell_reminer"
         android:title="Search"/>
