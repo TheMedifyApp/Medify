@@ -15,11 +15,11 @@ import com.google.firebase.database.FirebaseDatabase
 import com.ncorti.slidetoact.SlideToActView
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.HashMap
 
 class AppointmentBooking : AppCompatActivity() {
 
     private lateinit var binding: ActivityAppointmentBookingBinding
-    private lateinit var appointmentdb: DatabaseReference
     private lateinit var sharedPreference : SharedPreferences
 
 
@@ -31,9 +31,9 @@ class AppointmentBooking : AppCompatActivity() {
         sharedPreference = baseContext.getSharedPreferences("UserData", Context.MODE_PRIVATE)
 
         val doctorUid = intent.extras!!.getString("Duid")
-        val nameUid = intent.extras!!.getString("Dname")
-        val emailUid = intent.extras!!.getString("Demail")
-        val phoneUid = intent.extras!!.getString("Dphone")
+        val doctorName = intent.extras!!.getString("Dname")
+        val doctorEmail = intent.extras!!.getString("Demail")
+        val doctorPhone = intent.extras!!.getString("Dphone")
 
         // Date Picker
         binding.selectDate.setOnClickListener {
@@ -142,18 +142,32 @@ class AppointmentBooking : AppCompatActivity() {
                 val disease = binding.diseaseDropdown.text.toString()
                 val situation = binding.situationDropdown.text.toString()
 
-                val appointment:HashMap<String,String> = HashMap<String,String>() //define empty hashmap
-                appointment["PatientName"] = userName
-                appointment["PatientPhone"] = userPhone
-                appointment["Time"] = time
-                appointment["Date"] = date
-                appointment["Disease"] = disease
-                appointment["PatientCondition"] = situation
+                val appointmentD:HashMap<String,String> = HashMap() //define empty hashmap
+                appointmentD["PatientName"] = userName
+                appointmentD["PatientPhone"] = userPhone
+                appointmentD["Time"] = time
+                appointmentD["Date"] = date
+                appointmentD["Disease"] = disease
+                appointmentD["PatientCondition"] = situation
 
-                Toast.makeText(baseContext, doctorUid, Toast.LENGTH_LONG).show()
-                appointmentdb = FirebaseDatabase.getInstance().getReference("Doctor").child(doctorUid!!).child("DoctorsAppointments").child(date)
+                val appointmentP : HashMap<String, String> = HashMap() //define empty hashmap
+                appointmentP["DoctorUID"] = doctorUid.toString()
+                appointmentP["DoctorName"] = doctorName.toString()
+                appointmentP["DoctorPhone"] = doctorPhone.toString()
+                appointmentP["Date"] = date
+                appointmentP["Time"] = time
+                appointmentP["Disease"] = disease
+                appointmentP["PatientCondition"] = situation
 
-                appointmentdb.child(userid).setValue(appointment)
+                val appointmentDB_Doctor = FirebaseDatabase.getInstance().getReference("Doctor").child(doctorUid!!).child("DoctorsAppointments").child(date)
+                appointmentDB_Doctor.child(userid).setValue(appointmentD)
+
+                val appointmentDB_User_Doctor = FirebaseDatabase.getInstance().getReference("Users").child(doctorUid).child("DoctorsAppointments").child(date)
+                appointmentDB_User_Doctor.child(userid).setValue(appointmentD)
+
+
+                val appointmentDB_Patient = FirebaseDatabase.getInstance().getReference("Users").child(userid).child("PatientsAppointments").child(date)
+                appointmentDB_Patient.child(doctorUid).setValue(appointmentP)
             }
         }
 
