@@ -1,5 +1,6 @@
 package com.geekymusketeers.medify.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -7,26 +8,25 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.geekymusketeers.medify.DoctorAppointment
+import com.geekymusketeers.medify.PatientAppointment
 import com.geekymusketeers.medify.R
-import com.geekymusketeers.medify.databinding.ListItemsBinding
 
-class DoctorsAppointmentAdapter(var c:Context, var appointmentList : ArrayList<DoctorAppointment>) : RecyclerView.Adapter<DoctorsAppointmentAdapter.DoctorAppointmentViewHolder>() {
-
-    inner class AnimalViewHolder(var v:ListItemsBinding): RecyclerView.ViewHolder(v.root){}
+class DoctorsAppointmentAdapter(var appointmentList: ArrayList<DoctorAppointment>) : RecyclerView.Adapter<DoctorsAppointmentAdapter.DoctorAppointmentViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DoctorAppointmentViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.appointment_list,parent,false)
         return DoctorAppointmentViewHolder(itemView)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: DoctorAppointmentViewHolder, position: Int) {
 
-        val currentitem = appointmentList[position]
+        val currentItem = appointmentList[position]
 
-        holder.name.text = currentitem.DoctorName
-        holder.disease.text = currentitem.Disease
-        holder.time.text = currentitem.Time
-        holder.date.text = currentitem.Date
+        holder.name.text = currentItem.PatientName + " (" + currentItem.PatientPhone + ")"
+        holder.disease.text = currentItem.Disease + " - " + currentItem.PatientCondition
+        holder.time.text = currentItem.Time
+        holder.date.text = currentItem.Date
     }
 
     override fun getItemCount(): Int {

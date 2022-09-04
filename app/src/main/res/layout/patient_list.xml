@@ -74,7 +74,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/dm_sans_bold"
-                android:text="Doctor Name: "
+                android:text="Patient Name: "
                 android:textColor="@color/light_blue"
                 android:textSize="15sp" />
 
