@@ -17,6 +17,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Medify"
         tools:targetApi="31">
+        <activity android:name=".mainFragments.DoctorPatient"
+            android:exported="true"/>
+        <activity android:name=".BookingDoneActivity"
+            android:exported="true"/>
         <activity
             android:name=".mainFragments.UPImanager"
             android:exported="true"
