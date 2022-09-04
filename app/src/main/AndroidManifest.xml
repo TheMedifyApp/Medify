@@ -18,9 +18,12 @@
         android:theme="@style/Theme.Medify"
         tools:targetApi="31">
         <activity
+            android:name=".BookingDoneActivity"
+            android:exported="false" />
+        <activity
             android:name=".mainFragments.UPImanager"
             android:exported="true"
-            android:windowSoftInputMode="stateHidden|adjustResize"/>
+            android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name=".introduction.Splashscreen"
             android:exported="true">

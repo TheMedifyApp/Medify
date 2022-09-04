@@ -73,4 +73,7 @@ dependencies {
     //Chart / Graph
     implementation 'com.github.majorkik:SparkLineLayout:1.0.1'
 
+    // Lottie
+    implementation 'com.airbnb.android:lottie:5.2.0'
+
 }
