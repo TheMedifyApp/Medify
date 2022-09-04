@@ -21,7 +21,7 @@
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
     <fragment
-        android:id="@+id/statistics"
+        android:id="@+id/stats"
         android:name="com.geekymusketeers.medify.mainFragments.StatisticsFragment"
         android:label="fragment_statistics"
         tools:layout="@layout/fragment_statistics" />
