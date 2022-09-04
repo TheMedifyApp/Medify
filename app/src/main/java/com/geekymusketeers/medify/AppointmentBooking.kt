@@ -170,7 +170,7 @@ class AppointmentBooking : AppCompatActivity() {
                 val appointmentDB_Patient = FirebaseDatabase.getInstance().getReference("Users").child(userid).child("PatientsAppointments").child(date)
                 appointmentDB_Patient.child(doctorUid).setValue(appointmentP)
 
-                startActivity(Intent(baseContext,HomeActivity::class.java))
+                startActivity(Intent(baseContext,BookingDoneActivity::class.java))
                 finish()
             }
         }
