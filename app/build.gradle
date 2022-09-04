@@ -70,4 +70,7 @@ dependencies {
     implementation 'com.google.zxing:core:3.4.1'
     implementation 'com.journeyapps:zxing-android-embedded:4.3.0@aar'
 
+    //Chart / Graph
+    implementation 'com.github.majorkik:SparkLineLayout:1.0.1'
+
 }
