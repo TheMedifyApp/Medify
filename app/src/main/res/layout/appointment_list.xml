@@ -75,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/dm_sans_bold"
                 android:text="Patient Name: "
-                android:textColor="@color/black"
+                android:textColor="@color/light_blue"
                 android:textSize="15sp" />
 
             <TextView
