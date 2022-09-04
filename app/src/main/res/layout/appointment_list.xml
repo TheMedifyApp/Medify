@@ -40,15 +40,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:gravity="right"
+                android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/statusDisplay"
+                    android:id="@+id/dateDisplay"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/dm_sans_bold"
-                    android:text="Present"
+                    android:text="Date:          "
                     android:textColor="@color/black"
                     android:textSize="15sp" />
 
@@ -79,12 +79,12 @@
                 android:textSize="15sp" />
 
             <TextView
-                android:id="@+id/collegeIdDisplay"
+                android:id="@+id/diseaseDisplay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/dm_sans"
-                android:text="College ID: "
+                android:text="Disease: "
                 android:textColor="@color/black"
                 android:textSize="15sp" />
 

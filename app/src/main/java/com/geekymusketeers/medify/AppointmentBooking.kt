@@ -1,6 +1,7 @@
 package com.geekymusketeers.medify
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -168,6 +169,9 @@ class AppointmentBooking : AppCompatActivity() {
 
                 val appointmentDB_Patient = FirebaseDatabase.getInstance().getReference("Users").child(userid).child("PatientsAppointments").child(date)
                 appointmentDB_Patient.child(doctorUid).setValue(appointmentP)
+
+                startActivity(Intent(baseContext,HomeActivity::class.java))
+                finish()
             }
         }
 
