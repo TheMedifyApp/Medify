@@ -14,10 +14,9 @@
         android:layout_height="361dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.588"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.294"
+        app:layout_constraintVertical_bias="0.301"
         app:srcCompat="@drawable/app_icon" />
 
     <TextView
