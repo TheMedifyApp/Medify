@@ -53,9 +53,9 @@ dependencies {
     //Firebase
     implementation platform('com.google.firebase:firebase-bom:30.3.2')
     implementation 'com.google.firebase:firebase-analytics'
-    implementation 'com.google.firebase:firebase-auth-ktx:21.0.7'
-    implementation 'com.google.firebase:firebase-database-ktx:20.0.5'
-    implementation 'com.google.firebase:firebase-storage-ktx:20.0.1'
+    implementation 'com.google.firebase:firebase-auth-ktx:21.0.8'
+    implementation 'com.google.firebase:firebase-database-ktx:20.0.6'
+    implementation 'com.google.firebase:firebase-storage-ktx:20.0.2'
 
     //Switch
     implementation 'com.github.GwonHyeok:StickySwitch:0.0.16'
@@ -75,5 +75,7 @@ dependencies {
 
     // Lottie
     implementation 'com.airbnb.android:lottie:5.2.0'
+
+    implementation 'com.karumi:dexter:6.2.3'
 
 }

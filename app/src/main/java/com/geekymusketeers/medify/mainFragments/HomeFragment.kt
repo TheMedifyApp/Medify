@@ -14,6 +14,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import com.geekymusketeers.medify.AddPrescriptionActivity
 import com.geekymusketeers.medify.AppointmentBooking
 import com.geekymusketeers.medify.RemoveCountryCode
 import com.geekymusketeers.medify.databinding.FragmentHomeBinding
@@ -60,6 +61,10 @@ class HomeFragment : Fragment() {
 
         getDataFromSharedPreference()
 
+
+        binding.addPrescription.setOnClickListener {
+            startActivity(Intent(context, AddPrescriptionActivity::class.java))
+        }
 
         binding.doctorData.setOnEditorActionListener { textView, i, keyEvent ->
             if (i == EditorInfo.IME_ACTION_DONE) {

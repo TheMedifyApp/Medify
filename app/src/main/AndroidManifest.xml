@@ -6,6 +6,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -17,14 +19,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Medify"
         tools:targetApi="31">
-        <activity android:name=".mainFragments.DoctorPatient"
-            android:exported="true"/>
-        <activity android:name=".BookingDoneActivity"
-            android:exported="true"/>
+        <activity
+            android:name=".AddPrescriptionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".mainFragments.DoctorPatient"
+            android:exported="true" />
+        <activity
+            android:name=".BookingDoneActivity"
+            android:exported="true" />
         <activity
             android:name=".mainFragments.UPImanager"
             android:exported="true"
-            android:windowSoftInputMode="stateHidden|adjustResize"/>
+            android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name=".introduction.Splashscreen"
             android:exported="true">

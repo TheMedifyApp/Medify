@@ -91,7 +91,11 @@
                 android:layout_marginTop="90dp"
                 android:background="@drawable/primary_button"
                 android:drawableRight="@drawable/ic_baseline_upload_file_24"
+                android:paddingStart="30dp"
+                android:paddingEnd="25dp"
                 android:text="Upload"
+                android:fontFamily="@font/dm_sans"
+                android:textSize="15dp"
                 android:textAllCaps="false"
                 android:textColor="@color/white" />
 
