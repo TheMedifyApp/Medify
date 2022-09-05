@@ -96,7 +96,7 @@ class AddPrescriptionActivity : AppCompatActivity() {
             pd.setTitle("Uploading PDF")
             pd.show()
 
-            val reference: StorageReference = FirebaseStorage.getInstance().reference.child("prescription")
+            val reference: StorageReference = FirebaseStorage.getInstance().reference.child("uploads/" + System.currentTimeMillis() + ".pdf")
             val upload = reference.putFile(fileUri)
             upload.addOnSuccessListener { taskSnapshot ->
                 pd.dismiss()
