@@ -105,7 +105,8 @@ class SignUp_Activity : AppCompatActivity() {
                             val u = firebaseAuth.currentUser
                             val uid = firebaseAuth.currentUser?.uid.toString()
                             //Create user object
-                            val user = User(name, email, phone, uid, isDoctor, age, specialist)
+                            val statsData = "0:0:0:0:0?0:0:0:0:0?0:0:0:0:0?0:0:0:0:0"
+                            val user = User(name, email, phone, uid, isDoctor, age, specialist, statsData)
 
                             //add user data in the Realtime Database
                             db.child(u?.uid!!).setValue(user).addOnCompleteListener { it1 ->
