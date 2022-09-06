@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/dm_sans_bold"
-            android:text="Book Appointment"
+            android:text="Settings"
             android:textColor="@color/white"
             android:textSize="35sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -33,17 +33,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/loginIllustration" />
 
-        <TextView
-            android:id="@+id/signUph2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/dm_sans"
-            android:text="Add patients details"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="@+id/signUpHeader"
-            app:layout_constraintTop_toBottomOf="@+id/signUpHeader" />
 
     </LinearLayout>
 
@@ -68,6 +57,7 @@
             android:layout_marginTop="50dp"
             android:background="@drawable/cardview_background"
             android:backgroundTint="#F0F6F8"
+            app:cardCornerRadius="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
@@ -75,16 +65,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <ImageView
+                    android:id="@+id/pfimageView"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_margin="30dp"
+                    android:src="@drawable/profile"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
+                    android:layout_marginStart="12dp"
                     android:fontFamily="@font/dm_sans_medium"
                     android:text="Profile"
                     android:textColor="@color/black"
                     android:textSize="21dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/pfimageView"
                     app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -98,6 +98,7 @@
             android:layout_marginLeft="30dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="30dp"
+            app:cardCornerRadius="10dp"
             android:background="@drawable/cardview_background"
             android:backgroundTint="#F0F6F8"
             app:layout_constraintEnd_toEndOf="parent"
@@ -107,16 +108,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <ImageView
+                    android:id="@+id/upiimageView"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_margin="30dp"
+                    android:src="@drawable/upi"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
+                    android:layout_marginStart="12dp"
                     android:fontFamily="@font/dm_sans_medium"
                     android:text="UPI"
                     android:textColor="@color/black"
                     android:textSize="21dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/upiimageView"
                     app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -130,6 +141,7 @@
             android:layout_marginLeft="30dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="30dp"
+            app:cardCornerRadius="10dp"
             android:background="@drawable/cardview_background"
             android:backgroundTint="#F0F6F8"
             app:layout_constraintEnd_toEndOf="parent"
@@ -139,16 +151,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <ImageView
+                    android:id="@+id/updatepdfimageView"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_margin="30dp"
+                    android:src="@drawable/update"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
                     android:fontFamily="@font/dm_sans_medium"
+                    android:layout_marginStart="12dp"
                     android:text="Update Prescription"
                     android:textColor="@color/black"
                     android:textSize="21dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/updatepdfimageView"
                     app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -167,6 +189,7 @@
             android:background="@drawable/negative_button"
             android:fontFamily="@font/dm_sans_medium"
             android:text="Logout"
+            android:textSize="20dp"
             android:textAllCaps="false"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
