@@ -24,7 +24,11 @@ class DoctorsAppointmentAdapter(var appointmentList: ArrayList<DoctorAppointment
 
         val currentItem = appointmentList[position]
 
-        holder.name.text = currentItem.PatientName + " (" + currentItem.PatientPhone + ")"
+        if (currentItem.PatientPhone == "" || currentItem.PatientPhone!!.isEmpty()) {
+            holder.name.text = currentItem.PatientName
+        } else {
+            holder.name.text = currentItem.PatientName + " (" + currentItem.PatientPhone + ")"
+        }
         holder.disease.text = currentItem.Disease + " - " + currentItem.PatientCondition
         holder.button.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(currentItem.Prescription.toString().trim()))
