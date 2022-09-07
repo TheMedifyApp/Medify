@@ -38,7 +38,7 @@ class HomeFragment : Fragment() {
     private lateinit var userPosition: String
     private lateinit var userType: String
     private lateinit var userID: String
-    private lateinit var userPrescription: String
+    private var userPrescription: String = "false"
 
     //Searched doctor's data
     private lateinit var searchedName : String
@@ -62,11 +62,11 @@ class HomeFragment : Fragment() {
 
         getDataFromSharedPreference()
 
-        if (userPrescription == "false") {
-            binding.relativeLayout.visibility = View.VISIBLE
-        } else {
-            binding.relativeLayout.visibility = View.GONE
-        }
+//        if (userPrescription == "false") {
+//            binding.relativeLayout.visibility = View.VISIBLE
+//        } else {
+//            binding.relativeLayout.visibility = View.GONE
+//        }
 
 
         binding.addPrescription.setOnClickListener {
@@ -166,14 +166,25 @@ class HomeFragment : Fragment() {
         }, 1000)
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "CommitPrefEdits")
     private fun getDataFromSharedPreference() {
         userID = sharedPreference.getString("uid","Not found").toString()
+        db.child("Users").child(userID).child("Prescription").addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                userPrescription = snapshot.child("fileurl").value.toString().trim()
+                val editor = sharedPreference.edit()
+                editor.putString("prescription", userPrescription)
+                editor.apply()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
+
         userName = sharedPreference.getString("name","Not found").toString()
         userEmail = sharedPreference.getString("email","Not found").toString()
         userPhone = sharedPreference.getString("phone","Not found").toString()
         userPosition = sharedPreference.getString("isDoctor", "Not fount").toString()
-        userPrescription = sharedPreference.getString("prescription", "false").toString().trim()
 
         if (userPosition == "Doctor")
             binding.namePreview.text = "Dr. $userName"
