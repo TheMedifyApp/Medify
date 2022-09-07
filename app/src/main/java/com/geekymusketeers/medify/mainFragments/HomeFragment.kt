@@ -129,12 +129,12 @@ class HomeFragment : Fragment() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 for (child in dataSnapshot.children) {
                     val map = child.value as HashMap<*, *>
-                    val sName = "Dr. " +map["name"].toString().trim()
+                    val sName = map["name"].toString().trim()
                     val sType = map["specialist"].toString().trim()
                     val sEmail = map["email"].toString().trim()
                     val sPhone = map["phone"].toString().trim()
                     val sUid = map["uid"].toString().trim()
-                    if (searchedData == sEmail || searchedData == sPhone || RemoveCountryCode.remove(searchedData) == sPhone) {
+                    if (searchedData == sEmail || searchedData == sPhone || searchedData.trim() == sName || isSameName(searchedData,sName) || RemoveCountryCode.remove(searchedData) == sPhone) {
                         searchedName = sName
                         searchedEmail = sEmail
                         searchedPhone = sPhone
@@ -142,7 +142,7 @@ class HomeFragment : Fragment() {
                         binding.textView3.isVisible = false
                         binding.cardView.isVisible = true
                         binding.slider.isVisible = true
-                        binding.doctorName.text = sName
+                        binding.doctorName.text = "Dr. $sName"
                         binding.doctortype.text = sType
                         binding.doctorEmail.text = sName
                         binding.doctorPhone.text = sPhone
@@ -155,6 +155,11 @@ class HomeFragment : Fragment() {
             override fun onCancelled(error: DatabaseError) {}
             fun onCancelled(firebaseError: FirebaseError?) {}
         })
+    }
+    private fun isSameName(searchedName: String, dbNAME: String): Boolean {
+        val modSearched: String = searchedName.replace(" ", "").toString().trim()
+        val modDB: String = searchedName.replace(" ", "").toString().trim()
+        return modSearched == modDB;
     }
 
     override fun onStart() {

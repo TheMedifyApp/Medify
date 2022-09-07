@@ -77,7 +77,7 @@
                 android:fontFamily="@font/dm_sans_medium"
                 android:text="Want to book an appointment?"
                 android:textColor="@color/black"
-                android:textSize="16dp"
+                android:textSize="20dp"
                 tools:layout_editor_absoluteX="32dp"
                 tools:layout_editor_absoluteY="186dp" />
 
@@ -95,7 +95,9 @@
                     android:background="@drawable/editfield"
                     android:ems="10"
                     android:fontFamily="@font/dm_sans"
-                    android:hint="Doctor's email/phone"
+                    android:drawableStart="@drawable/serch"
+                    android:drawablePadding="5dp"
+                    android:hint="Enters Doctor's Name"
                     android:imeOptions="actionDone"
                     android:inputType="textPersonName"
                     android:paddingLeft="10dp"
