@@ -2,6 +2,7 @@ package com.geekymusketeers.medify
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Binder
 import androidx.appcompat.app.AppCompatActivity
@@ -33,6 +34,10 @@ class ProfileActivity : AppCompatActivity() {
         sharedPreference = baseContext.getSharedPreferences("UserData", Context.MODE_PRIVATE)
 
         getUserData()
+
+        binding.ProfileToEdit.setOnClickListener {
+            startActivity(Intent(baseContext,EditProfileActivity::class.java))
+        }
 
     }
 

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    tools:context=".ProfileActivity">
+    tools:context=".EditProfileActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -42,12 +42,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/dm_sans_bold"
-                android:text="Profile"
+                android:text="Edit Profile"
                 android:textColor="@color/white"
                 android:textSize="35sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -64,14 +65,14 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView"
-                android:layout_width="330dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="50dp"
                 android:elevation="5dp"
-                app:cardCornerRadius="10dp"
                 android:background="@drawable/cardview_background"
                 android:backgroundTint="@color/white"
+                app:cardCornerRadius="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.503"
@@ -92,83 +93,120 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="25dp"
                         android:fontFamily="@font/dm_sans_bold"
-                        android:text="Account details"
-                        android:textColor="@color/black"
+                        android:text="Update your details"
+                        android:textColor="@color/light_blue"
                         android:textSize="22sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-
-                    <TextView
-                        android:id="@+id/name"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
+                    <EditText
+                        android:id="@+id/editName"
+                        android:layout_width="330dp"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="@drawable/stroked"
+                        android:ems="10"
                         android:fontFamily="@font/dm_sans"
-                        android:text="Name: "
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
+                        android:hint="Name"
+                        android:inputType="text"
+                        android:paddingLeft="20dp"
+                        app:layout_constraintBottom_toTopOf="@+id/pass_box"
+                        app:layout_constraintEnd_toEndOf="@+id/pass_box"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@+id/pass_box" />
 
-                    <TextView
-                        android:id="@+id/age"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="5dp"
+                    <EditText
+                        android:id="@+id/editAge"
+                        android:layout_width="330dp"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="@drawable/stroked"
+                        android:ems="10"
                         android:fontFamily="@font/dm_sans"
-                        android:text="Age: "
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
+                        android:hint="Age"
+                        android:inputType="numberDecimal"
+                        android:paddingLeft="20dp"
+                        app:layout_constraintBottom_toTopOf="@+id/pass_box"
+                        app:layout_constraintEnd_toEndOf="@+id/pass_box"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@+id/pass_box" />
 
-                    <TextView
-                        android:id="@+id/email"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="5dp"
+                    <EditText
+                        android:id="@+id/editPhoneNumber"
+                        android:layout_width="330dp"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="@drawable/stroked"
+                        android:ems="10"
                         android:fontFamily="@font/dm_sans"
-                        android:text="Email: "
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
+                        android:hint="Phone number"
+                        android:inputType="number"
+                        android:paddingLeft="20dp"
+                        app:layout_constraintBottom_toTopOf="@+id/pass_box"
+                        app:layout_constraintEnd_toEndOf="@+id/pass_box"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@+id/pass_box" />
 
-                    <TextView
-                        android:id="@+id/phone"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="5dp"
-                        android:fontFamily="@font/dm_sans"
-                        android:text="Phone: "
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
 
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
 
             <Button
-                android:id="@+id/ProfileToEdit"
+                android:id="@+id/updatepres"
                 android:layout_width="330dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
-                android:layout_marginBottom="40dp"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/primary_button"
                 android:fontFamily="@font/dm_sans"
                 android:gravity="center"
                 android:rotation="0"
                 android:rotationX="0"
                 android:rotationY="0"
-                android:text="Edit profile"
+                android:text="Update your Prescription"
                 android:textAlignment="center"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.493"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView"
+                tools:visibility="visible" />
+
+            <Button
+                android:id="@+id/confirm"
+                android:layout_width="330dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/primary_button"
+                android:fontFamily="@font/dm_sans"
+                android:gravity="center"
+                android:rotation="0"
+                android:rotationX="0"
+                android:rotationY="0"
+                android:text="Confirm changes"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.493"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView"
+                tools:visibility="visible" />
 
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
