@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.geekymusketeers.medify.AddPrescriptionActivity
+import com.geekymusketeers.medify.ProfileActivity
 import com.geekymusketeers.medify.R
 import com.geekymusketeers.medify.auth.SignIn_Activity
 import com.geekymusketeers.medify.databinding.FragmentHomeBinding
@@ -34,8 +36,14 @@ class SettingsFragment : Fragment() {
             logoutFun()
         }
 
+        binding.profile.setOnClickListener {
+            startActivity(Intent(requireActivity(),ProfileActivity::class.java))
+        }
         binding.createUPI.setOnClickListener {
             startActivity(Intent(requireActivity(), UPImanager::class.java))
+        }
+        binding.updatepdfimageView.setOnClickListener {
+            startActivity(Intent(requireActivity(),AddPrescriptionActivity::class.java))
         }
         return binding.root
     }
