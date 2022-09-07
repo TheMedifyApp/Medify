@@ -9,9 +9,6 @@
     <item android:id="@+id/appointment"
         android:icon="@drawable/appointment"
         android:title="Appointment"/>
-    <item android:id="@+id/reminder"
-        android:icon="@drawable/bell_reminer"
-        android:title="Search"/>
     <item android:id="@+id/settings"
         android:icon="@drawable/settings_icon"
         android:title="Profile"/>
