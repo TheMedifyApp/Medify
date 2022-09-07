@@ -1,5 +1,6 @@
 package com.geekymusketeers.medify.mainFragments
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Build
@@ -14,9 +15,13 @@ import com.geekymusketeers.medify.R
 import com.geekymusketeers.medify.adapter.DoctorsAppointmentAdapter
 import com.geekymusketeers.medify.databinding.ActivityDoctorPatientBinding
 import com.geekymusketeers.medify.databinding.ActivityHomeBinding
+import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.firebase.database.*
+import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.util.*
+import kotlin.collections.ArrayList
 
 class DoctorPatient : AppCompatActivity() {
 
@@ -27,6 +32,7 @@ class DoctorPatient : AppCompatActivity() {
     private lateinit var appointmentList : ArrayList<DoctorAppointment>
     private lateinit var sharedPreference : SharedPreferences
 
+    @SuppressLint("SimpleDateFormat")
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,17 +51,40 @@ class DoctorPatient : AppCompatActivity() {
         Recyclerview.layoutManager = LinearLayoutManager(baseContext)
         Recyclerview.setHasFixedSize(true)
 
-        getData()
+        binding.selectDate.setOnClickListener {
+            // Initiation date picker with
+            // MaterialDatePicker.Builder.datePicker()
+            // and building it using build()
+            val datePicker = MaterialDatePicker.Builder.datePicker().build()
+            datePicker.show(supportFragmentManager, "DatePicker")
 
+            // Setting up the event for when ok is clicked
+            datePicker.addOnPositiveButtonClickListener {
+                // formatting date in dd-mm-yyyy format.
+                val dateFormatter = SimpleDateFormat("dd-MM-yyyy")
+                val date = dateFormatter.format(Date(it)).toString().trim()
+                binding.selectDate.text = date
+                appointmentList.clear()
+                getData(date)
+
+            }
+
+            // Setting up the event for when cancelled is clicked
+            datePicker.addOnNegativeButtonClickListener {
+                Toast.makeText(this, "${datePicker.headerText} is cancelled", Toast.LENGTH_LONG).show()
+            }
+
+            // Setting up the event for when back button is pressed
+            datePicker.addOnCancelListener {
+                Toast.makeText(this, "Date Picker Cancelled", Toast.LENGTH_LONG).show()
+            }
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    private fun getData() {
-        val current = LocalDateTime.now()
+    private fun getData(date: String) {
         val userID = sharedPreference.getString("uid","Not found").toString()
         val doctorIntentUid = intent.getStringExtra("uid")
-        val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
-        val date = current.format(formatter)
 
         if (doctorIntentUid.isNullOrEmpty()) {
             dbref = FirebaseDatabase.getInstance().getReference("Doctor").child(userID).child("DoctorsAppointments").child(date)
