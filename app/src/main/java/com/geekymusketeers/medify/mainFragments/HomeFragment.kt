@@ -38,6 +38,7 @@ class HomeFragment : Fragment() {
     private lateinit var userPosition: String
     private lateinit var userType: String
     private lateinit var userID: String
+    private lateinit var userPrescription: String
 
     //Searched doctor's data
     private lateinit var searchedName : String
@@ -61,9 +62,29 @@ class HomeFragment : Fragment() {
 
         getDataFromSharedPreference()
 
+        if (userPrescription == "false") {
+            binding.relativeLayout.visibility = View.VISIBLE
+        } else {
+            binding.relativeLayout.visibility = View.GONE
+        }
+
 
         binding.addPrescription.setOnClickListener {
             startActivity(Intent(context, AddPrescriptionActivity::class.java))
+            db.child("Users").child(userID).child("Prescription").addValueEventListener(object :ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val presURL = snapshot.child("fileurl").value.toString().trim()
+                    val editor = sharedPreference.edit()
+                    editor.putString("prescription", presURL)
+                    userPrescription = sharedPreference.getString("prescription", "false").toString().trim()
+                    editor.apply()
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+
+            })
         }
 
         binding.doctorData.setOnEditorActionListener { textView, i, keyEvent ->
@@ -152,6 +173,7 @@ class HomeFragment : Fragment() {
         userEmail = sharedPreference.getString("email","Not found").toString()
         userPhone = sharedPreference.getString("phone","Not found").toString()
         userPosition = sharedPreference.getString("isDoctor", "Not fount").toString()
+        userPrescription = sharedPreference.getString("prescription", "false").toString().trim()
 
         if (userPosition == "Doctor")
             binding.namePreview.text = "Dr. $userName"

@@ -1,15 +1,18 @@
 package com.geekymusketeers.medify.adapter
 
 import android.annotation.SuppressLint
-import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.geekymusketeers.medify.DoctorAppointment
-import com.geekymusketeers.medify.PatientAppointment
 import com.geekymusketeers.medify.R
+
 
 class DoctorsAppointmentAdapter(var appointmentList: ArrayList<DoctorAppointment>) : RecyclerView.Adapter<DoctorsAppointmentAdapter.DoctorAppointmentViewHolder>() {
 
@@ -25,8 +28,12 @@ class DoctorsAppointmentAdapter(var appointmentList: ArrayList<DoctorAppointment
 
         holder.name.text = currentItem.PatientName + " (" + currentItem.PatientPhone + ")"
         holder.disease.text = currentItem.Disease + " - " + currentItem.PatientCondition
-        holder.time.text = currentItem.Time
-        holder.date.text = currentItem.Date
+        holder.button.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(currentItem.Prescription.toString().trim()))
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            holder.button.context.startActivity(intent)
+
+        }
     }
 
     override fun getItemCount(): Int {
@@ -36,7 +43,6 @@ class DoctorsAppointmentAdapter(var appointmentList: ArrayList<DoctorAppointment
 
         val name: TextView = itemView.findViewById(R.id.nameDisplay)
         val disease: TextView = itemView.findViewById(R.id.diseaseDisplay)
-        val time:TextView = itemView.findViewById(R.id.timeDisplay)
-        val date:TextView = itemView.findViewById(R.id.dateDisplay)
+        val button: Button = itemView.findViewById(R.id.downloadPrescription)
     }
 }

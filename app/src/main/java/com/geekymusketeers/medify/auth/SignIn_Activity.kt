@@ -104,6 +104,7 @@ class SignIn_Activity : AppCompatActivity() {
                                         editor.putString("isDoctor", snapshot.child("doctor").value.toString().trim())
                                         editor.putString("specialist",snapshot.child("specialist").value.toString().trim())
                                         editor.putString("stats", snapshot.child("stats").value.toString().trim())
+                                        editor.putString("prescription", snapshot.child("false").value.toString().trim())
                                         editor.apply()
 
                                     }

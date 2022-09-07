@@ -137,6 +137,7 @@ class AppointmentBooking : AppCompatActivity() {
                 val userName = sharedPreference.getString("name","").toString()
                 val userPhone = sharedPreference.getString("phone","").toString()
                 val userid = sharedPreference.getString("uid","").toString()
+                val userPrescription = sharedPreference.getString("prescription", "").toString()
 
                 val date = binding.selectDate.text.toString()
                 val time = binding.selectTime.text.toString()
@@ -150,6 +151,7 @@ class AppointmentBooking : AppCompatActivity() {
                 appointmentD["Date"] = date
                 appointmentD["Disease"] = disease
                 appointmentD["PatientCondition"] = situation
+                appointmentD["Prescription"] = userPrescription
 
                 val appointmentP : HashMap<String, String> = HashMap() //define empty hashmap
                 appointmentP["DoctorUID"] = doctorUid.toString()
@@ -159,6 +161,7 @@ class AppointmentBooking : AppCompatActivity() {
                 appointmentP["Time"] = time
                 appointmentP["Disease"] = disease
                 appointmentP["PatientCondition"] = situation
+                appointmentP["Prescription"] = userPrescription
 
                 val appointmentDB_Doctor = FirebaseDatabase.getInstance().getReference("Doctor").child(doctorUid!!).child("DoctorsAppointments").child(date)
                 appointmentDB_Doctor.child(userid).setValue(appointmentD)

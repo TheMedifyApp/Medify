@@ -1,6 +1,7 @@
 package com.geekymusketeers.medify
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
@@ -92,6 +93,7 @@ class AddPrescriptionActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("CommitPrefEdits")
     private fun process_upload(fileUri: Uri?) {
         val userid = sharedPreference.getString("uid","").toString()
         if (fileUri == null) {
@@ -106,7 +108,10 @@ class AddPrescriptionActivity : AppCompatActivity() {
             val reference: StorageReference = FirebaseStorage.getInstance().reference.child("uploads/" + System.currentTimeMillis() + ".pdf")
             reference.putFile(fileUri).addOnSuccessListener { taskSnapshot: UploadTask.TaskSnapshot? -> reference.downloadUrl.addOnSuccessListener { uri: Uri ->
                         val obj = PrescriptionModel(binding.filetitle.text.toString(), uri.toString(), userid)
-                databaseReference?.child("Users")?.child(userid)?.child("Prescription")?.setValue(obj)
+                        val editor = sharedPreference.edit()
+                        editor.putString("prescription", uri.toString())
+                        editor.apply()
+                        databaseReference?.child("Users")?.child(userid)?.child("Prescription")?.setValue(obj)
                         pd.dismiss()
                         Toast.makeText(baseContext, "File Uploaded", Toast.LENGTH_SHORT).show()
 
