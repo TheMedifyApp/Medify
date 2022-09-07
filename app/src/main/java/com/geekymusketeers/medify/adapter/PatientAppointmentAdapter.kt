@@ -30,22 +30,20 @@ RecyclerView.Adapter<PatientAppointmentAdapter.PatientAppointmentViewHolder>(){
 
         val name = currentItem.DoctorName
         val uid = currentItem.DoctorUID
-        val disease = currentItem.DoctorName
+        val disease = currentItem.Disease
         val time = currentItem.Time
         val date = currentItem.Date
-        val condition = currentItem.PatientCondition
         holder.name.text = name
-        holder.disease.text = disease + " - " + condition
+        holder.disease.text = disease
         holder.time.text = time
         holder.date.text = date
 
-        holder.itemView.setOnClickListener(View.OnClickListener {
-
+        holder.itemView.setOnClickListener {
             /**set Data*/
             val mIntent = Intent(c, DoctorPatient::class.java)
             mIntent.putExtra("uid", uid)
             c.startActivity(mIntent)
-        })
+        }
     }
     class PatientAppointmentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 

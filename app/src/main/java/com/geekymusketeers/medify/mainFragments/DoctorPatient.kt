@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -110,5 +111,7 @@ class DoctorPatient : AppCompatActivity() {
                     error.message, Toast.LENGTH_SHORT).show()
             }
         })
+
+        binding.selectDateTextToHide.visibility = View.GONE
     }
 }
