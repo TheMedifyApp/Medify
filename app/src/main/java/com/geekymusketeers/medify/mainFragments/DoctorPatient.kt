@@ -26,7 +26,7 @@ import kotlin.collections.ArrayList
 class DoctorPatient : AppCompatActivity() {
 
     private lateinit var binding: ActivityDoctorPatientBinding
-    private lateinit var dbref : DatabaseReference
+    private lateinit var dbref : Query
     private lateinit var Recyclerview : RecyclerView
     private lateinit var appointmentAdapter: DoctorsAppointmentAdapter
     private lateinit var appointmentList : ArrayList<DoctorAppointment>
@@ -87,17 +87,19 @@ class DoctorPatient : AppCompatActivity() {
         val doctorIntentUid = intent.getStringExtra("uid")
 
         if (doctorIntentUid.isNullOrEmpty()) {
-            dbref = FirebaseDatabase.getInstance().getReference("Doctor").child(userID).child("DoctorsAppointments").child(date)
+            dbref = FirebaseDatabase.getInstance().getReference("Doctor").child(userID).child("DoctorsAppointments").child(date).orderByChild("Points")
         } else {
-            dbref = FirebaseDatabase.getInstance().getReference("Doctor").child(doctorIntentUid).child("DoctorsAppointments").child(date)
+            dbref = FirebaseDatabase.getInstance().getReference("Doctor").child(doctorIntentUid).child("DoctorsAppointments").child(date).orderByChild("Points")
         }
 
         dbref.addValueEventListener(object : ValueEventListener {
+            @SuppressLint("NotifyDataSetChanged")
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()){
                     for (appointmentSnapshot in snapshot.children){
                         val appointment = appointmentSnapshot.getValue(DoctorAppointment::class.java)
                         appointmentList.add(appointment!!)
+                        appointmentList.reverse()
                     }
                     Recyclerview.adapter = appointmentAdapter
                 }

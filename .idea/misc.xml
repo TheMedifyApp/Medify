@@ -38,6 +38,7 @@
         <entry key="..\:/Users/binay/AndroidStudioProjects/Medify/app/src/main/res/drawable/negative_buttton.xml" value="0.154" />
         <entry key="..\:/Users/binay/AndroidStudioProjects/Medify/app/src/main/res/drawable/primary_buttom.xml" value="0.2105" />
         <entry key="..\:/Users/binay/AndroidStudioProjects/Medify/app/src/main/res/drawable/primary_button.xml" value="0.154" />
+        <entry key="..\:/Users/binay/AndroidStudioProjects/Medify/app/src/main/res/layout/activity_add_prescription.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/binay/AndroidStudioProjects/Medify/app/src/main/res/layout/activity_appointment_booking.xml" value="0.25" />
         <entry key="..\:/Users/binay/AndroidStudioProjects/Medify/app/src/main/res/layout/activity_booking_done.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/binay/AndroidStudioProjects/Medify/app/src/main/res/layout/activity_doctor_patient.xml" value="0.20416666666666666" />
@@ -48,17 +49,17 @@
         <entry key="..\:/Users/binay/AndroidStudioProjects/Medify/app/src/main/res/layout/activity_sign_up_first.xml" value="0.16" />
         <entry key="..\:/Users/binay/AndroidStudioProjects/Medify/app/src/main/res/layout/activity_splashscreen.xml" value="0.12894736842105264" />
         <entry key="..\:/Users/binay/AndroidStudioProjects/Medify/app/src/main/res/layout/activity_upimanager.xml" value="0.16" />
-        <entry key="..\:/Users/binay/AndroidStudioProjects/Medify/app/src/main/res/layout/appointment_list.xml" value="0.33" />
+        <entry key="..\:/Users/binay/AndroidStudioProjects/Medify/app/src/main/res/layout/appointment_list.xml" value="0.25" />
         <entry key="..\:/Users/binay/AndroidStudioProjects/Medify/app/src/main/res/layout/fragment_appointment.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/binay/AndroidStudioProjects/Medify/app/src/main/res/layout/fragment_doctor_patient_list.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/binay/AndroidStudioProjects/Medify/app/src/main/res/layout/fragment_home.xml" value="0.75" />
+        <entry key="..\:/Users/binay/AndroidStudioProjects/Medify/app/src/main/res/layout/fragment_home.xml" value="0.22" />
         <entry key="..\:/Users/binay/AndroidStudioProjects/Medify/app/src/main/res/layout/fragment_patient_appointment.xml" value="0.2" />
         <entry key="..\:/Users/binay/AndroidStudioProjects/Medify/app/src/main/res/layout/fragment_reminder.xml" value="0.12" />
         <entry key="..\:/Users/binay/AndroidStudioProjects/Medify/app/src/main/res/layout/fragment_settings.xml" value="0.1814814814814815" />
         <entry key="..\:/Users/binay/AndroidStudioProjects/Medify/app/src/main/res/layout/fragment_statistics.xml" value="0.2" />
         <entry key="..\:/Users/binay/AndroidStudioProjects/Medify/app/src/main/res/layout/item_pill.xml" value="0.12894736842105264" />
         <entry key="..\:/Users/binay/AndroidStudioProjects/Medify/app/src/main/res/layout/list_items.xml" value="0.25" />
-        <entry key="..\:/Users/binay/AndroidStudioProjects/Medify/app/src/main/res/layout/patient_list.xml" value="0.33" />
+        <entry key="..\:/Users/binay/AndroidStudioProjects/Medify/app/src/main/res/layout/patient_list.xml" value="0.22" />
         <entry key="..\:/Users/binay/AndroidStudioProjects/Medify/app/src/main/res/menu/bottom_menu.xml" value="0.203125" />
         <entry key="..\:/Users/binay/AndroidStudioProjects/Medify/app/src/main/res/menu/options.xml" value="0.12894736842105264" />
       </map>

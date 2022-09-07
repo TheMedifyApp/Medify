@@ -6,9 +6,7 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.geekymusketeers.medify.DoctorAppointment
 import com.geekymusketeers.medify.R
@@ -43,6 +41,6 @@ class DoctorsAppointmentAdapter(var appointmentList: ArrayList<DoctorAppointment
 
         val name: TextView = itemView.findViewById(R.id.nameDisplay)
         val disease: TextView = itemView.findViewById(R.id.diseaseDisplay)
-        val button: Button = itemView.findViewById(R.id.downloadPrescription)
+        val button: ImageView = itemView.findViewById(R.id.downloadPrescription)
     }
 }

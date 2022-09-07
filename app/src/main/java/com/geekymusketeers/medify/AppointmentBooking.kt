@@ -30,6 +30,31 @@ class AppointmentBooking : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
         sharedPreference = baseContext.getSharedPreferences("UserData", Context.MODE_PRIVATE)
+        val diseaseValue = HashMap<String, Int>()
+        val conditionValue = HashMap<String, Int>()
+        var TotalPoint = 0
+
+        conditionValue["Critical"] = 10
+        conditionValue["Urgent"] = 8
+        conditionValue["Critical"] = 5
+
+        diseaseValue["Not sure"] = 10
+        diseaseValue["Fever"] = 7
+        diseaseValue["Cold & Flu"] = 6
+        diseaseValue["Diarrhea"] = 6
+        diseaseValue["Allergies"] = 5
+        diseaseValue["Stomach Aches"] = 6
+        diseaseValue["Conjunctivitis"] = 5
+        diseaseValue["Dehydration"] = 4
+        diseaseValue["Tooth ache"] = 6
+        diseaseValue["Ear ache"] = 5
+        diseaseValue["Food poisoning"] = 4
+
+
+
+
+
+
 
         val doctorUid = intent.extras!!.getString("Duid")
         val doctorName = intent.extras!!.getString("Dname")
@@ -143,6 +168,8 @@ class AppointmentBooking : AppCompatActivity() {
                 val time = binding.selectTime.text.toString()
                 val disease = binding.diseaseDropdown.text.toString()
                 val situation = binding.situationDropdown.text.toString()
+                TotalPoint += diseaseValue[disease]!!
+                TotalPoint += conditionValue[situation]!!
 
                 val appointmentD:HashMap<String,String> = HashMap() //define empty hashmap
                 appointmentD["PatientName"] = userName
@@ -152,6 +179,7 @@ class AppointmentBooking : AppCompatActivity() {
                 appointmentD["Disease"] = disease
                 appointmentD["PatientCondition"] = situation
                 appointmentD["Prescription"] = userPrescription
+                appointmentD["TotalPoints"] = TotalPoint.toString().trim()
 
                 val appointmentP : HashMap<String, String> = HashMap() //define empty hashmap
                 appointmentP["DoctorUID"] = doctorUid.toString()
@@ -180,7 +208,7 @@ class AppointmentBooking : AppCompatActivity() {
 
 
         // Disease List
-        val items = listOf("Fever", "Cold", "Diarrhea", "Allergies", "Stomach Aches","Unknown")
+        val items = listOf("Not sure", "Fever", "Cold & Flu", "Diarrhea", "Allergies", "Stomach Aches","Conjunctivitis", "Dehydration", "Tooth ache", "Ear ache", "Food poisoning")
         val adapter = ArrayAdapter(this, R.layout.list_items, items)
         binding.diseaseDropdown.setAdapter(adapter)
 
