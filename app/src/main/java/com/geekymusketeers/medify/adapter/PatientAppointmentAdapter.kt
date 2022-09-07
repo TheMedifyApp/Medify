@@ -16,7 +16,7 @@ class PatientAppointmentAdapter(var c: Context, var appointmentList: ArrayList<P
 RecyclerView.Adapter<PatientAppointmentAdapter.PatientAppointmentViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PatientAppointmentViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.appointment_list,parent,false)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.patient_list,parent,false)
         return PatientAppointmentViewHolder(itemView)
     }
 

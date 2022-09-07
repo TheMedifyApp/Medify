@@ -36,7 +36,7 @@ class AppointmentBooking : AppCompatActivity() {
 
         conditionValue["Critical"] = 10
         conditionValue["Urgent"] = 8
-        conditionValue["Critical"] = 5
+        conditionValue["Under-control"] = 5
 
         diseaseValue["Not sure"] = 10
         diseaseValue["Fever"] = 7
