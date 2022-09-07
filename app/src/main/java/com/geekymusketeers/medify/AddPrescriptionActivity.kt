@@ -107,11 +107,10 @@ class AddPrescriptionActivity : AppCompatActivity() {
 
             val reference: StorageReference = FirebaseStorage.getInstance().reference.child("uploads/" + System.currentTimeMillis() + ".pdf")
             reference.putFile(fileUri).addOnSuccessListener { taskSnapshot: UploadTask.TaskSnapshot? -> reference.downloadUrl.addOnSuccessListener { uri: Uri ->
-                        val obj = PrescriptionModel(binding.filetitle.text.toString(), uri.toString(), userid)
                         val editor = sharedPreference.edit()
                         editor.putString("prescription", uri.toString())
                         editor.apply()
-                        databaseReference?.child("Users")?.child(userid)?.child("Prescription")?.setValue(obj)
+                        databaseReference?.child("Users")?.child(userid)?.child("prescription")?.setValue(uri.toString())
                         pd.dismiss()
                         Toast.makeText(baseContext, "File Uploaded", Toast.LENGTH_SHORT).show()
 

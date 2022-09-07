@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +17,7 @@ import com.geekymusketeers.medify.auth.SignIn_Activity
 import com.geekymusketeers.medify.databinding.FragmentHomeBinding
 import com.geekymusketeers.medify.databinding.FragmentSettingsBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.*
 
 class SettingsFragment : Fragment() {
 
@@ -25,12 +26,15 @@ class SettingsFragment : Fragment() {
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var db: DatabaseReference
     private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var userID: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentSettingsBinding.inflate(inflater, container, false)
 
         sharedPreferences = requireActivity().getSharedPreferences("UserData", Context.MODE_PRIVATE)
+        db = FirebaseDatabase.getInstance().reference
+        getDataFromSharedPreference()
 
         binding.logoutButton.setOnClickListener {
             logoutFun()
@@ -42,8 +46,21 @@ class SettingsFragment : Fragment() {
         binding.createUPI.setOnClickListener {
             startActivity(Intent(requireActivity(), UPImanager::class.java))
         }
-        binding.updatepdfimageView.setOnClickListener {
+        binding.updatePrescription.setOnClickListener {
             startActivity(Intent(requireActivity(),AddPrescriptionActivity::class.java))
+            db.child("Users").child(userID).child("Prescription").addValueEventListener(object :
+                ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val presURL = snapshot.child("fileurl").value.toString().trim()
+                    val editor = sharedPreferences.edit()
+                    editor.putString("prescription", presURL)
+                    editor.apply()
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+            })
         }
         return binding.root
     }
@@ -59,5 +76,17 @@ class SettingsFragment : Fragment() {
         startActivity(intent)
         requireActivity().finish()
 
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Handler().postDelayed({
+            getDataFromSharedPreference()
+        }, 1000)
+    }
+
+    @SuppressLint("SetTextI18n", "CommitPrefEdits")
+    private fun getDataFromSharedPreference() {
+        userID = sharedPreferences.getString("uid","Not found").toString()
     }
 }

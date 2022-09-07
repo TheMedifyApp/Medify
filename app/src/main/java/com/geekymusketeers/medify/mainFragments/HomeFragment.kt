@@ -62,30 +62,22 @@ class HomeFragment : Fragment() {
 
         getDataFromSharedPreference()
 
-//        if (userPrescription == "false") {
-//            binding.relativeLayout.visibility = View.VISIBLE
-//        } else {
-//            binding.relativeLayout.visibility = View.GONE
+//        binding.addPrescription.setOnClickListener {
+//            startActivity(Intent(context, AddPrescriptionActivity::class.java))
+//            db.child("Users").child(userID).child("Prescription").addValueEventListener(object :ValueEventListener {
+//                override fun onDataChange(snapshot: DataSnapshot) {
+//                    val presURL = snapshot.child("fileurl").value.toString().trim()
+//                    val editor = sharedPreference.edit()
+//                    editor.putString("prescription", presURL)
+//                    userPrescription = sharedPreference.getString("prescription", "false").toString().trim()
+//                    editor.apply()
+//                }
+//
+//                override fun onCancelled(error: DatabaseError) {
+//                    TODO("Not yet implemented")
+//                }
+//            })
 //        }
-
-
-        binding.addPrescription.setOnClickListener {
-            startActivity(Intent(context, AddPrescriptionActivity::class.java))
-            db.child("Users").child(userID).child("Prescription").addValueEventListener(object :ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    val presURL = snapshot.child("fileurl").value.toString().trim()
-                    val editor = sharedPreference.edit()
-                    editor.putString("prescription", presURL)
-                    userPrescription = sharedPreference.getString("prescription", "false").toString().trim()
-                    editor.apply()
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                    TODO("Not yet implemented")
-                }
-
-            })
-        }
 
         binding.doctorData.setOnEditorActionListener { textView, i, keyEvent ->
             if (i == EditorInfo.IME_ACTION_DONE) {
@@ -111,13 +103,19 @@ class HomeFragment : Fragment() {
         binding.slider.animDuration = 150
         binding.slider.onSlideCompleteListener = object : SlideToActView.OnSlideCompleteListener {
             override fun onSlideComplete(view: SlideToActView) {
-                val intent =  Intent(requireActivity(), AppointmentBooking::class.java)
-                intent.putExtra("Duid", searchedUID)
-                intent.putExtra("Dname", searchedName)
-                intent.putExtra("Demail", searchedEmail)
-                intent.putExtra("Dphone", searchedPhone)
-                startActivity(intent)
-                binding.slider.resetSlider()
+                if (userPrescription != "false") {
+                    val intent =  Intent(requireActivity(), AppointmentBooking::class.java)
+                    intent.putExtra("Duid", searchedUID)
+                    intent.putExtra("Dname", searchedName)
+                    intent.putExtra("Demail", searchedEmail)
+                    intent.putExtra("Dphone", searchedPhone)
+                    startActivity(intent)
+                    binding.slider.resetSlider()
+                } else {
+                    Toast.makeText(requireActivity(), "Please upload your prescription in settings tab", Toast.LENGTH_SHORT).show()
+                    binding.slider.resetSlider()
+                }
+
             }
         }
 
@@ -169,22 +167,12 @@ class HomeFragment : Fragment() {
     @SuppressLint("SetTextI18n", "CommitPrefEdits")
     private fun getDataFromSharedPreference() {
         userID = sharedPreference.getString("uid","Not found").toString()
-        db.child("Users").child(userID).child("Prescription").addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                userPrescription = snapshot.child("fileurl").value.toString().trim()
-                val editor = sharedPreference.edit()
-                editor.putString("prescription", userPrescription)
-                editor.apply()
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-            }
-        })
-
         userName = sharedPreference.getString("name","Not found").toString()
         userEmail = sharedPreference.getString("email","Not found").toString()
         userPhone = sharedPreference.getString("phone","Not found").toString()
         userPosition = sharedPreference.getString("isDoctor", "Not fount").toString()
+        userPrescription = sharedPreference.getString("prescription", "false").toString()
+
 
         if (userPosition == "Doctor")
             binding.namePreview.text = "Dr. $userName"

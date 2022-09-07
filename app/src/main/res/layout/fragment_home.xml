@@ -57,60 +57,18 @@
         app:layout_constraintStart_toStartOf="parent">
 
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/relativeLayout"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_margin="20dp"
-            android:elevation="10dp"
-            app:cardCornerRadius="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:background="@drawable/banner" />
-
-            <TextView
-                android:layout_width="350dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginStart="20dp"
-                android:text="Upload your Prescription here"
-                android:textColor="@color/white"
-                android:textSize="20dp"
-                android:fontFamily="@font/dm_sans_medium"/>
-            <Button
-                android:id="@+id/add_prescription"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="150dp"
-                android:layout_height="45dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="90dp"
-                android:background="@drawable/primary_button"
-                android:drawableRight="@drawable/ic_baseline_upload_file_24"
-                android:paddingStart="30dp"
-                android:paddingEnd="25dp"
-                android:text="Upload"
-                android:fontFamily="@font/dm_sans"
-                android:textSize="15dp"
-                android:textAllCaps="false"
-                android:textColor="@color/white" />
-
-        </androidx.cardview.widget.CardView>
-
         <LinearLayout
             android:id="@+id/linearLayout4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:gravity="left"
             android:orientation="vertical"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
-            app:layout_constraintTop_toBottomOf="@id/relativeLayout">
+            android:layout_marginTop="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:id="@+id/textView2"

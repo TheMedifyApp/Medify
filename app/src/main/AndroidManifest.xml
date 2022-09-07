@@ -60,6 +60,7 @@
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name=".HomeActivity"
+            android:windowSoftInputMode="adjustPan"
             android:exported="true" />
 
         <meta-data
