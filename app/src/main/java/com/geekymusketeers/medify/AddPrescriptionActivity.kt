@@ -2,13 +2,17 @@ package com.geekymusketeers.medify
 
 import android.Manifest
 import android.app.ProgressDialog
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.geekymusketeers.medify.databinding.ActivityAddPrescriptionBinding
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.UploadTask
@@ -24,12 +28,14 @@ class AddPrescriptionActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddPrescriptionBinding
     private val pdf: Int = 0
     lateinit var fileUri: Uri
-    //lateinit var mStorage: StorageReference
+    var databaseReference: DatabaseReference? = null
+    private lateinit var sharedPreference : SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddPrescriptionBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        sharedPreference = baseContext.getSharedPreferences("UserData", Context.MODE_PRIVATE)
 
         binding.cancelfile.setOnClickListener {
             binding.filetitle.text.clear()
@@ -40,6 +46,7 @@ class AddPrescriptionActivity : AppCompatActivity() {
 
 
         //mStorage = FirebaseStorage.getInstance().reference
+        databaseReference = FirebaseDatabase.getInstance().reference
 
 
         //Browse PDF from the file manager
@@ -86,7 +93,7 @@ class AddPrescriptionActivity : AppCompatActivity() {
     }
 
     private fun process_upload(fileUri: Uri?) {
-
+        val userid = sharedPreference.getString("uid","").toString()
         if (fileUri == null) {
             Toast.makeText(baseContext, "Select a file first", Toast.LENGTH_SHORT).show()
         } else if (binding.filetitle.text.toString().isEmpty()) {
@@ -97,19 +104,23 @@ class AddPrescriptionActivity : AppCompatActivity() {
             pd.show()
 
             val reference: StorageReference = FirebaseStorage.getInstance().reference.child("uploads/" + System.currentTimeMillis() + ".pdf")
-            val upload = reference.putFile(fileUri)
-            upload.addOnSuccessListener { taskSnapshot ->
-                pd.dismiss()
-                Toast.makeText(baseContext, "File Uploaded", Toast.LENGTH_SHORT).show()
+            reference.putFile(fileUri).addOnSuccessListener { taskSnapshot: UploadTask.TaskSnapshot? -> reference.downloadUrl.addOnSuccessListener { uri: Uri ->
+                        val obj = PrescriptionModel(binding.filetitle.text.toString(), uri.toString(), userid)
+                databaseReference?.child("Users")?.child(userid)?.child("Prescription")?.setValue(obj)
+                        pd.dismiss()
+                        Toast.makeText(baseContext, "File Uploaded", Toast.LENGTH_SHORT).show()
 
-                binding.filelogo.visibility = View.INVISIBLE
-                binding.cancelfile.visibility = View.INVISIBLE
-                binding.imagebrowse.visibility = View.VISIBLE
-                binding.filetitle.setText("")
-            }.addOnFailureListener { taskSnapshot->
-                pd.dismiss()
-                Toast.makeText(baseContext, "File Not Uploaded", Toast.LENGTH_SHORT).show()
-            }
+                        binding.filelogo.visibility = View.INVISIBLE
+                        binding.cancelfile.visibility = View.INVISIBLE
+                        binding.imagebrowse.visibility = View.VISIBLE
+                        binding.filetitle.setText("")
+                    }
+                }
+                .addOnProgressListener { taskSnapshot: UploadTask.TaskSnapshot ->
+                    val percent =
+                        (100 * taskSnapshot.bytesTransferred / taskSnapshot.totalByteCount).toFloat()
+                    pd.setMessage("Uploaded :" + percent.toInt() + "%")
+                }
 
         }
     }
