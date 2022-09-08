@@ -11,16 +11,12 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.geekymusketeers.medify.DoctorAppointment
-import com.geekymusketeers.medify.R
+import com.geekymusketeers.medify.appointment.DoctorAppointment
 import com.geekymusketeers.medify.adapter.DoctorsAppointmentAdapter
 import com.geekymusketeers.medify.databinding.ActivityDoctorPatientBinding
-import com.geekymusketeers.medify.databinding.ActivityHomeBinding
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.firebase.database.*
 import java.text.SimpleDateFormat
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.collections.ArrayList
 

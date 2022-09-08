@@ -1,17 +1,16 @@
-package com.geekymusketeers.medify
+package com.geekymusketeers.medify.appointment
 
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.*
+import com.geekymusketeers.medify.R
 import com.geekymusketeers.medify.databinding.ActivityAppointmentBookingBinding
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.ncorti.slidetoact.SlideToActView
 import java.text.SimpleDateFormat
@@ -201,7 +200,7 @@ class AppointmentBooking : AppCompatActivity() {
                 val appointmentDB_Patient = FirebaseDatabase.getInstance().getReference("Users").child(userid).child("PatientsAppointments").child(date)
                 appointmentDB_Patient.child(doctorUid).setValue(appointmentP)
 
-                startActivity(Intent(baseContext,BookingDoneActivity::class.java))
+                startActivity(Intent(baseContext, BookingDoneActivity::class.java))
                 finish()
             }
         }

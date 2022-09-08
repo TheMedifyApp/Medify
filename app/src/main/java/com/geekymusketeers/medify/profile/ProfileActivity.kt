@@ -1,17 +1,14 @@
-package com.geekymusketeers.medify
+package com.geekymusketeers.medify.profile
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import android.os.Binder
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import android.widget.Toast
 import com.geekymusketeers.medify.auth.User
 import com.geekymusketeers.medify.databinding.ActivityProfileBinding
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
 class ProfileActivity : AppCompatActivity() {
@@ -36,7 +33,7 @@ class ProfileActivity : AppCompatActivity() {
         getUserData()
 
         binding.ProfileToEdit.setOnClickListener {
-            startActivity(Intent(baseContext,EditProfileActivity::class.java))
+            startActivity(Intent(baseContext, EditProfileActivity::class.java))
         }
 
     }

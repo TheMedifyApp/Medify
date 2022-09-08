@@ -1,4 +1,4 @@
-package com.geekymusketeers.medify
+package com.geekymusketeers.medify.prescription
 
 import android.Manifest
 import android.annotation.SuppressLint

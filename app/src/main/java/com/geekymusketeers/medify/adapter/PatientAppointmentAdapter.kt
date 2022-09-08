@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.geekymusketeers.medify.PatientAppointment
+import com.geekymusketeers.medify.appointment.PatientAppointment
 import com.geekymusketeers.medify.R
 import com.geekymusketeers.medify.mainFragments.DoctorPatient
 

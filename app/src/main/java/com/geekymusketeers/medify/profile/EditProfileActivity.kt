@@ -1,4 +1,4 @@
-package com.geekymusketeers.medify
+package com.geekymusketeers.medify.profile
 
 import android.content.Context
 import android.content.Intent
@@ -6,8 +6,8 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.geekymusketeers.medify.prescription.AddPrescriptionActivity
 import com.geekymusketeers.medify.databinding.ActivityEditProfileBinding
-import com.geekymusketeers.medify.databinding.ActivityProfileBinding
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
@@ -32,7 +32,7 @@ class EditProfileActivity : AppCompatActivity() {
             updateData(name,age,phoneno)
         }
         binding.updatepres.setOnClickListener {
-            startActivity(Intent(baseContext,AddPrescriptionActivity::class.java))
+            startActivity(Intent(baseContext, AddPrescriptionActivity::class.java))
         }
     }
 

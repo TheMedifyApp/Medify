@@ -10,11 +10,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.geekymusketeers.medify.AddPrescriptionActivity
-import com.geekymusketeers.medify.ProfileActivity
-import com.geekymusketeers.medify.R
+import com.geekymusketeers.medify.prescription.AddPrescriptionActivity
+import com.geekymusketeers.medify.profile.ProfileActivity
 import com.geekymusketeers.medify.auth.SignIn_Activity
-import com.geekymusketeers.medify.databinding.FragmentHomeBinding
 import com.geekymusketeers.medify.databinding.FragmentSettingsBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -41,13 +39,13 @@ class SettingsFragment : Fragment() {
         }
 
         binding.profile.setOnClickListener {
-            startActivity(Intent(requireActivity(),ProfileActivity::class.java))
+            startActivity(Intent(requireActivity(), ProfileActivity::class.java))
         }
         binding.createUPI.setOnClickListener {
             startActivity(Intent(requireActivity(), UPImanager::class.java))
         }
         binding.updatePrescription.setOnClickListener {
-            startActivity(Intent(requireActivity(),AddPrescriptionActivity::class.java))
+            startActivity(Intent(requireActivity(), AddPrescriptionActivity::class.java))
             db.child("Users").child(userID).child("Prescription").addValueEventListener(object :
                 ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {

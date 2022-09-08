@@ -1,10 +1,12 @@
-package com.geekymusketeers.medify
+package com.geekymusketeers.medify.appointment
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import com.geekymusketeers.medify.HomeActivity
+import com.geekymusketeers.medify.R
 
 class BookingDoneActivity : AppCompatActivity() {
 

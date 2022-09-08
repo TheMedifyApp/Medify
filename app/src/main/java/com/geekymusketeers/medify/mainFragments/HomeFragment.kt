@@ -10,12 +10,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
-import android.widget.EditText
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import com.geekymusketeers.medify.AddPrescriptionActivity
-import com.geekymusketeers.medify.AppointmentBooking
+import com.geekymusketeers.medify.appointment.AppointmentBooking
 import com.geekymusketeers.medify.RemoveCountryCode
 import com.geekymusketeers.medify.databinding.FragmentHomeBinding
 import com.google.firebase.FirebaseError

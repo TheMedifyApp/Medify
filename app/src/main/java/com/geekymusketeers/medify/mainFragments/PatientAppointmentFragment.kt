@@ -13,8 +13,7 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.geekymusketeers.medify.DoctorAppointment
-import com.geekymusketeers.medify.PatientAppointment
+import com.geekymusketeers.medify.appointment.PatientAppointment
 import com.geekymusketeers.medify.adapter.PatientAppointmentAdapter
 import com.geekymusketeers.medify.databinding.FragmentPatientAppointmentBinding
 import com.google.firebase.database.*
