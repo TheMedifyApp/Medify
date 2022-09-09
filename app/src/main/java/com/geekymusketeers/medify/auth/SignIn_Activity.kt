@@ -39,30 +39,18 @@ class SignIn_Activity : AppCompatActivity() {
         binding.SignInPassword.setOnTouchListener { v, event ->
             val Right = 2
             if (event.getAction() === MotionEvent.ACTION_UP) {
-                if (event.getRawX() >= binding.SignInPassword.getRight() - binding.SignInPassword.getCompoundDrawables()
-                        .get(Right).getBounds().width()
-                ) {
+                if (event.getRawX() >= binding.SignInPassword.getRight() - binding.SignInPassword.getCompoundDrawables().get(Right).getBounds().width()) {
                     val selection: Int = binding.SignInPassword.getSelectionEnd()
                     //Handles Multiple option popups
                     if (passwordVisible) {
                         //set drawable image here
-                        binding.SignInPassword.setCompoundDrawablesRelativeWithIntrinsicBounds(
-                            0,
-                            0,
-                            R.drawable.visibility_off,
-                            0
-                        )
+                        binding.SignInPassword.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.visibility_off, 0)
                         //for hide password
                         binding.SignInPassword.setTransformationMethod(PasswordTransformationMethod.getInstance())
                         passwordVisible = false
                     } else {
                         //set drawable image here
-                        binding.SignInPassword.setCompoundDrawablesRelativeWithIntrinsicBounds(
-                            0,
-                            0,
-                            R.drawable.visibility,
-                            0
-                        )
+                        binding.SignInPassword.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.visibility, 0)
                         //for show password
                         binding.SignInPassword.setTransformationMethod(
                             HideReturnsTransformationMethod.getInstance())

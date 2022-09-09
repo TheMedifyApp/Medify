@@ -92,6 +92,7 @@
                 android:ems="10"
                 android:fontFamily="@font/dm_sans"
                 android:hint="Password"
+                android:longClickable="false"
                 android:drawableRight="@drawable/visibility_off"
                 android:paddingRight="15dp"
                 android:inputType="textPassword"

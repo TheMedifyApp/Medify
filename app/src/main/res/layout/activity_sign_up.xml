@@ -156,6 +156,7 @@
                 android:hint="Password"
                 android:inputType="textPassword"
                 android:paddingStart="20dp"
+                android:longClickable="false"
                 android:textColor="@color/black"
                 android:drawableRight="@drawable/visibility_off"
                 android:paddingRight="15dp"
