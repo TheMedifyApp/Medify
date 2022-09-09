@@ -84,70 +84,7 @@ class AppointmentBooking : AppCompatActivity() {
             }
         }
 
-        // Time Picker
-        binding.selectTime.setOnClickListener {
 
-            // instance of MDC time picker
-            val materialTimePicker: MaterialTimePicker = MaterialTimePicker.Builder()
-                // set the title for the alert dialog
-                .setTitleText("SELECT YOUR TIMING")
-                // set the default hour for the
-                // dialog when the dialog opens
-                .setHour(12)
-                // set the default minute for the
-                // dialog when the dialog opens
-                .setMinute(10)
-                // set the time format
-                // according to the region
-                .setTimeFormat(TimeFormat.CLOCK_12H)
-                .build()
-
-            materialTimePicker.show(supportFragmentManager, "MainActivity")
-
-            // on clicking the positive button of the time picker
-            // dialog update the TextView accordingly
-            materialTimePicker.addOnPositiveButtonClickListener {
-
-                val pickedHour: Int = materialTimePicker.hour
-                val pickedMinute: Int = materialTimePicker.minute
-
-                // check for single digit hour hour and minute
-                // and update TextView accordingly
-                val formattedTime: String = when {
-                    pickedHour > 12 -> {
-                        if (pickedMinute < 10) {
-                            "${materialTimePicker.hour - 12}:0${materialTimePicker.minute} pm"
-                        } else {
-                            "${materialTimePicker.hour - 12}:${materialTimePicker.minute} pm"
-                        }
-                    }
-                    pickedHour == 12 -> {
-                        if (pickedMinute < 10) {
-                            "${materialTimePicker.hour}:0${materialTimePicker.minute} pm"
-                        } else {
-                            "${materialTimePicker.hour}:${materialTimePicker.minute} pm"
-                        }
-                    }
-                    pickedHour == 0 -> {
-                        if (pickedMinute < 10) {
-                            "${materialTimePicker.hour + 12}:0${materialTimePicker.minute} am"
-                        } else {
-                            "${materialTimePicker.hour + 12}:${materialTimePicker.minute} am"
-                        }
-                    }
-                    else -> {
-                        if (pickedMinute < 10) {
-                            "${materialTimePicker.hour}:0${materialTimePicker.minute} am"
-                        } else {
-                            "${materialTimePicker.hour}:${materialTimePicker.minute} am"
-                        }
-                    }
-                }
-
-                // then update the preview TextView
-                binding.selectTime.setText(formattedTime)
-            }
-        }
 
 
         // Booking Appointment
@@ -160,7 +97,7 @@ class AppointmentBooking : AppCompatActivity() {
                 val userPrescription = sharedPreference.getString("prescription", "").toString()
 
                 val date = binding.selectDate.text.toString()
-                val time = binding.selectTime.text.toString()
+                val time = binding.timeDropdown.text.toString()
                 val disease = binding.diseaseDropdown.text.toString()
                 val situation = binding.situationDropdown.text.toString()
                 val rightNow = Calendar.getInstance()
@@ -216,6 +153,10 @@ class AppointmentBooking : AppCompatActivity() {
         val situationItems = listOf("Severe Pain", "Mild Pain", "No Pain")
         val situationAdapter = ArrayAdapter(this, R.layout.list_items, situationItems)
         binding.situationDropdown.setAdapter(situationAdapter)
+
+        val timeItems = listOf("9:00 AM - 11:00 AM","11:00 AM - 13:00 PM", "17:00 PM - 19:00 PM","19:00 PM - 22:OO PM")
+        val timeAdapter = ArrayAdapter(this, R.layout.list_items, timeItems)
+        binding.timeDropdown.setAdapter(timeAdapter)
     }
 
 }

@@ -61,7 +61,6 @@
             android:id="@+id/select_date"
             android:layout_width="350dp"
             android:layout_height="60dp"
-            android:layout_marginTop="40dp"
             android:background="@drawable/editfield"
             android:drawableRight="@drawable/date"
             android:ems="10"
@@ -75,27 +74,31 @@
             android:textColorHint="@android:color/darker_gray"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.491"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/select_time"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/menu_time"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
             android:layout_width="350dp"
             android:layout_height="60dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/editfield"
-            android:drawableRight="@drawable/time"
-            android:ems="10"
-            android:focusable="false"
-            android:fontFamily="@font/dm_sans"
-            android:hint="Select Time"
-            android:inputType="textPersonName"
-            android:paddingLeft="20dp"
-            android:paddingRight="15dp"
-            android:textColor="@color/black"
+            android:hint="Select time"
             android:textColorHint="@android:color/darker_gray"
+            app:boxBackgroundColor="#F5F8FA"
             app:layout_constraintEnd_toEndOf="@+id/select_date"
             app:layout_constraintStart_toStartOf="@+id/select_date"
-            app:layout_constraintTop_toBottomOf="@+id/select_date" />
+            app:layout_constraintTop_toBottomOf="@+id/select_date">
+
+        <AutoCompleteTextView
+            android:id="@+id/time_dropdown"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/dm_sans"
+            android:inputType="none"
+            android:textColor="@color/black" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/menu_disease"
@@ -106,9 +109,9 @@
             android:hint="@string/disease_name"
             android:textColorHint="@android:color/darker_gray"
             app:boxBackgroundColor="#F5F8FA"
-            app:layout_constraintEnd_toEndOf="@+id/select_time"
-            app:layout_constraintStart_toStartOf="@+id/select_time"
-            app:layout_constraintTop_toBottomOf="@+id/select_time">
+            app:layout_constraintEnd_toEndOf="@+id/menu_time"
+            app:layout_constraintStart_toStartOf="@+id/menu_time"
+            app:layout_constraintTop_toBottomOf="@+id/menu_time">
 
             <AutoCompleteTextView
                 android:id="@+id/disease_dropdown"
