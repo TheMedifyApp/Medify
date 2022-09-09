@@ -77,12 +77,13 @@ class HomeFragment : Fragment() {
 //            })
 //        }
 
-        binding.doctorData.setOnEditorActionListener { textView, i, keyEvent ->
+        binding.doctorData.setOnEditorActionListener { _, i, _ ->
             if (i == EditorInfo.IME_ACTION_DONE) {
                 // Call your code here
                 searchedData = binding.doctorData.text.toString().trim()
+
                 if (searchedData.isNotEmpty()) {
-                    if (RemoveCountryCode.remove(searchedData) == userPhone || searchedData == userPhone || searchedData == userEmail) {
+                    if (RemoveCountryCode.remove(searchedData) == userPhone || searchedData == userPhone || searchedData == userEmail || isSameName(searchedData, userName)) {
                         Toast.makeText(requireActivity(), "Stop searching yourself", Toast.LENGTH_SHORT).show()
                         binding.cardView.isVisible = false
                         binding.slider.isVisible = false
@@ -124,6 +125,7 @@ class HomeFragment : Fragment() {
     private fun doctorIsPresent() {
 
         db.child("Doctor").addValueEventListener(object : ValueEventListener {
+            @SuppressLint("SetTextI18n")
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 for (child in dataSnapshot.children) {
                     val map = child.value as HashMap<*, *>
@@ -140,10 +142,10 @@ class HomeFragment : Fragment() {
                         binding.textView3.isVisible = false
                         binding.cardView.isVisible = true
                         binding.slider.isVisible = true
-                        binding.doctorName.text = "Dr. $sName"
-                        binding.doctortype.text = sType
-                        binding.doctorEmail.text = sName
-                        binding.doctorPhone.text = sPhone
+                        binding.doctorName.text = "Name: Dr. $sName"
+                        binding.doctortype.text = "Specialization: $sType"
+                        binding.doctorEmail.text = "Email: $sEmail"
+                        binding.doctorPhone.text = "Phone: $sPhone"
                         return
                     } else
                         binding.textView3.isVisible = true
@@ -156,7 +158,7 @@ class HomeFragment : Fragment() {
     }
     private fun isSameName(searchedName: String, dbNAME: String): Boolean {
         val modSearched: String = searchedName.replace(" ", "").toString().trim()
-        val modDB: String = searchedName.replace(" ", "").toString().trim()
+        val modDB: String = dbNAME.replace(" ", "").toString().trim()
         return modSearched == modDB;
     }
 

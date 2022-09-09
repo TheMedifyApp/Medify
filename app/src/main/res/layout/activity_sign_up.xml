@@ -83,23 +83,31 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
-                android:id="@+id/SignUp_type_of_doctor"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/editfield"
-                android:ems="10"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/menu_doctorType"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+                android:layout_width="350dp"
+                android:layout_height="60dp"
                 android:visibility="gone"
-                android:fontFamily="@font/dm_sans"
-                android:hint="Specialty"
-                android:inputType="textPersonName"
-                android:paddingLeft="20dp"
-                android:textColor="@color/black"
+                android:layout_marginTop="20dp"
+                android:paddingLeft="10dp"
+                android:background="@drawable/editfield"
+                android:hint="@string/specialization"
                 android:textColorHint="@android:color/darker_gray"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:boxBackgroundColor="#F5F8FA"
+                app:layout_constraintEnd_toEndOf="@+id/select_time"
+                app:layout_constraintStart_toStartOf="@+id/select_time"
+                app:layout_constraintTop_toBottomOf="@+id/select_time">
+
+                <AutoCompleteTextView
+                    android:id="@+id/SignUp_type_of_doctor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/dm_sans"
+                    android:inputType="none"
+                    android:textColor="@color/black" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <EditText
                 android:id="@+id/SignUp_Email"

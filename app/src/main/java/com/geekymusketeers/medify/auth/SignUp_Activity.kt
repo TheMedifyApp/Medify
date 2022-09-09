@@ -9,6 +9,7 @@ import android.util.Log
 import android.util.Patterns
 import android.view.MotionEvent
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
@@ -37,7 +38,7 @@ class SignUp_Activity : AppCompatActivity() {
         initialization()
 
         if (isDoctor == "Doctor"){
-            binding.SignUpTypeOfDoctor.visibility = View.VISIBLE
+            binding.menuDoctorType.visibility = View.VISIBLE
         }
 
         // Hide and Show Password
@@ -87,10 +88,16 @@ class SignUp_Activity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        // Disease List
+        val items = listOf("Cardiologist", "Audiologist", "Dentist", "ENT specialist","Obstetrician/Gynaecologist", "Orthopaedic surgeon", "Paediatrician","Psychiatrists", "Veterinarian", "Radiologist", "Pulmonologist", "Endocrinologist", "Oncologist", "Neurologist", "Cardiothoracic surgeon", "Allergists", "Dermatologists", "Ophthalmologists", "Gastroenterologists", "Nephrologists", "Urologists", "Pulmonologists", "Otolaryngologists", "Rheumatologists", "General surgeon", "Anesthesiologists")
+        val adapter = ArrayAdapter(this, R.layout.list_items, items)
+        binding.SignUpTypeOfDoctor.setAdapter(adapter)
+
         binding.createAccount.setOnClickListener {
             val name = binding.SignUpName.text.toString().trim()
             val email = binding.SignUpEmail.text.toString().trim()
             val tempPhone = binding.SignUpPhone.text.toString().trim()
+//            val specialist = binding.SignUpTypeOfDoctor.text.toString().trim()
             val specialist = binding.SignUpTypeOfDoctor.text.toString().trim()
             val phone = RemoveCountryCode.remove(tempPhone)
             val password = binding.SignUpPassword.text.toString().trim()

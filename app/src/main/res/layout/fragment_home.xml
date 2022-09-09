@@ -77,7 +77,19 @@
                 android:fontFamily="@font/dm_sans_medium"
                 android:text="Want to book an appointment?"
                 android:textColor="@color/black"
-                android:textSize="20dp"
+                android:textSize="20sp"
+                tools:layout_editor_absoluteX="32dp"
+                tools:layout_editor_absoluteY="186dp" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/dm_sans"
+                android:layout_marginTop="10dp"
+                android:text="Enter the doctor's name, email or phone"
+                android:textColor="@color/black"
+                android:textSize="15sp"
                 tools:layout_editor_absoluteX="32dp"
                 tools:layout_editor_absoluteY="186dp" />
 
@@ -97,9 +109,9 @@
                     android:fontFamily="@font/dm_sans"
                     android:drawableStart="@drawable/serch"
                     android:drawablePadding="5dp"
-                    android:hint="Enters Doctor's Name"
+                    android:hint="eg. xyz1234@gmail.com"
                     android:imeOptions="actionDone"
-                    android:inputType="textPersonName"
+                    android:inputType="text"
                     android:paddingLeft="10dp"
                     android:textColor="@color/black"
                     android:textColorHint="@android:color/darker_gray"
@@ -158,7 +170,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:fontFamily="@font/dm_sans"
-                    android:text="Specialist: Loading name"
+                    android:text="Specialist: Loading specialization"
                     android:textColor="@color/black" />
 
                 <TextView
