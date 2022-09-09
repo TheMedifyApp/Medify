@@ -12,6 +12,7 @@ import android.widget.Toast
 import com.geekymusketeers.medify.HomeActivity
 import com.geekymusketeers.medify.R
 import com.geekymusketeers.medify.databinding.ActivitySignInBinding
+import com.geekymusketeers.medify.encryptionHelper.Encryption
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -93,6 +94,7 @@ class SignIn_Activity : AppCompatActivity() {
                             if (u?.isEmailVerified!!) {
 
                                 val db = FirebaseDatabase.getInstance().reference
+                                val encryption = Encryption.getDefault("Key", "Salt", ByteArray(16))
 
                                 db.child("Users").child(u.uid).addValueEventListener(object: ValueEventListener {
                                     override fun onDataChange(snapshot: DataSnapshot) {
@@ -106,6 +108,7 @@ class SignIn_Activity : AppCompatActivity() {
                                         editor.putString("specialist",snapshot.child("specialist").value.toString().trim())
                                         editor.putString("stats", snapshot.child("stats").value.toString().trim())
                                         editor.putString("prescription", snapshot.child("prescription").value.toString().trim())
+                                        editor.putString("upi", snapshot.child(encryption.encrypt("nulla")).value.toString().trim())
                                         editor.apply()
 
                                     }
