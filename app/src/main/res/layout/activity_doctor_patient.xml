@@ -60,6 +60,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Select Date"
+            android:drawableRight="@drawable/calendar_month"
+            android:drawablePadding="10dp"
             android:textColor="@color/white"
             android:textSize="13dp"
             android:fontFamily="@font/dm_sans_medium"
