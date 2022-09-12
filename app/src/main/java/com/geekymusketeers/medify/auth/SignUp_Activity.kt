@@ -124,7 +124,6 @@ class SignUp_Activity : AppCompatActivity() {
 
                                     if (isDoctor == "Doctor") {
                                         fd.getReference(isDoctor).child(u.uid).setValue(user).addOnSuccessListener {
-                                            Toast.makeText(this, "Doctor added", Toast.LENGTH_SHORT).show()
                                         }
 
                                     }

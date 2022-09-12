@@ -179,7 +179,6 @@ class StatisticsFragment : Fragment() {
             }
         }
         finalStats.setLength(finalStats.length - 1)
-        Toast.makeText(requireActivity(), finalStats.toString(), Toast.LENGTH_SHORT).show()
         return finalStats.toString()
     }
 
