@@ -42,6 +42,8 @@ RecyclerView.Adapter<PatientAppointmentAdapter.PatientAppointmentViewHolder>(){
             /**set Data*/
             val mIntent = Intent(c, DoctorPatient::class.java)
             mIntent.putExtra("uid", uid)
+            mIntent.putExtra("date", date)
+            mIntent.putExtra("hide", "hide")
             c.startActivity(mIntent)
         }
     }

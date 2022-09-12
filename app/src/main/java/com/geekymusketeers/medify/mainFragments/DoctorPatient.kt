@@ -39,14 +39,22 @@ class DoctorPatient : AppCompatActivity() {
 
         sharedPreference = baseContext.getSharedPreferences("UserData", Context.MODE_PRIVATE)
 
-        // CODE
-
         appointmentList = ArrayList()
         appointmentAdapter = DoctorsAppointmentAdapter(appointmentList)
 
         Recyclerview = binding.appointmentRecyclerview
         Recyclerview.layoutManager = LinearLayoutManager(baseContext)
         Recyclerview.setHasFixedSize(true)
+
+        val userID = sharedPreference.getString("uid","Not found").toString()
+        var date: StringBuilder = StringBuilder("")
+        date.append(intent.getStringExtra("date").toString())
+        if (date.toString().isNotEmpty() || date.length > 0) {
+            val hide = intent.getStringExtra("hide")
+            if (hide == "hide") binding.selectDate.visibility = View.INVISIBLE
+            val doctorIntentUid = intent.getStringExtra("uid").toString()
+            getData(date.toString(), doctorIntentUid)
+        }
 
         binding.selectDate.setOnClickListener {
             // Initiation date picker with
@@ -59,10 +67,12 @@ class DoctorPatient : AppCompatActivity() {
             datePicker.addOnPositiveButtonClickListener {
                 // formatting date in dd-mm-yyyy format.
                 val dateFormatter = SimpleDateFormat("dd-MM-yyyy")
-                val date = dateFormatter.format(Date(it)).toString().trim()
-                binding.selectDate.text = date
+                val tempDate = dateFormatter.format(Date(it)).toString().trim()
+                date.setLength(0)
+                date.append(tempDate)
                 appointmentList.clear()
-                getData(date)
+                binding.selectDate.text = date
+                getData(date.toString(), userID)
 
             }
 
@@ -79,15 +89,9 @@ class DoctorPatient : AppCompatActivity() {
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    private fun getData(date: String) {
-        val userID = sharedPreference.getString("uid","Not found").toString()
-        val doctorIntentUid = intent.getStringExtra("uid")
+    private fun getData(date: String, userID: String) {
 
-        if (doctorIntentUid.isNullOrEmpty()) {
-            dbref = FirebaseDatabase.getInstance().getReference("Doctor").child(userID).child("DoctorsAppointments").child(date).orderByChild("Points")
-        } else {
-            dbref = FirebaseDatabase.getInstance().getReference("Doctor").child(doctorIntentUid).child("DoctorsAppointments").child(date).orderByChild("Points")
-        }
+        dbref = FirebaseDatabase.getInstance().getReference("Doctor").child(userID).child("DoctorsAppointments").child(date).orderByChild("Points")
 
         dbref.addValueEventListener(object : ValueEventListener {
             @SuppressLint("NotifyDataSetChanged")
