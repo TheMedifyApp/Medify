@@ -20,7 +20,7 @@
         android:theme="@style/Theme.Medify"
         tools:targetApi="31">
         <activity
-            android:name=".ForgotPasswordActivity"
+            android:name=".auth.ForgotPasswordActivity"
             android:exported="false" />
         <activity
             android:name=".profile.EditProfileActivity"
