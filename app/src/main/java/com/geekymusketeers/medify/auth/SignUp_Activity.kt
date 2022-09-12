@@ -89,7 +89,7 @@ class SignUp_Activity : AppCompatActivity() {
         }
 
         // Disease List
-        val items = listOf("Cardiologist", "Audiologist", "Dentist", "ENT specialist","Obstetrician/Gynaecologist", "Orthopaedic surgeon", "Paediatrician","Psychiatrists", "Veterinarian", "Radiologist", "Pulmonologist", "Endocrinologist", "Oncologist", "Neurologist", "Cardiothoracic surgeon", "Allergists", "Dermatologists", "Ophthalmologists", "Gastroenterologists", "Nephrologists", "Urologists", "Pulmonologists", "Otolaryngologists", "Rheumatologists", "General surgeon", "Anesthesiologists")
+        val items = listOf("Cardiologist", "Dentist", "ENT specialist", "Obstetrician/Gynaecologist", "Orthopaedic surgeon","Psychiatrists", "Radiologist", "Pulmonologist", "Neurologist", "Allergists", "Gastroenterologists", "Urologists", "Otolaryngologists", "Rheumatologists", "Anesthesiologists")
         val adapter = ArrayAdapter(this, R.layout.list_items, items)
         binding.SignUpTypeOfDoctor.setAdapter(adapter)
 

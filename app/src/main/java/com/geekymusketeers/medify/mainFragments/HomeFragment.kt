@@ -44,6 +44,7 @@ class HomeFragment : Fragment() {
     private lateinit var searchedPhone : String
     private lateinit var searchedData : String
     private lateinit var searchedUID : String
+    private lateinit var searchedType: String
 
     private lateinit var sharedPreference : SharedPreferences
 
@@ -108,6 +109,7 @@ class HomeFragment : Fragment() {
                     intent.putExtra("Dname", searchedName)
                     intent.putExtra("Demail", searchedEmail)
                     intent.putExtra("Dphone", searchedPhone)
+                    intent.putExtra("Dtype", searchedType)
                     startActivity(intent)
                     binding.slider.resetSlider()
                 } else {
@@ -139,6 +141,7 @@ class HomeFragment : Fragment() {
                         searchedEmail = sEmail
                         searchedPhone = sPhone
                         searchedUID = sUid
+                        searchedType = sType
                         binding.textView3.isVisible = false
                         binding.cardView.isVisible = true
                         binding.slider.isVisible = true
