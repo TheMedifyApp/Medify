@@ -20,6 +20,9 @@
         android:theme="@style/Theme.Medify"
         tools:targetApi="31">
         <activity
+            android:name=".ForgotPasswordActivity"
+            android:exported="false" />
+        <activity
             android:name=".profile.EditProfileActivity"
             android:exported="false" />
         <activity
@@ -62,8 +65,8 @@
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name=".HomeActivity"
-            android:windowSoftInputMode="adjustPan"
-            android:exported="true" />
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan" />
 
         <meta-data
             android:name="preloaded_fonts"
