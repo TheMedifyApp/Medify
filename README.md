@@ -49,14 +49,6 @@ The design we used is minimal as well as clean. People with colorbindness will h
   - 2 [How to Disconnect Firebase Project?](https://stackoverflow.com/questions/51549554/how-to-completely-disconnect-an-android-app-from-firebase-in-android-studio)
 - After removing the account, link to your own firebase project to test and use.
 - Follow the above steps to create account and proceed
-- Make some changes and come back again to that directory to commit and push!
-  -  To commit and Push
-       - 1 type `git add .`
-       - 2 type `git commit -m "Your Commit Message Here"`
-       - 3 type `git push origin <Branch name that your created>`
-- Then goto Github to the main Repository (Not forked) and create Pull Request!
-- Once you push some changes, after merging the Pull Request,
-you'll get your name updated in the Readme file :D
 
 - **Important** (Please remove your googleservices.json before committing changes)
 
