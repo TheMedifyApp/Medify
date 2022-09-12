@@ -52,10 +52,10 @@ class AppointmentBooking : AppCompatActivity() {
 
         sharedPreference = baseContext.getSharedPreferences("UserData", Context.MODE_PRIVATE)
 
-        val diseaseValue = HashMap<String, Int>()
+        val diseaseValue = HashMap<String, Float>()
         setDiseaseValues(diseaseValue)
 
-        val conditionValue = HashMap<String, Int>()
+        val conditionValue = HashMap<String, Float>()
         setConditionValue(conditionValue)
 
         initializeSpecializationWithDiseasesLists()
@@ -116,9 +116,9 @@ class AppointmentBooking : AppCompatActivity() {
                 val currentHourIn24Format: Int =rightNow.get(Calendar.HOUR_OF_DAY)
                 val firstComeFirstServe = 1 + (0.1 * ((currentHourIn24Format / 10) + 1))
 
-                totalPoint += diseaseValue[disease]!!
-                totalPoint += conditionValue[situation]!!
-                totalPoint = (totalPoint * firstComeFirstServe).toInt()
+                var temp = diseaseValue[disease]!!
+                temp += conditionValue[situation]!!
+                totalPoint = (temp * firstComeFirstServe).toInt()
 
                 val appointmentD:HashMap<String,String> = HashMap() //define empty hashmap
                 appointmentD["PatientName"] = userName
@@ -191,7 +191,7 @@ class AppointmentBooking : AppCompatActivity() {
         anesthesiologistsList = ArrayList()
 
         //List initializing for Cardiac diseases
-        cardiologistList.add("Not Sure")
+        cardiologistList.add("Not sure")
         cardiologistList.add("High blood pressure")
         cardiologistList.add("High cholesterol")
         cardiologistList.add("Angina (chest pain)")
@@ -199,7 +199,7 @@ class AppointmentBooking : AppCompatActivity() {
         cardiologistList.add("Atrial fibrillation")
 
         //List initializing for Dental diseases
-        dentistList.add("Not Sure")
+        dentistList.add("Not sure")
         dentistList.add("Tooth Decay/Cavities")
         dentistList.add("Gum Disease")
         dentistList.add("Cracked or Broken Teeth")
@@ -354,126 +354,126 @@ class AppointmentBooking : AppCompatActivity() {
 
     }
 
-    private fun setConditionValue(conditionValue: HashMap<String, Int>) {
-        conditionValue["Severe Pain"] = 15
-        conditionValue["Mild Pain"] = 8
-        conditionValue["No Pain"] = 0
+    private fun setConditionValue(conditionValue: HashMap<String, Float>) {
+        conditionValue["Severe Pain"] = 1.5f
+        conditionValue["Mild Pain"] = 1.2f
+        conditionValue["No Pain"] = 0.5f
 
     }
 
-    private fun setDiseaseValues(diseaseValue: HashMap<String, Int>) {
-        diseaseValue["Not sure"] = 10
+    private fun setDiseaseValues(diseaseValue: HashMap<String, Float>) {
+        diseaseValue["Not sure"] = 6f
 
-        diseaseValue["High blood pressure"] = 8
-        diseaseValue["High cholesterol"] = 7
-        diseaseValue["Angina (chest pain)"] = 5
-        diseaseValue["Heart rhythm disorders"] = 7
-        diseaseValue["Atrial fibrillation"] = 7
+        diseaseValue["High blood pressure"] = 6f
+        diseaseValue["High cholesterol"] = 5f
+        diseaseValue["Angina (chest pain)"] = 4f
+        diseaseValue["Heart rhythm disorders"] = 5f
+        diseaseValue["Atrial fibrillation"] = 4f
 
-        diseaseValue["Tooth Decay/Cavities"] = 9
-        diseaseValue["Gum Disease"] = 8
-        diseaseValue["Cracked or Broken Teeth"] = 6
-        diseaseValue["Root Infection"] = 7
-        diseaseValue["Tooth Loss"] = 4
+        diseaseValue["Tooth Decay/Cavities"] = 6f
+        diseaseValue["Gum Disease"] = 5f
+        diseaseValue["Cracked or Broken Teeth"] = 2f
+        diseaseValue["Root Infection"] = 4f
+        diseaseValue["Tooth Loss"] = 1f
 
-        diseaseValue["Hearing problems"] = 8
-        diseaseValue["Allergies"] = 6
-        diseaseValue["Nasal congestion"] = 6
-        diseaseValue["Tonsil infections"] = 7
-        diseaseValue["Enlarged tonsils"] = 6
+        diseaseValue["Hearing problems"] = 6f
+        diseaseValue["Allergies"] = 4f
+        diseaseValue["Nasal congestion"] = 5f
+        diseaseValue["Tonsil infections"] = 5f
+        diseaseValue["Enlarged tonsils"] = 4f
 
-        diseaseValue["Bleeding during pregnancy"] = 9
-        diseaseValue["Female infertility"] = 6
-        diseaseValue["Heart disease in pregnancy"] = 9
-        diseaseValue["Menopause"] = 8
-        diseaseValue["Menstrual cramps"] = 9
-        diseaseValue["Miscarriage"] = 7
-        diseaseValue["Ovarian cysts"] = 8
-        diseaseValue["Vaginal bleeding"] = 8
+        diseaseValue["Bleeding during pregnancy"] = 6f
+        diseaseValue["Female infertility"] = 5f
+        diseaseValue["Heart disease in pregnancy"] = 6f
+        diseaseValue["Menopause"] = 4f
+        diseaseValue["Menstrual cramps"] = 6f
+        diseaseValue["Miscarriage"] = 5f
+        diseaseValue["Ovarian cysts"] = 3f
+        diseaseValue["Vaginal bleeding"] = 5f
 
-        diseaseValue["Bone fractures"] = 9
-        diseaseValue["Muscle strains"] = 7
-        diseaseValue["Joint or back pain"] = 6
-        diseaseValue["Injuries to tendons or ligaments"] = 8
-        diseaseValue["Limb abnormalities"] = 9
-        diseaseValue["Bone cancer"] = 8
+        diseaseValue["Bone fractures"] = 6f
+        diseaseValue["Muscle strains"] = 5f
+        diseaseValue["Joint or back pain"] = 2f
+        diseaseValue["Injuries to tendons or ligaments"] = 5f
+        diseaseValue["Limb abnormalities"] = 4f
+        diseaseValue["Bone cancer"] = 4f
 
-        diseaseValue["Alcohol use disorder"] = 7
-        diseaseValue["Alzheimer’s disease"] = 9
-        diseaseValue["Anxiety disorders"] = 8
-        diseaseValue["Bipolar disorder"] = 8
-        diseaseValue["Depression"] = 10
-        diseaseValue["Eating disorder"] = 8
-        diseaseValue["Mood disorders"] = 7
-        diseaseValue["Panic disorder"] = 8
-        diseaseValue["Sleep disorders"] = 6
+        diseaseValue["Alcohol use disorder"] = 4f
+        diseaseValue["Alzheimer’s disease"] = 6f
+        diseaseValue["Anxiety disorders"] = 5f
+        diseaseValue["Bipolar disorder"] = 5f
+        diseaseValue["Depression"] = 6f
+        diseaseValue["Eating disorder"] = 5f
+        diseaseValue["Mood disorders"] = 4f
+        diseaseValue["Panic disorder"] = 3f
+        diseaseValue["Sleep disorders"] = 4f
 
-        diseaseValue["Brain tumor"] = 10
-        diseaseValue["Breast cancer"] = 8
-        diseaseValue["Kidney stones"] = 7
-        diseaseValue["Liver tumors"] = 8
-        diseaseValue["Lung cancer"] = 9
-        diseaseValue["Neck pain"] = 4
-        diseaseValue["Pancreatic cancer"] = 6
-        diseaseValue["Pituitary tumors"] = 8
-        diseaseValue["Testicular cancer"] = 9
-        diseaseValue["Thyroid cancer"] = 8
+        diseaseValue["Brain tumor"] = 6f
+        diseaseValue["Breast cancer"] = 5f
+        diseaseValue["Kidney stones"] = 4f
+        diseaseValue["Liver tumors"] = 5f
+        diseaseValue["Lung cancer"] = 6f
+        diseaseValue["Neck pain"] = 2f
+        diseaseValue["Pancreatic cancer"] = 3f
+        diseaseValue["Pituitary tumors"] = 5f
+        diseaseValue["Testicular cancer"] = 6f
+        diseaseValue["Thyroid cancer"] = 5f
 
-        diseaseValue["Asthma"] = 10
-        diseaseValue["Chest pain or tightness"] = 6
-        diseaseValue["COVID-19"] = 4
-        diseaseValue["Interstitial lung disease"] = 7
-        diseaseValue["Pulmonary hypertension"] = 8
-        diseaseValue["Tuberculosis"] = 8
+        diseaseValue["Asthma"] = 6f
+        diseaseValue["Chest pain or tightness"] = 2f
+        diseaseValue["COVID-19"] = 3f
+        diseaseValue["Interstitial lung disease"] = 3f
+        diseaseValue["Pulmonary hypertension"] = 4f
+        diseaseValue["Tuberculosis"] = 5f
 
-        diseaseValue["Acute Spinal Cord Injury"] = 9
-        diseaseValue["Amyotrophic Lateral Sclerosis"] = 8
-        diseaseValue["Brain Tumors"] = 10
-        diseaseValue["Cerebral Aneurys"] = 9
+        diseaseValue["Acute Spinal Cord Injury"] = 6f
+        diseaseValue["Amyotrophic Lateral Sclerosis"] = 5f
+        diseaseValue["Brain Tumors"] = 6f
+        diseaseValue["Cerebral Aneurys"] = 5.5f
 
-        diseaseValue["Kidney Stones"] = 8
-        diseaseValue["Bladder Infection"] = 8
-        diseaseValue["Urinary Retention"] = 6
-        diseaseValue["Hematuria"] = 9
-        diseaseValue["Erectile Dysfunction"] = 9
-        diseaseValue["Prostate Enlargement"] = 8
-        diseaseValue["Interstitial Cystitis"] = 8
+        diseaseValue["Kidney Stones"] = 5f
+        diseaseValue["Bladder Infection"] = 5f
+        diseaseValue["Urinary Retention"] = 2f
+        diseaseValue["Hematuria"] = 6f
+        diseaseValue["Erectile Dysfunction"] = 6f
+        diseaseValue["Prostate Enlargement"] = 5f
+        diseaseValue["Interstitial Cystitis"] = 4f
 
-        diseaseValue["Hearing loss"] = 10
-        diseaseValue["Ear infections"] = 8
-        diseaseValue["Balance disorders"] = 7
-        diseaseValue["Diseases of the larynx"] = 6
-        diseaseValue["Nerve pain"] = 9
-        diseaseValue["Facial and cranial nerve disorders"] = 9
+        diseaseValue["Hearing loss"] = 6f
+        diseaseValue["Ear infections"] = 5f
+        diseaseValue["Balance disorders"] = 4f
+        diseaseValue["Diseases of the larynx"] = 3f
+        diseaseValue["Nerve pain"] = 6f
+        diseaseValue["Facial and cranial nerve disorders"] = 6f
 
-        diseaseValue["Vasculitis"] = 9
-        diseaseValue["Lupus"] = 8
-        diseaseValue["Rheumatoid arthritis"] = 9
-        diseaseValue["Scleroderma"] = 7
+        diseaseValue["Vasculitis"] = 6f
+        diseaseValue["Lupus"] = 5f
+        diseaseValue["Rheumatoid arthritis"] = 6f
+        diseaseValue["Scleroderma"] = 4f
 
-        diseaseValue["Back pain or muscle pain"] = 8
-        diseaseValue["Chills caused by low body temperature"] = 7
-        diseaseValue["Difficulty urinating"] = 9
-        diseaseValue["Fatigue"] = 6
-        diseaseValue["Headache"] = 8
-        diseaseValue["Itching"] = 5
-        diseaseValue["Infectious arthritis"] = 8
+        diseaseValue["Back pain or muscle pain"] = 5f
+        diseaseValue["Chills caused by low body temperature"] = 4f
+        diseaseValue["Difficulty urinating"] = 6f
+        diseaseValue["Fatigue"] = 2f
+        diseaseValue["Headache"] = 4f
+        diseaseValue["Itching"] = 3f
+        diseaseValue["Infectious arthritis"] = 4f
 
-        diseaseValue["Diarrhea"] = 7
-        diseaseValue["Food Poisoning"] = 8
-        diseaseValue["Gas"] = 5
-        diseaseValue["Gastroparesis"] = 7
-        diseaseValue["Irritable Bowel Syndrome"] = 7
-        diseaseValue["Liver Disease"] = 8
-        diseaseValue["Pancreatitis"] = 9
-        diseaseValue["Stomach ache"] = 7
+        diseaseValue["Diarrhea"] = 4f
+        diseaseValue["Food Poisoning"] = 5f
+        diseaseValue["Gas"] = 2f
+        diseaseValue["Gastroparesis"] = 4f
+        diseaseValue["Irritable Bowel Syndrome"] = 4f
+        diseaseValue["Liver Disease"] = 5f
+        diseaseValue["Pancreatitis"] = 6f
+        diseaseValue["Stomach ache"] = 4f
 
-        diseaseValue["Skin Allergies"] = 6
-        diseaseValue["Vomiting or diarrhea"] = 7
-        diseaseValue["Drop in blood pressure"] = 8
-        diseaseValue["Redness of the skin and/or hive"] = 7
-        diseaseValue["Difficulty breathing"] = 9
-        diseaseValue["Swelling of the throat and/or tongue"] = 8
+        diseaseValue["Skin Allergies"] = 2f
+        diseaseValue["Vomiting or diarrhea"] = 4f
+        diseaseValue["Drop in blood pressure"] = 5f
+        diseaseValue["Redness of the skin and/or hive"] = 4f
+        diseaseValue["Difficulty breathing"] = 6f
+        diseaseValue["Swelling of the throat and/or tongue"] = 5f
     }
 
 }

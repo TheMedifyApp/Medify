@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -91,7 +92,7 @@ class DoctorPatient : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     private fun getData(date: String, userID: String) {
 
-        dbref = FirebaseDatabase.getInstance().getReference("Doctor").child(userID).child("DoctorsAppointments").child(date).orderByChild("Points")
+        dbref = FirebaseDatabase.getInstance().getReference("Doctor").child(userID).child("DoctorsAppointments").child(date).orderByChild("TotalPoints")
 
         dbref.addValueEventListener(object : ValueEventListener {
             @SuppressLint("NotifyDataSetChanged")
@@ -100,7 +101,10 @@ class DoctorPatient : AppCompatActivity() {
                     for (appointmentSnapshot in snapshot.children){
                         val appointment = appointmentSnapshot.getValue(DoctorAppointment::class.java)
                         appointmentList.add(appointment!!)
+                        appointmentList.sortWith(compareBy { it.TotalPoints })
                         appointmentList.reverse()
+                        Log.d("TotalPoints", appointment.TotalPoints.toString() +" "+ appointment.PatientName)
+                        Log.d("User", appointmentList.toString())
                     }
                     Recyclerview.adapter = appointmentAdapter
                 }
