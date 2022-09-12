@@ -7,7 +7,7 @@
     android:background="@drawable/background"
     tools:context=".mainFragments.PatientAppointmentFragment">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,37 +15,57 @@
         android:gravity="start"
         android:orientation="vertical"
         android:paddingLeft="30dp"
+        android:paddingRight="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/book_text"
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/dm_sans_bold"
-            android:text="My Appointments"
-            android:textColor="@color/white"
-            android:textSize="35sp"
+            android:layout_height="match_parent"
+            android:gravity="left"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                android:id="@+id/book_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/dm_sans_bold"
+                android:text="Appointment list"
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.099"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/loginIllustration" />
+
+            <TextView
+                android:id="@+id/signUph2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/dm_sans"
+                android:text="Check your booked appointments"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="@+id/signUpHeader"
+                app:layout_constraintTop_toBottomOf="@+id/signUpHeader" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/selectDate"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/calendar_month"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.099"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/loginIllustration" />
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/signUph2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/dm_sans"
-            android:text="See the booked appointments here"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="@+id/signUpHeader"
-            app:layout_constraintTop_toBottomOf="@+id/signUpHeader" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -64,6 +84,21 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:listitem="@layout/appointment_list" />
+
+        <TextView
+            android:id="@+id/selectDateTextToHide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="292dp"
+            android:fontFamily="@font/dm_sans_bold"
+            android:text="Select Date First"
+            android:textColor="@color/light_blue"
+            android:textSize="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/appointment_recyclerview"
+            app:layout_constraintVertical_bias="1.0" />
 
         <Button
             android:id="@+id/toPatientList"
