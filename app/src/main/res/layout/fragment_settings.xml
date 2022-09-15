@@ -166,7 +166,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/dm_sans_medium"
                     android:layout_marginStart="12dp"
-                    android:text="Update Prescription"
+                    android:text="Upload Prescription"
                     android:textColor="@color/black"
                     android:textSize="21dp"
                     app:layout_constraintBottom_toBottomOf="parent"
