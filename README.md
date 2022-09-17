@@ -1,6 +1,12 @@
 # Medify 💊
 Medify is a medical android app which deals and solves issues of both patients and doctors. 
 
+## Application Install
+
+***You can Install and test latest DocuBox app from below 👇***
+
+[![DocuBox](https://img.shields.io/badge/Medify✅-APK-red.svg?style=for-the-badge&logo=android)](https://github.com/aritra-tech/Medify/releases/tag/1.0.0)
+
 # Our Idea 💡
 - Medify is an Android application that not only solves the issue of the patients as users, but also solves the problems of the doctors as well.
 
@@ -25,6 +31,14 @@ prescription and hence carrying prescription is not required.
 But from now, the Doctor can add their fee details and the app generates a QR Code iteself.
 - <b>Appointment / Patient Queue List:</b> The users can check their appointment list of all doctors to which they booked appointment. 
 The patient queue is a list that is sorted using our alogrithm and displayed. 
+
+## 📸 Screenshots 
+
+|   |   |   |
+|---|---|---|
+| ![login](https://user-images.githubusercontent.com/80090908/190855454-5fb6b29c-35ff-4329-9bf4-8d772ffa8a46.png) | ![image 30](https://user-images.githubusercontent.com/80090908/190855522-e5eb5231-4154-4842-b3da-a84aaf8494c5.png) | ![image 31](https://user-images.githubusercontent.com/80090908/190855556-c81dba85-c7d0-44b3-bfae-53b3fcbc23dc.png)
+| ![image 32](https://user-images.githubusercontent.com/80090908/190855573-9a8f43d1-c07e-4932-8dcf-df8dadbdefcd.png) |![image 35](https://user-images.githubusercontent.com/80090908/190855621-1f8f6b9e-194a-4ec5-9f1d-e957d45590e1.png) | ![image 34](https://user-images.githubusercontent.com/80090908/190855637-ad04be06-8b9d-495b-a5e8-96954e152a34.png)
+
 
 # Built With 🔩
 
