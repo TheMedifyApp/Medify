@@ -3,7 +3,7 @@ Medify is a medical android app which deals and solves issues of both patients a
 
 ## Application Install
 
-***You can Install and test latest DocuBox app from below 👇***
+***You can Install and test latest Medify app from below 👇***
 
 [![DocuBox](https://img.shields.io/badge/Medify✅-APK-red.svg?style=for-the-badge&logo=android)](https://github.com/aritra-tech/Medify/releases/tag/1.0.0)
 
