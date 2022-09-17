@@ -55,6 +55,10 @@ The design we used is minimal as well as clean. People with colorbindness will h
 # Flow of the Application 🔧
 ![Medify (1) 1](https://user-images.githubusercontent.com/80090908/189736871-99886e3d-6c44-486b-8ee5-2dcc980526ad.png)
 
+## 📕 Authors
+<a href="https://github.com/binayshaw7777/RawTemplate/graphs/contributors">
+ <img src="https://contrib.rocks/image?repo=binayshaw7777/RawTemplate" />
+  
 ## 📝 License
 
 ```
