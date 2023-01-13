@@ -61,23 +61,6 @@ class HomeFragment : Fragment() {
 
         getDataFromSharedPreference()
 
-//        binding.addPrescription.setOnClickListener {
-//            startActivity(Intent(context, AddPrescriptionActivity::class.java))
-//            db.child("Users").child(userID).child("Prescription").addValueEventListener(object :ValueEventListener {
-//                override fun onDataChange(snapshot: DataSnapshot) {
-//                    val presURL = snapshot.child("fileurl").value.toString().trim()
-//                    val editor = sharedPreference.edit()
-//                    editor.putString("prescription", presURL)
-//                    userPrescription = sharedPreference.getString("prescription", "false").toString().trim()
-//                    editor.apply()
-//                }
-//
-//                override fun onCancelled(error: DatabaseError) {
-//                    TODO("Not yet implemented")
-//                }
-//            })
-//        }
-
         binding.doctorData.setOnEditorActionListener { _, i, _ ->
             if (i == EditorInfo.IME_ACTION_DONE) {
                 // Call your code here
