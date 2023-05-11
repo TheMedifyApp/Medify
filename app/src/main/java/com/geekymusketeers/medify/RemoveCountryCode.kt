@@ -7,6 +7,8 @@ object RemoveCountryCode {
             val startIndex: Int = numLength - 10
             val newNumber: String = number.substring(startIndex, numLength)
             newNumber
+        } else if (numLength < 10) {
+            ""
         } else {
             number
         }
