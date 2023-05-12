@@ -14,6 +14,8 @@ import com.geekymusketeers.medify.databinding.ActivityAppointmentBookingBinding
 import com.geekymusketeers.medify.model.Summary
 import com.geekymusketeers.medify.utils.Logger
 import com.geekymusketeers.medify.utils.Utils
+import com.google.android.material.datepicker.CalendarConstraints
+import com.google.android.material.datepicker.DateValidatorPointForward
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.firebase.database.FirebaseDatabase
 import com.ncorti.slidetoact.SlideToActView
@@ -77,8 +79,20 @@ class AppointmentBooking : AppCompatActivity() {
 
     @SuppressLint("SimpleDateFormat")
     private fun handleDatePicker() {
-        val datePicker = MaterialDatePicker.Builder.datePicker().build()
+        val datePicker = MaterialDatePicker.Builder.datePicker().apply {
+
+            // disable past dates
+            val constraintsBuilder = CalendarConstraints.Builder()
+            constraintsBuilder.setValidator(DateValidatorPointForward.now())
+            setCalendarConstraints(constraintsBuilder.build())
+
+            // set the minimum selectable date to today's date
+            val calendar = Calendar.getInstance()
+            setSelection(calendar.timeInMillis)
+
+        }.build()
         datePicker.show(supportFragmentManager, "DatePicker")
+
 
         datePicker.addOnPositiveButtonClickListener {
             val dateFormatter = SimpleDateFormat("dd-MM-yyyy")
