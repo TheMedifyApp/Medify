@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    tools:context=".appointment.AppointmentBooking">
+    tools:context=".ui.appointment.AppointmentBooking">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -14,9 +14,8 @@
         android:layout_marginTop="40dp"
         android:gravity="start"
         android:orientation="vertical"
-        android:paddingLeft="30dp"
+        android:paddingStart="30dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 

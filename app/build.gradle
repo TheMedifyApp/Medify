@@ -4,8 +4,10 @@ plugins {
 //    id 'kotlin-kapt'
 //    id 'dagger.hilt.android.plugin'
 }
+
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdk 32
