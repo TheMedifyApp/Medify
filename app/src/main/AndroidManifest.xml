@@ -20,25 +20,17 @@
         android:theme="@style/Theme.Medify"
         tools:targetApi="31">
         <activity
-            android:name=".ui.appointment.BookingSummaryActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.appointment.SummaryActivity"
-            android:exported="false"
-            android:label="@string/title_activity_summary"
-            android:theme="@style/Theme.Medify" />
-        <activity
             android:name=".ui.auth.ForgotPasswordActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".ui.profile.EditProfileActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".ui.profile.ProfileActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".ui.prescription.AddPrescriptionActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".ui.mainFragments.DoctorPatient"
             android:exported="true" />
