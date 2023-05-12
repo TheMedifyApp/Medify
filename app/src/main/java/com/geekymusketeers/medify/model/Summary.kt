@@ -1,8 +1,9 @@
 package com.geekymusketeers.medify.model
 
-import java.io.Serializable
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
-
+@Parcelize
 data class Summary(
     val doctorName: String,
     val doctorSpeciality: String,
@@ -13,4 +14,4 @@ data class Summary(
     val disease: String,
     val painLevel: String,
     val totalPoint: Int
-) : Serializable
+) : Parcelable

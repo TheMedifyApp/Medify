@@ -36,10 +36,10 @@ class SignIn_Activity : AppCompatActivity() {
 
         // Hide and Show Password
         var passwordVisible = false
-        binding.SignInPassword.setOnTouchListener { v, event ->
-            val Right = 2
-            if (event.getAction() === MotionEvent.ACTION_UP) {
-                if (event.rawX >= binding.SignInPassword.right - binding.SignInPassword.compoundDrawables[Right].bounds.width()) {
+        binding.SignInPassword.setOnTouchListener { _, event ->
+            val right = 2
+            if (event.action == MotionEvent.ACTION_UP) {
+                if (event.rawX >= binding.SignInPassword.right - binding.SignInPassword.compoundDrawables[right].bounds.width()) {
                     val selection: Int = binding.SignInPassword.selectionEnd
                     //Handles Multiple option popups
                     passwordVisible = if (passwordVisible) {

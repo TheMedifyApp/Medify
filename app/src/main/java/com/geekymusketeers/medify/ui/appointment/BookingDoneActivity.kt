@@ -2,6 +2,7 @@ package com.geekymusketeers.medify.ui.appointment
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.geekymusketeers.medify.ui.HomeActivity
@@ -17,9 +18,13 @@ class BookingDoneActivity : AppCompatActivity() {
         binding = ActivityBookingDoneBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val summary = intent.getSerializableExtra("summary") as Summary
-
-        initViews(summary)
+//        val summary = intent.getSerializableExtra("summary") as Summary
+        val summary = if (Build.VERSION.SDK_INT >= 33) { // TIRAMISU
+            intent.getParcelableExtra("summary", Summary::class.java)
+        } else {
+            intent.getParcelableExtra("summary")
+        }
+        initViews(summary!!)
 
     }
 
