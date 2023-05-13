@@ -12,12 +12,14 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.geekymusketeers.medify.auth.Rating
 import com.geekymusketeers.medify.model.DoctorAppointment
 import com.geekymusketeers.medify.ui.adapter.DoctorsAppointmentAdapter
 import com.geekymusketeers.medify.databinding.ActivityDoctorPatientBinding
 import com.geekymusketeers.medify.databinding.RatingModalBinding
 import com.geekymusketeers.medify.utils.DialogUtil.createBottomSheet
 import com.geekymusketeers.medify.utils.DialogUtil.setBottomSheet
+import com.geekymusketeers.medify.utils.Logger
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.firebase.database.*
 import java.text.SimpleDateFormat
@@ -46,7 +48,6 @@ class DoctorPatient : AppCompatActivity() {
 
         appointmentList = ArrayList()
         appointmentAdapter = DoctorsAppointmentAdapter(userID, appointmentList) {
-            Toast.makeText(baseContext, "Rate User", Toast.LENGTH_SHORT).show()
             showRatingBottomSheet(it)
         }
 
@@ -97,13 +98,31 @@ class DoctorPatient : AppCompatActivity() {
         }
     }
 
-    private fun showRatingBottomSheet(it: DoctorAppointment) {
+    @SuppressLint("SimpleDateFormat")
+    private fun getAppointmentDateTime(date: String?, time: String): String {
+        val format = SimpleDateFormat("dd-MM-yyyy HH:mm")
+        val appointmentDateTime = date + " " + time.substring(0, 5)
+        return format.parse(appointmentDateTime)?.toString() ?: ""
+    }
+
+    private fun showRatingBottomSheet(doctorAppointment: DoctorAppointment) {
         val dialog = RatingModalBinding.inflate(layoutInflater)
         val bottomSheet = this.createBottomSheet()
         dialog.apply {
             this.apply {
                 submitRating.setOnClickListener {
-                    Toast.makeText(baseContext, "Rating: ${ratingBar.rating}", Toast.LENGTH_SHORT).show()
+                    val rating = Rating(
+                        patientId = doctorAppointment.PatientID!!,
+                        doctorId = doctorAppointment.DoctorUID!!,
+                        rating = ratingBar.rating,
+                        review = ratingComment.text.toString().trim(),
+                        patientName = doctorAppointment.PatientName!!,
+                        timestamp = getAppointmentDateTime(
+                            doctorAppointment.Date,
+                            doctorAppointment.Time!!)
+                    )
+
+                    Logger.debugLog("Rating: $rating")
                 }
             }
         }

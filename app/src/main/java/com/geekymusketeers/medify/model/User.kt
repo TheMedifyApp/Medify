@@ -21,5 +21,4 @@ data class Rating(
     val review: String,
     val timestamp: String,
     val patientName: String,
-    val doctorName: String,
 )
