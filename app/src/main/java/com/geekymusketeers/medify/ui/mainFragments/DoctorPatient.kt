@@ -119,10 +119,48 @@ class DoctorPatient : AppCompatActivity() {
                         patientName = doctorAppointment.PatientName!!,
                         timestamp = getAppointmentDateTime(
                             doctorAppointment.Date,
-                            doctorAppointment.Time!!)
+                            doctorAppointment.Time!!
+                        )
                     )
+                    try {
+                        FirebaseDatabase.getInstance()
+                            .getReference("Users").child(doctorAppointment.PatientID!!).get()
+                            .addOnSuccessListener { snapShot ->
 
-                    Logger.debugLog("Rating: $rating")
+                                var total = 0f
+                                var size = 0
+
+                                snapShot.child("ratings").children.forEach() { ratingSnapshot ->
+
+                                    total += ratingSnapshot.child("rating").value.toString().toFloat()
+                                    size++
+
+                                }
+
+                                val totalRatingSize: Int =
+                                    if (size == 0) 2 else size + 1
+
+                                if (total == 0f)
+                                    total = 5f
+
+                                val totalRatingGiven = total + rating.rating
+                                val newRating = totalRatingGiven / totalRatingSize
+
+                                Logger.debugLog("Total: $total")
+                                Logger.debugLog("Size: $size")
+                                Logger.debugLog("TotalRatingSize: $totalRatingSize")
+                                Logger.debugLog("TotalRatingGiven: $totalRatingGiven")
+                                Logger.debugLog("NewRating: $newRating")
+
+                                snapShot.child("totalRating").ref.setValue(newRating)
+                                snapShot.child("ratings").ref.push().setValue(rating)
+                                bottomSheet.dismiss()
+                            }
+
+                        Logger.debugLog("Rating: $rating")
+                    } catch (e: Exception) {
+                        Logger.debugLog("Rating: $e")
+                    }
                 }
             }
         }
