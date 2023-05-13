@@ -41,7 +41,10 @@ class DoctorPatient : AppCompatActivity() {
         sharedPreference = baseContext.getSharedPreferences("UserData", Context.MODE_PRIVATE)
 
         appointmentList = ArrayList()
-        appointmentAdapter = DoctorsAppointmentAdapter(appointmentList)
+        appointmentAdapter = DoctorsAppointmentAdapter(appointmentList) {
+            Toast.makeText(baseContext, "Rate User", Toast.LENGTH_SHORT).show()
+            //Show bottoms sheet
+        }
 
         Recyclerview = binding.appointmentRecyclerview
         Recyclerview.layoutManager = LinearLayoutManager(baseContext)

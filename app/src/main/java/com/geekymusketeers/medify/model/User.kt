@@ -19,7 +19,7 @@ data class Rating(
     val doctorId: String,
     val rating: Float,
     val review: String,
-    val timestamp: Long,
+    val timestamp: String,
     val patientName: String,
     val doctorName: String,
 )
