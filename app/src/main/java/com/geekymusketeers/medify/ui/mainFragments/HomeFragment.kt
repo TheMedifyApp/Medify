@@ -37,6 +37,7 @@ class HomeFragment : Fragment() {
     private lateinit var userType: String
     private lateinit var userID: String
     private var userPrescription: String = "false"
+    private var totalRatings = 5f
 
     //Searched doctor's data
     private lateinit var searchedName : String
@@ -56,10 +57,12 @@ class HomeFragment : Fragment() {
         firebaseAuth = FirebaseAuth.getInstance()
         val user = firebaseAuth.currentUser
 
+
         db = FirebaseDatabase.getInstance().reference
         sharedPreference = requireActivity().getSharedPreferences("UserData", Context.MODE_PRIVATE)
 
         getDataFromSharedPreference()
+        getUserRatings()
 
         binding.doctorData.setOnEditorActionListener { _, i, _ ->
             if (i == EditorInfo.IME_ACTION_DONE) {
@@ -86,6 +89,13 @@ class HomeFragment : Fragment() {
         binding.slider.animDuration = 150
         binding.slider.onSlideCompleteListener = object : SlideToActView.OnSlideCompleteListener {
             override fun onSlideComplete(view: SlideToActView) {
+
+                if (totalRatings < 3.0f) {
+                    Toast.makeText(requireActivity(), "You need to have a rating of 3 or above to book an appointment", Toast.LENGTH_SHORT).show()
+                    binding.slider.resetSlider()
+                    return
+                }
+
                 if (userPrescription != "false") {
                     val intent =  Intent(requireActivity(), AppointmentBooking::class.java)
                     intent.putExtra("Duid", searchedUID)
@@ -105,6 +115,17 @@ class HomeFragment : Fragment() {
 
 
         return binding.root
+    }
+
+    private fun getUserRatings() {
+        FirebaseDatabase.getInstance().reference.child("Users").child(userID).addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.child("totalRating").exists()) {
+                    totalRatings = snapshot.child("totalRating").value.toString().toFloat()
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {}
+        })
     }
 
     private fun doctorIsPresent() {
