@@ -20,6 +20,7 @@ import java.util.Date
 
 
 class DoctorsAppointmentAdapter(
+    val userID: String,
     var appointmentList: ArrayList<DoctorAppointment>,
     val listener: (DoctorAppointment) -> Unit,
 ) : RecyclerView.Adapter<DoctorsAppointmentAdapter.DoctorAppointmentViewHolder>() {
@@ -42,15 +43,19 @@ class DoctorsAppointmentAdapter(
             holder.name.text = currentItem.PatientName + " (" + currentItem.PatientPhone + ")"
         }
 
-        val datesList: List<Date?> = getDates(currentItem.Date, currentItem.Time)
-        /** 0th Index = dateNow, 1st Index = dateAppointment */
+        val userAndDoctorAreSamePerson = currentItem.DoctorUID == userID
 
-        holder.itemView.setOnClickListener {
+        Logger.debugLog("CurrentUser: $userID and DoctorID: ${currentItem.DoctorUID} are same person: $userAndDoctorAreSamePerson")
+
+        if (currentItem.DoctorUID == userID) {
+            val datesList: List<Date?> = getDates(currentItem.Date, currentItem.Time)
+            /** 0th Index = dateNow, 1st Index = dateAppointment */
+
             Logger.debugLog("Current Date Time: ${datesList[0]}")
             Logger.debugLog("Appointment Date Time: ${datesList[1]}")
             datesList[1]?.let {
-                val isAfter = it.after(datesList[0])
-                if (isAfter) {
+                val isBefore = it.before(datesList[0])
+                if (isBefore) {
                     Logger.debugLog("Appointment Date Time is after Current Date Time")
                     holder.rate.visibility = View.VISIBLE
                 } else {
@@ -59,6 +64,8 @@ class DoctorsAppointmentAdapter(
                 }
             }
         }
+
+
 
         holder.disease.text = currentItem.Disease + " - " + currentItem.PatientCondition
         holder.button.setOnClickListener {

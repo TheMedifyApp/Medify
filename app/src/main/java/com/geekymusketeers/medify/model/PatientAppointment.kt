@@ -8,5 +8,6 @@ data class PatientAppointment(
     var Time: String? = null,
     var Date: String? = null,
     var PatientCondition: String? = null,
-    var prescriptionLink: String? = null
+    var prescriptionLink: String? = null,
+    var PatientID: String? = null,
 )

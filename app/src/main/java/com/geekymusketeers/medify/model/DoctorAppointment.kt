@@ -8,5 +8,7 @@ data class DoctorAppointment(
     var Date: String? = null,
     var PatientCondition: String? = null,
     var Prescription: String? = null,
-    var TotalPoints: String? = null
+    var TotalPoints: String? = null,
+    var DoctorUID: String? = null,
+    var PatientID: String? = null,
 )
