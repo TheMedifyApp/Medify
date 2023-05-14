@@ -10,6 +10,19 @@
     <string name="disease_name">Disease Name</string>
     <string name="specialization"> Specialization</string>
     <string name="situation">Situation</string>
+    <string name="cardiologist">Cardiologist</string>
+    <string name="dentist">Dentist</string>
+    <string name="ent_specialist">ENT specialist</string>
+    <string name="obstetrician_gynaecologist">Obstetrician/Gynaecologist</string>
+    <string name="orthopaedic_surgeon">Orthopaedic surgeon</string>
+    <string name="psychiatrists">Psychiatrists</string>
+    <string name="radiologist">Radiologist</string>
+    <string name="pulmonologist">Pulmonologist</string>
+    <string name="neurologist">Neurologist</string>
+    <string name="allergists">Allergists</string>
+    <string name="gastroenterologists">Gastroenterologists</string>
+    <string name="doctors">Doctors</string>
+    <string name="category">Category</string>
     <string-array name="dropdown_items">
         <item>Fever</item>
         <item>Cold</item>
