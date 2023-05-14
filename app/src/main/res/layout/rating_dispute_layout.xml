@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:padding="20dp">
+
+    <TextView
+        android:id="@+id/tv_dispute_rating"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/dm_sans_bold"
+        android:text="Dispute a Rating"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_dispute_rating_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/dm_sans_medium"
+        android:text="Report any unfair or inaccurate ratings you have received. We will review your report and take appropriate action."
+        android:textColor="#606060"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_dispute_rating"
+        app:layout_constraintStart_toStartOf="@+id/tv_dispute_rating"
+        app:layout_constraintTop_toBottomOf="@+id/tv_dispute_rating" />
+
+    <EditText
+        android:id="@+id/dispute_subject"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/editfield"
+        android:fontFamily="@font/dm_sans"
+        android:hint="Enter your title here *"
+        android:paddingHorizontal="5dp"
+        android:paddingVertical="10dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textColorHint="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="@+id/tv_dispute_rating_desc"
+        app:layout_constraintStart_toStartOf="@+id/tv_dispute_rating_desc"
+        app:layout_constraintTop_toBottomOf="@+id/tv_dispute_rating_desc" />
+
+    <EditText
+        android:id="@+id/dispute_reason"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/editfield"
+        android:ellipsize="end"
+        android:fontFamily="@font/dm_sans"
+        android:gravity="start"
+        android:hint="Reason for Dispute *"
+        android:imeOptions="normal"
+        android:inputType="text"
+        android:textColorHint="@android:color/darker_gray"
+        android:paddingHorizontal="5dp"
+        android:paddingVertical="10dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/dispute_subject"
+        app:layout_constraintStart_toStartOf="@+id/dispute_subject"
+        app:layout_constraintTop_toBottomOf="@+id/dispute_subject" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_submit_dispute"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/primary_button"
+        android:fontFamily="@font/dm_sans"
+        android:text="Submit Dispute"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:layout_marginTop="20dp"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="@+id/dispute_reason"
+        app:layout_constraintStart_toStartOf="@+id/dispute_reason"
+        app:layout_constraintTop_toBottomOf="@+id/dispute_reason" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,10 +1,39 @@
 package com.geekymusketeers.medify.utils
 
+import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
+import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
 import com.geekymusketeers.medify.R
+import com.geekymusketeers.medify.ui.HomeActivity
 
 
 object Utils {
+
+    @SuppressLint("QueryPermissionsNeeded", "IntentReset")
+    fun sendEmailToGmail(activity: Activity, subject: String, body: String) {
+        val emailIntent = Intent().apply {
+            action = Intent.ACTION_SEND
+            data = Uri.parse("mailto:")
+            type = "text/plain"
+            putExtra(Intent.EXTRA_EMAIL, arrayOf(Constants.supportEmail))
+            putExtra(Intent.EXTRA_SUBJECT, subject)
+            putExtra(Intent.EXTRA_TEXT, body)
+        }
+        if (emailIntent.resolveActivity(activity.packageManager) != null) {
+            emailIntent.setPackage("com.google.android.gm")
+            startActivity(activity, emailIntent, null)
+        } else {
+            Toast.makeText(
+                activity,
+                "No app available to send email!!",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
 
     fun setDiseaseValues(context: Context): HashMap<String, Float> {
         val diseaseValue: HashMap<String, Float> = HashMap()
