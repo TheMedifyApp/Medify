@@ -64,8 +64,8 @@
             android:layout_height="wrap_content"
             android:gravity="left"
             android:orientation="vertical"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
             android:layout_marginTop="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -110,7 +110,7 @@
                     android:fontFamily="@font/dm_sans"
                     android:drawableStart="@drawable/serch"
                     android:drawablePadding="5dp"
-                    android:hint="eg. xyz1234@gmail.com"
+                    android:hint="Search"
                     android:imeOptions="actionDone"
                     android:inputType="text"
                     android:paddingLeft="10dp"
@@ -126,109 +126,230 @@
 
         </LinearLayout>
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
+
+        <LinearLayout
+            android:id="@+id/linearLayout5"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginRight="30dp"
-            android:background="@drawable/cardview_background"
-            android:backgroundTint="#F0F6F8"
-            android:visibility="invisible"
+            android:layout_height="80dp"
+            android:layout_marginTop="10dp"
+            android:gravity="left"
+            android:orientation="vertical"
+            android:paddingHorizontal="10dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
 
-            <LinearLayout
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_marginLeft="20dp"
-                android:orientation="vertical">
+                android:layout_marginTop="12dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily="@font/dm_sans_medium"
-                    android:text="Doctor Found!"
-                    android:textColor="@color/light_blue"
-                    android:textSize="20dp" />
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:scrollbars="none"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    android:id="@+id/doctorName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:fontFamily="@font/dm_sans"
-                    android:text="Name: Loading name"
-                    android:textColor="@color/black" />
+                    <com.google.android.material.chip.ChipGroup
+                        android:id="@+id/chip_group"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:chipSpacing="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:selectionRequired="false"
+                        app:singleLine="true">
 
-                <TextView
-                    android:id="@+id/doctortype"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:fontFamily="@font/dm_sans"
-                    android:text="Specialist: Loading specialization"
-                    android:textColor="@color/black" />
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/cardiologist_chip"
+                            android:layout_width="wrap_content"
+                            android:layout_height="60dp"
+                            android:fontFamily="@font/dm_sans_bold"
+                            android:text="@string/cardiologist"
+                            android:textSize="15sp"
+                            android:textColor="@color/black"
+                            app:chipCornerRadius="7dp"
+                            app:chipBackgroundColor="@color/grey"/>
 
-                <TextView
-                    android:id="@+id/doctorEmail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:fontFamily="@font/dm_sans"
-                    android:text="Email: Loading email"
-                    android:textColor="@color/black" />
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/dentist_chip"
+                            android:layout_width="wrap_content"
+                            android:layout_height="60dp"
+                            android:fontFamily="@font/dm_sans_bold"
+                            android:text="@string/dentist"
+                            android:textSize="15sp"
+                            android:textColor="@color/black"
+                            app:chipCornerRadius="7dp"
+                            app:chipBackgroundColor="@color/grey" />
 
-                <TextView
-                    android:id="@+id/doctorPhone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginBottom="20dp"
-                    android:fontFamily="@font/dm_sans"
-                    android:text="Phone: Loading phone"
-                    android:textColor="@color/black" />
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/ent_chip"
+                            android:layout_width="wrap_content"
+                            android:layout_height="60dp"
+                            android:fontFamily="@font/dm_sans_bold"
+                            android:text="@string/ent_specialist"
+                            android:textSize="15sp"
+                            android:textColor="@color/black"
+                            app:chipCornerRadius="7dp"
+                            app:chipBackgroundColor="@color/grey" />
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/obgyn_chip"
+                            android:layout_width="wrap_content"
+                            android:layout_height="60dp"
+                            android:fontFamily="@font/dm_sans_bold"
+                            android:text="@string/obstetrician_gynaecologist"
+                            android:textSize="15sp"
+                            android:textColor="@color/black"
+                            app:chipCornerRadius="7dp"
+                            app:chipBackgroundColor="@color/grey" />
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/orthopedic_chip"
+                            android:layout_width="wrap_content"
+                            android:layout_height="60dp"
+                            android:fontFamily="@font/dm_sans_bold"
+                            android:text="@string/orthopaedic_surgeon"
+                            android:textSize="15sp"
+                            android:textColor="@color/black"
+                            app:chipCornerRadius="7dp"
+                            app:chipBackgroundColor="@color/grey" />
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/psychiatrist_chip"
+                            android:layout_width="wrap_content"
+                            android:layout_height="60dp"
+                            android:fontFamily="@font/dm_sans_bold"
+                            android:text="@string/psychiatrists"
+                            android:textSize="15sp"
+                            android:textColor="@color/black"
+                            app:chipCornerRadius="7dp"
+                            app:chipBackgroundColor="@color/grey" />
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/radiologist_chip"
+                            android:layout_width="wrap_content"
+                            android:layout_height="60dp"
+                            android:fontFamily="@font/dm_sans_bold"
+                            android:text="@string/radiologist"
+                            android:textSize="15sp"
+                            android:textColor="@color/black"
+                            app:chipCornerRadius="7dp"
+                            app:chipBackgroundColor="@color/grey" />
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/pulmonologist_chip"
+                            android:layout_width="wrap_content"
+                            android:layout_height="60dp"
+                            android:fontFamily="@font/dm_sans_bold"
+                            android:text="@string/pulmonologist"
+                            android:textSize="15sp"
+                            android:textColor="@color/black"
+                            app:chipCornerRadius="7dp"
+                            app:chipBackgroundColor="@color/grey" />
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/neurologist_chip"
+                            android:layout_width="wrap_content"
+                            android:layout_height="60dp"
+                            android:fontFamily="@font/dm_sans_bold"
+                            android:text="@string/neurologist"
+                            android:textSize="15sp"
+                            android:textColor="@color/black"
+                            app:chipCornerRadius="7dp"
+                            app:chipBackgroundColor="@color/grey" />
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/allergist_chip"
+                            android:layout_width="wrap_content"
+                            android:layout_height="60dp"
+                            android:fontFamily="@font/dm_sans_bold"
+                            android:text="@string/allergists"
+                            android:textSize="15sp"
+                            android:textColor="@color/black"
+                            app:chipCornerRadius="7dp"
+                            app:chipBackgroundColor="@color/grey" />
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/gastroenterologist_chip"
+                            android:layout_width="wrap_content"
+                            android:layout_height="60dp"
+                            android:fontFamily="@font/dm_sans_bold"
+                            android:text="@string/gastroenterologists"
+                            android:textSize="15sp"
+                            android:textColor="@color/black"
+                            app:chipCornerRadius="7dp"
+                            app:chipBackgroundColor="@color/grey" />
 
 
-            </LinearLayout>
+                    </com.google.android.material.chip.ChipGroup>
 
-        </androidx.cardview.widget.CardView>
+                </HorizontalScrollView>
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
-            android:fontFamily="@font/dm_sans_bold"
-            android:text="Doctor not found!"
-            android:textColor="@color/black"
-            android:textSize="25dp"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="@+id/linearLayout4"
-            app:layout_constraintStart_toStartOf="@+id/linearLayout4"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
 
-        <com.ncorti.slidetoact.SlideToActView
-            android:id="@+id/slider"
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout6"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:visibility="gone"
-            app:inner_color="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/cardView"
+            android:layout_height="0dp"
+            android:layout_marginTop="20dp"
+            android:gravity="left"
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/cardView"
-            app:layout_constraintTop_toBottomOf="@+id/cardView"
-            app:layout_constraintVertical_bias="0.122"
-            app:outer_color="@color/light_blue"
-            app:text="      Slide to book appointment"
-            app:text_color="@color/white" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
+
+            <TextView
+                android:id="@+id/doctors_Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/dm_sans_bold"
+                android:text="@string/doctors"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                tools:layout_editor_absoluteX="32dp"
+                tools:layout_editor_absoluteY="186dp" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/doctorList"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:clipToPadding="false"
+                    android:nestedScrollingEnabled="false"
+                    android:paddingBottom="60dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:listitem="@layout/doctor_card_layout" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </LinearLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
