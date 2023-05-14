@@ -1,11 +1,11 @@
 package com.geekymusketeers.medify.ui.mainFragments
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +16,11 @@ import androidx.fragment.app.Fragment
 import com.geekymusketeers.medify.ui.appointment.AppointmentBooking
 import com.geekymusketeers.medify.utils.RemoveCountryCode
 import com.geekymusketeers.medify.databinding.FragmentHomeBinding
-import com.google.firebase.FirebaseError
+import com.geekymusketeers.medify.databinding.RatingDisputeLayoutBinding
+import com.geekymusketeers.medify.utils.DialogUtil.createBottomSheet
+import com.geekymusketeers.medify.utils.DialogUtil.setBottomSheet
+import com.geekymusketeers.medify.utils.Logger
+import com.geekymusketeers.medify.utils.Utils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.ncorti.slidetoact.SlideToActView
@@ -37,6 +41,7 @@ class HomeFragment : Fragment() {
     private lateinit var userType: String
     private lateinit var userID: String
     private var userPrescription: String = "false"
+    private var totalRatings = 5f
 
     //Searched doctor's data
     private lateinit var searchedName : String
@@ -56,10 +61,12 @@ class HomeFragment : Fragment() {
         firebaseAuth = FirebaseAuth.getInstance()
         val user = firebaseAuth.currentUser
 
+
         db = FirebaseDatabase.getInstance().reference
         sharedPreference = requireActivity().getSharedPreferences("UserData", Context.MODE_PRIVATE)
 
         getDataFromSharedPreference()
+        getUserRatings()
 
         binding.doctorData.setOnEditorActionListener { _, i, _ ->
             if (i == EditorInfo.IME_ACTION_DONE) {
@@ -86,6 +93,14 @@ class HomeFragment : Fragment() {
         binding.slider.animDuration = 150
         binding.slider.onSlideCompleteListener = object : SlideToActView.OnSlideCompleteListener {
             override fun onSlideComplete(view: SlideToActView) {
+
+                if (totalRatings < 3.0f) {
+                    Toast.makeText(requireActivity(), "You need to have a rating of 3 or above to book an appointment", Toast.LENGTH_SHORT).show()
+                    binding.slider.resetSlider()
+                    showAlertDialog()
+                    return
+                }
+
                 if (userPrescription != "false") {
                     val intent =  Intent(requireActivity(), AppointmentBooking::class.java)
                     intent.putExtra("Duid", searchedUID)
@@ -105,6 +120,17 @@ class HomeFragment : Fragment() {
 
 
         return binding.root
+    }
+
+    private fun getUserRatings() {
+        FirebaseDatabase.getInstance().reference.child("Users").child(userID).addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.child("totalRating").exists()) {
+                    totalRatings = snapshot.child("totalRating").value.toString().toFloat()
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {}
+        })
     }
 
     private fun doctorIsPresent() {
@@ -139,21 +165,68 @@ class HomeFragment : Fragment() {
             }
 
             override fun onCancelled(error: DatabaseError) {}
-            fun onCancelled(firebaseError: FirebaseError?) {}
         })
     }
     private fun isSameName(searchedName: String, dbNAME: String): Boolean {
-        val modSearched: String = searchedName.replace(" ", "").toString().trim()
-        val modDB: String = dbNAME.replace(" ", "").toString().trim()
-        return modSearched == modDB;
+        val modSearched: String = searchedName.replace(" ", "").trim()
+        val modDB: String = dbNAME.replace(" ", "").trim()
+        return modSearched == modDB
     }
 
-    override fun onStart() {
-        super.onStart()
-        Handler().postDelayed({
-            getDataFromSharedPreference()
-        }, 1000)
+    private fun showAlertDialog() {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle("Ineligible to book an appointment")
+        builder.setMessage("You need to have a rating of 3 or above to book an appointment")
+
+        builder.setPositiveButton("File a Dispute") { dialog, _ ->
+
+            showBottomSheetForDispute()
+            dialog.dismiss()
+        }
+
+        builder.setNegativeButton("Cancel") { dialog, _ ->
+            dialog.dismiss()
+        }
+
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
     }
+
+    private fun showBottomSheetForDispute() {
+        val dialog = RatingDisputeLayoutBinding.inflate(layoutInflater)
+        val bottomSheet = requireContext().createBottomSheet()
+        dialog.apply {
+            this.apply {
+                btnSubmitDispute.setOnClickListener {
+                    Logger.debugLog("Dispute Clicked")
+                    val subject = disputeSubject.text.toString().trim()
+                    val reason = disputeReason.text.toString().trim()
+
+                    if (subject.isEmpty() || reason.isEmpty()) {
+                        Toast.makeText(requireContext(), "Please fill all the fields", Toast.LENGTH_SHORT).show()
+                        return@setOnClickListener
+                    }
+
+                    Utils.sendEmailToGmail(requireActivity(), subject, reason)
+                    bottomSheet.dismiss()
+                }
+            }
+        }
+        dialog.root.setBottomSheet(bottomSheet)
+    }
+
+
+
+//    override fun onStart() {
+//        super.onStart()
+//        CoroutineScope(Dispatchers.IO).launch {
+//            getDataFromSharedPreference()
+//            delay(1000L)
+//        }
+////        Handler().postDelayed({
+////            getDataFromSharedPreference()
+////        }, 1000)
+//    }
 
     @SuppressLint("SetTextI18n", "CommitPrefEdits")
     private fun getDataFromSharedPreference() {

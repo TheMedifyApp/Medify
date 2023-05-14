@@ -156,6 +156,8 @@ class AppointmentBooking : AppCompatActivity() {
         appointmentD["PatientCondition"] = situation
         appointmentD["Prescription"] = userPrescription
         appointmentD["TotalPoints"] = totalPoint.toString().trim()
+        appointmentD["DoctorUID"] = doctorUid.toString()
+        appointmentD["PatientID"] = userid
 
         val appointmentP: HashMap<String, String> = HashMap() //define empty hashmap
         appointmentP["DoctorUID"] = doctorUid.toString()
@@ -166,6 +168,7 @@ class AppointmentBooking : AppCompatActivity() {
         appointmentP["Disease"] = disease
         appointmentP["PatientCondition"] = situation
         appointmentP["Prescription"] = userPrescription
+        appointmentP["PatientID"] = userid
 
         val appointmentDB_Doctor =
             FirebaseDatabase.getInstance().getReference("Doctor").child(doctorUid!!)

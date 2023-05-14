@@ -10,8 +10,8 @@ data class User(
     val Specialist: String? = null,
     val Stats: String? = null,
     val Prescription: String? = null,
-    val totalRating: Float? = null,
-    val ratings: ArrayList<Rating>? = null
+    var totalRating: Float = 5F,
+    var ratings: List<Rating> = emptyList()
 )
 
 data class Rating(
@@ -21,5 +21,4 @@ data class Rating(
     val review: String,
     val timestamp: String,
     val patientName: String,
-    val doctorName: String,
 )
