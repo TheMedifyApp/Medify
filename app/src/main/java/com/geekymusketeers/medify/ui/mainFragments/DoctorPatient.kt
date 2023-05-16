@@ -12,7 +12,7 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.geekymusketeers.medify.auth.Rating
+import com.geekymusketeers.medify.model.Rating
 import com.geekymusketeers.medify.model.DoctorAppointment
 import com.geekymusketeers.medify.ui.adapter.DoctorsAppointmentAdapter
 import com.geekymusketeers.medify.databinding.ActivityDoctorPatientBinding

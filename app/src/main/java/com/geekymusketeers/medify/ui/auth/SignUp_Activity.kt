@@ -13,7 +13,7 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.geekymusketeers.medify.R
-import com.geekymusketeers.medify.auth.User
+import com.geekymusketeers.medify.model.User
 import com.geekymusketeers.medify.utils.RemoveCountryCode
 import com.geekymusketeers.medify.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.FirebaseAuth

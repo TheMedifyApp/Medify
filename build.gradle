@@ -8,6 +8,7 @@ buildscript {
         // Add this line
         classpath 'com.google.gms:google-services:4.3.13'
 //        classpath 'com.google.dagger:hilt-android-gradle-plugin:2.30.1-alpha'
+        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.5.3")
     }
 }
 

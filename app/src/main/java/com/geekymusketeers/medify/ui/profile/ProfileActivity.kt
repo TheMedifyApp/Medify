@@ -7,7 +7,7 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import com.geekymusketeers.medify.auth.User
+import com.geekymusketeers.medify.model.User
 import com.geekymusketeers.medify.databinding.ActivityProfileBinding
 import com.google.firebase.database.*
 

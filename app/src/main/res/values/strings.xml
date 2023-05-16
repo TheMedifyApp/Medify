@@ -140,6 +140,7 @@
     <string name="condition_severe_pain">Severe Pain</string>
     <string name="condition_mild_pain">Mild Pain</string>
     <string name="condition_no_pain">No Pain</string>
+    <string name="book_an_appointment">Book an appointment</string>
 
 
 </resources>
