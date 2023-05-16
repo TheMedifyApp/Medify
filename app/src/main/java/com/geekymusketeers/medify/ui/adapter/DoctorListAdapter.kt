@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.geekymusketeers.medify.R
@@ -18,6 +19,7 @@ class DoctorListAdapter(val listener: (User)-> Unit) : RecyclerView.Adapter<Doct
 
         val doctorName : TextView = itemView.findViewById(R.id.nameDisplay)
         val category : TextView = itemView.findViewById(R.id.categoryDisplay)
+        val bookButton : Button = itemView.findViewById(R.id.book_button)
     }
 
     override fun onCreateViewHolder(
@@ -35,6 +37,10 @@ class DoctorListAdapter(val listener: (User)-> Unit) : RecyclerView.Adapter<Doct
         Log.d("", "Doctors are: $currentItem")
 
         holder.itemView.setOnClickListener {
+            listener(currentItem)
+        }
+
+        holder.bookButton.setOnClickListener {
             listener(currentItem)
         }
 

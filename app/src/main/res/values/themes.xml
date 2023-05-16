@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.Medify" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/light_blue</item>
+        <item name="colorPrimary">@color/green_shade_dark_2</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>
         <item name="colorAccent">#1DCDFE</item>
@@ -11,7 +11,9 @@
         <item name="colorSecondaryVariant">#30E0DF</item>
         <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">@color/dull_blue</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/background_gradient_end_color</item>
+        <item name="FilterChips">@style/FilterChipStyle</item>
+
         <!-- Customize your theme here. -->
     </style>
 
@@ -30,5 +32,29 @@
     <style name="Base.Theme.Medify" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
+
+    <style name="FilterChipStyle" parent="Base.Widget.MaterialComponents.Chip">
+        <item name="android:checkable">true</item>
+        <item name="chipBackgroundColor">@color/chip_color</item>
+        <item name="chipCornerRadius">10dp</item>
+        <item name="fontFamily">@font/dm_sans</item>
+        <item name="android:shadowRadius">0</item>
+        <item name="android:shadowColor">@android:color/transparent</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:padding">5dp</item>
+<!--        <item name="textEndPadding">30dp</item>-->
+<!--        <item name="textStartPadding">32dp</item>-->
+
+        <!--Icon End on check/click (Stay)-->
+<!--        <item name="closeIcon">@drawable/ic_close</item>-->
+<!--        <item name="closeIconTint">@color/light_blue</item>-->
+        <item name="closeIconVisible">false</item>
+<!--        <item name="closeIconEnabled">false</item>-->
+<!--        <item name="closeIconStartPadding">0dp</item>-->
+
+        <!--Icon Start on check/click (Toggle)-->
+        <item name="checkedIconVisible">false</item>
     </style>
 </resources>

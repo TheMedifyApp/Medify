@@ -35,7 +35,7 @@
             android:name=".ui.mainFragments.DoctorPatient"
             android:exported="true" />
         <activity
-            android:name=".ui.appointment.BookingDoneActivity"
+            android:name=".ui.mainFragments.appointment.BookingDoneActivity"
             android:exported="true" />
         <activity
             android:name=".ui.mainFragments.UPImanager"
@@ -50,7 +50,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.appointment.AppointmentBooking"
+            android:name=".ui.mainFragments.appointment.AppointmentBooking"
             android:exported="true" />
         <activity
             android:name=".ui.auth.SignUp_First"

@@ -35,6 +35,14 @@ object Utils {
         }
     }
 
+    fun String.toStringWithoutSpaces() : String {
+        val stringBuilder = StringBuilder()
+        for (char in this.toCharArray())
+            if (char.isDigit() or char.isLetter())
+                stringBuilder.append(char)
+        return stringBuilder.toString()
+    }
+
     fun setDiseaseValues(context: Context): HashMap<String, Float> {
         val diseaseValue: HashMap<String, Float> = HashMap()
 
