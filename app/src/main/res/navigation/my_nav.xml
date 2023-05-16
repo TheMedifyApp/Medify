@@ -9,7 +9,12 @@
         android:id="@+id/home"
         android:name="com.geekymusketeers.medify.ui.mainFragments.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_home_to_doctorDetailsFragment"
+            app:destination="@id/doctorDetailsFragment"
+            app:popUpTo="@id/home"/>
+    </fragment>
     <fragment
         android:id="@+id/settings"
         android:name="com.geekymusketeers.medify.ui.mainFragments.SettingsFragment"
@@ -25,4 +30,25 @@
         android:name="com.geekymusketeers.medify.ui.mainFragments.PatientAppointmentFragment"
         android:label="fragment_appointment"
         tools:layout="@layout/fragment_patient_appointment" />
+    <fragment
+        android:id="@+id/doctorDetailsFragment"
+        android:name="com.geekymusketeers.medify.ui.mainFragments.DoctorDetailsFragment"
+        android:label="fragment_doctor_details"
+        tools:layout="@layout/fragment_doctor_details" >
+        <argument
+            android:name="doctor_details"
+            app:argType="com.geekymusketeers.medify.model.User" />
+        <action
+            android:id="@+id/action_doctorDetailsFragment_to_appointmentBookingFragment"
+            app:destination="@id/appointmentBookingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/appointmentBookingFragment"
+        android:name="com.geekymusketeers.medify.ui.mainFragments.AppointmentBookingFragment"
+        android:label="fragment_appointment_booking"
+        tools:layout="@layout/fragment_appointment_booking" >
+        <argument
+            android:name="doctor_details"
+            app:argType="com.geekymusketeers.medify.model.User" />
+    </fragment>
 </navigation>

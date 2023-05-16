@@ -8,9 +8,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.geekymusketeers.medify.R
-import com.geekymusketeers.medify.auth.User
-import java.util.ArrayList
-import javax.xml.transform.ErrorListener
+import com.geekymusketeers.medify.model.User
 
 class DoctorListAdapter(val listener: (User)-> Unit) : RecyclerView.Adapter<DoctorListAdapter.DoctorListViewModel>() {
 
