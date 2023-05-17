@@ -9,6 +9,7 @@
     <string name="dropdown_label">Disease Name:</string>
     <string name="disease_name">Disease Name</string>
     <string name="specialization"> Specialization</string>
+    <string name="mailTo">mailto:geekymusketeers2024@gmail.com?Subject=JusTap%20Android%20application%20feedback%20main&amp;Body=Your%20feedback%20is%20important%20to%20us%21</string>
     <string name="situation">Situation</string>
     <string name="cardiologist">Cardiologist</string>
     <string name="dentist">Dentist</string>
@@ -174,6 +175,8 @@
     <string name="working_hours">Working hours</string>
     <string name="your_appointment">Your Appointment</string>
     <string name="patient_queue">Patient Queue</string>
+    <string name="settings">Settings</string>
+    <string name="configure_changes">Configure changes</string>
     <string name="blood_pressure">Blood Pressure</string>
     <string name="add_data">Add data</string>
     <string name="biological_reference_80_120">Biological Reference: 80-120</string>
