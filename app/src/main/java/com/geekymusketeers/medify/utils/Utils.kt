@@ -38,6 +38,12 @@ object Utils {
         }
     }
 
+    fun containsLetters(phone: String, searchedData: String): Boolean {
+        return phone.trim().lowercase().toStringWithoutSpaces().contains(
+            searchedData.lowercase().trim().toStringWithoutSpaces()
+        )
+    }
+
     fun String.toStringWithoutSpaces() : String {
         val stringBuilder = StringBuilder()
         for (char in this.toCharArray())

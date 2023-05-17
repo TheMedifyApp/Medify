@@ -25,6 +25,7 @@ import com.geekymusketeers.medify.utils.DialogUtil.createBottomSheet
 import com.geekymusketeers.medify.utils.DialogUtil.setBottomSheet
 import com.geekymusketeers.medify.utils.Logger
 import com.geekymusketeers.medify.utils.Utils
+import com.geekymusketeers.medify.utils.Utils.containsLetters
 import com.geekymusketeers.medify.utils.Utils.toStringWithoutSpaces
 import com.google.android.material.chip.Chip
 import com.google.firebase.database.DatabaseReference
@@ -158,70 +159,15 @@ class HomeFragment : Fragment() {
     private fun handleDoctorSearch(searchedData: String) {
         if (searchedData.isNotEmpty()) {
             val searchedList = homeViewModel.doctorList.value!!.filter {
-                containsName(it.Name!!, searchedData) || containsEmail(
-                    it.Email!!,
-                    searchedData
-                ) || containsPhone(it.Phone!!, searchedData)
+                containsLetters(it.Name!!, searchedData)
+                        || containsLetters(it.Email!!, searchedData)
+                        || containsLetters(it.Phone!!, searchedData)
             }
             doctorListAdapter.addItems(searchedList)
         } else {
             doctorListAdapter.addItems(homeViewModel.doctorList.value!!)
         }
     }
-
-    private fun containsPhone(phone: String, searchedData: String): Boolean {
-        return phone.trim().lowercase().toStringWithoutSpaces().contains(
-            searchedData.lowercase().trim().toStringWithoutSpaces()
-        )
-    }
-
-    private fun containsEmail(email: String, searchedData: String): Boolean {
-        return email.trim().lowercase().toStringWithoutSpaces()
-            .contains(
-                searchedData.lowercase().trim().toStringWithoutSpaces(),
-                true
-            )
-    }
-
-    private fun containsName(name: String, searchedData: String): Boolean {
-        return name.trim().lowercase().toStringWithoutSpaces()
-            .contains(searchedData.lowercase().trim().toStringWithoutSpaces(), true)
-    }
-
-//    private fun getDoctorsList() {
-//        doctorList = mutableListOf()
-//        db.child("Doctor").addValueEventListener(object : ValueEventListener {
-//            override fun onDataChange(snapshot: DataSnapshot) {
-//                snapshot.children.forEach() {
-//                    val age: String = it.child("age").value.toString().trim()
-//                    val doctor: String = it.child("doctor").value.toString().trim()
-//                    val email: String = it.child("email").value.toString().trim()
-//                    val phone: String = it.child("phone").value.toString().trim()
-//                    val name: String = it.child("name").value.toString().trim()
-//                    val specialist: String = it.child("specialist").value.toString().trim()
-//                    val uid: String = it.child("uid").value.toString().trim()
-//
-//                    val doctorItem = User(
-//                        Name = name,
-//                        Email = email,
-//                        Phone = phone,
-//                        UID = uid,
-//                        isDoctor = doctor,
-//                        Age = age,
-//                        Specialist = specialist
-//                    )
-//                    doctorList.add(doctorItem)
-//                }
-//                doctorListAdapter.addItems(doctorList)
-//
-//            }
-//
-//            override fun onCancelled(error: DatabaseError) {
-//                Logger.debugLog("Error in getting doctors list: ${error.message}")
-//            }
-//        })
-//    }
-
 
     private fun showAlertDialog() {
         val builder = AlertDialog.Builder(requireContext())
