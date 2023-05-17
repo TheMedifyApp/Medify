@@ -29,7 +29,6 @@ class DoctorDetailsFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentDoctorDetailsBinding.inflate(inflater, container, false)
-        requireActivity().findViewById<BottomNavigationView>(R.id.bottomNav).visibility = View.GONE
 
         initDoctor()
         initViews()

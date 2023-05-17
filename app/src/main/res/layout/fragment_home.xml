@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
-    tools:context=".ui.mainFragments.HomeFragment">
+    tools:context=".ui.mainFragments.home.HomeFragment">
 
 
     <TextView
@@ -89,6 +89,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:singleLine="true"
+                android:stateListAnimator="@null"
                 app:singleSelection="true" />
 
         </HorizontalScrollView>
