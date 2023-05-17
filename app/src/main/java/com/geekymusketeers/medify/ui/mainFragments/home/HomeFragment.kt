@@ -27,11 +27,8 @@ import com.geekymusketeers.medify.utils.Logger
 import com.geekymusketeers.medify.utils.Utils
 import com.geekymusketeers.medify.utils.Utils.toStringWithoutSpaces
 import com.google.android.material.chip.Chip
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 
 
 class HomeFragment : Fragment() {
@@ -42,8 +39,6 @@ class HomeFragment : Fragment() {
     private lateinit var db: DatabaseReference
     private lateinit var recyclerView: RecyclerView
     private lateinit var doctorListAdapter: DoctorListAdapter
-    private lateinit var doctorList: MutableList<User>
-
     private lateinit var sharedPreference: SharedPreferences
 
 
@@ -54,7 +49,6 @@ class HomeFragment : Fragment() {
 
         initViews()
         initObservers()
-
 
         return binding.root
     }
@@ -69,7 +63,6 @@ class HomeFragment : Fragment() {
 
         handleChipFilter()
         homeViewModel.getDataFromSharedPreference(sharedPreference)
-        getDoctorsList()
 
         doctorListAdapter = DoctorListAdapter {
             val rating = homeViewModel.totalRating.value!!
@@ -83,7 +76,7 @@ class HomeFragment : Fragment() {
 
     private fun onDoctorCardClick(doctor: User, rating: Float) {
         if (homeViewModel.user.value?.Prescription.isNullOrEmpty().not()) {
-            if (rating < 3.0f) {
+            if (rating < Constants.ratingThreshold) {
                 showAlertDialog()
                 return
             }
@@ -100,6 +93,7 @@ class HomeFragment : Fragment() {
 
     private fun initObservers() {
         homeViewModel.run {
+            getDoctorList()
             searchedDoctor.observe(viewLifecycleOwner) {
                 handleDoctorSearch(it)
             }
@@ -108,6 +102,12 @@ class HomeFragment : Fragment() {
                 binding.nameDisplay.text =
                     if (it.isDoctor == "Doctor") "Dr. ${it.Name}" else it.Name
                 getTotalRating()
+            }
+            doctorList.observe(viewLifecycleOwner) {
+                if (it.isNotEmpty()) {
+                    Logger.debugLog("Doctor List: $it")
+                    doctorListAdapter.addItems(it)
+                }
             }
         }
     }
@@ -124,7 +124,6 @@ class HomeFragment : Fragment() {
             val newChip = Chip(requireContext(), null, R.attr.FilterChips)
             newChip.text = filter
             newChip.id = count
-            newChip.elevation = 2F
             binding.chipGroup.addView(newChip)
         }
 
@@ -138,9 +137,9 @@ class HomeFragment : Fragment() {
 
                 if (selectedSpecialist.isNotEmpty()) {
                     if (selectedSpecialist == "All") {
-                        doctorListAdapter.addItems(doctorList)
+                        doctorListAdapter.addItems(homeViewModel.doctorList.value!!)
                     } else {
-                        val searchedList = doctorList.filter {
+                        val searchedList = homeViewModel.doctorList.value!!.filter {
                             it.Specialist!!.trim().lowercase().toStringWithoutSpaces()
                                 .contains(
                                     selectedSpecialist.lowercase().trim().toStringWithoutSpaces(),
@@ -150,7 +149,7 @@ class HomeFragment : Fragment() {
                         doctorListAdapter.addItems(searchedList)
                     }
                 } else {
-                    doctorListAdapter.addItems(doctorList)
+                    doctorListAdapter.addItems(homeViewModel.doctorList.value!!)
                 }
             }
         }
@@ -158,7 +157,7 @@ class HomeFragment : Fragment() {
 
     private fun handleDoctorSearch(searchedData: String) {
         if (searchedData.isNotEmpty()) {
-            val searchedList = doctorList.filter {
+            val searchedList = homeViewModel.doctorList.value!!.filter {
                 containsName(it.Name!!, searchedData) || containsEmail(
                     it.Email!!,
                     searchedData
@@ -166,7 +165,7 @@ class HomeFragment : Fragment() {
             }
             doctorListAdapter.addItems(searchedList)
         } else {
-            doctorListAdapter.addItems(doctorList)
+            doctorListAdapter.addItems(homeViewModel.doctorList.value!!)
         }
     }
 
@@ -189,39 +188,39 @@ class HomeFragment : Fragment() {
             .contains(searchedData.lowercase().trim().toStringWithoutSpaces(), true)
     }
 
-    private fun getDoctorsList() {
-        doctorList = mutableListOf()
-        db.child("Doctor").addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                snapshot.children.forEach() {
-                    val age: String = it.child("age").value.toString().trim()
-                    val doctor: String = it.child("doctor").value.toString().trim()
-                    val email: String = it.child("email").value.toString().trim()
-                    val phone: String = it.child("phone").value.toString().trim()
-                    val name: String = it.child("name").value.toString().trim()
-                    val specialist: String = it.child("specialist").value.toString().trim()
-                    val uid: String = it.child("uid").value.toString().trim()
-
-                    val doctorItem = User(
-                        Name = name,
-                        Email = email,
-                        Phone = phone,
-                        UID = uid,
-                        isDoctor = doctor,
-                        Age = age,
-                        Specialist = specialist
-                    )
-                    doctorList.add(doctorItem)
-                }
-                doctorListAdapter.addItems(doctorList)
-
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                Logger.debugLog("Error in getting doctors list: ${error.message}")
-            }
-        })
-    }
+//    private fun getDoctorsList() {
+//        doctorList = mutableListOf()
+//        db.child("Doctor").addValueEventListener(object : ValueEventListener {
+//            override fun onDataChange(snapshot: DataSnapshot) {
+//                snapshot.children.forEach() {
+//                    val age: String = it.child("age").value.toString().trim()
+//                    val doctor: String = it.child("doctor").value.toString().trim()
+//                    val email: String = it.child("email").value.toString().trim()
+//                    val phone: String = it.child("phone").value.toString().trim()
+//                    val name: String = it.child("name").value.toString().trim()
+//                    val specialist: String = it.child("specialist").value.toString().trim()
+//                    val uid: String = it.child("uid").value.toString().trim()
+//
+//                    val doctorItem = User(
+//                        Name = name,
+//                        Email = email,
+//                        Phone = phone,
+//                        UID = uid,
+//                        isDoctor = doctor,
+//                        Age = age,
+//                        Specialist = specialist
+//                    )
+//                    doctorList.add(doctorItem)
+//                }
+//                doctorListAdapter.addItems(doctorList)
+//
+//            }
+//
+//            override fun onCancelled(error: DatabaseError) {
+//                Logger.debugLog("Error in getting doctors list: ${error.message}")
+//            }
+//        })
+//    }
 
 
     private fun showAlertDialog() {
