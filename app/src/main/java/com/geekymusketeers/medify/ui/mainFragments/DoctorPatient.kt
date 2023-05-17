@@ -166,6 +166,7 @@ class DoctorPatient : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     private fun getData(date: String, userID: String) {
 
+        appointmentList.clear()
         dbref = FirebaseDatabase.getInstance().getReference("Doctor").child(userID)
             .child("DoctorsAppointments").child(date).orderByChild("TotalPoints")
 
@@ -187,8 +188,10 @@ class DoctorPatient : AppCompatActivity() {
                     }
                     Recyclerview.adapter = appointmentAdapter
                     appointmentAdapter.notifyDataSetChanged()
+                    binding.noAppointmentText.visibility = View.GONE
                 } else {
                     appointmentAdapter.notifyDataSetChanged()
+                    binding.noAppointmentText.visibility = View.VISIBLE
                 }
             }
 
@@ -206,7 +209,7 @@ class DoctorPatient : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         currentDate = DateTimeExtension.getCurrentDateAppointments()
-        getData(currentDate, userID = intent.getStringExtra("uid").toString())
+//        getData(currentDate, userID = intent.getStringExtra("uid").toString())
         binding.selectedDateText.text = "Selected Date: $currentDate"
     }
 }

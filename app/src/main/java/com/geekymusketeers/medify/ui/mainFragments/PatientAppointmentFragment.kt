@@ -45,10 +45,16 @@ class PatientAppointmentFragment : Fragment() {
         appointmentAdapter = PatientAppointmentAdapter(requireActivity(), appointmentList)
 
         val isDoctor = sharedPreference.getString("isDoctor","Not found").toString()
+        val uid = sharedPreference.getString("uid","Not found").toString()
+        val date = DateTimeExtension.getCurrentDateAppointments()
         if (isDoctor == "Doctor")
             binding.toPatientList.visibility = View.VISIBLE
         binding.toPatientList.setOnClickListener {
-            startActivity(Intent(requireActivity(), DoctorPatient::class.java))
+            val mIntent = Intent(requireContext(), DoctorPatient::class.java)
+            mIntent.putExtra("uid", uid)
+            mIntent.putExtra("date", date)
+            mIntent.putExtra("hide", "show")
+            requireContext().startActivity(mIntent)
         }
 
         Recyclerview = binding.appointmentRecyclerview
