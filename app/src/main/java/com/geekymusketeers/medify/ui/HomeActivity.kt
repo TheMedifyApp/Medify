@@ -2,6 +2,7 @@ package com.geekymusketeers.medify.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -9,6 +10,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.geekymusketeers.medify.R
 import com.geekymusketeers.medify.databinding.ActivityHomeBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeActivity : AppCompatActivity() {
 
@@ -29,6 +31,23 @@ class HomeActivity : AppCompatActivity() {
 
         bottomNavigationView.setupWithNavController(navController)
 
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.home -> showBottomNav(bottomNavigationView)
+                R.id.stats -> showBottomNav(bottomNavigationView)
+                R.id.appointment -> showBottomNav(bottomNavigationView)
+                R.id.settings -> showBottomNav(bottomNavigationView)
+                else -> hideBottomNav(bottomNavigationView)
+            }
+        }
+    }
+
+    private fun showBottomNav(bottomNavigationView: BottomNavigationView) {
+        bottomNavigationView.visibility = View.VISIBLE
+    }
+
+    private fun hideBottomNav(bottomNavigationView: BottomNavigationView) {
+        bottomNavigationView.visibility = View.GONE
     }
 
     @Deprecated("Deprecated in Java")
