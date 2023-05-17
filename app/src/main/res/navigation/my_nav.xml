@@ -50,5 +50,18 @@
         <argument
             android:name="doctor_details"
             app:argType="com.geekymusketeers.medify.model.User" />
+        <action
+            android:id="@+id/action_appointmentBookingFragment_to_bookingSummaryFragment"
+            app:destination="@id/bookingSummaryFragment"
+            app:popUpTo="@id/home"/>
+    </fragment>
+    <fragment
+        android:id="@+id/bookingSummaryFragment"
+        android:name="com.geekymusketeers.medify.ui.mainFragments.appointment.BookingSummaryFragment"
+        android:label="fragment_booking_summary"
+        tools:layout="@layout/fragment_booking_summary" >
+        <argument
+            android:name="summary"
+            app:argType="com.geekymusketeers.medify.model.Summary" />
     </fragment>
 </navigation>
