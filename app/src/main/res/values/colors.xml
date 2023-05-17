@@ -8,6 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="grey">#DAD6D6</color>
+    <color name="dark_grey">#656464</color>
     <color name="card_shadow_color">#B0D6FF</color>
     <color name="accounts_card_color">#F9FCFF</color>
     <color name="light_green">#03DAC5</color>

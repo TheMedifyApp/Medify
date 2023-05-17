@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.geekymusketeers.medify.model.PatientAppointment
 import com.geekymusketeers.medify.ui.adapter.PatientAppointmentAdapter
 import com.geekymusketeers.medify.databinding.FragmentPatientAppointmentBinding
+import com.geekymusketeers.medify.utils.DateTimeExtension
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.firebase.database.*
 import java.text.SimpleDateFormat
@@ -63,34 +64,29 @@ class PatientAppointmentFragment : Fragment() {
             datePicker.addOnPositiveButtonClickListener {
                 // formatting date in dd-mm-yyyy format.
                 val dateFormatter = SimpleDateFormat("dd-MM-yyyy")
-                val tempDate = dateFormatter.format(Date(it)).toString().trim()
+                val tempDate = dateFormatter.format(Date(it))
+                updateAppointmentList(tempDate)
                 date.setLength(0)
                 date.append(tempDate)
-                appointmentList.clear()
-                getData(date.toString())
 
             }
 
-            // Setting up the event for when cancelled is clicked
-            datePicker.addOnNegativeButtonClickListener {
-                Toast.makeText(requireActivity(), "${datePicker.headerText} is cancelled", Toast.LENGTH_LONG).show()
-            }
-
-            // Setting up the event for when back button is pressed
-            datePicker.addOnCancelListener {
-                Toast.makeText(requireActivity(), "Date Picker Cancelled", Toast.LENGTH_LONG).show()
-            }
         }
-
-//        getData()
-
 
         return binding.root
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
+    private fun updateAppointmentList(selectedDate: String) {
+        appointmentList.clear()
+        getData(selectedDate)
+        binding.selectedDateText.text = "Selected Date: $selectedDate"
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun getData(date: String) {
 
+        appointmentList.clear()
 //        val current = LocalDateTime.now()
         val userID = sharedPreference.getString("uid","Not found").toString()
 //        val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
@@ -106,6 +102,10 @@ class PatientAppointmentFragment : Fragment() {
                         appointmentList.add(appointment!!)
                     }
                     Recyclerview.adapter = appointmentAdapter
+                    appointmentAdapter.notifyDataSetChanged()
+                } else {
+                    appointmentAdapter.notifyDataSetChanged()
+                    showNoAppointmentsMessage()
                 }
             }
 
@@ -115,15 +115,24 @@ class PatientAppointmentFragment : Fragment() {
             }
         })
 
-        binding.selectDateTextToHide.visibility = View.GONE
+        binding.noAppointmentText.visibility = View.GONE
 
     }
 
+    private fun showNoAppointmentsMessage() {
+        binding.noAppointmentText.visibility = View.VISIBLE
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onStart() {
         super.onStart()
         val isDoctor = sharedPreference.getString("isDoctor","Not found").toString()
         if (isDoctor == "Doctor")
             binding.toPatientList.visibility = View.VISIBLE
+        val currentDate = DateTimeExtension.getCurrentDateAppointments()
+        getData(currentDate)
+        binding.selectedDateText.text = "Selected Date: $currentDate"
     }
+
 }
 

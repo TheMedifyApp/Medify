@@ -4,104 +4,61 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/gradient_background"
     tools:context=".ui.mainFragments.DoctorPatient">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/patient_queue_text"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:gravity="start"
-        android:orientation="vertical"
-        android:paddingLeft="30dp"
-        android:paddingRight="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="25dp"
+        android:fontFamily="@font/dm_sans_bold"
+        android:textColor="@color/white"
+        android:textSize="22sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="@string/patient_queue" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="left"
-            android:orientation="vertical"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <TextView
-                android:id="@+id/book_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/dm_sans_bold"
-                android:text="Patient list"
-                android:textColor="@color/white"
-                android:textSize="35sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.099"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/loginIllustration" />
-
-            <TextView
-                android:id="@+id/signUph2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/dm_sans"
-                android:text="See patients list"
-                android:textColor="@color/white"
-                android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="@+id/signUpHeader"
-                app:layout_constraintTop_toBottomOf="@+id/signUpHeader" />
-
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/selectDate"
-            android:layout_width="wrap_content"
-            android:gravity="center"
-            android:layout_height="30dp"
-            android:text="Select Date"
-            android:drawableRight="@drawable/calendar_month"
-            android:drawablePadding="10dp"
-            android:textColor="@color/white"
-            android:textSize="13dp"
-            android:fontFamily="@font/dm_sans_medium"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/selected_date_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/dm_sans_medium"
+        tools:text="Selected Date : 17/05/2023"
+        android:textColor="@color/green_shade_light_2"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/patient_queue_text"
+        app:layout_constraintTop_toBottomOf="@+id/patient_queue_text" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:id="@+id/selectDate"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="120dp"
+        android:src="@drawable/calendar_month"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/selected_date_text"
+        app:layout_constraintStart_toEndOf="@+id/patient_queue_text"
+        app:layout_constraintTop_toTopOf="@id/patient_queue_text" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="140dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/white_bar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selected_date_text">
 
-        <TextView
-            android:id="@+id/selectDateTextToHide"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="292dp"
-            android:fontFamily="@font/dm_sans_bold"
-            android:text="Select Date First"
-            android:textColor="@color/light_blue"
-            android:textSize="30dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/appointment_recyclerview"
-            app:layout_constraintVertical_bias="1.0" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/appointment_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -36,7 +36,7 @@
             android:layout_height="25dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/download"
-            android:backgroundTint="@color/light_blue"
+            android:backgroundTint="@color/background_gradient_start_color"
             android:fontFamily="@font/dm_sans_medium"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -58,8 +58,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/dm_sans_bold"
                 android:text="Doctor Name: "
-                android:textColor="@color/light_blue"
-                android:textSize="15sp" />
+                android:textColor="@color/green_shade_dark_1"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/diseaseDisplay"
@@ -68,7 +68,7 @@
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/dm_sans"
                 android:text="Disease: "
-                android:textColor="@color/black"
+                android:textColor="@color/green_shade_dark_2"
                 android:textSize="15sp" />
 
         </LinearLayout>

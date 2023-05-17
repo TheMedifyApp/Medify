@@ -3,12 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="10dp"
-    android:layout_marginTop="10dp"
-    android:layout_marginRight="10dp"
-    android:layout_marginBottom="10dp"
-    android:elevation="10dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginVertical="5dp"
+    android:elevation="0dp"
     android:padding="10dp"
+    app:cardBackgroundColor="@android:color/transparent"
+    app:cardUseCompatPadding="true"
+    app:cardElevation="0dp"
     app:cardCornerRadius="10dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,8 +33,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/dm_sans"
-                android:text="Time: --/--"
-                android:textColor="@color/black"
+                tools:text="Time: --/--"
+                android:textColor="@color/dark_grey"
                 android:textSize="15sp" />
 
             <LinearLayout
@@ -48,8 +49,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/dm_sans"
-                    android:text="Date:          "
-                    android:textColor="@color/black"
+                    tools:text="Date:          "
+                    android:textColor="@color/dark_grey"
                     android:textSize="15sp" />
 
             </LinearLayout>
@@ -74,9 +75,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/dm_sans_bold"
-                android:text="Patient Name: "
-                android:textColor="@color/light_blue"
-                android:textSize="15sp" />
+                tools:text="Patient Name: "
+                android:textColor="@color/green_shade_dark_1"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/diseaseDisplay"
@@ -84,8 +85,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/dm_sans"
-                android:text="Disease: "
-                android:textColor="@color/black"
+                tools:text="Disease: "
+                android:textColor="@color/green_shade_dark_2"
                 android:textSize="15sp" />
 
         </LinearLayout>
