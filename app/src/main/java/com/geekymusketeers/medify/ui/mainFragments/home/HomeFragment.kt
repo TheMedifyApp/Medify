@@ -1,6 +1,5 @@
 package com.geekymusketeers.medify.ui.mainFragments.home
 
-import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
 import android.content.SharedPreferences
@@ -24,7 +23,6 @@ import com.geekymusketeers.medify.model.User
 import com.geekymusketeers.medify.utils.Constants
 import com.geekymusketeers.medify.utils.DialogUtil.createBottomSheet
 import com.geekymusketeers.medify.utils.DialogUtil.setBottomSheet
-import com.google.firebase.auth.FirebaseAuth
 import com.geekymusketeers.medify.utils.Logger
 import com.geekymusketeers.medify.utils.Utils
 import com.geekymusketeers.medify.utils.Utils.toStringWithoutSpaces
@@ -41,21 +39,10 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val homeViewModel by viewModels<HomeViewModel> { ViewModelFactory() }
     private val binding get() = _binding!!
-    private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var db: DatabaseReference
     private lateinit var recyclerView: RecyclerView
     private lateinit var doctorListAdapter: DoctorListAdapter
     private lateinit var doctorList: MutableList<User>
-
-    //Current User's data
-    private lateinit var userName: String
-    private lateinit var userEmail: String
-    private lateinit var userPhone: String
-    private lateinit var userPosition: String
-    private lateinit var userType: String
-    private lateinit var userID: String
-    private var userPrescription: String = "false"
-    private var totalRatings = 5f
 
     private lateinit var sharedPreference: SharedPreferences
 
@@ -65,37 +52,38 @@ class HomeFragment : Fragment() {
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        firebaseAuth = FirebaseAuth.getInstance()
-        val user = firebaseAuth.currentUser
+        initViews()
+        initObservers()
 
+
+        return binding.root
+    }
+
+    private fun initViews() {
         db = FirebaseDatabase.getInstance().reference
         sharedPreference = requireActivity().getSharedPreferences("UserData", Context.MODE_PRIVATE)
-
-        initObservers()
 
         binding.doctorData.addTextChangedListener {
             homeViewModel.searchDoctor(it.toString())
         }
 
         handleChipFilter()
-        getDataFromSharedPreference()
-        getUserRatings()
+        homeViewModel.getDataFromSharedPreference(sharedPreference)
         getDoctorsList()
 
         doctorListAdapter = DoctorListAdapter {
-            onDoctorCardClick(it)
+            val rating = homeViewModel.totalRating.value!!
+            onDoctorCardClick(it, rating)
         }
 
         recyclerView = binding.doctorList
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = doctorListAdapter
-
-        return binding.root
     }
 
-    private fun onDoctorCardClick(doctor: User) {
-        if (userPrescription != "false") {
-            if (totalRatings < 3.0f) {
+    private fun onDoctorCardClick(doctor: User, rating: Float) {
+        if (homeViewModel.user.value?.Prescription.isNullOrEmpty().not()) {
+            if (rating < 3.0f) {
                 showAlertDialog()
                 return
             }
@@ -114,6 +102,12 @@ class HomeFragment : Fragment() {
         homeViewModel.run {
             searchedDoctor.observe(viewLifecycleOwner) {
                 handleDoctorSearch(it)
+            }
+            user.observe(viewLifecycleOwner) {
+                Logger.debugLog("User Data: $it")
+                binding.nameDisplay.text =
+                    if (it.isDoctor == "Doctor") "Dr. ${it.Name}" else it.Name
+                getTotalRating()
             }
         }
     }
@@ -195,21 +189,6 @@ class HomeFragment : Fragment() {
             .contains(searchedData.lowercase().trim().toStringWithoutSpaces(), true)
     }
 
-
-    private fun getUserRatings() {
-        FirebaseDatabase.getInstance().reference.child("Users").child(userID)
-            .addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    if (snapshot.child("totalRating").exists()) {
-                        totalRatings =
-                            snapshot.child("totalRating").value.toString().toFloat()
-                    }
-                }
-
-                override fun onCancelled(error: DatabaseError) {}
-            })
-    }
-
     private fun getDoctorsList() {
         doctorList = mutableListOf()
         db.child("Doctor").addValueEventListener(object : ValueEventListener {
@@ -232,8 +211,6 @@ class HomeFragment : Fragment() {
                         Age = age,
                         Specialist = specialist
                     )
-
-                    Logger.debugLog("Doctors are from Firebase are: $doctorItem")
                     doctorList.add(doctorItem)
                 }
                 doctorListAdapter.addItems(doctorList)
@@ -253,7 +230,6 @@ class HomeFragment : Fragment() {
         builder.setMessage("You need to have a rating of 3 or above to book an appointment")
 
         builder.setPositiveButton("File a Dispute") { dialog, _ ->
-
             showBottomSheetForDispute()
             dialog.dismiss()
         }
@@ -296,33 +272,5 @@ class HomeFragment : Fragment() {
             }
         }
         dialog.root.setBottomSheet(bottomSheet)
-    }
-
-
-//    override fun onStart() {
-//        super.onStart()
-//        Handler().postDelayed({
-//            getDataFromSharedPreference()
-//        }, 1000)
-//    }
-
-    @SuppressLint("SetTextI18n", "CommitPrefEdits")
-    private fun getDataFromSharedPreference() {
-        userID = sharedPreference.getString("uid", "Not found").toString()
-        userName =
-            sharedPreference.getString("name", "Not found").toString()
-        userEmail =
-            sharedPreference.getString("email", "Not found").toString()
-        userPhone =
-            sharedPreference.getString("phone", "Not found").toString()
-        userPosition =
-            sharedPreference.getString("isDoctor", "Not fount").toString()
-        userPrescription =
-            sharedPreference.getString("prescription", "false").toString()
-
-        if (userPosition == "Doctor")
-            binding.nameDisplay.text = "Dr. $userName"
-        else
-            binding.nameDisplay.text = userName
     }
 }
