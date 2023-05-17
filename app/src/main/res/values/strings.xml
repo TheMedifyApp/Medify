@@ -23,6 +23,23 @@
     <string name="gastroenterologists">Gastroenterologists</string>
     <string name="doctors">Doctors</string>
     <string name="category">Category</string>
+
+    <string-array name="all_specialists">
+        <item>All</item>
+        <item>Cardiologist</item>
+        <item>Dentist</item>
+        <item>ENT specialist</item>
+        <item>Obstetrician/Gynaecologist</item>
+        <item>Orthopaedic surgeon</item>
+        <item>Psychiatrists</item>
+        <item>Radiologist</item>
+        <item>Pulmonologist</item>
+        <item>Neurologist</item>
+        <item>Allergists</item>
+        <item>Orthopaedic Surgeon</item>
+        <item>Gastroenterologists</item>
+    </string-array>
+
     <string-array name="dropdown_items">
         <item>Fever</item>
         <item>Cold</item>
@@ -141,6 +158,10 @@
     <string name="condition_mild_pain">Mild Pain</string>
     <string name="condition_no_pain">No Pain</string>
     <string name="book_an_appointment">Book an appointment</string>
+    <string name="please_upload_your_prescription_in_settings_tab">Please upload your prescription in settings tab</string>
+    <string name="want_to_book_an_appointment">Want to book an appointment?</string>
+    <string name="book">Book</string>
+    <string name="doctor_s_name_email_or_phone">Doctor\'s name, email or phone</string>
 
 
 </resources>

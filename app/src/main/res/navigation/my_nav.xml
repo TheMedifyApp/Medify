@@ -32,7 +32,7 @@
         tools:layout="@layout/fragment_patient_appointment" />
     <fragment
         android:id="@+id/doctorDetailsFragment"
-        android:name="com.geekymusketeers.medify.ui.mainFragments.DoctorDetailsFragment"
+        android:name="com.geekymusketeers.medify.ui.mainFragments.appointment.DoctorDetailsFragment"
         android:label="fragment_doctor_details"
         tools:layout="@layout/fragment_doctor_details" >
         <argument
@@ -44,7 +44,7 @@
     </fragment>
     <fragment
         android:id="@+id/appointmentBookingFragment"
-        android:name="com.geekymusketeers.medify.ui.mainFragments.AppointmentBookingFragment"
+        android:name="com.geekymusketeers.medify.ui.mainFragments.appointment.AppointmentBookingFragment"
         android:label="fragment_appointment_booking"
         tools:layout="@layout/fragment_appointment_booking" >
         <argument

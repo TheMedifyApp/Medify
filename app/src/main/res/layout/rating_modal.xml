@@ -32,7 +32,7 @@
             android:progressBackgroundTint="@android:color/darker_gray"
             android:progressTint="@color/light_blue"
             android:rating="1"
-            android:stepSize="1" />
+            android:stepSize="0.5" />
 
         <EditText
             android:id="@+id/rating_comment"

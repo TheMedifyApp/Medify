@@ -1,4 +1,4 @@
-package com.geekymusketeers.medify.ui.appointment
+package com.geekymusketeers.medify.ui.mainFragments.appointment
 
 import android.annotation.SuppressLint
 import android.content.Context

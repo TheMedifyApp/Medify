@@ -4,351 +4,115 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/gradient_background"
     tools:context=".ui.mainFragments.HomeFragment">
 
-    <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="match_parent"
+
+    <TextView
+        android:id="@+id/nameDisplay"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:gravity="left"
-        android:orientation="vertical"
-        android:paddingLeft="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:fontFamily="@font/dm_sans_bold"
+        android:textColor="@color/white"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Hi Mr. Binay" />
 
-        <TextView
-            android:id="@+id/HelloTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/dm_sans_bold"
-            android:text="Hello"
-            android:textColor="@color/white"
-            android:textSize="60sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.113"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/want_to_book_an_appointment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/dm_sans_medium"
+        android:text="@string/want_to_book_an_appointment"
+        android:textColor="@color/green_shade_light_2"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/nameDisplay"
+        app:layout_constraintTop_toBottomOf="@+id/nameDisplay" />
 
-        <TextView
-            android:id="@+id/namePreview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/dm_sans_medium"
-            android:text="Loading name..."
-            android:textColor="@color/white"
-            android:textSize="20dp"
-            app:layout_constraintEnd_toEndOf="@+id/HelloTextView"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/HelloTextView"
-            app:layout_constraintTop_toBottomOf="@+id/HelloTextView" />
-
-    </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="140dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/white_bar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/want_to_book_an_appointment">
+
+        <EditText
+            android:id="@+id/doctorData"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/editfield"
+            android:drawableStart="@drawable/search"
+            android:drawablePadding="5dp"
+            android:ems="10"
+            android:fontFamily="@font/dm_sans"
+            android:hint="@string/doctor_s_name_email_or_phone"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:layout_marginTop="16dp"
+            android:layout_marginHorizontal="16dp"
+            android:paddingVertical="16dp"
+            android:paddingStart="12dp"
+            android:textColor="@color/black"
+            android:textColorHint="@android:color/darker_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="RtlSymmetry" />
 
 
-        <LinearLayout
-            android:id="@+id/linearLayout4"
+        <HorizontalScrollView
+            android:id="@+id/horizontalScrollView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="left"
-            android:orientation="vertical"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="5dp"
+            android:scrollbars="none"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/doctorData">
 
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chip_group"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/dm_sans_medium"
-                android:text="Want to book an appointment?"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                tools:layout_editor_absoluteX="32dp"
-                tools:layout_editor_absoluteY="186dp" />
+                app:chipSpacing="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:singleLine="true"
+                app:singleSelection="true" />
 
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/dm_sans"
-                android:layout_marginTop="10dp"
-                android:text="Enter the doctor's name, email or phone"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                tools:layout_editor_absoluteX="32dp"
-                tools:layout_editor_absoluteY="186dp" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <EditText
-                    android:id="@+id/doctorData"
-                    android:layout_width="350dp"
-                    android:layout_height="55dp"
-                    android:background="@drawable/editfield"
-                    android:ems="10"
-                    android:fontFamily="@font/dm_sans"
-                    android:drawableStart="@drawable/serch"
-                    android:drawablePadding="5dp"
-                    android:hint="Search"
-                    android:imeOptions="actionDone"
-                    android:inputType="text"
-                    android:paddingLeft="10dp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@android:color/darker_gray"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+        </HorizontalScrollView>
 
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:id="@+id/linearLayout5"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:gravity="left"
-            android:orientation="vertical"
-            android:paddingHorizontal="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView">
 
-
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/doctorList"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:layout_height="0dp"
+                android:clipToPadding="false"
+                android:nestedScrollingEnabled="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:listitem="@layout/doctor_card_layout" />
 
-                <HorizontalScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:scrollbars="none"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <com.google.android.material.chip.ChipGroup
-                        android:id="@+id/chip_group"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:chipSpacing="8dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:selectionRequired="false"
-                        app:singleLine="true">
-
-                        <com.google.android.material.chip.Chip
-                            android:id="@+id/cardiologist_chip"
-                            android:layout_width="wrap_content"
-                            android:layout_height="60dp"
-                            android:fontFamily="@font/dm_sans_bold"
-                            android:text="@string/cardiologist"
-                            android:textSize="15sp"
-                            android:textColor="@color/black"
-                            app:chipCornerRadius="7dp"
-                            app:chipBackgroundColor="@color/grey"/>
-
-                        <com.google.android.material.chip.Chip
-                            android:id="@+id/dentist_chip"
-                            android:layout_width="wrap_content"
-                            android:layout_height="60dp"
-                            android:fontFamily="@font/dm_sans_bold"
-                            android:text="@string/dentist"
-                            android:textSize="15sp"
-                            android:textColor="@color/black"
-                            app:chipCornerRadius="7dp"
-                            app:chipBackgroundColor="@color/grey" />
-
-                        <com.google.android.material.chip.Chip
-                            android:id="@+id/ent_chip"
-                            android:layout_width="wrap_content"
-                            android:layout_height="60dp"
-                            android:fontFamily="@font/dm_sans_bold"
-                            android:text="@string/ent_specialist"
-                            android:textSize="15sp"
-                            android:textColor="@color/black"
-                            app:chipCornerRadius="7dp"
-                            app:chipBackgroundColor="@color/grey" />
-
-                        <com.google.android.material.chip.Chip
-                            android:id="@+id/obgyn_chip"
-                            android:layout_width="wrap_content"
-                            android:layout_height="60dp"
-                            android:fontFamily="@font/dm_sans_bold"
-                            android:text="@string/obstetrician_gynaecologist"
-                            android:textSize="15sp"
-                            android:textColor="@color/black"
-                            app:chipCornerRadius="7dp"
-                            app:chipBackgroundColor="@color/grey" />
-
-                        <com.google.android.material.chip.Chip
-                            android:id="@+id/orthopedic_chip"
-                            android:layout_width="wrap_content"
-                            android:layout_height="60dp"
-                            android:fontFamily="@font/dm_sans_bold"
-                            android:text="@string/orthopaedic_surgeon"
-                            android:textSize="15sp"
-                            android:textColor="@color/black"
-                            app:chipCornerRadius="7dp"
-                            app:chipBackgroundColor="@color/grey" />
-
-                        <com.google.android.material.chip.Chip
-                            android:id="@+id/psychiatrist_chip"
-                            android:layout_width="wrap_content"
-                            android:layout_height="60dp"
-                            android:fontFamily="@font/dm_sans_bold"
-                            android:text="@string/psychiatrists"
-                            android:textSize="15sp"
-                            android:textColor="@color/black"
-                            app:chipCornerRadius="7dp"
-                            app:chipBackgroundColor="@color/grey" />
-
-                        <com.google.android.material.chip.Chip
-                            android:id="@+id/radiologist_chip"
-                            android:layout_width="wrap_content"
-                            android:layout_height="60dp"
-                            android:fontFamily="@font/dm_sans_bold"
-                            android:text="@string/radiologist"
-                            android:textSize="15sp"
-                            android:textColor="@color/black"
-                            app:chipCornerRadius="7dp"
-                            app:chipBackgroundColor="@color/grey" />
-
-                        <com.google.android.material.chip.Chip
-                            android:id="@+id/pulmonologist_chip"
-                            android:layout_width="wrap_content"
-                            android:layout_height="60dp"
-                            android:fontFamily="@font/dm_sans_bold"
-                            android:text="@string/pulmonologist"
-                            android:textSize="15sp"
-                            android:textColor="@color/black"
-                            app:chipCornerRadius="7dp"
-                            app:chipBackgroundColor="@color/grey" />
-
-                        <com.google.android.material.chip.Chip
-                            android:id="@+id/neurologist_chip"
-                            android:layout_width="wrap_content"
-                            android:layout_height="60dp"
-                            android:fontFamily="@font/dm_sans_bold"
-                            android:text="@string/neurologist"
-                            android:textSize="15sp"
-                            android:textColor="@color/black"
-                            app:chipCornerRadius="7dp"
-                            app:chipBackgroundColor="@color/grey" />
-
-                        <com.google.android.material.chip.Chip
-                            android:id="@+id/allergist_chip"
-                            android:layout_width="wrap_content"
-                            android:layout_height="60dp"
-                            android:fontFamily="@font/dm_sans_bold"
-                            android:text="@string/allergists"
-                            android:textSize="15sp"
-                            android:textColor="@color/black"
-                            app:chipCornerRadius="7dp"
-                            app:chipBackgroundColor="@color/grey" />
-
-                        <com.google.android.material.chip.Chip
-                            android:id="@+id/gastroenterologist_chip"
-                            android:layout_width="wrap_content"
-                            android:layout_height="60dp"
-                            android:fontFamily="@font/dm_sans_bold"
-                            android:text="@string/gastroenterologists"
-                            android:textSize="15sp"
-                            android:textColor="@color/black"
-                            app:chipCornerRadius="7dp"
-                            app:chipBackgroundColor="@color/grey" />
-
-
-                    </com.google.android.material.chip.ChipGroup>
-
-                </HorizontalScrollView>
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearLayout6"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="20dp"
-            android:gravity="left"
-            android:orientation="vertical"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
-
-            <TextView
-                android:id="@+id/doctors_Text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/dm_sans_bold"
-                android:text="@string/doctors"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                tools:layout_editor_absoluteX="32dp"
-                tools:layout_editor_absoluteY="186dp" />
-
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/doctorList"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:clipToPadding="false"
-                    android:nestedScrollingEnabled="false"
-                    android:paddingBottom="60dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:listitem="@layout/doctor_card_layout" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

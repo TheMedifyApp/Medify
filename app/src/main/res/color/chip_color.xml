@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="@color/edit_field_color" android:state_selected="false" />
+    <item android:color="#D3DADF" android:state_selected="true" />
+</selector>

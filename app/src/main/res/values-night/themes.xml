@@ -11,7 +11,8 @@
         <item name="colorSecondaryVariant">@color/teal_200</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">@color/dull_blue</item>
+        <item name="FilterChips">@style/FilterChipStyle</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/background_gradient_start_color</item>
         <!-- Customize your theme here. -->
     </style>
   <!-- Base application theme. -->
