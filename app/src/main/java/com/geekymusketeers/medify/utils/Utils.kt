@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.view.View
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat.startActivity
@@ -42,6 +43,32 @@ object Utils {
         return phone.trim().lowercase().toStringWithoutSpaces().contains(
             searchedData.lowercase().trim().toStringWithoutSpaces()
         )
+    }
+
+    fun View.setNonDuplicateClickListener(listener: View.OnClickListener?) {
+        setOnClickListener {
+            var lastClickTime: Long = 0
+            if (getTag(R.id.TAG_CLICK_TIME) != null) {
+                lastClickTime = getTag(R.id.TAG_CLICK_TIME) as Long
+            }
+            val curTime = System.currentTimeMillis()
+            if (curTime - lastClickTime > context.resources.getInteger(R.integer.duplicate_click_delay)) {
+                listener?.onClick(this)
+                setTag(R.id.TAG_CLICK_TIME, curTime)
+            }
+        }
+    }
+
+    fun View.show() {
+        visibility = View.VISIBLE
+    }
+
+    fun View.hide() {
+        visibility = View.GONE
+    }
+
+    fun View.invisible() {
+        visibility = View.INVISIBLE
     }
 
     fun String.toStringWithoutSpaces() : String {
