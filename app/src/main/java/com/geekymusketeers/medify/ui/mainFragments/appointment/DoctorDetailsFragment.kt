@@ -11,6 +11,7 @@ import com.geekymusketeers.medify.R
 import com.geekymusketeers.medify.databinding.FragmentDoctorDetailsBinding
 import com.geekymusketeers.medify.model.User
 import com.geekymusketeers.medify.utils.Logger
+import com.geekymusketeers.medify.utils.Utils
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
@@ -19,7 +20,7 @@ class DoctorDetailsFragment : Fragment() {
     private var _binding: FragmentDoctorDetailsBinding? = null
     private val binding get() = _binding!!
     private val args: DoctorDetailsFragmentArgs by navArgs()
-    private var doctor : User = User()
+    private var doctor: User = User()
 
 
     override fun onCreateView(
@@ -58,6 +59,12 @@ class DoctorDetailsFragment : Fragment() {
                         doctor
                     )
                 findNavController().navigate(action)
+            }
+            emailId.setOnClickListener {
+                Utils.sendEmailToGmail(activity = requireActivity(), subject = "", body = "", email = doctor.Email)
+            }
+            phoneCall.setOnClickListener {
+                Utils.makePhoneCall(activity = requireActivity(), phone = doctor.Phone)
             }
         }
         Logger.debugLog("Doctor is ${doctor}")

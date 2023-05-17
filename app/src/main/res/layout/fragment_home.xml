@@ -65,7 +65,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="RtlSymmetry" />
+            tools:ignore="RtlSymmetry"
+            android:autofillHints="search" />
 
 
         <HorizontalScrollView
@@ -92,13 +93,14 @@
 
         </HorizontalScrollView>
 
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginTop="10dp"
             android:gravity="center"
+            android:layout_marginBottom="60dp"
             android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView">
 
             <androidx.recyclerview.widget.RecyclerView

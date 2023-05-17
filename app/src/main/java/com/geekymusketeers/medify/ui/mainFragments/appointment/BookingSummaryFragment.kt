@@ -1,5 +1,6 @@
 package com.geekymusketeers.medify.ui.mainFragments.appointment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -28,6 +29,7 @@ class BookingSummaryFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("SetTextI18n")
     private fun initView() {
         binding.apply {
             summaryDoctorName.text = "Doctor's Name: ${args.summary.doctorName}"
