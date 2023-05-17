@@ -15,7 +15,7 @@
         android:layout_marginTop="20dp"
         android:fontFamily="@font/dm_sans_bold"
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textSize="22sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:text="@string/settings" />
@@ -43,11 +43,12 @@
         app:layout_constraintTop_toBottomOf="@+id/configure_changes_text">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/doctorList"
+            android:id="@+id/settingsList"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:clipToPadding="false"
             android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="16dp"
             android:nestedScrollingEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

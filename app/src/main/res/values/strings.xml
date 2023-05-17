@@ -9,6 +9,7 @@
     <string name="dropdown_label">Disease Name:</string>
     <string name="disease_name">Disease Name</string>
     <string name="specialization"> Specialization</string>
+    <string name="mailTo">mailto:geekymusketeers2024@gmail.com?Subject=JusTap%20Android%20application%20feedback%20main&amp;Body=Your%20feedback%20is%20important%20to%20us%21</string>
     <string name="situation">Situation</string>
     <string name="cardiologist">Cardiologist</string>
     <string name="dentist">Dentist</string>
