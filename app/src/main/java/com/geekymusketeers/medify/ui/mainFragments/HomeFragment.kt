@@ -19,6 +19,7 @@ import com.geekymusketeers.medify.adapter.DoctorListAdapter
 import com.geekymusketeers.medify.databinding.FragmentHomeBinding
 import com.geekymusketeers.medify.databinding.RatingDisputeLayoutBinding
 import com.geekymusketeers.medify.model.User
+import com.geekymusketeers.medify.utils.Constants
 import com.geekymusketeers.medify.utils.DialogUtil.createBottomSheet
 import com.geekymusketeers.medify.utils.DialogUtil.setBottomSheet
 import com.google.firebase.auth.FirebaseAuth
@@ -277,7 +278,8 @@ class HomeFragment : Fragment() {
                     Utils.sendEmailToGmail(
                         requireActivity(),
                         subject,
-                        reason
+                        reason,
+                        Constants.supportEmail
                     )
                     bottomSheet.dismiss()
                 }

@@ -162,6 +162,16 @@
     <string name="want_to_book_an_appointment">Want to book an appointment?</string>
     <string name="book">Book</string>
     <string name="doctor_s_name_email_or_phone">Doctor\'s name, email or phone</string>
+    <string name="appointment_summary">Appointment Summary</string>
+    <string name="successfully_booked_an_appointment">Successfully booked an appointment</string>
+    <string name="back_to_home">Back to Home</string>
+    <string name="please_fill_the_form_below">Please fill the form below</string>
+    <string name="select_time">Select time</string>
+    <string name="select_date">Select Date</string>
+    <string name="confirm_your_appointment">Confirm your appointment</string>
+    <string name="note_you_must_enter_the_correct_information_entering_wrong_information_might_lead_to_cancellation_of_your_future_appointments">Note: You must enter the correct information. Entering wrong information might lead to cancellation of your future appointments.</string>
+    <string name="mon_fri_09_00_21_00">Mon - Fri 09:00 : 21:00</string>
+    <string name="working_hours">Working hours</string>
 
 
 </resources>
