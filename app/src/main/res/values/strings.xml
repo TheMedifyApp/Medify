@@ -172,6 +172,8 @@
     <string name="note_you_must_enter_the_correct_information_entering_wrong_information_might_lead_to_cancellation_of_your_future_appointments">Note: You must enter the correct information. Entering wrong information might lead to cancellation of your future appointments.</string>
     <string name="mon_fri_09_00_21_00">Mon - Fri 09:00 : 21:00</string>
     <string name="working_hours">Working hours</string>
+    <string name="your_appointment">Your Appointment</string>
+    <string name="patient_queue">Patient Queue</string>
 
 
 </resources>
