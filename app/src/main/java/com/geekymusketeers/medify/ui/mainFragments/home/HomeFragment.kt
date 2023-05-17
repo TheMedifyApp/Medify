@@ -1,4 +1,4 @@
-package com.geekymusketeers.medify.ui.mainFragments
+package com.geekymusketeers.medify.ui.mainFragments.home
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
@@ -11,11 +11,13 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.geekymusketeers.medify.R
 import com.geekymusketeers.medify.adapter.DoctorListAdapter
+import com.geekymusketeers.medify.base.ViewModelFactory
 import com.geekymusketeers.medify.databinding.FragmentHomeBinding
 import com.geekymusketeers.medify.databinding.RatingDisputeLayoutBinding
 import com.geekymusketeers.medify.model.User
@@ -37,6 +39,7 @@ import com.google.firebase.database.ValueEventListener
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
+    private val homeViewModel by viewModels<HomeViewModel> { ViewModelFactory() }
     private val binding get() = _binding!!
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var db: DatabaseReference
@@ -54,14 +57,6 @@ class HomeFragment : Fragment() {
     private var userPrescription: String = "false"
     private var totalRatings = 5f
 
-    //Searched doctor's data
-    private lateinit var searchedName: String
-    private lateinit var searchedEmail: String
-    private lateinit var searchedPhone: String
-    private lateinit var searchedData: String
-    private lateinit var searchedUID: String
-    private lateinit var searchedType: String
-
     private lateinit var sharedPreference: SharedPreferences
 
 
@@ -76,29 +71,19 @@ class HomeFragment : Fragment() {
         db = FirebaseDatabase.getInstance().reference
         sharedPreference = requireActivity().getSharedPreferences("UserData", Context.MODE_PRIVATE)
 
-        handleDoctorSearch()
+        initObservers()
+
+        binding.doctorData.addTextChangedListener {
+            homeViewModel.searchDoctor(it.toString())
+        }
+
         handleChipFilter()
         getDataFromSharedPreference()
         getUserRatings()
         getDoctorsList()
 
         doctorListAdapter = DoctorListAdapter {
-            if (userPrescription != "false") {
-
-                if (totalRatings < 3.0f) {
-                    showAlertDialog()
-                    return@DoctorListAdapter
-                }
-
-                val action = HomeFragmentDirections.actionHomeToDoctorDetailsFragment(it)
-                findNavController().navigate(action)
-            } else {
-                Toast.makeText(
-                    requireActivity(),
-                    getString(R.string.please_upload_your_prescription_in_settings_tab),
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
+            onDoctorCardClick(it)
         }
 
         recyclerView = binding.doctorList
@@ -106,6 +91,31 @@ class HomeFragment : Fragment() {
         recyclerView.adapter = doctorListAdapter
 
         return binding.root
+    }
+
+    private fun onDoctorCardClick(doctor: User) {
+        if (userPrescription != "false") {
+            if (totalRatings < 3.0f) {
+                showAlertDialog()
+                return
+            }
+            val action = HomeFragmentDirections.actionHomeToDoctorDetailsFragment(doctor)
+            findNavController().navigate(action)
+        } else {
+            Toast.makeText(
+                requireActivity(),
+                getString(R.string.please_upload_your_prescription_in_settings_tab),
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
+
+    private fun initObservers() {
+        homeViewModel.run {
+            searchedDoctor.observe(viewLifecycleOwner) {
+                handleDoctorSearch(it)
+            }
+        }
     }
 
     private fun handleChipFilter() {
@@ -152,27 +162,27 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun handleDoctorSearch() {
-        binding.doctorData.addTextChangedListener {
-            searchedData = binding.doctorData.text.toString().trim()
-            if (searchedData.isNotEmpty()) {
-                val searchedList = doctorList.filter {
-                    containsName(it.Name!!) || containsEmail(it.Email!!) || containsPhone(it.Phone!!)
-                }
-                doctorListAdapter.addItems(searchedList)
-            } else {
-                doctorListAdapter.addItems(doctorList)
+    private fun handleDoctorSearch(searchedData: String) {
+        if (searchedData.isNotEmpty()) {
+            val searchedList = doctorList.filter {
+                containsName(it.Name!!, searchedData) || containsEmail(
+                    it.Email!!,
+                    searchedData
+                ) || containsPhone(it.Phone!!, searchedData)
             }
+            doctorListAdapter.addItems(searchedList)
+        } else {
+            doctorListAdapter.addItems(doctorList)
         }
     }
 
-    private fun containsPhone(phone: String): Boolean {
+    private fun containsPhone(phone: String, searchedData: String): Boolean {
         return phone.trim().lowercase().toStringWithoutSpaces().contains(
             searchedData.lowercase().trim().toStringWithoutSpaces()
         )
     }
 
-    private fun containsEmail(email: String): Boolean {
+    private fun containsEmail(email: String, searchedData: String): Boolean {
         return email.trim().lowercase().toStringWithoutSpaces()
             .contains(
                 searchedData.lowercase().trim().toStringWithoutSpaces(),
@@ -180,7 +190,7 @@ class HomeFragment : Fragment() {
             )
     }
 
-    private fun containsName(name: String): Boolean {
+    private fun containsName(name: String, searchedData: String): Boolean {
         return name.trim().lowercase().toStringWithoutSpaces()
             .contains(searchedData.lowercase().trim().toStringWithoutSpaces(), true)
     }
