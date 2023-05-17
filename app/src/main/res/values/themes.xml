@@ -5,7 +5,7 @@
         <item name="colorPrimary">@color/green_shade_dark_2</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>
-        <item name="colorAccent">#1DCDFE</item>
+        <item name="colorAccent">@color/green_shade_accent</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">#30E0DF</item>
@@ -43,6 +43,7 @@
         <item name="android:shadowColor">@android:color/transparent</item>
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/black</item>
+<!--        <item name="android:elevation">0dp</item>-->
 <!--        <item name="android:padding">5dp</item>-->
 <!--        <item name="textEndPadding">30dp</item>-->
 <!--        <item name="textStartPadding">32dp</item>-->

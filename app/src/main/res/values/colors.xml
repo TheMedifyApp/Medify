@@ -21,6 +21,7 @@
     <color name="green_shade_medium_0">#84B9BE</color>
     <color name="green_shade_light_1">#D6EAE9</color>
     <color name="green_shade_light_0">#F4FAF9</color>
+    <color name="green_shade_accent">#00C2B7</color>
     <color name="background_gradient_end_color">#2C909A</color>
     <color name="background_gradient_start_color">#206971</color>
 

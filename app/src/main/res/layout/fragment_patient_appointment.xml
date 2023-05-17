@@ -12,10 +12,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/dm_sans_bold"
         android:textColor="@color/white"
-        android:textSize="22sp"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:text="@string/your_appointment" />
@@ -45,8 +45,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="105dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/white_bar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -63,21 +63,21 @@
             app:layout_constraintStart_toStartOf="parent"
             tools:listitem="@layout/appointment_list" />
 
-<!--        <TextView-->
-<!--            android:id="@+id/selectDateTextToHide"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginBottom="292dp"-->
-<!--            android:fontFamily="@font/dm_sans_bold"-->
-<!--            android:text="Select Date First"-->
-<!--            android:textColor="@color/light_blue"-->
-<!--            android:textSize="30dp"-->
-<!--            android:visibility="gone"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="@+id/appointment_recyclerview"-->
-<!--            app:layout_constraintVertical_bias="1.0" />-->
+        <!--        <TextView-->
+        <!--            android:id="@+id/selectDateTextToHide"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginBottom="292dp"-->
+        <!--            android:fontFamily="@font/dm_sans_bold"-->
+        <!--            android:text="Select Date First"-->
+        <!--            android:textColor="@color/light_blue"-->
+        <!--            android:textSize="30dp"-->
+        <!--            android:visibility="gone"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toTopOf="@+id/appointment_recyclerview"-->
+        <!--            app:layout_constraintVertical_bias="1.0" />-->
 
         <TextView
             android:id="@+id/noAppointmentText"
@@ -86,9 +86,9 @@
             android:layout_marginBottom="292dp"
             android:fontFamily="@font/dm_sans_bold"
             android:text="No Appointment Found"
-            android:visibility="gone"
             android:textColor="@color/green_shade_dark_1"
             android:textSize="30dp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -101,13 +101,13 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="100dp"
-            android:text="My patients"
-            android:textSize="16sp"
-            android:fontFamily="@font/dm_sans"
             android:background="@drawable/primary_button"
+            android:fontFamily="@font/dm_sans"
             android:paddingHorizontal="20dp"
+            android:text="My patients"
             android:textAllCaps="false"
             android:textColor="@color/white"
+            android:textSize="16sp"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
