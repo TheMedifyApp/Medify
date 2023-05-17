@@ -17,6 +17,7 @@ import com.geekymusketeers.medify.model.DoctorAppointment
 import com.geekymusketeers.medify.ui.adapter.DoctorsAppointmentAdapter
 import com.geekymusketeers.medify.databinding.ActivityDoctorPatientBinding
 import com.geekymusketeers.medify.databinding.RatingModalBinding
+import com.geekymusketeers.medify.utils.DateTimeExtension
 import com.geekymusketeers.medify.utils.DialogUtil.createBottomSheet
 import com.geekymusketeers.medify.utils.DialogUtil.setBottomSheet
 import com.geekymusketeers.medify.utils.Logger
@@ -34,6 +35,7 @@ class DoctorPatient : AppCompatActivity() {
     private lateinit var appointmentAdapter: DoctorsAppointmentAdapter
     private lateinit var appointmentList: ArrayList<DoctorAppointment>
     private lateinit var sharedPreference: SharedPreferences
+    lateinit var currentDate: String
 
     @SuppressLint("SimpleDateFormat")
     @RequiresApi(Build.VERSION_CODES.O)
@@ -68,7 +70,6 @@ class DoctorPatient : AppCompatActivity() {
         binding.selectDate.setOnClickListener {
             // Initiation date picker with
             // MaterialDatePicker.Builder.datePicker()
-            // and building it using build()
             val datePicker = MaterialDatePicker.Builder.datePicker().build()
             datePicker.show(supportFragmentManager, "DatePicker")
 
@@ -76,26 +77,21 @@ class DoctorPatient : AppCompatActivity() {
             datePicker.addOnPositiveButtonClickListener {
                 // formatting date in dd-mm-yyyy format.
                 val dateFormatter = SimpleDateFormat("dd-MM-yyyy")
-                val tempDate = dateFormatter.format(Date(it)).toString().trim()
+                val tempDate = dateFormatter.format(Date(it))
+                updatePatientList(tempDate,userID)
                 date.setLength(0)
                 date.append(tempDate)
-                appointmentList.clear()
-                binding.selectDate.text = date
-                getData(date.toString(), userID)
 
-            }
 
-            // Setting up the event for when cancelled is clicked
-            datePicker.addOnNegativeButtonClickListener {
-                Toast.makeText(this, "${datePicker.headerText} is cancelled", Toast.LENGTH_LONG)
-                    .show()
-            }
-
-            // Setting up the event for when back button is pressed
-            datePicker.addOnCancelListener {
-                Toast.makeText(this, "Date Picker Cancelled", Toast.LENGTH_LONG).show()
             }
         }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun updatePatientList(selectedDate: String, userID: String) {
+        appointmentList.clear()
+        getData(selectedDate, userID)
+        binding.selectedDateText.text = "Selected Date: $selectedDate"
     }
 
     @SuppressLint("SimpleDateFormat")
@@ -170,6 +166,7 @@ class DoctorPatient : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     private fun getData(date: String, userID: String) {
 
+        appointmentList.clear()
         dbref = FirebaseDatabase.getInstance().getReference("Doctor").child(userID)
             .child("DoctorsAppointments").child(date).orderByChild("TotalPoints")
 
@@ -190,6 +187,11 @@ class DoctorPatient : AppCompatActivity() {
                         Log.d("User", appointmentList.toString())
                     }
                     Recyclerview.adapter = appointmentAdapter
+                    appointmentAdapter.notifyDataSetChanged()
+                    binding.noAppointmentText.visibility = View.GONE
+                } else {
+                    appointmentAdapter.notifyDataSetChanged()
+                    binding.noAppointmentText.visibility = View.VISIBLE
                 }
             }
 
@@ -201,6 +203,13 @@ class DoctorPatient : AppCompatActivity() {
             }
         })
 
-        binding.selectDateTextToHide.visibility = View.GONE
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    override fun onStart() {
+        super.onStart()
+        currentDate = DateTimeExtension.getCurrentDateAppointments()
+//        getData(currentDate, userID = intent.getStringExtra("uid").toString())
+        binding.selectedDateText.text = "Selected Date: $currentDate"
     }
 }

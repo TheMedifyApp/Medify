@@ -1,11 +1,14 @@
 package com.geekymusketeers.medify.utils
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat.startActivity
 import com.geekymusketeers.medify.R
 import com.geekymusketeers.medify.ui.HomeActivity
@@ -14,12 +17,12 @@ import com.geekymusketeers.medify.ui.HomeActivity
 object Utils {
 
     @SuppressLint("QueryPermissionsNeeded", "IntentReset")
-    fun sendEmailToGmail(activity: Activity, subject: String, body: String) {
+    fun sendEmailToGmail(activity: Activity, subject: String?, body: String?, email: String?) {
         val emailIntent = Intent().apply {
             action = Intent.ACTION_SEND
             data = Uri.parse("mailto:")
             type = "text/plain"
-            putExtra(Intent.EXTRA_EMAIL, arrayOf(Constants.supportEmail))
+            putExtra(Intent.EXTRA_EMAIL, arrayOf(email))
             putExtra(Intent.EXTRA_SUBJECT, subject)
             putExtra(Intent.EXTRA_TEXT, body)
         }
@@ -33,6 +36,12 @@ object Utils {
                 Toast.LENGTH_SHORT
             ).show()
         }
+    }
+
+    fun containsLetters(phone: String, searchedData: String): Boolean {
+        return phone.trim().lowercase().toStringWithoutSpaces().contains(
+            searchedData.lowercase().trim().toStringWithoutSpaces()
+        )
     }
 
     fun String.toStringWithoutSpaces() : String {
@@ -270,5 +279,23 @@ object Utils {
         }
 
         return mapOfDiseasesList
+    }
+
+    fun makePhoneCall(activity: Activity, phone: String?) {
+        val intent = Intent(Intent.ACTION_CALL)
+        intent.data = Uri.parse("tel:$phone")
+        if (ActivityCompat.checkSelfPermission(
+                activity,
+                Manifest.permission.CALL_PHONE
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                activity,
+                arrayOf(Manifest.permission.CALL_PHONE),
+                1
+            )
+            return
+        }
+        activity.startActivity(intent)
     }
 }

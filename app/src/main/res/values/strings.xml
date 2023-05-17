@@ -9,6 +9,7 @@
     <string name="dropdown_label">Disease Name:</string>
     <string name="disease_name">Disease Name</string>
     <string name="specialization"> Specialization</string>
+    <string name="mailTo">mailto:geekymusketeers2024@gmail.com?Subject=JusTap%20Android%20application%20feedback%20main&amp;Body=Your%20feedback%20is%20important%20to%20us%21</string>
     <string name="situation">Situation</string>
     <string name="cardiologist">Cardiologist</string>
     <string name="dentist">Dentist</string>
@@ -162,6 +163,36 @@
     <string name="want_to_book_an_appointment">Want to book an appointment?</string>
     <string name="book">Book</string>
     <string name="doctor_s_name_email_or_phone">Doctor\'s name, email or phone</string>
+    <string name="appointment_summary">Appointment Summary</string>
+    <string name="successfully_booked_an_appointment">Successfully booked an appointment</string>
+    <string name="back_to_home">Back to Home</string>
+    <string name="please_fill_the_form_below">Please fill the form below</string>
+    <string name="select_time">Select time</string>
+    <string name="select_date">Select Date</string>
+    <string name="confirm_your_appointment">Confirm your appointment</string>
+    <string name="note_you_must_enter_the_correct_information_entering_wrong_information_might_lead_to_cancellation_of_your_future_appointments">Note: You must enter the correct information. Entering wrong information might lead to cancellation of your future appointments.</string>
+    <string name="mon_fri_09_00_21_00">Mon - Fri 09:00 : 21:00</string>
+    <string name="working_hours">Working hours</string>
+    <string name="your_appointment">Your Appointment</string>
+    <string name="patient_queue">Patient Queue</string>
+    <string name="settings">Settings</string>
+    <string name="configure_changes">Configure changes</string>
+    <string name="blood_pressure">Blood Pressure</string>
+    <string name="add_data">Add data</string>
+    <string name="biological_reference_80_120">Biological Reference: 80-120</string>
+    <string name="min_loading_max_loading">Min: Loading, Max: Loading</string>
+    <string name="sugar_fasting">Sugar Fasting</string>
+    <string name="biological_reference_70_100">Biological Reference: 70-100</string>
+    <string name="sugar_pp">Sugar PP</string>
+    <string name="cholesterol">Cholesterol</string>
+    <string name="rate_user">Rate user</string>
+    <string name="submit_rating">Submit Rating</string>
+    <string name="dispute_a_rating">Dispute a Rating</string>
+    <string name="report_any_unfair_or_inaccurate_ratings_you_have_received_we_will_review_your_report_and_take_appropriate_action">Report any unfair or inaccurate ratings you have received. We will review your report and take appropriate action.</string>
+    <string name="enter_your_title_here">Enter your title here *</string>
+    <string name="reason_for_dispute">Reason for Dispute *</string>
+    <string name="submit_dispute">Submit Dispute</string>
+    <string name="enter_your_comment_here_optional">Enter your comment here (optional)</string>
 
 
 </resources>

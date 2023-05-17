@@ -1,14 +1,163 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
     tools:context=".ui.mainFragments.appointment.BookingSummaryFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/nameDisplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/dm_sans_bold"
+        android:text="@string/appointment_summary"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/want_to_book_an_appointment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/dm_sans_medium"
+        android:text="@string/successfully_booked_an_appointment"
+        android:textColor="@color/green_shade_light_2"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/nameDisplay"
+        app:layout_constraintTop_toBottomOf="@+id/nameDisplay" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/white_bar"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/want_to_book_an_appointment">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieAnimationView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/bookingdone" />
+
+        <TextView
+            android:id="@+id/summary_doctor_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="3dp"
+            android:fontFamily="@font/dm_sans"
+            android:paddingHorizontal="50dp"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            tools:text="Doctor's Name" />
+
+        <TextView
+            android:id="@+id/summary_doctor_speciality"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="3dp"
+            android:fontFamily="@font/dm_sans"
+            android:paddingHorizontal="50dp"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            tools:text="Speciality" />
+
+        <TextView
+            android:id="@+id/summary_doctor_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="3dp"
+            android:fontFamily="@font/dm_sans"
+            android:paddingHorizontal="50dp"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            tools:text="Doctor's Email" />
+
+        <TextView
+            android:id="@+id/summary_doctor_phone_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="3dp"
+            android:fontFamily="@font/dm_sans"
+            android:paddingHorizontal="50dp"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            tools:text="Doctor's Phone Number" />
+
+        <TextView
+            android:id="@+id/summary_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="3dp"
+            android:fontFamily="@font/dm_sans"
+            android:paddingHorizontal="50dp"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            tools:text="Appointment Date" />
+
+        <TextView
+            android:id="@+id/summary_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="3dp"
+            android:fontFamily="@font/dm_sans"
+            android:paddingHorizontal="50dp"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            tools:text="Appointment Time: " />
+
+        <TextView
+            android:id="@+id/summary_disease"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="3dp"
+            android:fontFamily="@font/dm_sans"
+            android:paddingHorizontal="50dp"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            tools:text="Disease: " />
+
+        <TextView
+            android:id="@+id/summary_pain_level"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="3dp"
+            android:fontFamily="@font/dm_sans"
+            android:paddingHorizontal="50dp"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            tools:text="Pain Level: " />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_home"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/primary_button"
+            android:fontFamily="@font/dm_sans_medium"
+            android:text="@string/back_to_home"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,6 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="grey">#DAD6D6</color>
+    <color name="dark_grey">#656464</color>
+    <color name="red">#FF3C3C</color>
     <color name="card_shadow_color">#B0D6FF</color>
     <color name="accounts_card_color">#F9FCFF</color>
     <color name="light_green">#03DAC5</color>
@@ -20,6 +22,7 @@
     <color name="green_shade_medium_0">#84B9BE</color>
     <color name="green_shade_light_1">#D6EAE9</color>
     <color name="green_shade_light_0">#F4FAF9</color>
+    <color name="green_shade_accent">#00C2B7</color>
     <color name="background_gradient_end_color">#2C909A</color>
     <color name="background_gradient_start_color">#206971</color>
 

@@ -8,14 +8,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.geekymusketeers.medify.R
 import com.geekymusketeers.medify.databinding.FragmentAppointmentBookingBinding
+import com.geekymusketeers.medify.model.Summary
 import com.geekymusketeers.medify.utils.Logger
 import com.geekymusketeers.medify.utils.Utils
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointForward
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.firebase.database.FirebaseDatabase
+import com.ncorti.slidetoact.SlideToActView
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -49,17 +53,17 @@ class AppointmentBookingFragment : Fragment() {
         }
 
         // Booking Appointment
-//        binding.btnFinalbook.onSlideCompleteListener =
-//            object : SlideToActView.OnSlideCompleteListener {
-//                override fun onSlideComplete(view: SlideToActView) {
-//                    bookAppointment(doctorType)
-//                }
-//            }
-//
-//
-//        val items: List<String> = mapOfDiseasesList[doctorType]!!
-//        val adapter = ArrayAdapter(requireContext(), R.layout.list_items, items)
-//        binding.diseaseDropdown.setAdapter(adapter)
+        binding.btnFinalbook.onSlideCompleteListener =
+            object : SlideToActView.OnSlideCompleteListener {
+                override fun onSlideComplete(view: SlideToActView) {
+                    bookAppointment(args.doctorDetails.Specialist)
+                }
+            }
+
+
+        val items: List<String> = mapOfDiseasesList[args.doctorDetails.Specialist]!!
+        val adapter = ArrayAdapter(requireContext(), R.layout.list_items, items)
+        binding.diseaseDropdown.setAdapter(adapter)
 
         // Situation List
         val situationItems = listOf("Severe Pain", "Mild Pain", "No Pain")
@@ -83,10 +87,10 @@ class AppointmentBookingFragment : Fragment() {
 
         val totalPoint: Int
 
-//        val doctorUid = args.appointmentDetails.UID
-//        val doctorName = args.appointmentDetails.Name
-//        val doctorEmail = args.appointmentDetails.Email
-//        val doctorPhone = args.appointmentDetails.Phone
+        val doctorUid = args.doctorDetails.UID
+        val doctorName = args.doctorDetails.Name
+        val doctorEmail = args.doctorDetails.Email
+        val doctorPhone = args.doctorDetails.Phone
 
         val userName = sharedPreference.getString("name", "").toString()
         val userPhone = sharedPreference.getString("phone", "").toString()
@@ -122,53 +126,57 @@ class AppointmentBookingFragment : Fragment() {
         appointmentD["PatientCondition"] = situation
         appointmentD["Prescription"] = userPrescription
         appointmentD["TotalPoints"] = totalPoint.toString().trim()
-//        appointmentD["DoctorUID"] = doctorUid.toString()
-//        appointmentD["PatientID"] = userid
+        appointmentD["DoctorUID"] = doctorUid.toString()
+        appointmentD["PatientID"] = userid
+
+        val appointmentP: HashMap<String, String> = HashMap() //define empty hashmap
+        appointmentP["DoctorUID"] = doctorUid.toString()
+        appointmentP["DoctorName"] = doctorName.toString()
+        appointmentP["DoctorPhone"] = doctorPhone.toString()
+        appointmentP["Date"] = date
+        appointmentP["Time"] = time
+        appointmentP["Disease"] = disease
+        appointmentP["PatientCondition"] = situation
+        appointmentP["Prescription"] = userPrescription
+        appointmentP["PatientID"] = userid
+
+        val appointmentDB_Doctor =
+            FirebaseDatabase.getInstance().getReference("Doctor").child(doctorUid!!)
+                .child("DoctorsAppointments").child(date)
+        appointmentDB_Doctor.child(userid).setValue(appointmentD)
+
+        val appointmentDB_User_Doctor =
+            FirebaseDatabase.getInstance().getReference("Users").child(doctorUid)
+                .child("DoctorsAppointments").child(date)
+        appointmentDB_User_Doctor.child(userid).setValue(appointmentD)
+
+        val appointmentDB_Patient =
+            FirebaseDatabase.getInstance().getReference("Users").child(userid)
+                .child("PatientsAppointments").child(date)
+        appointmentDB_Patient.child(doctorUid).setValue(appointmentP)
 //
-//        val appointmentP: HashMap<String, String> = HashMap() //define empty hashmap
-//        appointmentP["DoctorUID"] = doctorUid.toString()
-//        appointmentP["DoctorName"] = doctorName.toString()
-//        appointmentP["DoctorPhone"] = doctorPhone.toString()
-//        appointmentP["Date"] = date
-//        appointmentP["Time"] = time
-//        appointmentP["Disease"] = disease
-//        appointmentP["PatientCondition"] = situation
-//        appointmentP["Prescription"] = userPrescription
-//        appointmentP["PatientID"] = userid
-//
-//        val appointmentDB_Doctor =
-//            FirebaseDatabase.getInstance().getReference("Doctor").child(doctorUid!!)
-//                .child("DoctorsAppointments").child(date)
-//        appointmentDB_Doctor.child(userid).setValue(appointmentD)
-//
-//        val appointmentDB_User_Doctor =
-//            FirebaseDatabase.getInstance().getReference("Users").child(doctorUid)
-//                .child("DoctorsAppointments").child(date)
-//        appointmentDB_User_Doctor.child(userid).setValue(appointmentD)
-//
-//        val appointmentDB_Patient =
-//            FirebaseDatabase.getInstance().getReference("Users").child(userid)
-//                .child("PatientsAppointments").child(date)
-//        appointmentDB_Patient.child(doctorUid).setValue(appointmentP)
-//
-//        val summary = Summary(
-//            doctorName = doctorName.toString(),
-//            doctorSpeciality = doctorType.toString(),
-//            doctorEmail = doctorEmail.toString(),
-//            doctorPhone = doctorPhone.toString(),
-//            appointmentDate = date,
-//            appointmentTime = time,
-//            disease = disease,
-//            painLevel = situation,
-//            totalPoint = totalPoint
-//        )
+        val summary = Summary(
+            doctorName = doctorName.toString(),
+            doctorSpeciality = doctorType.toString(),
+            doctorEmail = doctorEmail.toString(),
+            doctorPhone = doctorPhone.toString(),
+            appointmentDate = date,
+            appointmentTime = time,
+            disease = disease,
+            painLevel = situation,
+            totalPoint = totalPoint
+        )
 
 //        val intent = Intent(this@AppointmentBooking, BookingDoneActivity::class.java)
 //        intent.putExtra("summary", summary)
 //        startActivity(intent)
 //        finish()
 
-//        val actions = Appointme
+        val actions =
+            AppointmentBookingFragmentDirections.actionAppointmentBookingFragmentToBookingSummaryFragment(
+                summary
+            )
+        findNavController().navigate(actions)
     }
 
     private fun handleDatePicker() {

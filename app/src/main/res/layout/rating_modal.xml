@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/dm_sans_medium"
-            android:text="Rate user"
+            android:text="@string/rate_user"
             android:textColor="@color/black"
             android:textSize="20sp" />
 
@@ -30,7 +30,7 @@
             android:layout_marginTop="10dp"
             android:numStars="5"
             android:progressBackgroundTint="@android:color/darker_gray"
-            android:progressTint="@color/light_blue"
+            android:progressTint="@color/green_shade_dark_1"
             android:rating="1"
             android:stepSize="0.5" />
 
@@ -44,18 +44,25 @@
             android:paddingHorizontal="16dp"
             android:layout_marginTop="8dp"
             android:paddingTop="8dp"
+            android:hint="@string/enter_your_comment_here_optional"
+            android:textColorHint="@color/dark_grey"
             android:fontFamily="@font/dm_sans"
             android:textSize="16sp"
             android:layout_marginHorizontal="20dp"
             android:textColor="@color/black" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/submit_rating"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="20dp"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            android:fontFamily="@font/dm_sans_medium"
             android:background="@drawable/primary_button"
-            android:text="Submit" />
+            android:text="@string/submit_rating" />
 
     </LinearLayout>
 
