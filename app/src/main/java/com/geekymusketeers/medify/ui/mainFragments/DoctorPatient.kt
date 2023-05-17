@@ -68,7 +68,6 @@ class DoctorPatient : AppCompatActivity() {
         binding.selectDate.setOnClickListener {
             // Initiation date picker with
             // MaterialDatePicker.Builder.datePicker()
-            // and building it using build()
             val datePicker = MaterialDatePicker.Builder.datePicker().build()
             datePicker.show(supportFragmentManager, "DatePicker")
 
