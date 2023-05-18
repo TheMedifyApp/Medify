@@ -193,6 +193,12 @@
     <string name="reason_for_dispute">Reason for Dispute *</string>
     <string name="submit_dispute">Submit Dispute</string>
     <string name="enter_your_comment_here_optional">Enter your comment here (optional)</string>
+    <string name="create_or_edit_your_upi">Create or edit your UPI</string>
+    <string name="upi_manager">UPI Manager</string>
+    <string name="add_prescription">Add Prescription</string>
+    <string name="select_prescription">Select Prescription</string>
+    <string name="upload_file">Upload file</string>
+    <string name="file_title">File title</string>
 
 
 </resources>
