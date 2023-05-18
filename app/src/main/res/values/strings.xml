@@ -200,6 +200,8 @@
     <string name="sign_up">Sign Up</string>
     <string name="don_t_have_an_account">Don\'t have an account?</string>
     <string name="logged_in">Logged in</string>
+    <string name="send_reset_mail">Send Reset Mail</string>
+    <string name="enter_your_registered_email_address">Enter your registered email address</string>
 
 
 </resources>

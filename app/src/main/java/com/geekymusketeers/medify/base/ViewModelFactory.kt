@@ -3,6 +3,7 @@ package com.geekymusketeers.medify.base
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.CreationExtras
+import com.geekymusketeers.medify.ui.auth.forgotPassword.ForgotPasswordViewModel
 import com.geekymusketeers.medify.ui.auth.signInScreen.SignInViewModel
 import com.geekymusketeers.medify.ui.auth.signUpScreen.SecondScreen.SignUpSecondViewModel
 import com.geekymusketeers.medify.ui.auth.signUpScreen.firstScreen.SignUpFirstViewModel
@@ -26,6 +27,9 @@ class ViewModelFactory : ViewModelProvider.Factory {
                 }
                 isAssignableFrom(SignInViewModel::class.java) -> {
                     SignInViewModel(application)
+                }
+                isAssignableFrom(ForgotPasswordViewModel::class.java) -> {
+                    ForgotPasswordViewModel(application)
                 }
 //                isAssignableFrom(FirebaseViewModel::class.java) -> {
 //                    FirebaseViewModel()
