@@ -117,21 +117,27 @@ class Validator {
          * @param updateUI - if true and if data is EditText, the function sets error to the EditText or its TextInputLayout
          * @return - true if the password is valid as per the password policy.
          */
+
+
+        fun String.isStrongPassword(): Boolean {
+            val regex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$".toRegex()
+            return matches(regex)
+        }
+
         fun String.isValidPassword(): Boolean {
             val str = getText(this)
-            var valid = true
 
             // Password policy check
             // Password should be minimum minimum 8 characters long
             if (str.length < 8) {
-                valid = false
+                return false
             }
             // Password should contain at least one number
             var exp = ".*[0-9].*"
             var pattern = Pattern.compile(exp, Pattern.CASE_INSENSITIVE)
             var matcher = pattern.matcher(str)
             if (!matcher.matches()) {
-                valid = false
+                return false
             }
 
             // Password should contain at least one capital letter
@@ -139,7 +145,7 @@ class Validator {
             pattern = Pattern.compile(exp)
             matcher = pattern.matcher(str)
             if (!matcher.matches()) {
-                valid = false
+                return false
             }
 
             // Password should contain at least one small letter
@@ -147,7 +153,7 @@ class Validator {
             pattern = Pattern.compile(exp)
             matcher = pattern.matcher(str)
             if (!matcher.matches()) {
-                valid = false
+                return false
             }
 
             // Password should contain at least one special character
@@ -156,10 +162,10 @@ class Validator {
             pattern = Pattern.compile(exp)
             matcher = pattern.matcher(str)
             if (!matcher.matches()) {
-                valid = false
+                return false
             }
 
-            return valid
+            return true
         }
 
         /**

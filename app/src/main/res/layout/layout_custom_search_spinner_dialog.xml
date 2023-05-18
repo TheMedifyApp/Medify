@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="30dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -34,6 +35,7 @@
             android:background="@drawable/editfield"
             android:paddingHorizontal="10dp"
             android:singleLine="true"
+            android:textColorHint="@color/dark_grey"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spinner_search_bar_header"

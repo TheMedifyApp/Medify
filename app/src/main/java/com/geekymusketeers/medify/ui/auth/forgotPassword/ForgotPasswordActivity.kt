@@ -1,11 +1,11 @@
-package com.geekymusketeers.medify.ui.auth
+package com.geekymusketeers.medify.ui.auth.forgotPassword
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.geekymusketeers.medify.R
 import com.geekymusketeers.medify.databinding.ActivityForgotPasswordBinding
+import com.geekymusketeers.medify.ui.auth.signInScreen.SignIn_Activity
 import com.google.firebase.auth.FirebaseAuth
 
 class ForgotPasswordActivity : AppCompatActivity() {

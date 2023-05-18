@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.geekymusketeers.medify.R
 import com.geekymusketeers.medify.ui.prescription.AddPrescriptionActivity
 import com.geekymusketeers.medify.ui.profile.ProfileActivity
-import com.geekymusketeers.medify.ui.auth.SignIn_Activity
+import com.geekymusketeers.medify.ui.auth.signInScreen.SignIn_Activity
 import com.geekymusketeers.medify.databinding.FragmentSettingsBinding
 import com.geekymusketeers.medify.model.SettingsItem
 import com.geekymusketeers.medify.model.SettingsState

@@ -1,4 +1,4 @@
-package com.geekymusketeers.medify.ui.auth
+package com.geekymusketeers.medify.ui.auth.signInScreen
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -12,6 +12,8 @@ import android.widget.Toast
 import com.geekymusketeers.medify.ui.HomeActivity
 import com.geekymusketeers.medify.R
 import com.geekymusketeers.medify.databinding.ActivitySignInBinding
+import com.geekymusketeers.medify.ui.auth.forgotPassword.ForgotPasswordActivity
+import com.geekymusketeers.medify.ui.auth.signUpScreen.firstScreen.SignUpFirstScreen
 import com.geekymusketeers.medify.utils.Encryption
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -69,7 +71,7 @@ class SignIn_Activity : AppCompatActivity() {
         }
 
         binding.toSignUp.setOnClickListener {
-            val intent = Intent(this, SignUp_First::class.java)
+            val intent = Intent(this, SignUpFirstScreen::class.java)
             startActivity(intent)
         }
 

@@ -1,4 +1,4 @@
-package com.geekymusketeers.medify.ui.auth
+package com.geekymusketeers.medify.ui.auth.signUpScreen.SecondScreen
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -16,6 +16,7 @@ import com.geekymusketeers.medify.R
 import com.geekymusketeers.medify.model.User
 import com.geekymusketeers.medify.utils.RemoveCountryCode
 import com.geekymusketeers.medify.databinding.ActivitySignUpBinding
+import com.geekymusketeers.medify.ui.auth.signInScreen.SignIn_Activity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase

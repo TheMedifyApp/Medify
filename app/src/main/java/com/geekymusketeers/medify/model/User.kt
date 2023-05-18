@@ -18,6 +18,37 @@ data class User(
     var ratings: List<Rating> = emptyList()
 ) : Parcelable
 
+enum class Gender(gender: String) {
+    MALE("male"),
+    FEMALE("female"),
+    OTHER("other");
+
+    companion object {
+        fun getGenderState(gender: Gender) : String {
+            return when (gender) {
+                MALE -> "male"
+                FEMALE -> "female"
+                else -> "other"
+            }
+        }
+
+        fun fromItemString(gender: String): String {
+            return when (gender) {
+                "male" -> "male"
+                "female" -> "female"
+                else -> "other"
+            }
+        }
+    }
+    fun toItemString(): String {
+        return when (this) {
+            MALE -> "male"
+            FEMALE -> "female"
+            else -> "other"
+        }
+    }
+}
+
 @Parcelize
 data class Rating(
     val patientId: String,

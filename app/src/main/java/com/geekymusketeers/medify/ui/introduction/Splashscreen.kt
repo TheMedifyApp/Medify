@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.geekymusketeers.medify.ui.HomeActivity
 import com.geekymusketeers.medify.R
-import com.geekymusketeers.medify.ui.auth.SignIn_Activity
+import com.geekymusketeers.medify.ui.auth.signInScreen.SignIn_Activity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.CoroutineScope

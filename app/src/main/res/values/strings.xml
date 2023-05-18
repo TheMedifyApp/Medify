@@ -159,6 +159,19 @@
     <string name="enter_your_comment_here_optional">Enter your comment here (optional)</string>
     <string name="optional">Optional</string>
     <string name="search">Search</string>
+    <string name="register">Register</string>
+    <string name="create_a_new_account">Create a new account</string>
+    <string name="password_hint">***************</string>
+    <string name="phone_number_hint">+91 9876543210</string>
+    <string name="email_hint">johndoe123@gmail.com</string>
+    <string name="email">Email</string>
+    <string name="name_hint">John Doe</string>
+    <string name="name">Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="password">Password</string>
+    <string name="next_step">Next Step</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="login_text">Login</string>
 
 
 </resources>

@@ -128,7 +128,10 @@ class CustomSpinnerEditText @JvmOverloads constructor(
     }
 
     private fun setHint(hint: String?) {
-        binding.spinnerTextView.hint = hint
+        binding.spinnerTextView.apply {
+            this.hint = hint
+            setTextColor(ResourcesCompat.getColor(resources, R.color.hint_color, null))
+        }
     }
 
     private fun setInput(text: String?) {
