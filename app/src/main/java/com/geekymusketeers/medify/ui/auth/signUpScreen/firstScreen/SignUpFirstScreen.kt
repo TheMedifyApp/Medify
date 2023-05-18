@@ -13,7 +13,7 @@ import com.geekymusketeers.medify.R
 import com.geekymusketeers.medify.base.ViewModelFactory
 import com.geekymusketeers.medify.databinding.ActivitySignUpFirstBinding
 import com.geekymusketeers.medify.model.Gender
-import com.geekymusketeers.medify.ui.auth.signUpScreen.SecondScreen.SignUp_Activity
+import com.geekymusketeers.medify.ui.auth.signUpScreen.SecondScreen.SignUpSecondScreen
 import com.geekymusketeers.medify.utils.Constants
 import com.geekymusketeers.medify.utils.DateTimeExtension
 import com.google.android.material.datepicker.CalendarConstraints
@@ -149,7 +149,7 @@ class SignUpFirstScreen : AppCompatActivity() {
                 }
             }
             userLiveData.observe(this@SignUpFirstScreen) {
-                val intent = Intent(this@SignUpFirstScreen, SignUp_Activity::class.java)
+                val intent = Intent(this@SignUpFirstScreen, SignUpSecondScreen::class.java)
                 intent.putExtra("user", it)
                 intent.putExtra("password", userPassword.value.toString())
                 startActivity(intent)

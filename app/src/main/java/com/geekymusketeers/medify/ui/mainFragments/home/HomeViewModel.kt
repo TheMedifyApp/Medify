@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.geekymusketeers.medify.base.BaseViewModel
+import com.geekymusketeers.medify.model.Doctor
 import com.geekymusketeers.medify.model.User
 import com.geekymusketeers.medify.utils.Logger
 import com.google.firebase.database.DataSnapshot
@@ -42,6 +43,7 @@ class HomeViewModel(application: Application) : BaseViewModel(application) {
                 sharedPreference.getString("isDoctor", "Not fount").toString()
             val userPrescription =
                 sharedPreference.getString("prescription", "false").toString()
+//            val userIsDoctor = Doctor.isDoctor(sharedPreference.getString("isDoctor", "false"))
 
             user.postValue(
                 User(
@@ -51,7 +53,7 @@ class HomeViewModel(application: Application) : BaseViewModel(application) {
                     Phone = userPhone,
                     Specialist = userPosition,
                     Prescription = userPrescription,
-                    isDoctor = userPosition
+                    isDoctor = Doctor.IS_DOCTOR
                 )
             )
         }
@@ -89,7 +91,7 @@ class HomeViewModel(application: Application) : BaseViewModel(application) {
     }
 
     private fun addAsDoctor(it: DataSnapshot) {
-        val age: String = it.child("age").value.toString().trim()
+        val age: Int = it.child("age").value.toString().trim().toInt()
         val doctor: String = it.child("doctor").value.toString().trim()
         val email: String = it.child("email").value.toString().trim()
         val phone: String = it.child("phone").value.toString().trim()
@@ -102,7 +104,7 @@ class HomeViewModel(application: Application) : BaseViewModel(application) {
             Email = email,
             Phone = phone,
             UID = uid,
-            isDoctor = doctor,
+            isDoctor = Doctor.IS_DOCTOR,
             Age = age,
             Specialist = specialist
         )

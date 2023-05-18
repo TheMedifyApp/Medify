@@ -60,7 +60,7 @@
             android:exported="true"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
-            android:name=".ui.auth.signUpScreen.SecondScreen.SignUp_Activity"
+            android:name=".ui.auth.signUpScreen.SecondScreen.SignUpSecondScreen"
             android:exported="true"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity

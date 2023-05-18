@@ -172,6 +172,17 @@
     <string name="next_step">Next Step</string>
     <string name="already_have_an_account">Already have an account?</string>
     <string name="login_text">Login</string>
+    <string name="profile_details">Profile Details</string>
+    <string name="address_hint">42/C Devanagari, Bangalore - XXXXXX</string>
+    <string name="is_doctor_hint">No, I\'m not a Doctor</string>
+    <string name="are_you_a_doctor">Are you a Doctor?</string>
+    <string name="address">Address</string>
+    <string name="specialization_hint">Eg. Cardiologist</string>
+    <string name="create_account">Create Account</string>
+    <string name="your_database_was_created">Your Database was Created</string>
+    <string name="account_creation_failed">Account Creation Failed</string>
+    <string name="database_creation_failed">Database Creation Failed</string>
+    <string name="account_created_successfully">Account Created Successfully</string>
 
 
 </resources>

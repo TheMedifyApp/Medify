@@ -90,6 +90,8 @@ class SignUpFirstViewModel(application: Application) : BaseViewModel(application
             Name = name,
             Email = email,
             Phone = phone,
+            Age = age,
+            Gender = gender
         )
         userLiveData.postValue(user)
     }
