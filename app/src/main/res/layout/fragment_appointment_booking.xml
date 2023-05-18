@@ -45,29 +45,55 @@
         app:layout_constraintTop_toBottomOf="@+id/want_to_book_an_appointment">
 
 
-        <EditText
-            android:id="@+id/select_date"
+<!--        <EditText-->
+<!--            android:id="@+id/select_date"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginHorizontal="20dp"-->
+<!--            android:layout_marginTop="25dp"-->
+<!--            android:background="@drawable/editfield"-->
+<!--            android:drawableEnd="@drawable/date"-->
+<!--            android:ems="10"-->
+<!--            android:focusable="false"-->
+<!--            android:fontFamily="@font/dm_sans"-->
+<!--            android:hint="@string/select_date"-->
+<!--            android:padding="15dp"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textColorHint="@android:color/darker_gray"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintHorizontal_bias="0.491"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/select_date_box"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
             android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="25dp"
-            android:background="@drawable/editfield"
-            android:drawableEnd="@drawable/date"
-            android:ems="10"
-            android:focusable="false"
-            android:fontFamily="@font/dm_sans"
             android:hint="@string/select_date"
-            android:padding="15dp"
-            android:textColor="@color/black"
             android:textColorHint="@android:color/darker_gray"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.491"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:boxBackgroundColor="#F5F8FA"
+            app:layout_constraintEnd_toEndOf="@+id/email_box"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/email_box"
+            app:layout_constraintTop_toBottomOf="@+id/email_box">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/select_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/dm_sans"
+                android:drawableEnd="@drawable/date"
+                android:inputType="date"
+                android:textColor="@color/black" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/menu_time"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
@@ -91,7 +117,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/menu_disease"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
@@ -115,7 +141,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/menu_situation"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"

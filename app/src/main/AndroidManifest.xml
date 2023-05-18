@@ -41,9 +41,6 @@
             android:name=".ui.mainFragments.DoctorPatient"
             android:exported="true" />
         <activity
-            android:name=".ui.mainFragments.appointment.BookingDoneActivity"
-            android:exported="true" />
-        <activity
             android:name=".ui.mainFragments.UPImanager"
             android:exported="true" />
         <activity
@@ -55,9 +52,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.mainFragments.appointment.AppointmentBooking"
-            android:exported="true" />
         <activity
             android:name=".ui.auth.signUpScreen.firstScreen.SignUpFirstScreen"
             android:exported="true" />
