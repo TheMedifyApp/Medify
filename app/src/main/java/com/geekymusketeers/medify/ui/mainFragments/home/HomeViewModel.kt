@@ -54,11 +54,12 @@ class HomeViewModel(application: Application) : BaseViewModel(application) {
     }
 
     fun getDoctorList() {
-        FirebaseDatabase.getInstance().reference.child(Constants.Doctor)
+        FirebaseDatabase.getInstance().reference.child(Constants.Users)
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     snapshot.children.forEach {
                         it?.let {
+                            if (it.child("doctor").value.toString().trim() == "Doctor")
                             addAsDoctor(it)
                         }
                     }
@@ -68,6 +69,20 @@ class HomeViewModel(application: Application) : BaseViewModel(application) {
                     Logger.debugLog("Error in getting doctors list: ${error.message}")
                 }
             })
+//        FirebaseDatabase.getInstance().reference.child(Constants.Doctor)
+//            .addValueEventListener(object : ValueEventListener {
+//                override fun onDataChange(snapshot: DataSnapshot) {
+//                    snapshot.children.forEach {
+//                        it?.let {
+//                            addAsDoctor(it)
+//                        }
+//                    }
+//                }
+//
+//                override fun onCancelled(error: DatabaseError) {
+//                    Logger.debugLog("Error in getting doctors list: ${error.message}")
+//                }
+//            })
         doctorList.value = doctorListTemp
         doctorListTemp = mutableListOf()
     }

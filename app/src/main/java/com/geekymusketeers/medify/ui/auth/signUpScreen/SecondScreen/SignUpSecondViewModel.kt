@@ -65,7 +65,7 @@ class SignUpSecondViewModel(application: Application) : BaseViewModel(applicatio
             errorLiveData.postValue("Please check your details (User is null)")
             return@launch
         }
-
+        userLiveData.value!!.UID = userID
         FirebaseDatabase.getInstance().reference.child(Constants.Users).child(userID)
             .setValue(userLiveData.value).addOnSuccessListener {
                 FirebaseAuth.getInstance().signOut()
