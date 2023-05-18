@@ -199,6 +199,8 @@
     <string name="select_prescription">Select Prescription</string>
     <string name="upload_file">Upload file</string>
     <string name="file_title">File title</string>
+    <string name="edit_profile">Edit profile</string>
+    <string name="profile">Profile</string>
 
 
 </resources>

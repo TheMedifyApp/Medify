@@ -15,7 +15,7 @@
         android:layout_marginTop="30dp"
         android:fontFamily="@font/dm_sans_bold"
         android:textColor="@color/white"
-        android:textSize="30sp"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:text="@string/add_prescription" />

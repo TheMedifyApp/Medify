@@ -4,212 +4,163 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/gradient_background"
     tools:context=".ui.profile.EditProfileActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        style="@style/TextAppearance.AppCompat.Headline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/dm_sans_bold"
+        android:text="Edit Profile"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/white_bar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline_left"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="25dp" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline_right"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_end="25dp" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="359dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_marginTop="90dp"
+            android:background="@drawable/cardview_background"
+            android:backgroundTint="@color/white"
+            android:elevation="5dp"
+            app:cardCornerRadius="10dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.004"
-            app:layout_constraintStart_toStartOf="@+id/guideline_left"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/textView"
-                style="@style/TextAppearance.AppCompat.Headline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/dm_sans_bold"
-                android:text="Edit Profile"
-                android:textColor="@color/white"
-                android:textSize="35sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="140dp"
-            android:background="@drawable/white_bar"
-            android:orientation="vertical"
-
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="50dp"
-                android:background="@drawable/cardview_background"
-                android:backgroundTint="@color/white"
-                android:elevation="5dp"
-                app:cardCornerRadius="10dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.503"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.246">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="16dp">
-
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="25dp"
-                        android:fontFamily="@font/dm_sans_bold"
-                        android:text="Update your details"
-                        android:textColor="@color/light_blue"
-                        android:textSize="22sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <EditText
-                        android:id="@+id/editName"
-                        android:layout_width="330dp"
-                        android:layout_height="50dp"
-                        android:layout_marginBottom="20dp"
-                        android:background="@drawable/stroked"
-                        android:ems="10"
-                        android:fontFamily="@font/dm_sans"
-                        android:hint="Name"
-                        android:inputType="text"
-                        android:paddingLeft="20dp"
-                        android:textColorHint="@android:color/darker_gray"
-                        app:layout_constraintBottom_toTopOf="@+id/pass_box"
-                        app:layout_constraintEnd_toEndOf="@+id/pass_box"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="@+id/pass_box" />
-
-                    <EditText
-                        android:id="@+id/editAge"
-                        android:layout_width="330dp"
-                        android:layout_height="50dp"
-                        android:layout_marginBottom="20dp"
-                        android:background="@drawable/stroked"
-                        android:ems="10"
-                        android:fontFamily="@font/dm_sans"
-                        android:hint="Age"
-                        android:inputType="numberDecimal"
-                        android:paddingLeft="20dp"
-                        android:textColorHint="@android:color/darker_gray"
-                        app:layout_constraintBottom_toTopOf="@+id/pass_box"
-                        app:layout_constraintEnd_toEndOf="@+id/pass_box"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="@+id/pass_box" />
-
-                    <EditText
-                        android:id="@+id/editPhoneNumber"
-                        android:layout_width="330dp"
-                        android:layout_height="50dp"
-                        android:layout_marginBottom="20dp"
-                        android:background="@drawable/stroked"
-                        android:ems="10"
-                        android:fontFamily="@font/dm_sans"
-                        android:hint="Phone number"
-                        android:inputType="number"
-                        android:paddingLeft="20dp"
-                        android:textColorHint="@android:color/darker_gray"
-                        app:layout_constraintBottom_toTopOf="@+id/pass_box"
-                        app:layout_constraintEnd_toEndOf="@+id/pass_box"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="@+id/pass_box" />
-
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <Button
-                android:id="@+id/updatepres"
-                android:layout_width="330dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/primary_button"
-                android:fontFamily="@font/dm_sans"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:gravity="center"
-                android:rotation="0"
-                android:rotationX="0"
-                android:rotationY="0"
-                android:text="Update your Prescription"
-                android:textAlignment="center"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:visibility="visible"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.493"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardView"
-                tools:visibility="visible" />
+                android:orientation="vertical"
+                android:padding="16dp">
 
-            <Button
-                android:id="@+id/confirm"
-                android:layout_width="330dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="7dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/primary_button"
-                android:fontFamily="@font/dm_sans"
-                android:gravity="center"
-                android:rotation="0"
-                android:rotationX="0"
-                android:rotationY="0"
-                android:text="Confirm changes"
-                android:textAlignment="center"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:visibility="visible"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.493"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardView"
-                tools:visibility="visible" />
 
-        </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="25dp"
+                    android:fontFamily="@font/dm_sans_bold"
+                    android:text="Update your details"
+                    android:textColor="@color/green_shade_dark_1"
+                    android:textSize="22sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/editName"
+                    android:layout_width="330dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/stroked"
+                    android:ems="10"
+                    android:fontFamily="@font/dm_sans"
+                    android:hint="Name"
+                    android:inputType="text"
+                    android:paddingLeft="20dp"
+                    android:textColorHint="@android:color/darker_gray"
+                    app:layout_constraintBottom_toTopOf="@+id/pass_box"
+                    app:layout_constraintEnd_toEndOf="@+id/pass_box"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/pass_box" />
+
+                <EditText
+                    android:id="@+id/editAge"
+                    android:layout_width="330dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/stroked"
+                    android:ems="10"
+                    android:fontFamily="@font/dm_sans"
+                    android:hint="Age"
+                    android:inputType="numberDecimal"
+                    android:paddingLeft="20dp"
+                    android:textColorHint="@android:color/darker_gray"
+                    app:layout_constraintBottom_toTopOf="@+id/pass_box"
+                    app:layout_constraintEnd_toEndOf="@+id/pass_box"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/pass_box" />
+
+                <EditText
+                    android:id="@+id/editPhoneNumber"
+                    android:layout_width="330dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/stroked"
+                    android:ems="10"
+                    android:fontFamily="@font/dm_sans"
+                    android:hint="Phone number"
+                    android:inputType="number"
+                    android:paddingLeft="20dp"
+                    android:textColorHint="@android:color/darker_gray"
+                    app:layout_constraintBottom_toTopOf="@+id/pass_box"
+                    app:layout_constraintEnd_toEndOf="@+id/pass_box"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/pass_box" />
+
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/updatepres"
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/primary_button"
+            android:fontFamily="@font/dm_sans"
+            android:gravity="center"
+            android:layout_marginTop="30dp"
+            android:text="Update your Prescription"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="@+id/cardView"
+            app:layout_constraintStart_toStartOf="@+id/cardView"
+            app:layout_constraintTop_toBottomOf="@+id/cardView"
+            tools:visibility="visible" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/confirm"
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/primary_button"
+            android:fontFamily="@font/dm_sans"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            android:text="Confirm changes"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="@+id/updatepres"
+            app:layout_constraintStart_toStartOf="@+id/updatepres"
+            app:layout_constraintTop_toBottomOf="@+id/updatepres"
+            tools:visibility="visible" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
