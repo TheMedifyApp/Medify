@@ -7,6 +7,7 @@ import com.geekymusketeers.medify.base.BaseViewModel
 import com.geekymusketeers.medify.model.Doctor
 import com.geekymusketeers.medify.model.User
 import com.geekymusketeers.medify.ui.auth.signUpScreen.SignUpRepository
+import com.geekymusketeers.medify.utils.Constants
 import com.geekymusketeers.medify.utils.Logger
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -16,11 +17,11 @@ import kotlinx.coroutines.launch
 
 class SignUpSecondViewModel(application: Application) : BaseViewModel(application) {
 
-    var userPassword = MutableLiveData<String>()
-    var userLiveData = MutableLiveData<User>()
-    var userAddress = MutableLiveData<String>()
+    private var userPassword = MutableLiveData<String>()
+    private var userLiveData = MutableLiveData<User>()
+    private var userAddress = MutableLiveData<String>()
     var userIsDoctor = MutableLiveData<Doctor>()
-    var userSpecialization = MutableLiveData<String>()
+    private var userSpecialization = MutableLiveData<String>()
     var userAccountCreationLiveData = MutableLiveData<Boolean>()
     var userDataBaseUpdate = MutableLiveData<Boolean>()
     var errorLiveData = MutableLiveData<String>()
@@ -53,7 +54,7 @@ class SignUpSecondViewModel(application: Application) : BaseViewModel(applicatio
     fun createUserDatabase() = viewModelScope.launch(Dispatchers.IO) {
         val firebaseAuth = FirebaseAuth.getInstance()
         val userId = firebaseAuth.currentUser?.uid.toString()
-        FirebaseDatabase.getInstance().reference.child("Users").child(userId)
+        FirebaseDatabase.getInstance().reference.child(Constants.Users).child(userId)
             .setValue(userLiveData.value).addOnSuccessListener {
                 Logger.debugLog("User database created successfully")
                 userDataBaseUpdate.value = true
@@ -62,7 +63,7 @@ class SignUpSecondViewModel(application: Application) : BaseViewModel(applicatio
                 userDataBaseUpdate.value = false
             }
         if (userLiveData.value!!.isDoctor == Doctor.IS_DOCTOR) {
-            FirebaseDatabase.getInstance().reference.child("Doctor").child(userId)
+            FirebaseDatabase.getInstance().reference.child(Constants.Doctor).child(userId)
                 .setValue(userLiveData.value).addOnSuccessListener {
                     Logger.debugLog("Doctor database created successfully")
                 }.addOnFailureListener {

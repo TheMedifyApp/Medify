@@ -183,6 +183,9 @@
     <string name="account_creation_failed">Account Creation Failed</string>
     <string name="database_creation_failed">Database Creation Failed</string>
     <string name="account_created_successfully">Account Created Successfully</string>
+    <string name="please_select_your_profession">Please select your profession</string>
+    <string name="please_select_your_specialization">Please select your Specialization</string>
+    <string name="please_select_your_gender">Please select your gender</string>
 
 
 </resources>

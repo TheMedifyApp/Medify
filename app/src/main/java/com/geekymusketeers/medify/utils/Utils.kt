@@ -12,6 +12,9 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat.startActivity
 import com.geekymusketeers.medify.R
+import com.geekymusketeers.medify.model.Doctor
+import com.geekymusketeers.medify.model.Gender
+import com.geekymusketeers.medify.model.Specialist
 import com.geekymusketeers.medify.ui.HomeActivity
 
 
@@ -77,6 +80,39 @@ object Utils {
             if (char.isDigit() or char.isLetter())
                 stringBuilder.append(char)
         return stringBuilder.toString()
+    }
+
+    fun getListOfSpecialization() : List<String> {
+        return listOf(
+            Specialist.ALLERGISTS.toItemString(),
+            Specialist.ENT_SPECIALIST.toItemString(),
+            Specialist.CARDIOLOGIST.toItemString(),
+            Specialist.DENTIST.toItemString(),
+            Specialist.ENT_SPECIALIST.toItemString(),
+            Specialist.OBSTETRICIAN_GYNAECOLOGIST.toItemString(),
+            Specialist.ORTHOPAEDIC_SURGEON.toItemString(),
+            Specialist.PSYCHIATRIST.toItemString(),
+            Specialist.RADIOLOGIST.toItemString(),
+            Specialist.PULMONOLOGIST.toItemString(),
+            Specialist.NEUROLOGIST.toItemString(),
+            Specialist.ALLERGISTS.toItemString(),
+            Specialist.GASTROENTEROLOGISTS.toItemString(),
+        )
+    }
+
+    fun getListOfIsDoctor() : List<String> {
+        return listOf(
+            Doctor.IS_DOCTOR.toItemString(),
+            Doctor.IS_NOT_DOCTOR.toItemString()
+        )
+    }
+
+    fun getListOfGenders() : List<String> {
+        return listOf(
+            Gender.MALE.toItemString(),
+            Gender.FEMALE.toItemString(),
+            Gender.OTHER.toItemString()
+        )
     }
 
     fun setDiseaseValues(context: Context): HashMap<String, Float> {

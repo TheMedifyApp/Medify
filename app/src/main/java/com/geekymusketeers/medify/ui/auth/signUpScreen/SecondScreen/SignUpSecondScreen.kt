@@ -12,8 +12,10 @@ import com.geekymusketeers.medify.base.ViewModelFactory
 import com.geekymusketeers.medify.model.User
 import com.geekymusketeers.medify.databinding.ActivitySignUpBinding
 import com.geekymusketeers.medify.model.Doctor
-import com.geekymusketeers.medify.model.Specialist
 import com.geekymusketeers.medify.ui.auth.signInScreen.SignIn_Activity
+import com.geekymusketeers.medify.utils.Constants
+import com.geekymusketeers.medify.utils.Utils.getListOfIsDoctor
+import com.geekymusketeers.medify.utils.Utils.getListOfSpecialization
 
 class SignUpSecondScreen : AppCompatActivity() {
 
@@ -34,8 +36,8 @@ class SignUpSecondScreen : AppCompatActivity() {
 
     @Suppress("DEPRECATION")
     private fun setUpIntentValue() {
-        val user = intent.getParcelableExtra<User>("user")
-        val password = intent.extras!!.getString("password")
+        val user = intent.getParcelableExtra<User>(Constants.user)
+        val password = intent.extras!!.getString(Constants.password)
         signUpSecondViewModel.apply {
             setUpUser(user!!)
             setUserPassword(password!!)
@@ -93,40 +95,22 @@ class SignUpSecondScreen : AppCompatActivity() {
                 }
             }
         }
-
     }
 
     private fun setUpIsDoctorDialog() {
-        val isDoctorItems = listOf(
-            Doctor.IS_DOCTOR.toItemString(),
-            Doctor.IS_NOT_DOCTOR.toItemString()
-        )
+        val isDoctorItems = getListOfIsDoctor()
         binding.isDoctorSpinnerEditText.setUpDialogData(
             isDoctorItems,
-            "Please select your profession",
+            getString(R.string.please_select_your_profession),
             null, null, null
         )
     }
 
     private fun setUpSpecializationDialog() {
-        val specializationItems = listOf(
-            Specialist.ALLERGISTS.toItemString(),
-            Specialist.ENT_SPECIALIST.toItemString(),
-            Specialist.CARDIOLOGIST.toItemString(),
-            Specialist.DENTIST.toItemString(),
-            Specialist.ENT_SPECIALIST.toItemString(),
-            Specialist.OBSTETRICIAN_GYNAECOLOGIST.toItemString(),
-            Specialist.ORTHOPAEDIC_SURGEON.toItemString(),
-            Specialist.PSYCHIATRIST.toItemString(),
-            Specialist.RADIOLOGIST.toItemString(),
-            Specialist.PULMONOLOGIST.toItemString(),
-            Specialist.NEUROLOGIST.toItemString(),
-            Specialist.ALLERGISTS.toItemString(),
-            Specialist.GASTROENTEROLOGISTS.toItemString(),
-        )
+        val specializationItems = getListOfSpecialization()
         binding.specializationSpinnerEditText.setUpDialogData(
             specializationItems,
-            "Please select your Specialization",
+            getString(R.string.please_select_your_specialization),
             null, null, null
         )
     }

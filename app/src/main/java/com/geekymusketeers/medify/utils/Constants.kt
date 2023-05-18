@@ -9,4 +9,8 @@ object Constants {
     const val supportEmail: String = "geekymusketeers2024@gmail.com"
     const val ratingThreshold: Float = 3.0F
     const val dateFormat: String = "dd-MM-yyyy"
+    const val user: String = "user"
+    const val password: String = "password"
+    const val Users: String = "Users"
+    const val Doctor: String = "Doctor"
 }

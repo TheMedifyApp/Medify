@@ -12,10 +12,10 @@ import androidx.core.content.res.ResourcesCompat
 import com.geekymusketeers.medify.R
 import com.geekymusketeers.medify.base.ViewModelFactory
 import com.geekymusketeers.medify.databinding.ActivitySignUpFirstBinding
-import com.geekymusketeers.medify.model.Gender
 import com.geekymusketeers.medify.ui.auth.signUpScreen.SecondScreen.SignUpSecondScreen
 import com.geekymusketeers.medify.utils.Constants
 import com.geekymusketeers.medify.utils.DateTimeExtension
+import com.geekymusketeers.medify.utils.Utils.getListOfGenders
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointBackward
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -150,8 +150,8 @@ class SignUpFirstScreen : AppCompatActivity() {
             }
             userLiveData.observe(this@SignUpFirstScreen) {
                 val intent = Intent(this@SignUpFirstScreen, SignUpSecondScreen::class.java)
-                intent.putExtra("user", it)
-                intent.putExtra("password", userPassword.value.toString())
+                intent.putExtra(Constants.user, it)
+                intent.putExtra(Constants.password, userPassword.value.toString())
                 startActivity(intent)
             }
         }
@@ -159,14 +159,10 @@ class SignUpFirstScreen : AppCompatActivity() {
     }
 
     private fun setUpGenderDialog() {
-        val genderItems = listOf(
-            Gender.MALE.toItemString(),
-            Gender.FEMALE.toItemString(),
-            Gender.OTHER.toItemString()
-        )
+        val genderItems = getListOfGenders()
         binding.genderEditText.setUpDialogData(
             genderItems,
-            "Please select your gender",
+            getString(R.string.please_select_your_gender),
             null, null, null
         )
     }
