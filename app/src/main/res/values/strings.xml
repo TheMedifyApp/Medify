@@ -193,6 +193,13 @@
     <string name="please_select_your_profession">Please select your profession</string>
     <string name="please_select_your_specialization">Please select your Specialization</string>
     <string name="please_select_your_gender">Please select your gender</string>
+    <string name="login">Login</string>
+    <string name="enter_your_details_to_get_started">Enter your details to get started</string>
+    <string name="sign_in">Sign In</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="logged_in">Logged in</string>
 
 
 </resources>

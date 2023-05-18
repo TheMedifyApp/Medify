@@ -6,13 +6,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.geekymusketeers.medify.base.BaseViewModel
-import com.geekymusketeers.medify.model.Doctor
 import com.geekymusketeers.medify.model.User
+import com.geekymusketeers.medify.utils.Constants
 import com.geekymusketeers.medify.utils.Logger
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -31,36 +32,16 @@ class HomeViewModel(application: Application) : BaseViewModel(application) {
 
     fun getDataFromSharedPreference(sharedPreference: SharedPreferences) =
         viewModelScope.launch(Dispatchers.IO) {
-
-            val userID = sharedPreference.getString("uid", "Not found").toString()
-            val userName =
-                sharedPreference.getString("name", "Not found").toString()
-            val userEmail =
-                sharedPreference.getString("email", "Not found").toString()
-            val userPhone =
-                sharedPreference.getString("phone", "Not found").toString()
-            val userPosition =
-                sharedPreference.getString("isDoctor", "Not fount").toString()
-            val userPrescription =
-                sharedPreference.getString("prescription", "false").toString()
-//            val userIsDoctor = Doctor.isDoctor(sharedPreference.getString("isDoctor", "false"))
-
-            user.postValue(
-                User(
-                    UID = userID,
-                    Name = userName,
-                    Email = userEmail,
-                    Phone = userPhone,
-                    Specialist = userPosition,
-                    Prescription = userPrescription,
-                    isDoctor = Doctor.IS_DOCTOR
-                )
-            )
+            val userFromSharedPreferencesAsGson =
+                sharedPreference.getString(Constants.SAVED_USER, null)
+            val gson = Gson()
+            val userObj: User = gson.fromJson(userFromSharedPreferencesAsGson, User::class.java)
+            user.postValue(userObj)
         }
 
 
     fun getTotalRating() = viewModelScope.launch(Dispatchers.IO) {
-        FirebaseDatabase.getInstance().reference.child("Users").child(user.value?.UID!!)
+        FirebaseDatabase.getInstance().reference.child(Constants.Users).child(user.value?.UID!!)
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.child("totalRating").exists()) {
@@ -73,7 +54,7 @@ class HomeViewModel(application: Application) : BaseViewModel(application) {
     }
 
     fun getDoctorList() {
-        FirebaseDatabase.getInstance().reference.child("Doctor")
+        FirebaseDatabase.getInstance().reference.child(Constants.Doctor)
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     snapshot.children.forEach {
@@ -82,6 +63,7 @@ class HomeViewModel(application: Application) : BaseViewModel(application) {
                         }
                     }
                 }
+
                 override fun onCancelled(error: DatabaseError) {
                     Logger.debugLog("Error in getting doctors list: ${error.message}")
                 }
@@ -91,25 +73,26 @@ class HomeViewModel(application: Application) : BaseViewModel(application) {
     }
 
     private fun addAsDoctor(it: DataSnapshot) {
-        val age: Int = it.child("age").value.toString().trim().toInt()
-        val doctor: String = it.child("doctor").value.toString().trim()
-        val email: String = it.child("email").value.toString().trim()
-        val phone: String = it.child("phone").value.toString().trim()
-        val name: String = it.child("name").value.toString().trim()
-        val specialist: String = it.child("specialist").value.toString().trim()
-        val uid: String = it.child("uid").value.toString().trim()
 
-        val doctorItem = User(
-            Name = name,
-            Email = email,
-            Phone = phone,
-            UID = uid,
-            isDoctor = Doctor.IS_DOCTOR,
-            Age = age,
-            Specialist = specialist
-        )
-        doctorListTemp.add(doctorItem)
-        doctorList.value = doctorListTemp
+        try {
+            val doctorItem = User(
+                UID = it.child("uid").value.toString().trim(),
+                Name = it.child("name").value.toString().trim(),
+                Age = it.child("age").value.toString().toInt(),
+                Email = it.child("email").value.toString().trim(),
+                Phone = it.child("phone").value.toString().trim(),
+                isDoctor = it.child("isDoctor").value.toString().trim(),
+                Specialist = it.child("specialist").value.toString().trim(),
+                Gender = it.child("gender").value.toString().trim(),
+                Address = it.child("address").value.toString().trim(),
+                Stats = it.child("stats").value.toString().trim(),
+                Prescription = it.child("prescription").value.toString().trim(),
+            )
+            doctorListTemp.add(doctorItem)
+            doctorList.value = doctorListTemp
+        } catch (e: Exception) {
+            Logger.debugLog("Error in adding doctor: ${e.message} and the snapshot is: $it")
+        }
     }
 
 

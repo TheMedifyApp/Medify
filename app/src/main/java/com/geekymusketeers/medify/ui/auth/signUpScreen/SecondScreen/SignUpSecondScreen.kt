@@ -12,8 +12,9 @@ import com.geekymusketeers.medify.base.ViewModelFactory
 import com.geekymusketeers.medify.model.User
 import com.geekymusketeers.medify.databinding.ActivitySignUpBinding
 import com.geekymusketeers.medify.model.Doctor
-import com.geekymusketeers.medify.ui.auth.signInScreen.SignIn_Activity
+import com.geekymusketeers.medify.ui.auth.signInScreen.SignInScreen
 import com.geekymusketeers.medify.utils.Constants
+import com.geekymusketeers.medify.utils.Logger
 import com.geekymusketeers.medify.utils.Utils.getListOfIsDoctor
 import com.geekymusketeers.medify.utils.Utils.getListOfSpecialization
 
@@ -50,7 +51,7 @@ class SignUpSecondScreen : AppCompatActivity() {
                 signUpSecondViewModel.setUserAddress(it)
             }
             isDoctorSpinnerEditText.getSelectedItemFromDialog {
-                signUpSecondViewModel.setUserIsDoctor(Doctor.isDoctor(it))
+                signUpSecondViewModel.setUserIsDoctor(Doctor.isDoctor(it).toItemString())
             }
             specializationSpinnerEditText.getSelectedItemFromDialog {
                 signUpSecondViewModel.setUserSpecialization(it)
@@ -66,12 +67,21 @@ class SignUpSecondScreen : AppCompatActivity() {
         setUpSpecializationDialog()
         signUpSecondViewModel.run {
             userIsDoctor.observe(this@SignUpSecondScreen) {
+                Logger.debugLog("isDoctor: $it with ${Doctor.IS_DOCTOR.toItemString()} and ${it == Doctor.IS_DOCTOR.toItemString()}")
                 binding.specializationSpinnerEditText.visibility =
-                    if (it == Doctor.IS_DOCTOR) View.VISIBLE else View.GONE
+                    if (it == Doctor.IS_DOCTOR.toItemString()) View.VISIBLE else View.GONE
             }
             userAccountCreationLiveData.observe(this@SignUpSecondScreen) {
                 if (it) {
-                    createUserDatabase()
+                    Toast.makeText(
+                        this@SignUpSecondScreen,
+                        getString(R.string.account_created_successfully),
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                    val intent = Intent(this@SignUpSecondScreen, SignInScreen::class.java)
+                    startActivity(intent)
+                    finishAffinity()
                 }
             }
             enableCreateAccountButtonLiveData.observe(this@SignUpSecondScreen) {
@@ -80,19 +90,6 @@ class SignUpSecondScreen : AppCompatActivity() {
             }
             errorLiveData.observe(this@SignUpSecondScreen) {
                 Toast.makeText(this@SignUpSecondScreen, it, Toast.LENGTH_SHORT).show()
-            }
-            userDataBaseUpdate.observe(this@SignUpSecondScreen) {
-                if (it) {
-                    Toast.makeText(
-                        this@SignUpSecondScreen,
-                        getString(R.string.account_created_successfully),
-                        Toast.LENGTH_SHORT
-                    ).show()
-
-                    val intent = Intent(this@SignUpSecondScreen, SignIn_Activity::class.java)
-                    startActivity(intent)
-                    finishAffinity()
-                }
             }
         }
     }

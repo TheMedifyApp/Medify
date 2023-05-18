@@ -102,7 +102,7 @@ class HomeFragment : Fragment() {
             user.observe(viewLifecycleOwner) {
                 Logger.debugLog("User Data: $it")
                 binding.nameDisplay.text =
-                    if (it.isDoctor == Doctor.IS_DOCTOR) "Dr. ${it.Name}" else it.Name
+                    if (it.isDoctor == Doctor.IS_DOCTOR.toItemString()) "Dr. ${it.Name}" else it.Name
                 getTotalRating()
             }
             doctorList.observe(viewLifecycleOwner) {

@@ -102,16 +102,16 @@ object Utils {
 
     fun getListOfIsDoctor() : List<String> {
         return listOf(
-            Doctor.IS_DOCTOR.toItemString(),
-            Doctor.IS_NOT_DOCTOR.toItemString()
+            Doctor.IS_DOCTOR.toDisplayString(),
+            Doctor.IS_NOT_DOCTOR.toDisplayString()
         )
     }
 
     fun getListOfGenders() : List<String> {
         return listOf(
-            Gender.MALE.toItemString(),
-            Gender.FEMALE.toItemString(),
-            Gender.OTHER.toItemString()
+            Gender.MALE.toDisplayString(),
+            Gender.FEMALE.toDisplayString(),
+            Gender.OTHER.toDisplayString()
         )
     }
 

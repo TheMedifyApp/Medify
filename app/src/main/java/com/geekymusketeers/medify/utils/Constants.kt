@@ -2,6 +2,7 @@ package com.geekymusketeers.medify.utils
 
 
 object Constants {
+    const val SAVED_USER: String = "saved_user"
     const val INVALID_NAME_MESSAGE: String = "Name is Invalid"
     const val INVALID_EMAIL_MESSAGE: String = "Email is Invalid"
     const val INVALID_PHONE_MESSAGE: String = "Phone number is Invalid"
@@ -13,4 +14,5 @@ object Constants {
     const val password: String = "password"
     const val Users: String = "Users"
     const val Doctor: String = "Doctor"
+    const val UserData: String = "UserData"
 }

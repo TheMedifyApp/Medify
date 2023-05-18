@@ -20,13 +20,18 @@ class SignUpSecondViewModel(application: Application) : BaseViewModel(applicatio
     private var userPassword = MutableLiveData<String>()
     private var userLiveData = MutableLiveData<User>()
     private var userAddress = MutableLiveData<String>()
-    var userIsDoctor = MutableLiveData<Doctor>()
+    var userIsDoctor = MutableLiveData<String>()
     private var userSpecialization = MutableLiveData<String>()
     var userAccountCreationLiveData = MutableLiveData<Boolean>()
     var userDataBaseUpdate = MutableLiveData<Boolean>()
     var errorLiveData = MutableLiveData<String>()
+    private val signInRepository: SignUpRepository = SignUpRepository()
 
     val enableCreateAccountButtonLiveData: MutableLiveData<Boolean> by lazy { MutableLiveData() }
+
+    init {
+        userIsDoctor.value = Doctor.IS_NOT_DOCTOR.toItemString()
+    }
 
     fun setUserPassword(password: String) {
         userPassword.value = password
@@ -39,16 +44,37 @@ class SignUpSecondViewModel(application: Application) : BaseViewModel(applicatio
     fun createAccount() = viewModelScope.launch(Dispatchers.IO) {
         val email = userLiveData.value!!.Email!!
         val password = userPassword.value!!
-        val userID = SignUpRepository().registerUser(email, password)?.uid
 
-        if (userID.isNullOrEmpty()) {
-            errorLiveData.postValue("Please check your details")
-            return@launch
-        } else {
-            userLiveData.value!!.UID = userID
-            userAccountCreationLiveData.postValue(true)
-            FirebaseAuth.getInstance().signOut()
+        val address = userAddress.value
+        val isDoctor = userIsDoctor.value
+        val specialization = if (isDoctor == Doctor.IS_DOCTOR.toItemString()) userSpecialization.value else null
+
+        userLiveData.value!!.apply {
+            Address = address
+            if (isDoctor != null) {
+                this.isDoctor = isDoctor
+            }
+            Specialist = specialization
         }
+
+        val userID = signInRepository.registerUser(email, password)?.uid
+
+        Logger.debugLog("User ID after account creation is $userID")
+
+        if (userID == null) {
+            errorLiveData.postValue("Please check your details (User is null)")
+            return@launch
+        }
+
+        FirebaseDatabase.getInstance().reference.child(Constants.Users).child(userID)
+            .setValue(userLiveData.value).addOnSuccessListener {
+                FirebaseAuth.getInstance().signOut()
+                Logger.debugLog("User database created successfully and userID is $userID")
+                userAccountCreationLiveData.value = true
+            }.addOnFailureListener {
+                Logger.debugLog("Exception caught at creating user database: ${it.message.toString()}")
+                errorLiveData.postValue(it.message.toString())
+            }
     }
 
     fun createUserDatabase() = viewModelScope.launch(Dispatchers.IO) {
@@ -56,13 +82,13 @@ class SignUpSecondViewModel(application: Application) : BaseViewModel(applicatio
         val userId = firebaseAuth.currentUser?.uid.toString()
         FirebaseDatabase.getInstance().reference.child(Constants.Users).child(userId)
             .setValue(userLiveData.value).addOnSuccessListener {
-                Logger.debugLog("User database created successfully")
+                Logger.debugLog("User database created successfully and userID is $userId")
                 userDataBaseUpdate.value = true
             }.addOnFailureListener {
                 Logger.debugLog("Exception caught at creating user database: ${it.message.toString()}")
                 userDataBaseUpdate.value = false
             }
-        if (userLiveData.value!!.isDoctor == Doctor.IS_DOCTOR) {
+        if (userLiveData.value!!.isDoctor == Doctor.IS_DOCTOR.toItemString()) {
             FirebaseDatabase.getInstance().reference.child(Constants.Doctor).child(userId)
                 .setValue(userLiveData.value).addOnSuccessListener {
                     Logger.debugLog("Doctor database created successfully")
@@ -77,7 +103,7 @@ class SignUpSecondViewModel(application: Application) : BaseViewModel(applicatio
         updateButtonState()
     }
 
-    fun setUserIsDoctor(isDoctor: Doctor) {
+    fun setUserIsDoctor(isDoctor: String) {
         userIsDoctor.value = isDoctor
         updateButtonState()
     }
@@ -89,7 +115,7 @@ class SignUpSecondViewModel(application: Application) : BaseViewModel(applicatio
 
     private fun updateButtonState() {
         val requiredField =
-            userAddress.value.isNullOrEmpty() || if (userIsDoctor.value == Doctor.IS_DOCTOR) {
+            userAddress.value.isNullOrEmpty() || if (userIsDoctor.value == Doctor.IS_DOCTOR.toItemString()) {
                 userSpecialization.value.isNullOrEmpty()
             } else {
                 false

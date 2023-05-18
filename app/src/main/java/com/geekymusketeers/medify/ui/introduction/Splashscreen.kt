@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.geekymusketeers.medify.ui.HomeActivity
 import com.geekymusketeers.medify.R
-import com.geekymusketeers.medify.ui.auth.signInScreen.SignIn_Activity
+import com.geekymusketeers.medify.ui.auth.signInScreen.SignInScreen
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.CoroutineScope
@@ -38,7 +38,7 @@ class Splashscreen : AppCompatActivity() {
                     ) //If the user email is verified
                     else Intent(
                         this@Splashscreen,
-                        SignIn_Activity::class.java
+                        SignInScreen::class.java
                     ) //If the user email is not verified
                 loginIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                 startActivity(loginIntent)
@@ -52,7 +52,7 @@ class Splashscreen : AppCompatActivity() {
             delay(2000L)
             val loginIntent = Intent(
                 this@Splashscreen,
-                SignIn_Activity::class.java
+                SignInScreen::class.java
             )
             loginIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
             startActivity(loginIntent)

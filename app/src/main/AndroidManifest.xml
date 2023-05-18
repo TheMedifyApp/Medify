@@ -56,7 +56,7 @@
             android:name=".ui.auth.signUpScreen.firstScreen.SignUpFirstScreen"
             android:exported="true" />
         <activity
-            android:name=".ui.auth.signInScreen.SignIn_Activity"
+            android:name=".ui.auth.signInScreen.SignInScreen"
             android:exported="true"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity

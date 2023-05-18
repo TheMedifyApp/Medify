@@ -12,9 +12,11 @@ import androidx.core.content.res.ResourcesCompat
 import com.geekymusketeers.medify.R
 import com.geekymusketeers.medify.base.ViewModelFactory
 import com.geekymusketeers.medify.databinding.ActivitySignUpFirstBinding
+import com.geekymusketeers.medify.model.Gender
 import com.geekymusketeers.medify.ui.auth.signUpScreen.SecondScreen.SignUpSecondScreen
 import com.geekymusketeers.medify.utils.Constants
 import com.geekymusketeers.medify.utils.DateTimeExtension
+import com.geekymusketeers.medify.utils.Logger
 import com.geekymusketeers.medify.utils.Utils.getListOfGenders
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointBackward
@@ -56,7 +58,8 @@ class SignUpFirstScreen : AppCompatActivity() {
                 showCalendarDialog()
             }
             genderEditText.getSelectedItemFromDialog {
-                signUpFirstViewModel.setUserGender(it)
+                Logger.debugLog("Gender value is: $it and converted = ${Gender.getGenderToGender(it).toItemString()}")
+                signUpFirstViewModel.setUserGender(Gender.getGenderToGender(it).toItemString())
             }
             passwordEditText.apply {
                 setUserInputListener {

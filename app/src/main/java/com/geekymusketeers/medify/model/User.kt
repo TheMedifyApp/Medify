@@ -9,9 +9,10 @@ data class User(
     var Email: String? = null,
     var Phone: String? = null,
     var UID: String? = null,
-    var isDoctor: Doctor = Doctor.IS_NOT_DOCTOR,
-    var Age: Int? = null,
+    var isDoctor: String = Doctor.IS_NOT_DOCTOR.toItemString(),
+    var Age: Int = 0,
     var Gender: String? = null,
+    var Address: String? = null,
     var Specialist: String? = null,
     var Stats: String? = "0:0:0:0:0?0:0:0:0:0?0:0:0:0:0?0:0:0:0:0",
     var Prescription: String? = null,
@@ -24,29 +25,35 @@ enum class Doctor {
     IS_NOT_DOCTOR;
 
     companion object {
-        fun fromBoolean(isDoctor: Boolean): Doctor {
-            return if (isDoctor) IS_DOCTOR else IS_NOT_DOCTOR
-        }
-
-        fun fromItemString(isDoctor: String): Boolean {
-            return isDoctor == "Yes, I'm a Doctor"
-        }
-
         fun isDoctor(isDoctor: String): Doctor {
-            return if (isDoctor == IS_DOCTOR.toItemString())
+            return if (isDoctor == IS_DOCTOR.toDisplayString())
                 IS_DOCTOR
             else
                 IS_NOT_DOCTOR
         }
+
+        fun isDoctorString(isDoctor: String): String {
+            return if (isDoctor == IS_DOCTOR.toDisplayString())
+                "Doctor"
+            else
+                "Patient"
+        }
     }
-    fun toBoolean(): Boolean {
-        return this == IS_DOCTOR
+
+    fun isUserDoctor(): Boolean {
+        return this.toItemString() == IS_DOCTOR.toItemString()
+    }
+
+    fun toDisplayString(): String {
+        return if (this == IS_DOCTOR) {
+            "Yes, I'm a Doctor"
+        } else "No, I'm not a Doctor"
     }
 
     fun toItemString(): String {
         return if (this == IS_DOCTOR) {
-            "Yes, I'm a Doctor"
-        } else "No, I'm not a Doctor"
+            "Doctor"
+        } else "Patient"
     }
 }
 
@@ -94,20 +101,28 @@ enum class Gender(gender: String) {
     OTHER("other");
 
     companion object {
-        fun getGenderState(gender: Gender) : String {
+        fun getGenderToGender(gender: String): Gender {
             return when (gender) {
-                MALE -> "male"
-                FEMALE -> "female"
-                else -> "other"
+                MALE.toDisplayString() -> MALE
+                FEMALE.toDisplayString() -> FEMALE
+                else -> OTHER
             }
         }
 
-        fun fromItemString(gender: String): String {
+        fun getGenderToString(gender: String): String {
             return when (gender) {
-                "male" -> "male"
-                "female" -> "female"
+                MALE.toDisplayString() -> "male"
+                FEMALE.toDisplayString() -> "female"
                 else -> "other"
             }
+        }
+    }
+
+    fun toDisplayString(): String {
+        return when (this) {
+            MALE -> "Male"
+            FEMALE -> "Female"
+            else -> "Other"
         }
     }
     fun toItemString(): String {
