@@ -53,12 +53,22 @@ class AppointmentBookingFragment : Fragment() {
     private fun initView() {
         sharedPreference = requireContext().getSharedPreferences("UserData", Context.MODE_PRIVATE)
         appointmentViewModel.initializeSpecializationWithDiseasesLists()
-        appointmentViewModel.setDiseaseValues()
+        appointmentViewModel.setDiseaseValues(Utils.setDiseaseValues(requireContext()))
     }
 
     private fun setupObservers() {
-        appointmentViewModel.navigateToBookingSummary.observe(viewLifecycleOwner) { summary ->
-            navigateToBookingSummary(summary)
+//        appointmentViewModel.navigateToBookingSummary.observe(viewLifecycleOwner) { summary ->
+//            navigateToBookingSummary(summary)
+//        }
+        appointmentViewModel.run {
+            getDataFromSharedPref(sharedPreference)
+            fireStatusMutableLiveData.observe(
+                viewLifecycleOwner
+            ) { status ->
+                if (status) {
+                    navigateToBookingSummary(navigateToBookingSummary.value!!)
+                }
+            }
         }
     }
 
@@ -88,10 +98,6 @@ class AppointmentBookingFragment : Fragment() {
         binding.btnFinalbook.onSlideCompleteListener = object : SlideToActView.OnSlideCompleteListener {
             override fun onSlideComplete(view: SlideToActView) {
                 val doctorType = args.doctorDetails.Specialist
-                val userName = sharedPreference.getString("name", "").toString()
-                val userPhone = sharedPreference.getString("phone", "").toString()
-                val userId = sharedPreference.getString("uid", "").toString()
-                val userPrescription = sharedPreference.getString("prescription", "").toString()
                 val selectDate = binding.selectDate.text.toString()
                 val time = binding.timeDropdown.text.toString()
                 val disease = binding.diseaseDropdown.text.toString()
@@ -99,10 +105,6 @@ class AppointmentBookingFragment : Fragment() {
 
                 appointmentViewModel.bookAppointment(
                     doctorType,
-                    userName,
-                    userPhone,
-                    userId,
-                    userPrescription,
                     selectDate,
                     time,
                     disease,
@@ -110,7 +112,8 @@ class AppointmentBookingFragment : Fragment() {
                     args.doctorDetails.UID!!,
                     args.doctorDetails.Name!!,
                     args.doctorDetails.Email!!,
-                    args.doctorDetails.Phone!!
+                    args.doctorDetails.Phone!!,
+                    Utils.setConditionValue(requireContext())
                 )
             }
         }
