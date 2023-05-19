@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    tools:context=".ui.mainFragments.appointment.AppointmentBooking">
+    tools:context=".ui.mainFragments.appointment_booking.AppointmentBooking">
 
     <LinearLayout
         android:id="@+id/linearLayout"

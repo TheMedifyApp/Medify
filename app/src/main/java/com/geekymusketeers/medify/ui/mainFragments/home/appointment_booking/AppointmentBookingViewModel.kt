@@ -1,10 +1,9 @@
-package com.geekymusketeers.medify.ui.mainFragments.appointment
+package com.geekymusketeers.medify.ui.mainFragments.home.appointment_booking
 
 import android.app.Application
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.geekymusketeers.medify.base.BaseViewModel
 import com.geekymusketeers.medify.model.Summary
 import com.geekymusketeers.medify.utils.Logger

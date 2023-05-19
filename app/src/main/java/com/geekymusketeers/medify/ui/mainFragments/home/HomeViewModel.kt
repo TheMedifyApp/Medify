@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.geekymusketeers.medify.base.BaseViewModel
+import com.geekymusketeers.medify.model.Doctor
 import com.geekymusketeers.medify.model.User
 import com.geekymusketeers.medify.utils.Constants
 import com.geekymusketeers.medify.utils.Logger
@@ -14,7 +15,6 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -33,10 +33,6 @@ class HomeViewModel(application: Application) : BaseViewModel(application) {
 
     fun getDataFromSharedPreference(sharedPreference: SharedPreferences) =
         viewModelScope.launch(Dispatchers.IO) {
-//            val userFromSharedPreferencesAsGson =
-//                sharedPreference.getString(Constants.SAVED_USER, null)
-//            val gson = Gson()
-//            val userObj: User = gson.fromJson(userFromSharedPreferencesAsGson, User::class.java)
             val userObj = sharedPreference.getUserFromSharedPrefs()
             user.postValue(userObj)
         }
@@ -51,6 +47,7 @@ class HomeViewModel(application: Application) : BaseViewModel(application) {
                             snapshot.child("totalRating").value.toString().toFloat()
                     }
                 }
+
                 override fun onCancelled(error: DatabaseError) {}
             })
     }
@@ -61,8 +58,11 @@ class HomeViewModel(application: Application) : BaseViewModel(application) {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     snapshot.children.forEach {
                         it?.let {
-                            if (it.child("doctor").value.toString().trim() == "Doctor")
-                            addAsDoctor(it)
+                            if (it.child("doctor").value.toString()
+                                    .trim() == Doctor.IS_DOCTOR.toItemString()
+                            ) {
+                                addAsDoctor(it)
+                            }
                         }
                     }
                 }
@@ -71,20 +71,6 @@ class HomeViewModel(application: Application) : BaseViewModel(application) {
                     Logger.debugLog("Error in getting doctors list: ${error.message}")
                 }
             })
-//        FirebaseDatabase.getInstance().reference.child(Constants.Doctor)
-//            .addValueEventListener(object : ValueEventListener {
-//                override fun onDataChange(snapshot: DataSnapshot) {
-//                    snapshot.children.forEach {
-//                        it?.let {
-//                            addAsDoctor(it)
-//                        }
-//                    }
-//                }
-//
-//                override fun onCancelled(error: DatabaseError) {
-//                    Logger.debugLog("Error in getting doctors list: ${error.message}")
-//                }
-//            })
         doctorList.value = doctorListTemp
         doctorListTemp = mutableListOf()
     }

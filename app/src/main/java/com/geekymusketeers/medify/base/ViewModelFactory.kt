@@ -7,9 +7,10 @@ import com.geekymusketeers.medify.ui.auth.forgotPassword.ForgotPasswordViewModel
 import com.geekymusketeers.medify.ui.auth.signInScreen.SignInViewModel
 import com.geekymusketeers.medify.ui.auth.signUpScreen.SecondScreen.SignUpSecondViewModel
 import com.geekymusketeers.medify.ui.auth.signUpScreen.firstScreen.SignUpFirstViewModel
+import com.geekymusketeers.medify.ui.mainFragments.appointments.MyAppointmentsViewModel
 import com.geekymusketeers.medify.ui.mainFragments.home.HomeViewModel
-import com.geekymusketeers.medify.ui.mainFragments.appointment.AppointmentBookingViewModel
-import com.geekymusketeers.medify.ui.mainFragments.appointment.DoctorDetailsViewModel
+import com.geekymusketeers.medify.ui.mainFragments.home.appointment_booking.AppointmentBookingViewModel
+import com.geekymusketeers.medify.ui.mainFragments.home.appointment_booking.DoctorDetailsViewModel
 
 class ViewModelFactory : ViewModelProvider.Factory {
     @Suppress("UNCHECKED_CAST")
@@ -38,6 +39,9 @@ class ViewModelFactory : ViewModelProvider.Factory {
                 }
                 isAssignableFrom(DoctorDetailsViewModel::class.java) -> {
                     DoctorDetailsViewModel(application)
+                }
+                isAssignableFrom(MyAppointmentsViewModel::class.java) -> {
+                    MyAppointmentsViewModel(application)
                 }
 //                isAssignableFrom(FirebaseViewModel::class.java) -> {
 //                    FirebaseViewModel()

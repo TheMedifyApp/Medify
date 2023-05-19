@@ -73,7 +73,7 @@ class SignInViewModel(application: Application) : BaseViewModel(application) {
                         Age = it.child("age").value.toString().trim().toInt(),
                         Email = it.child("email").value.toString().trim(),
                         Phone = it.child("phone").value.toString().trim(),
-                        isDoctor = it.child("isDoctor").value.toString().trim(),
+                        isDoctor = it.child("doctor").value.toString().trim(),
                         Specialist = it.child("specialist").value.toString().trim(),
                         Gender = it.child("gender").value.toString().trim(),
                         Address = it.child("address").value.toString().trim(),

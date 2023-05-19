@@ -1,4 +1,4 @@
-package com.geekymusketeers.medify.ui.mainFragments.appointment
+package com.geekymusketeers.medify.ui.mainFragments.home.appointment_booking
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -9,19 +9,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.geekymusketeers.medify.R
 import com.geekymusketeers.medify.base.ViewModelFactory
 import com.geekymusketeers.medify.databinding.FragmentAppointmentBookingBinding
 import com.geekymusketeers.medify.model.Summary
-import com.geekymusketeers.medify.utils.Logger
 import com.geekymusketeers.medify.utils.Utils
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointForward
 import com.google.android.material.datepicker.MaterialDatePicker
-import com.google.firebase.database.FirebaseDatabase
 import com.ncorti.slidetoact.SlideToActView
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -143,8 +140,10 @@ class AppointmentBookingFragment : Fragment() {
     }
 
     private fun navigateToBookingSummary(summary: Summary) {
-        val action = AppointmentBookingFragmentDirections
-            .actionAppointmentBookingFragmentToBookingSummaryFragment(summary)
+        val action =
+            AppointmentBookingFragmentDirections.actionAppointmentBookingFragmentToBookingSummaryFragment(
+                summary
+            )
         findNavController().navigate(action)
     }
 }

@@ -47,6 +47,7 @@ class DoctorPatient : AppCompatActivity() {
 
         sharedPreference = baseContext.getSharedPreferences("UserData", Context.MODE_PRIVATE)
         val userID = sharedPreference.getString("uid", "Not found").toString()
+        Logger.debugLog("UID from doctor patient: $userID")
 
         appointmentList = ArrayList()
         appointmentAdapter = DoctorsAppointmentAdapter(userID, appointmentList) {
@@ -208,7 +209,7 @@ class DoctorPatient : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onStart() {
         super.onStart()
-        currentDate = DateTimeExtension.getCurrentDateAppointments()
+        currentDate = DateTimeExtension.getCurrentDateAsString()
 //        getData(currentDate, userID = intent.getStringExtra("uid").toString())
         binding.selectedDateText.text = "Selected Date: $currentDate"
     }

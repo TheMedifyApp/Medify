@@ -13,6 +13,10 @@ object Constants {
     const val user: String = "user"
     const val password: String = "password"
     const val Users: String = "Users"
+    const val uid: String = "uid"
+    const val date: String = "date"
+    const val hide: String = "hide"
     const val Doctor: String = "Doctor"
     const val UserData: String = "UserData"
+    const val DatePicker: String = "DatePicker"
 }
