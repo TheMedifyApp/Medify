@@ -2,29 +2,36 @@ package com.geekymusketeers.medify.ui.mainFragments.home.appointment_booking
 
 import android.app.Application
 import android.content.Context
+import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.geekymusketeers.medify.base.BaseViewModel
 import com.geekymusketeers.medify.model.Summary
+import com.geekymusketeers.medify.model.User
 import com.geekymusketeers.medify.utils.Logger
+import com.geekymusketeers.medify.utils.SharedPrefsExtension.getUserFromSharedPrefs
 import com.geekymusketeers.medify.utils.Utils
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.util.Calendar
 
-class AppointmentBookingViewModel(application: Application): BaseViewModel(application) {
+class AppointmentBookingViewModel(application: Application) : BaseViewModel(application) {
     private lateinit var mapOfDiseasesList: HashMap<String, ArrayList<String>>
     private lateinit var diseaseValue: HashMap<String, Float>
-    private var context: Context = application.applicationContext
 
+
+     var fireStatusMutableLiveData = MutableLiveData<Boolean>()
     private val _navigateToBookingSummary = MutableLiveData<Summary>()
+
+    private var userLiveData = MutableLiveData<User>()
     val navigateToBookingSummary: LiveData<Summary> get() = _navigateToBookingSummary
 
     fun bookAppointment(
         doctorType: String?,
-        userName: String,
-        userPhone: String,
-        userId: String,
-        userPrescription: String,
         selectDate: String,
         time: String,
         disease: String,
@@ -32,9 +39,10 @@ class AppointmentBookingViewModel(application: Application): BaseViewModel(appli
         doctorUid: String,
         doctorName: String,
         doctorEmail: String,
-        doctorPhone: String
-    ) {
-        val conditionValue = Utils.setConditionValue(context)
+        doctorPhone: String,
+        conditionValue: HashMap<String, Float>
+    ) = viewModelScope.launch {
+
 
         val totalPoint: Int
 
@@ -55,16 +63,16 @@ class AppointmentBookingViewModel(application: Application): BaseViewModel(appli
         Logger.debugLog("totalPoint: $totalPoint")
 
         val appointmentD: HashMap<String, String> = HashMap()
-        appointmentD["PatientName"] = userName
-        appointmentD["PatientPhone"] = userPhone
+        appointmentD["PatientName"] = userLiveData.value?.Name.toString()
+        appointmentD["PatientPhone"] = userLiveData.value?.Phone.toString()
         appointmentD["Time"] = time
         appointmentD["Date"] = selectDate
         appointmentD["Disease"] = disease
         appointmentD["PatientCondition"] = situation
-        appointmentD["Prescription"] = userPrescription
+        appointmentD["Prescription"] = userLiveData.value?.Prescription.toString()
         appointmentD["TotalPoints"] = totalPoint.toString().trim()
         appointmentD["DoctorUID"] = doctorUid
-        appointmentD["PatientID"] = userId
+        appointmentD["PatientID"] = userLiveData.value?.UID.toString()
 
         val appointmentP: HashMap<String, String> = HashMap()
         appointmentP["DoctorUID"] = doctorUid
@@ -74,23 +82,8 @@ class AppointmentBookingViewModel(application: Application): BaseViewModel(appli
         appointmentP["Time"] = time
         appointmentP["Disease"] = disease
         appointmentP["PatientCondition"] = situation
-        appointmentP["Prescription"] = userPrescription
-        appointmentP["PatientID"] = userId
-
-        val appointmentDB_Doctor =
-            FirebaseDatabase.getInstance().getReference("Doctor").child(doctorUid!!)
-                .child("DoctorsAppointments").child(selectDate)
-        appointmentDB_Doctor.child(userId).setValue(appointmentD)
-
-        val appointmentDB_User_Doctor =
-            FirebaseDatabase.getInstance().getReference("Users").child(doctorUid)
-                .child("DoctorsAppointments").child(selectDate)
-        appointmentDB_User_Doctor.child(userId).setValue(appointmentD)
-
-        val appointmentDB_Patient =
-            FirebaseDatabase.getInstance().getReference("Users").child(userId)
-                .child("PatientsAppointments").child(selectDate)
-        appointmentDB_Patient.child(doctorUid).setValue(appointmentP)
+        appointmentP["Prescription"] = userLiveData.value?.Prescription.toString()
+        appointmentP["PatientID"] = userLiveData.value?.UID.toString()
 
         val summary = Summary(
             doctorName = doctorName,
@@ -104,14 +97,88 @@ class AppointmentBookingViewModel(application: Application): BaseViewModel(appli
             totalPoint = totalPoint
         )
         _navigateToBookingSummary.value = summary
+        Logger.debugLog("summary: $summary")
+        Logger.debugLog("appointmentD: $appointmentD")
+        Logger.debugLog("appointmentP: $appointmentP")
+
+
+        val firebaseUploadJob = viewModelScope.launch {
+
+            val appointmentDBUserDoctor = viewModelScope.async(Dispatchers.IO) {
+
+                updateUserDoctorAppointment(doctorUid, userLiveData.value?.UID.toString(), appointmentD)
+            }
+
+            val appointmentDBPatient = viewModelScope.async(Dispatchers.IO) {
+
+                updateUserPatientAppointment(userLiveData.value?.UID.toString(), doctorUid, appointmentP)
+            }
+            fireStatusMutableLiveData.postValue(
+                appointmentDBUserDoctor.await() && appointmentDBPatient.await()
+            )
+        }
+
+        firebaseUploadJob.join()
+
+
+    }
+
+    private suspend fun updateUserPatientAppointment(
+        userId: String,
+        doctorUid: String,
+        appointmentP: HashMap<String, String>
+    ): Boolean {
+
+        var res = true
+        return withContext(Dispatchers.IO) {
+
+            FirebaseDatabase.getInstance().getReference("Users").child(userId)
+                .child("PatientsAppointments").child(appointmentP["Date"]!!).child(doctorUid)
+                .setValue(appointmentP)
+                .addOnSuccessListener {
+                    Logger.debugLog("Successfully updated patient appointment")
+                    res
+                }.addOnFailureListener {
+                    Logger.debugLog("Failed to update patient appointment")
+                    res = false
+                }
+            res
+        }
+    }
+
+    private suspend fun updateUserDoctorAppointment(
+        doctorUid: String,
+        userId: String,
+        appointmentD: HashMap<String, String>
+    ): Boolean {
+
+        var result = true
+        return withContext(Dispatchers.IO) {
+
+            FirebaseDatabase.getInstance().getReference("Doctor").child(doctorUid!!)
+                .child("DoctorsAppointments").child(appointmentD["Date"]!!).child(userId)
+                .setValue(appointmentD)
+                .addOnSuccessListener {
+                    Logger.debugLog("Successfully updated doctor appointment")
+                    result
+                }.addOnFailureListener {
+                    Logger.debugLog("Failed to update doctor appointment")
+                    result = false
+                }
+            result
+        }
     }
 
     fun initializeSpecializationWithDiseasesLists() {
         mapOfDiseasesList = Utils.initializeSpecializationWithDiseasesLists()
     }
 
-    fun setDiseaseValues() {
-        diseaseValue = Utils.setDiseaseValues(context)
+    fun setDiseaseValues(diseaseValue : HashMap<String, Float>) {
+        this.diseaseValue = diseaseValue
+    }
+
+    fun getDataFromSharedPref(sharedPreference: SharedPreferences) {
+        userLiveData.value = sharedPreference.getUserFromSharedPrefs()
     }
 
 }
