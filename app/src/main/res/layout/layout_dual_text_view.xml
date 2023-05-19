@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@android:color/transparent">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/first_text_view"
+        style="@style/DMSans_Regular_14sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        tools:text="Ask for a condition?" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/second_text_view"
+        style="@style/DMSans_Bold_14sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        android:textColor="@color/green_shade_accent"
+        app:layout_constraintBottom_toBottomOf="@+id/first_text_view"
+        app:layout_constraintStart_toEndOf="@+id/first_text_view"
+        app:layout_constraintTop_toTopOf="@+id/first_text_view"
+        tools:text="Click here" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

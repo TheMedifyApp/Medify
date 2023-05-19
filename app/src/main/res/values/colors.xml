@@ -15,6 +15,7 @@
     <color name="light_green">#03DAC5</color>
     <color name="light_blue">#1DCDFE</color>
     <color name="dull_blue">#1DBDEA</color>
+    <color name="hint_color">#7A7A7A</color>
     <color name="edit_field_color">#F5F8FA</color>
     <color name="green_shade_light_2">#BBE3E1</color>
     <color name="green_shade_dark_1">#3E7E82</color>
@@ -23,6 +24,8 @@
     <color name="green_shade_light_1">#D6EAE9</color>
     <color name="green_shade_light_0">#F4FAF9</color>
     <color name="green_shade_accent">#00C2B7</color>
+    <color name="button_disable_color">#B1B1B1</color>
+    <color name="button_enable_color">#206971</color>
     <color name="background_gradient_end_color">#2C909A</color>
     <color name="background_gradient_start_color">#206971</color>
 

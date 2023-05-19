@@ -4,165 +4,117 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
-    tools:context=".ui.auth.SignIn_Activity">
+    android:background="@drawable/gradient_background"
+    tools:context=".ui.auth.signInScreen.SignInScreen">
+
+    <TextView
+        android:id="@+id/nameDisplay"
+        style="@style/DMSans_Bold_20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/sign_in"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/want_to_book_an_appointment"
+        style="@style/DMSans_Medium_16sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/enter_your_details_to_get_started"
+        android:textColor="@color/green_shade_light_2"
+        app:layout_constraintStart_toStartOf="@+id/nameDisplay"
+        app:layout_constraintTop_toBottomOf="@+id/nameDisplay" />
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="30dp"
-        android:paddingTop="60dp"
-        android:paddingLeft="30dp"
-        android:paddingRight="30dp"
-        android:background="@drawable/curve_box_final"
+        android:layout_height="0dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/white_bar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/want_to_book_an_appointment">
 
-        <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="start"
-            android:orientation="vertical"
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/login_button"
+            android:layout_marginBottom="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/signUpHeader"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/dm_sans_bold"
-                android:text="Sign In"
-                android:textColor="@color/black"
-                android:textSize="35sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.099"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/loginIllustration" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/signUph2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/dm_sans"
-                android:text="Log in to your account"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="@+id/signUpHeader"
-                app:layout_constraintTop_toBottomOf="@+id/signUpHeader" />
+                <com.geekymusketeers.presin.ui.custom_views.CustomEditText
+                    android:id="@+id/email_edit_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginHorizontal="20dp"
+                    app:header="@string/email"
+                    app:hint="@string/email_hint"
+                    app:inputType="32"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        </LinearLayout>
+                <com.geekymusketeers.presin.ui.custom_views.CustomEditText
+                    android:id="@+id/password_edit_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:header="@string/password"
+                    app:hint="@string/password_hint"
+                    app:isPassword="true"
+                    app:layout_constraintEnd_toEndOf="@+id/email_edit_text"
+                    app:layout_constraintStart_toStartOf="@+id/email_edit_text"
+                    app:layout_constraintTop_toBottomOf="@+id/email_edit_text" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/forgot_password_text_view"
+                    style="@style/DMSans_Bold_16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/forgot_password"
+                    android:textColor="@color/green_shade_dark_1"
+                    app:layout_constraintEnd_toEndOf="@+id/password_edit_text"
+                    app:layout_constraintTop_toBottomOf="@+id/password_edit_text" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+        <com.geekymusketeers.presin.ui.custom_views.CustomButton
+            android:id="@+id/login_button"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:gravity="end"
-            android:orientation="vertical"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="10dp"
+            app:header="@string/login"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_dual_edit_text"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+            app:layout_constraintStart_toStartOf="parent" />
 
-            <EditText
-                android:id="@+id/SignIn_Email"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@drawable/editfield"
-                android:ems="10"
-                android:fontFamily="@font/dm_sans"
-                android:hint="Email"
-                android:inputType="textEmailAddress"
-                android:paddingLeft="20dp"
-                android:textColor="@color/black"
-                android:textColorHint="@android:color/darker_gray"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/linearLayout" />
-
-            <EditText
-                android:id="@+id/SignIn_Password"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/editfield"
-                android:ems="10"
-                android:fontFamily="@font/dm_sans"
-                android:hint="Password"
-                android:longClickable="false"
-                android:drawableRight="@drawable/visibility_off"
-                android:paddingRight="15dp"
-                android:inputType="textPassword"
-                android:paddingStart="20dp"
-                android:textColor="@color/black"
-                android:textColorHint="@android:color/darker_gray"
-                app:layout_constraintEnd_toEndOf="@+id/SignIn_Email"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/SignIn_Email"
-                app:layout_constraintTop_toBottomOf="@+id/SignIn_Email" />
-
-            <TextView
-                android:id="@+id/forgotPassword"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/dm_sans_bold"
-                android:text="Forgot password?"
-                android:textColor="@color/light_blue"
-                android:textSize="15dp" />
-
-            <Button
-                android:id="@+id/loginButton"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:background="@drawable/primary_button"
-                android:text="Log in"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:gravity="center"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="@+id/loginButton"
-                app:layout_constraintStart_toStartOf="@+id/loginButton"
-                app:layout_constraintTop_toBottomOf="@+id/loginButton"
-                app:layout_constraintVertical_bias="0.384">
-
-                <TextView
-                    android:id="@+id/sign_in_suggestion"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/dm_sans"
-                    android:text="Don't have an account?"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    tools:layout_editor_absoluteX="131dp"
-                    tools:layout_editor_absoluteY="680dp" />
-
-                <TextView
-                    android:id="@+id/toSignUp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:fontFamily="@font/dm_sans_bold"
-                    android:text="Create"
-                    android:textColor="@color/light_blue"
-                    android:textSize="15sp"
-                    tools:layout_editor_absoluteX="266dp"
-                    tools:layout_editor_absoluteY="676dp" />
-            </LinearLayout>
-
-        </LinearLayout>
+        <include
+            android:id="@+id/bottom_dual_edit_text"
+            layout="@layout/layout_dual_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

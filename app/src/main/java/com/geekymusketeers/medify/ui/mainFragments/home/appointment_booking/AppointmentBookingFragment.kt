@@ -1,4 +1,4 @@
-package com.geekymusketeers.medify.ui.mainFragments.appointment
+package com.geekymusketeers.medify.ui.mainFragments.home.appointment_booking
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -9,19 +9,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.geekymusketeers.medify.R
 import com.geekymusketeers.medify.base.ViewModelFactory
 import com.geekymusketeers.medify.databinding.FragmentAppointmentBookingBinding
 import com.geekymusketeers.medify.model.Summary
-import com.geekymusketeers.medify.utils.Logger
 import com.geekymusketeers.medify.utils.Utils
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointForward
 import com.google.android.material.datepicker.MaterialDatePicker
-import com.google.firebase.database.FirebaseDatabase
 import com.ncorti.slidetoact.SlideToActView
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -56,12 +53,22 @@ class AppointmentBookingFragment : Fragment() {
     private fun initView() {
         sharedPreference = requireContext().getSharedPreferences("UserData", Context.MODE_PRIVATE)
         appointmentViewModel.initializeSpecializationWithDiseasesLists()
-        appointmentViewModel.setDiseaseValues()
+        appointmentViewModel.setDiseaseValues(Utils.setDiseaseValues(requireContext()))
     }
 
     private fun setupObservers() {
-        appointmentViewModel.navigateToBookingSummary.observe(viewLifecycleOwner) { summary ->
-            navigateToBookingSummary(summary)
+//        appointmentViewModel.navigateToBookingSummary.observe(viewLifecycleOwner) { summary ->
+//            navigateToBookingSummary(summary)
+//        }
+        appointmentViewModel.run {
+            getDataFromSharedPref(sharedPreference)
+            fireStatusMutableLiveData.observe(
+                viewLifecycleOwner
+            ) { status ->
+                if (status) {
+                    navigateToBookingSummary(navigateToBookingSummary.value!!)
+                }
+            }
         }
     }
 
@@ -91,10 +98,6 @@ class AppointmentBookingFragment : Fragment() {
         binding.btnFinalbook.onSlideCompleteListener = object : SlideToActView.OnSlideCompleteListener {
             override fun onSlideComplete(view: SlideToActView) {
                 val doctorType = args.doctorDetails.Specialist
-                val userName = sharedPreference.getString("name", "").toString()
-                val userPhone = sharedPreference.getString("phone", "").toString()
-                val userId = sharedPreference.getString("uid", "").toString()
-                val userPrescription = sharedPreference.getString("prescription", "").toString()
                 val selectDate = binding.selectDate.text.toString()
                 val time = binding.timeDropdown.text.toString()
                 val disease = binding.diseaseDropdown.text.toString()
@@ -102,10 +105,6 @@ class AppointmentBookingFragment : Fragment() {
 
                 appointmentViewModel.bookAppointment(
                     doctorType,
-                    userName,
-                    userPhone,
-                    userId,
-                    userPrescription,
                     selectDate,
                     time,
                     disease,
@@ -113,7 +112,8 @@ class AppointmentBookingFragment : Fragment() {
                     args.doctorDetails.UID!!,
                     args.doctorDetails.Name!!,
                     args.doctorDetails.Email!!,
-                    args.doctorDetails.Phone!!
+                    args.doctorDetails.Phone!!,
+                    Utils.setConditionValue(requireContext())
                 )
             }
         }
@@ -143,8 +143,10 @@ class AppointmentBookingFragment : Fragment() {
     }
 
     private fun navigateToBookingSummary(summary: Summary) {
-        val action = AppointmentBookingFragmentDirections
-            .actionAppointmentBookingFragmentToBookingSummaryFragment(summary)
+        val action =
+            AppointmentBookingFragmentDirections.actionAppointmentBookingFragmentToBookingSummaryFragment(
+                summary
+            )
         findNavController().navigate(action)
     }
 }
