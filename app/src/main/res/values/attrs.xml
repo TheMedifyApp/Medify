@@ -1,4 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <attr name="FilterChips" format="reference" />
+    <attr name="header" format="string" />
+    <attr name="inputEnabled" format="boolean" />
+    <attr name="invalidInput" format="boolean" />
+    <attr name="hint" format="string" />
+    <attr name="input" format="string" />
+    <attr name="endIcon" format="integer" />
+    <attr name="options" format="reference"/>
+    <attr name="inputType" format="integer"/>
+    <attr name="minimumHeight" format="integer"/>
+    <attr name="multiLine" format="boolean" />
+    <attr name="optional" format="boolean" />
+    <attr name="isPassword" format="boolean" />
+
+    <declare-styleable name="EditTextCustomLayout">
+        <attr name="header" />
+        <attr name="inputEnabled" />
+        <attr name="invalidInput" />
+        <attr name="hint" />
+        <attr name="input" />
+        <attr name="optional" />
+        <attr name="inputType" />
+        <attr name="endIcon" />
+        <attr name="minimumHeight" />
+        <attr name="isPassword" />
+        <attr name="multiLine"/>
+    </declare-styleable>
+
+    <declare-styleable name="SpinnerEditTextCustomLayout">
+        <attr name="header" />
+        <attr name="inputEnabled" />
+        <attr name="invalidInput" />
+        <attr name="hint" />
+        <attr name="input" />
+        <attr name="optional" />
+        <attr name="endIcon" />
+    </declare-styleable>
+
+    <declare-styleable name="SpinnerDialogCustomLayout">
+        <attr name="header" />
+        <attr name="inputEnabled" />
+        <attr name="invalidInput" />
+        <attr name="hint" />
+        <attr name="input" />
+        <attr name="endIcon" />
+    </declare-styleable>
+
+    <declare-styleable name="ButtonCustomLayout">
+        <attr name="header" />
+        <attr name="inputEnabled" />
+        <attr name="endIcon" />
+    </declare-styleable>
 </resources>

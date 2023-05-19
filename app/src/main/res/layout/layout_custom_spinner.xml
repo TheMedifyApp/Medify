@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/spinner_edit_text_header"
+        style="@style/DMSans_Medium_14sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Header" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/spinner_edit_text_optional"
+        style="@style/DMSans_Regular_14sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/optional"
+        android:layout_marginStart="10dp"
+        android:visibility="gone"
+        android:textColor="@color/hint_color"
+        app:layout_constraintStart_toEndOf="@+id/spinner_edit_text_header"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/spinner_text_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/editfield"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_edit_text_header">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/spinner_text_view"
+            style="@style/DMSans_Regular_14sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/hint_color"
+            app:layout_constraintBottom_toBottomOf="@+id/spinner_text_layout"
+            app:layout_constraintLeft_toLeftOf="@+id/spinner_text_layout"
+            app:layout_constraintTop_toTopOf="@+id/spinner_text_layout"
+            tools:hint="Select an option" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/spinner_edit_text_end_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:adjustViewBounds="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/drop_down" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

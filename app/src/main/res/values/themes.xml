@@ -58,4 +58,144 @@
         <!--Icon Start on check/click (Toggle)-->
         <item name="checkedIconVisible">false</item>
     </style>
+
+    <!-- Text Styles -->
+
+    <!-- Montserrat Regular variants -->
+    <style name="DMSans_Regular_10sp" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">10sp</item>
+        <item name="android:fontFamily">@font/dm_sans</item>
+    </style>
+
+    <style name="DMSans_Regular_12sp" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">@font/dm_sans</item>
+    </style>
+
+    <style name="DMSans_Regular_14sp" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/dm_sans</item>
+    </style>
+
+    <style name="DMSans_Regular_16sp" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">@font/dm_sans</item>
+    </style>
+
+    <style name="DMSans_Regular_18sp" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">10sp</item>
+        <item name="android:fontFamily">@font/dm_sans</item>
+    </style>
+
+    <style name="DMSans_Regular_20sp" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">@font/dm_sans</item>
+    </style>
+
+    <style name="DMSans_Regular_22sp" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">22sp</item>
+        <item name="android:fontFamily">@font/dm_sans</item>
+    </style>
+
+    <style name="DMSans_Regular_24sp" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">24sp</item>
+        <item name="android:fontFamily">@font/dm_sans</item>
+    </style>
+
+
+    <!-- Montserrat Medium Variants -->
+    <style name="DMSans_Medium_10sp" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">10sp</item>
+        <item name="android:fontFamily">@font/dm_sans_medium</item>
+    </style>
+
+    <style name="DMSans_Medium_12sp" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">@font/dm_sans_medium</item>
+    </style>
+
+    <style name="DMSans_Medium_14sp" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/dm_sans_medium</item>
+    </style>
+
+    <style name="DMSans_Medium_16sp" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">@font/dm_sans_medium</item>
+    </style>
+
+    <style name="DMSans_Medium_18sp" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">10sp</item>
+        <item name="android:fontFamily">@font/dm_sans_medium</item>
+    </style>
+
+    <style name="DMSans_Medium_20sp" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">@font/dm_sans_medium</item>
+    </style>
+
+    <style name="DMSans_Medium_22sp" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">22sp</item>
+        <item name="android:fontFamily">@font/dm_sans_medium</item>
+    </style>
+
+    <style name="DMSans_Medium_24sp" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">24sp</item>
+        <item name="android:fontFamily">@font/dm_sans_medium</item>
+    </style>
+
+
+    <!-- Montserrat Bold Variants -->
+    <style name="DMSans_Bold_10sp" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">10sp</item>
+        <item name="android:fontFamily">@font/dm_sans_bold</item>
+    </style>
+
+    <style name="DMSans_Bold_12sp" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">@font/dm_sans_bold</item>
+    </style>
+
+    <style name="DMSans_Bold_14sp" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/dm_sans_bold</item>
+    </style>
+
+    <style name="DMSans_Bold_16sp" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">@font/dm_sans_bold</item>
+    </style>
+
+    <style name="DMSans_Bold_18sp" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">10sp</item>
+        <item name="android:fontFamily">@font/dm_sans_bold</item>
+    </style>
+
+    <style name="DMSans_Bold_20sp" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">@font/dm_sans_bold</item>
+    </style>
+
+    <style name="DMSans_Bold_22sp" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">22sp</item>
+        <item name="android:fontFamily">@font/dm_sans_bold</item>
+    </style>
+
+    <style name="DMSans_Bold_24sp" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">24sp</item>
+        <item name="android:fontFamily">@font/dm_sans_bold</item>
+    </style>
+
+
+    <!-- EditText Styles -->
+    <style name="EditTextHintStyle">
+        <item name="android:textColor">@color/dark_grey</item>
+        <item name="android:fontFamily">@font/dm_sans</item>
+    </style>
+
+    <style name="EditTextTextStyle">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/dm_sans_medium</item>
+    </style>
+
 </resources>

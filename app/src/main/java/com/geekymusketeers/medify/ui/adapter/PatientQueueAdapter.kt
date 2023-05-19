@@ -19,11 +19,13 @@ import java.time.format.DateTimeFormatter
 import java.util.Date
 
 
-class DoctorsAppointmentAdapter(
-    val userID: String,
-    var appointmentList: ArrayList<DoctorAppointment>,
+class PatientQueueAdapter(
+    private val userID: String,
     val listener: (DoctorAppointment) -> Unit,
-) : RecyclerView.Adapter<DoctorsAppointmentAdapter.DoctorAppointmentViewHolder>() {
+) : RecyclerView.Adapter<PatientQueueAdapter.DoctorAppointmentViewHolder>() {
+
+    private var appointmentList: ArrayList<DoctorAppointment> = ArrayList()
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DoctorAppointmentViewHolder {
         val itemView =
@@ -101,5 +103,12 @@ class DoctorsAppointmentAdapter(
         val disease: TextView = itemView.findViewById(R.id.diseaseDisplay)
         val button: ImageView = itemView.findViewById(R.id.downloadPrescription)
         val rate: ImageView = itemView.findViewById(R.id.rateUser)
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun setData(appointmentList: ArrayList<DoctorAppointment>) {
+        this.appointmentList.clear()
+        this.appointmentList = appointmentList
+        notifyDataSetChanged()
     }
 }

@@ -26,7 +26,7 @@
         android:theme="@style/Theme.Medify"
         tools:targetApi="31">
         <activity
-            android:name=".ui.auth.ForgotPasswordActivity"
+            android:name=".ui.auth.forgotPassword.ForgotPasswordActivity"
             android:exported="true" />
         <activity
             android:name=".ui.profile.EditProfileActivity"
@@ -53,14 +53,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.auth.SignUp_First"
+            android:name=".ui.auth.signUpScreen.firstScreen.SignUpFirstScreen"
             android:exported="true" />
         <activity
-            android:name=".ui.auth.SignIn_Activity"
+            android:name=".ui.auth.signInScreen.SignInScreen"
             android:exported="true"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
-            android:name=".ui.auth.SignUp_Activity"
+            android:name=".ui.auth.signUpScreen.SecondScreen.SignUpSecondScreen"
             android:exported="true"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
