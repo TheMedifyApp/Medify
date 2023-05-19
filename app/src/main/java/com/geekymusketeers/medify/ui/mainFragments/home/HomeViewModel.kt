@@ -9,6 +9,7 @@ import com.geekymusketeers.medify.base.BaseViewModel
 import com.geekymusketeers.medify.model.User
 import com.geekymusketeers.medify.utils.Constants
 import com.geekymusketeers.medify.utils.Logger
+import com.geekymusketeers.medify.utils.SharedPrefsExtension.getUserFromSharedPrefs
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -32,10 +33,11 @@ class HomeViewModel(application: Application) : BaseViewModel(application) {
 
     fun getDataFromSharedPreference(sharedPreference: SharedPreferences) =
         viewModelScope.launch(Dispatchers.IO) {
-            val userFromSharedPreferencesAsGson =
-                sharedPreference.getString(Constants.SAVED_USER, null)
-            val gson = Gson()
-            val userObj: User = gson.fromJson(userFromSharedPreferencesAsGson, User::class.java)
+//            val userFromSharedPreferencesAsGson =
+//                sharedPreference.getString(Constants.SAVED_USER, null)
+//            val gson = Gson()
+//            val userObj: User = gson.fromJson(userFromSharedPreferencesAsGson, User::class.java)
+            val userObj = sharedPreference.getUserFromSharedPrefs()
             user.postValue(userObj)
         }
 
