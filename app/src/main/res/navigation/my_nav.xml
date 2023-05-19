@@ -29,7 +29,11 @@
         android:id="@+id/appointment"
         android:name="com.geekymusketeers.medify.ui.mainFragments.appointments.MyAppointmentFragment"
         android:label="fragment_appointment"
-        tools:layout="@layout/fragment_my_appointment" />
+        tools:layout="@layout/fragment_my_appointment" >
+        <action
+            android:id="@+id/action_appointment_to_patientQueueFragment"
+            app:destination="@id/patientQueueFragment" />
+    </fragment>
     <fragment
         android:id="@+id/doctorDetailsFragment"
         android:name="com.geekymusketeers.medify.ui.mainFragments.home.appointment_booking.DoctorDetailsFragment"
@@ -63,5 +67,21 @@
         <argument
             android:name="summary"
             app:argType="com.geekymusketeers.medify.model.Summary" />
+    </fragment>
+    <fragment
+        android:id="@+id/patientQueueFragment"
+        android:name="com.geekymusketeers.medify.ui.mainFragments.appointments.PatientQueueFragment"
+        android:label="fragment_patient_queue"
+        tools:layout="@layout/fragment_patient_queue" >
+        <argument
+            android:name="selectedDate"
+            app:argType="string" />
+        <argument
+            android:name="doctorUserID"
+            app:argType="string" />
+        <argument
+            android:name="hideSelectedDate"
+            app:argType="boolean"
+            android:defaultValue="true" />
     </fragment>
 </navigation>

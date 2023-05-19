@@ -5,20 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
-    tools:context=".ui.mainFragments.DoctorPatient">
+    tools:context=".ui.mainFragments.appointments.PatientQueueFragment">
 
     <TextView
         android:id="@+id/patient_queue_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/dm_sans_bold"
+        android:text="@string/patient_queue"
         android:textColor="@color/white"
-        android:textSize="22sp"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="@string/patient_queue" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/selected_date_text"
@@ -26,11 +26,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:fontFamily="@font/dm_sans_medium"
-        tools:text="Selected Date : 17/05/2023"
         android:textColor="@color/green_shade_light_2"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/patient_queue_text"
-        app:layout_constraintTop_toBottomOf="@+id/patient_queue_text" />
+        app:layout_constraintTop_toBottomOf="@+id/patient_queue_text"
+        tools:text="Selected Date : 17/05/2023" />
 
 
     <ImageView
@@ -39,8 +39,9 @@
         android:layout_height="30dp"
         android:layout_marginStart="120dp"
         android:src="@drawable/calendar_month"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/selected_date_text"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/patient_queue_text"
         app:layout_constraintTop_toTopOf="@id/patient_queue_text" />
 
@@ -69,17 +70,17 @@
             android:id="@+id/noAppointmentText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/dm_sans_bold"
-            tools:text="No Appointment for this date"
-            android:visibility="gone"
             android:layout_marginHorizontal="16dp"
+            android:fontFamily="@font/dm_sans_bold"
             android:textAlignment="center"
             android:textColor="@color/green_shade_dark_1"
             android:textSize="25sp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/appointment_recyclerview"/>
+            app:layout_constraintTop_toTopOf="@+id/appointment_recyclerview"
+            tools:text="No Appointment for this date" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,7 +2,6 @@ package com.geekymusketeers.medify.ui.mainFragments.appointments
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
@@ -12,16 +11,15 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.geekymusketeers.medify.base.ViewModelFactory
 import com.geekymusketeers.medify.databinding.FragmentMyAppointmentBinding
 import com.geekymusketeers.medify.model.Doctor
 import com.geekymusketeers.medify.ui.adapter.PatientAppointmentAdapter
-import com.geekymusketeers.medify.ui.mainFragments.DoctorPatient
 import com.geekymusketeers.medify.utils.Constants
 import com.geekymusketeers.medify.utils.DateTimeExtension
-import com.geekymusketeers.medify.utils.Logger
 import com.geekymusketeers.medify.utils.Utils.show
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.firebase.database.*
@@ -59,7 +57,7 @@ class MyAppointmentFragment : Fragment() {
     private fun initViews() {
         binding.run {
             appointmentAdapter = PatientAppointmentAdapter {
-                navigateToPatientQueue(it.DoctorUID!!, it.Date)
+                navigateToPatientQueue(it.DoctorUID!!, it.Date, true)
             }
             recyclerview = binding.appointmentRecyclerview
             recyclerview.adapter = appointmentAdapter
@@ -68,7 +66,7 @@ class MyAppointmentFragment : Fragment() {
 
             binding.toPatientList.setOnClickListener {
                 val user = myAppointmentsViewModel.userLiveData.value
-                navigateToPatientQueue(user!!.UID!!, DateTimeExtension.getCurrentDateAsString())
+                navigateToPatientQueue(user!!.UID!!, DateTimeExtension.getCurrentDateAsString(), false)
             }
 
             binding.selectDate.setOnClickListener {
@@ -89,12 +87,12 @@ class MyAppointmentFragment : Fragment() {
         }
     }
 
-    private fun navigateToPatientQueue(doctorUID: String, date: String?) {
-        val mIntent = Intent(requireContext(), DoctorPatient::class.java)
-        mIntent.putExtra(Constants.uid, doctorUID)
-        mIntent.putExtra(Constants.date, date)
-        mIntent.putExtra(Constants.hide, Constants.hide)
-        requireContext().startActivity(mIntent)
+    private fun navigateToPatientQueue(doctorUID: String, selectedDate: String?, hideCalendarView: Boolean) {
+        val action = MyAppointmentFragmentDirections.actionAppointmentToPatientQueueFragment(
+            selectedDate!!,
+            doctorUID
+        )
+        findNavController().navigate(action)
     }
 
     @SuppressLint("SetTextI18n")
@@ -106,7 +104,6 @@ class MyAppointmentFragment : Fragment() {
                 val dateNow = DateTimeExtension.getCurrentDateAsString()
                 getAppointmentsForTheDate(dateNow)
                 binding.selectedDateText.text = "Selected Date: $dateNow"
-                Logger.debugLog("User is Doctor: ${it}")
                 if (it.isDoctor == Doctor.IS_DOCTOR.toItemString())
                     binding.toPatientList.show()
             }

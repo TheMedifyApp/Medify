@@ -8,6 +8,7 @@ import com.geekymusketeers.medify.ui.auth.signInScreen.SignInViewModel
 import com.geekymusketeers.medify.ui.auth.signUpScreen.SecondScreen.SignUpSecondViewModel
 import com.geekymusketeers.medify.ui.auth.signUpScreen.firstScreen.SignUpFirstViewModel
 import com.geekymusketeers.medify.ui.mainFragments.appointments.MyAppointmentsViewModel
+import com.geekymusketeers.medify.ui.mainFragments.appointments.PatientQueueViewModel
 import com.geekymusketeers.medify.ui.mainFragments.home.HomeViewModel
 import com.geekymusketeers.medify.ui.mainFragments.home.appointment_booking.AppointmentBookingViewModel
 import com.geekymusketeers.medify.ui.mainFragments.home.appointment_booking.DoctorDetailsViewModel
@@ -42,6 +43,9 @@ class ViewModelFactory : ViewModelProvider.Factory {
                 }
                 isAssignableFrom(MyAppointmentsViewModel::class.java) -> {
                     MyAppointmentsViewModel(application)
+                }
+                isAssignableFrom(PatientQueueViewModel::class.java) -> {
+                    PatientQueueViewModel(application)
                 }
 //                isAssignableFrom(FirebaseViewModel::class.java) -> {
 //                    FirebaseViewModel()
