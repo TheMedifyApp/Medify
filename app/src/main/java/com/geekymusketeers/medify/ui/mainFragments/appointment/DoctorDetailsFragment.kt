@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.geekymusketeers.medify.R
@@ -18,6 +19,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 class DoctorDetailsFragment : Fragment() {
 
     private var _binding: FragmentDoctorDetailsBinding? = null
+    private lateinit var detailsViewModel: DoctorDetailsViewModel
     private val binding get() = _binding!!
     private val args: DoctorDetailsFragmentArgs by navArgs()
     private var doctor: User = User()
@@ -29,6 +31,7 @@ class DoctorDetailsFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentDoctorDetailsBinding.inflate(inflater, container, false)
+        detailsViewModel = ViewModelProvider(this)[DoctorDetailsViewModel::class.java]
 
         initDoctor()
         initViews()
@@ -36,37 +39,32 @@ class DoctorDetailsFragment : Fragment() {
     }
 
     private fun initDoctor() {
-        args.doctorDetails.let {
-            doctor.Name = it.Name
-            doctor.Specialist = it.Specialist
-            doctor.Email = it.Email
-            doctor.Phone = it.Phone
-            doctor.UID = it.UID
-        }
+        val doctorDetails = args.doctorDetails
+        detailsViewModel.initDoctor(doctorDetails)
     }
 
     private fun initViews() {
         binding.run {
-            doctorName.text = doctor.Name
-            doctorSpecialization.text = doctor.Specialist
+            doctorName.text = detailsViewModel.getDoctor().Name
+            doctorSpecialization.text = detailsViewModel.getDoctor().Specialist
             back.setOnClickListener {
                 findNavController().popBackStack()
             }
             bookAppointment.setOnClickListener {
                 val action =
                     DoctorDetailsFragmentDirections.actionDoctorDetailsFragmentToAppointmentBookingFragment(
-                        doctor
+                        detailsViewModel.getDoctor()
                     )
                 findNavController().navigate(action)
             }
             emailId.setOnClickListener {
-                Utils.sendEmailToGmail(activity = requireActivity(), subject = "", body = "", email = doctor.Email)
+                Utils.sendEmailToGmail(activity = requireActivity(), subject = "", body = "", email = detailsViewModel.getDoctor().Email)
             }
             phoneCall.setOnClickListener {
-                Utils.makePhoneCall(activity = requireActivity(), phone = doctor.Phone)
+                Utils.makePhoneCall(activity = requireActivity(), phone = detailsViewModel.getDoctor().Phone)
             }
         }
-        Logger.debugLog("Doctor is ${doctor}")
+        Logger.debugLog("Doctor is ${detailsViewModel.getDoctor()}")
     }
 
 
