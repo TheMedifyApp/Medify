@@ -167,7 +167,7 @@
     <string name="successfully_booked_an_appointment">Successfully booked an appointment</string>
     <string name="back_to_home">Back to Home</string>
     <string name="please_fill_the_form_below">Please fill the form below</string>
-    <string name="select_time">Select time</string>
+    <string name="select_time">Select Time</string>
     <string name="select_date">Select Date</string>
     <string name="confirm_your_appointment">Confirm your appointment</string>
     <string name="note_you_must_enter_the_correct_information_entering_wrong_information_might_lead_to_cancellation_of_your_future_appointments">Note: You must enter the correct information. Entering wrong information might lead to cancellation of your future appointments.</string>
@@ -193,6 +193,14 @@
     <string name="reason_for_dispute">Reason for Dispute *</string>
     <string name="submit_dispute">Submit Dispute</string>
     <string name="enter_your_comment_here_optional">Enter your comment here (optional)</string>
+    <string name="create_or_edit_your_upi">Create or edit your UPI</string>
+    <string name="upi_manager">UPI Manager</string>
+    <string name="add_prescription">Add Prescription</string>
+    <string name="select_prescription">Select Prescription</string>
+    <string name="upload_file">Upload file</string>
+    <string name="file_title">File title</string>
+    <string name="edit_profile">Edit profile</string>
+    <string name="profile">Profile</string>
 
 
 </resources>
