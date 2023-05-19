@@ -8,6 +8,8 @@ import com.geekymusketeers.medify.ui.auth.signInScreen.SignInViewModel
 import com.geekymusketeers.medify.ui.auth.signUpScreen.SecondScreen.SignUpSecondViewModel
 import com.geekymusketeers.medify.ui.auth.signUpScreen.firstScreen.SignUpFirstViewModel
 import com.geekymusketeers.medify.ui.mainFragments.home.HomeViewModel
+import com.geekymusketeers.medify.ui.mainFragments.appointment.AppointmentBookingViewModel
+import com.geekymusketeers.medify.ui.mainFragments.appointment.DoctorDetailsViewModel
 
 class ViewModelFactory : ViewModelProvider.Factory {
     @Suppress("UNCHECKED_CAST")
@@ -30,6 +32,12 @@ class ViewModelFactory : ViewModelProvider.Factory {
                 }
                 isAssignableFrom(ForgotPasswordViewModel::class.java) -> {
                     ForgotPasswordViewModel(application)
+                }
+                isAssignableFrom(AppointmentBookingViewModel::class.java) -> {
+                    AppointmentBookingViewModel(application)
+                }
+                isAssignableFrom(DoctorDetailsViewModel::class.java) -> {
+                    DoctorDetailsViewModel(application)
                 }
 //                isAssignableFrom(FirebaseViewModel::class.java) -> {
 //                    FirebaseViewModel()

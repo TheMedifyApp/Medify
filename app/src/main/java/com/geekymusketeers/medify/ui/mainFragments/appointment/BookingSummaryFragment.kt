@@ -34,12 +34,10 @@ class BookingSummaryFragment : Fragment() {
         binding.apply {
             summaryDoctorName.text = "Doctor's Name: ${args.summary.doctorName}"
             summaryDoctorSpeciality.text = "Speciality: ${args.summary.doctorSpeciality}"
-            summaryDoctorEmail.text = "Doctor's Email: ${args.summary.doctorEmail}"
-            summaryDoctorPhoneNumber.text = "Doctor's Phone ${args.summary.doctorPhone}"
+//            summaryDoctorEmail.text = "Doctor's Email: ${args.summary.doctorEmail}"
+//            summaryDoctorPhoneNumber.text = "Doctor's Phone ${args.summary.doctorPhone}"
             summaryDate.text = "Appointment Date: ${args.summary.appointmentDate}"
             summaryTime.text = "Appointment Time: ${args.summary.appointmentTime}"
-            summaryDisease.text = "Disease: ${args.summary.disease}"
-            summaryPainLevel.text = "Pain: ${args.summary.painLevel}"
             btnHome.setOnClickListener {
                 findNavController().popBackStack()
             }

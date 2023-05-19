@@ -8,9 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.geekymusketeers.medify.R
+import com.geekymusketeers.medify.base.ViewModelFactory
 import com.geekymusketeers.medify.databinding.FragmentAppointmentBookingBinding
 import com.geekymusketeers.medify.model.Summary
 import com.geekymusketeers.medify.utils.Logger
@@ -31,41 +34,47 @@ class AppointmentBookingFragment : Fragment() {
     private val binding get() = _binding!!
     private val args: AppointmentBookingFragmentArgs by navArgs()
     private lateinit var sharedPreference: SharedPreferences
-    private lateinit var mapOfDiseasesList: HashMap<String, ArrayList<String>>
-    private lateinit var diseaseValue: HashMap<String, Float>
+    private lateinit var diseasesList: HashMap<String, ArrayList<String>>
+
+    private val appointmentViewModel by viewModels<AppointmentBookingViewModel> {ViewModelFactory()}
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
+    ): View {
         _binding = FragmentAppointmentBookingBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         initView()
+        setupObservers()
+        setupListeners()
+    }
 
-        diseaseValue = Utils.setDiseaseValues(requireContext())
+    private fun initView() {
+        sharedPreference = requireContext().getSharedPreferences("UserData", Context.MODE_PRIVATE)
+        appointmentViewModel.initializeSpecializationWithDiseasesLists()
+        appointmentViewModel.setDiseaseValues()
+    }
 
-//        val doctorType = args.appointmentDetails.Specialist
+    private fun setupObservers() {
+        appointmentViewModel.navigateToBookingSummary.observe(viewLifecycleOwner) { summary ->
+            navigateToBookingSummary(summary)
+        }
+    }
 
-        // Date Picker
+    private fun setupListeners() {
         binding.selectDate.setOnClickListener {
             handleDatePicker()
         }
-
-        // Booking Appointment
-        binding.btnFinalbook.onSlideCompleteListener =
-            object : SlideToActView.OnSlideCompleteListener {
-                override fun onSlideComplete(view: SlideToActView) {
-                    bookAppointment(args.doctorDetails.Specialist)
-                }
-            }
-
-
-        val items: List<String> = mapOfDiseasesList[args.doctorDetails.Specialist]!!
+        diseasesList = Utils.initializeSpecializationWithDiseasesLists()
+        val items: List<String> = diseasesList[args.doctorDetails.Specialist]!!
         val adapter = ArrayAdapter(requireContext(), R.layout.list_items, items)
         binding.diseaseDropdown.setAdapter(adapter)
 
-        // Situation List
+
         val situationItems = listOf("Severe Pain", "Mild Pain", "No Pain")
         val situationAdapter = ArrayAdapter(requireContext(), R.layout.list_items, situationItems)
         binding.situationDropdown.setAdapter(situationAdapter)
@@ -79,104 +88,35 @@ class AppointmentBookingFragment : Fragment() {
         val timeAdapter = ArrayAdapter(requireContext(), R.layout.list_items, timeItems)
         binding.timeDropdown.setAdapter(timeAdapter)
 
-        return binding.root
-    }
+        binding.btnFinalbook.onSlideCompleteListener = object : SlideToActView.OnSlideCompleteListener {
+            override fun onSlideComplete(view: SlideToActView) {
+                val doctorType = args.doctorDetails.Specialist
+                val userName = sharedPreference.getString("name", "").toString()
+                val userPhone = sharedPreference.getString("phone", "").toString()
+                val userId = sharedPreference.getString("uid", "").toString()
+                val userPrescription = sharedPreference.getString("prescription", "").toString()
+                val selectDate = binding.selectDate.text.toString()
+                val time = binding.timeDropdown.text.toString()
+                val disease = binding.diseaseDropdown.text.toString()
+                val situation = binding.situationDropdown.text.toString()
 
-    private fun bookAppointment(doctorType: String?) {
-        val conditionValue = Utils.setConditionValue(requireContext())
-
-        val totalPoint: Int
-
-        val doctorUid = args.doctorDetails.UID
-        val doctorName = args.doctorDetails.Name
-        val doctorEmail = args.doctorDetails.Email
-        val doctorPhone = args.doctorDetails.Phone
-
-        val userName = sharedPreference.getString("name", "").toString()
-        val userPhone = sharedPreference.getString("phone", "").toString()
-        val userid = sharedPreference.getString("uid", "").toString()
-        val userPrescription = sharedPreference.getString("prescription", "").toString()
-
-        val date = binding.selectDate.text.toString()
-        val time = binding.timeDropdown.text.toString()
-        val disease = binding.diseaseDropdown.text.toString()
-        val situation = binding.situationDropdown.text.toString()
-        val rightNow = Calendar.getInstance()
-        val currentHourIn24Format: Int = rightNow.get(Calendar.HOUR_OF_DAY)
-        val firstComeFirstServe = 1 + (0.1 * ((currentHourIn24Format / 10) + 1))
-
-        Logger.debugLog("firstComeFirstServe: $firstComeFirstServe")
-        Logger.debugLog("diseaseValue: ${diseaseValue[disease]}")
-        Logger.debugLog("conditionValue: ${conditionValue[situation]}")
-        Logger.debugLog("currentHourIn24Format: $currentHourIn24Format")
-
-        var temp = diseaseValue[disease]!!
-        Logger.debugLog("temp value after adding disease value: $temp")
-        temp += conditionValue[situation]!!
-        Logger.debugLog("temp value after adding condition value: $temp")
-        totalPoint = (temp * firstComeFirstServe).toInt()
-        Logger.debugLog("totalPoint: $totalPoint")
-
-        val appointmentD: HashMap<String, String> = HashMap() //define empty hashmap
-        appointmentD["PatientName"] = userName
-        appointmentD["PatientPhone"] = userPhone
-        appointmentD["Time"] = time
-        appointmentD["Date"] = date
-        appointmentD["Disease"] = disease
-        appointmentD["PatientCondition"] = situation
-        appointmentD["Prescription"] = userPrescription
-        appointmentD["TotalPoints"] = totalPoint.toString().trim()
-        appointmentD["DoctorUID"] = doctorUid.toString()
-        appointmentD["PatientID"] = userid
-
-        val appointmentP: HashMap<String, String> = HashMap() //define empty hashmap
-        appointmentP["DoctorUID"] = doctorUid.toString()
-        appointmentP["DoctorName"] = doctorName.toString()
-        appointmentP["DoctorPhone"] = doctorPhone.toString()
-        appointmentP["Date"] = date
-        appointmentP["Time"] = time
-        appointmentP["Disease"] = disease
-        appointmentP["PatientCondition"] = situation
-        appointmentP["Prescription"] = userPrescription
-        appointmentP["PatientID"] = userid
-
-        val appointmentDB_Doctor =
-            FirebaseDatabase.getInstance().getReference("Doctor").child(doctorUid!!)
-                .child("DoctorsAppointments").child(date)
-        appointmentDB_Doctor.child(userid).setValue(appointmentD)
-
-        val appointmentDB_User_Doctor =
-            FirebaseDatabase.getInstance().getReference("Users").child(doctorUid)
-                .child("DoctorsAppointments").child(date)
-        appointmentDB_User_Doctor.child(userid).setValue(appointmentD)
-
-        val appointmentDB_Patient =
-            FirebaseDatabase.getInstance().getReference("Users").child(userid)
-                .child("PatientsAppointments").child(date)
-        appointmentDB_Patient.child(doctorUid).setValue(appointmentP)
-//
-        val summary = Summary(
-            doctorName = doctorName.toString(),
-            doctorSpeciality = doctorType.toString(),
-            doctorEmail = doctorEmail.toString(),
-            doctorPhone = doctorPhone.toString(),
-            appointmentDate = date,
-            appointmentTime = time,
-            disease = disease,
-            painLevel = situation,
-            totalPoint = totalPoint
-        )
-
-//        val intent = Intent(this@AppointmentBooking, BookingDoneActivity::class.java)
-//        intent.putExtra("summary", summary)
-//        startActivity(intent)
-//        finish()
-
-        val actions =
-            AppointmentBookingFragmentDirections.actionAppointmentBookingFragmentToBookingSummaryFragment(
-                summary
-            )
-        findNavController().navigate(actions)
+                appointmentViewModel.bookAppointment(
+                    doctorType,
+                    userName,
+                    userPhone,
+                    userId,
+                    userPrescription,
+                    selectDate,
+                    time,
+                    disease,
+                    situation,
+                    args.doctorDetails.UID!!,
+                    args.doctorDetails.Name!!,
+                    args.doctorDetails.Email!!,
+                    args.doctorDetails.Phone!!
+                )
+            }
+        }
     }
 
     private fun handleDatePicker() {
@@ -200,12 +140,11 @@ class AppointmentBookingFragment : Fragment() {
             val date = dateFormatter.format(Date(it))
             binding.selectDate.setText(date)
         }
-
     }
 
-    private fun initView() {
-        sharedPreference = requireContext().getSharedPreferences("UserData", Context.MODE_PRIVATE)
-        mapOfDiseasesList = Utils.initializeSpecializationWithDiseasesLists()
+    private fun navigateToBookingSummary(summary: Summary) {
+        val action = AppointmentBookingFragmentDirections
+            .actionAppointmentBookingFragmentToBookingSummaryFragment(summary)
+        findNavController().navigate(action)
     }
-
 }

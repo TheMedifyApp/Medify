@@ -46,8 +46,8 @@
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lottieAnimationView"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:layout_marginTop="40dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -63,7 +63,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginBottom="3dp"
             android:fontFamily="@font/dm_sans"
-            android:paddingHorizontal="50dp"
+            android:paddingHorizontal="20dp"
             android:textColor="@color/black"
             android:textSize="18sp"
             tools:text="Doctor's Name" />
@@ -74,32 +74,10 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="3dp"
             android:fontFamily="@font/dm_sans"
-            android:paddingHorizontal="50dp"
+            android:paddingHorizontal="20dp"
             android:textColor="@color/black"
             android:textSize="18sp"
             tools:text="Speciality" />
-
-        <TextView
-            android:id="@+id/summary_doctor_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="3dp"
-            android:fontFamily="@font/dm_sans"
-            android:paddingHorizontal="50dp"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            tools:text="Doctor's Email" />
-
-        <TextView
-            android:id="@+id/summary_doctor_phone_number"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="3dp"
-            android:fontFamily="@font/dm_sans"
-            android:paddingHorizontal="50dp"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            tools:text="Doctor's Phone Number" />
 
         <TextView
             android:id="@+id/summary_date"
@@ -107,7 +85,7 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="3dp"
             android:fontFamily="@font/dm_sans"
-            android:paddingHorizontal="50dp"
+            android:paddingHorizontal="20dp"
             android:textColor="@color/black"
             android:textSize="18sp"
             tools:text="Appointment Date" />
@@ -118,32 +96,11 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="3dp"
             android:fontFamily="@font/dm_sans"
-            android:paddingHorizontal="50dp"
+            android:paddingHorizontal="20dp"
             android:textColor="@color/black"
             android:textSize="18sp"
             tools:text="Appointment Time: " />
 
-        <TextView
-            android:id="@+id/summary_disease"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="3dp"
-            android:fontFamily="@font/dm_sans"
-            android:paddingHorizontal="50dp"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            tools:text="Disease: " />
-
-        <TextView
-            android:id="@+id/summary_pain_level"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="3dp"
-            android:fontFamily="@font/dm_sans"
-            android:paddingHorizontal="50dp"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            tools:text="Pain Level: " />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_home"
