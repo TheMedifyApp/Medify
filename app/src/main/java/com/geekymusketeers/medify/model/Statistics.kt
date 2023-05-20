@@ -7,7 +7,8 @@ import java.util.TreeMap
 @Parcelize
 data class HealthData(
     var name: String? = null,
-    var tests: TreeMap<String, TestResult>? = null
+    var tests: TreeMap<String, TestResult>? = null,
+    var healthId : String? = null
 ) : Parcelable
 
 @Parcelize

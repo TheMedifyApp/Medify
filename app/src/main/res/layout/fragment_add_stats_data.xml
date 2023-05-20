@@ -44,7 +44,7 @@
         <ScrollView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@id/login_button"
+            app:layout_constraintBottom_toTopOf="@id/save_button"
             android:layout_marginBottom="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -84,7 +84,7 @@
         </ScrollView>
 
         <com.geekymusketeers.presin.ui.custom_views.CustomButton
-            android:id="@+id/login_button"
+            android:id="@+id/save_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"

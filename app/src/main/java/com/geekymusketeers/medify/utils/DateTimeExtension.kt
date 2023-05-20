@@ -43,4 +43,8 @@ object DateTimeExtension {
         val zonedDateTime = instant.atZone(zoneId)
         return zonedDateTime.toLocalDate()
     }
+
+    fun getTimeStamp(): String {
+        return System.currentTimeMillis().toString()
+    }
 }

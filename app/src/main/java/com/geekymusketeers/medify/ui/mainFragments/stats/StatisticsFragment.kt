@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.geekymusketeers.medify.R
 import com.geekymusketeers.medify.databinding.FragmentStatisticsBinding
+import com.geekymusketeers.medify.model.HealthData
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import java.util.*
@@ -45,7 +46,25 @@ class StatisticsFragment : Fragment() {
         sharedPreference = requireActivity().getSharedPreferences("UserData", Context.MODE_PRIVATE)
         db = FirebaseDatabase.getInstance().reference
 
+        initObserver()
+        initView()
+
         return binding.root
+    }
+
+    private fun initView() {
+        binding.run {
+            fabCircle.setOnClickListener {
+                val action = StatisticsFragmentDirections.actionStatsToAddStatsDataFragment(
+                    HealthData(null)
+                )
+                findNavController().navigate(action)
+            }
+        }
+    }
+
+    private fun initObserver() {
+
     }
 
 }
