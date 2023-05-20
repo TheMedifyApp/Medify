@@ -47,6 +47,18 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
+                    <TextView
+                        android:id="@+id/test_date_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/dm_sans_medium"
+                        android:text="Last Updated: 12/12/2020 12:12 PM"
+                        android:layout_marginTop="5dp"
+                        android:textColor="@color/green_shade_dark_1"
+                        android:textSize="12sp"
+                        app:layout_constraintStart_toStartOf="@+id/test_name"
+                        app:layout_constraintTop_toBottomOf="@+id/test_name" />
+
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/addTestData"
                         style="?android:attr/borderlessButtonStyle"

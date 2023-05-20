@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
-    tools:context=".ui.mainFragments.StatisticsFragment">
+    tools:context=".ui.mainFragments.stats.StatisticsFragment">
 
     <TextView
         android:id="@+id/statisticsTextView"
@@ -47,6 +47,7 @@
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_margin="10dp"
             android:clipToPadding="false"
             android:nestedScrollingEnabled="false"
             android:paddingBottom="30dp"
@@ -62,7 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="100dp"
+            android:layout_marginBottom="80dp"
             android:animateLayoutChanges="true"
             android:background="@drawable/fab_drawable"
             android:backgroundTint="@color/green_shade_dark_2"
@@ -87,7 +88,6 @@
                 app:fabSize="normal"
                 app:srcCompat="@drawable/add"
                 app:tint="@color/white" />
-
 
         </LinearLayout>
 
