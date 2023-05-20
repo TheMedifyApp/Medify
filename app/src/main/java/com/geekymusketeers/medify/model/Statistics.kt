@@ -1,8 +1,17 @@
 package com.geekymusketeers.medify.model
 
-data class Statistics(
-    var testName: String? = null,
-    var testResult: String? = null,
-    var testDate_Time: String? = null,
-    var testDataRange: String? = null,
-)
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+import java.util.TreeMap
+
+@Parcelize
+data class HealthData(
+    var name: String? = null,
+    var tests: TreeMap<String, TestResult>? = null
+) : Parcelable
+
+@Parcelize
+data class TestResult(
+    var result: String? = null,
+    var dateTime: String? = null
+) : Parcelable

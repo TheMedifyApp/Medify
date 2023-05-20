@@ -5,12 +5,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.geekymusketeers.medify.databinding.StatiscticsCardListBinding
-import com.geekymusketeers.medify.model.Statistics
+import com.geekymusketeers.medify.model.HealthData
 
-private var testList: List<Statistics> = ArrayList()
+private var testList: List<HealthData> = ArrayList()
 
 class StatsListAdapter(
-    private val listener: (Statistics) -> Unit
+    private val listener: (HealthData) -> Unit
 ) : RecyclerView.Adapter<StatsListAdapter.StatsViewHolder>() {
 
 
@@ -31,9 +31,9 @@ class StatsListAdapter(
         val test = testList[position]
 
         holder.binding.apply {
-            testName.text = test.testName
-            testDataRange.text = test.testDataRange
-            testDateTime.text = test.testDate_Time
+            testName.text = test.name
+//            testDataRange.text = test.testDataRange
+//            testDateTime.text = test.testDate_Time
 
             root.setOnClickListener {
                 listener(test)
@@ -42,7 +42,7 @@ class StatsListAdapter(
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun addItems(list: List<Statistics>) {
+    fun addItems(list: List<HealthData>) {
         testList = list
         notifyDataSetChanged()
     }
