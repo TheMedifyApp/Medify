@@ -202,6 +202,20 @@
     <string name="logged_in">Logged in</string>
     <string name="send_reset_mail">Send Reset Mail</string>
     <string name="enter_your_registered_email_address">Enter your registered email address</string>
+    <string name="upload_prescription">Upload Prescription</string>
+    <string name="upi_qr">UPI QR</string>
+    <string name="about_us">About Us</string>
+    <string name="feedback">Feedback</string>
+    <string name="need_help">Need help?</string>
+    <string name="logout">Logout</string>
+    <string name="update_profile">Update Profile</string>
+    <string name="invalid_name">Invalid Name</string>
+    <string name="invalid_age">Invalid Age</string>
+    <string name="invalid_phone_number">Invalid Phone Number</string>
+    <string name="invalid_address">Invalid Address</string>
+    <string name="customize_your_profile">Customize your profile</string>
+    <string name="profile_updated_successfully">Profile updated Successfully!</string>
+    <string name="failed_to_update_profile">Failed to update Profile!</string>
 
 
 </resources>

@@ -8,6 +8,7 @@ import com.geekymusketeers.medify.base.BaseViewModel
 import com.geekymusketeers.medify.model.User
 import com.geekymusketeers.medify.utils.Constants
 import com.geekymusketeers.medify.utils.Logger
+import com.geekymusketeers.medify.utils.SharedPrefsExtension.saveUserToSharedPrefs
 import com.geekymusketeers.medify.utils.Validator.Companion.isValidEmail
 import com.geekymusketeers.medify.utils.Validator.Companion.isValidPassword
 import com.google.firebase.database.FirebaseDatabase
@@ -94,11 +95,7 @@ class SignInViewModel(application: Application) : BaseViewModel(application) {
 
     fun saveInSharedPreference(sharedPreferences: SharedPreferences) {
         val user = userLiveData.value
-        val editor = sharedPreferences.edit()
-        val gson = Gson()
-        val json = gson.toJson(user)
-        editor.putString(Constants.SAVED_USER, json)
-        editor.apply()
+        sharedPreferences.saveUserToSharedPrefs(user!!)
         sharedPreferenceLiveData.postValue(true)
     }
 

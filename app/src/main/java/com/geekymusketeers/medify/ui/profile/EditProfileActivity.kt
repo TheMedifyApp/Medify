@@ -40,7 +40,7 @@ class EditProfileActivity : AppCompatActivity() {
 
         var userID = sharedPreference.getString("uid", "Not found").toString()
         db = FirebaseDatabase.getInstance().getReference("Users")
-        val user = mapOf<String,String>(
+        val user = mapOf(
             "name" to name,
             "age" to age,
             "phone" to phoneno

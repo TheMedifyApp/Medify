@@ -12,4 +12,10 @@ object SharedPrefsExtension {
         val gson = Gson()
         return gson.fromJson(userFromSharedPreferencesAsGson, User::class.java) as User
     }
+
+    fun SharedPreferences.saveUserToSharedPrefs(user: User) {
+        val gson = Gson()
+        val json = gson.toJson(user)
+        this.edit().putString(Constants.SAVED_USER, json).apply()
+    }
 }

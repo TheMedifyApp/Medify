@@ -16,6 +16,7 @@ object Constants {
     const val uid: String = "uid"
     const val date: String = "date"
     const val hide: String = "hide"
+    const val Prescription: String = "Prescription"
     const val Doctor: String = "Doctor"
     const val UserData: String = "UserData"
     const val DatePicker: String = "DatePicker"

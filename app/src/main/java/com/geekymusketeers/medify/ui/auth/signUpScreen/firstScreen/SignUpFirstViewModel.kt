@@ -29,6 +29,7 @@ class SignUpFirstViewModel(application: Application) : BaseViewModel(application
 
     init {
         userGender.value = "male"
+        userAge.value = 0
     }
 
     fun setUserName(name: String) {
@@ -100,7 +101,7 @@ class SignUpFirstViewModel(application: Application) : BaseViewModel(application
     private fun updateButtonState() {
         val requiredField = userName.value.isNullOrEmpty() ||
                 userEmail.value.isNullOrEmpty() || userPhone.value.isNullOrEmpty() ||
-                userPassword.value.isNullOrEmpty() || userAge.value == null ||
+                userPassword.value.isNullOrEmpty() || userAge.value == 0 ||
                 userGender.value.isNullOrEmpty()
         enableNextButtonLiveData.value = requiredField.not()
 //        setProgressValue()
