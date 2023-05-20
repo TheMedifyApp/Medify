@@ -17,9 +17,13 @@
     </fragment>
     <fragment
         android:id="@+id/settings"
-        android:name="com.geekymusketeers.medify.ui.mainFragments.SettingsFragment"
+        android:name="com.geekymusketeers.medify.ui.mainFragments.settings.SettingsFragment"
         android:label="fragment_settings"
-        tools:layout="@layout/fragment_settings" />
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_settings_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/stats"
         android:name="com.geekymusketeers.medify.ui.mainFragments.StatisticsFragment"
@@ -84,4 +88,9 @@
             app:argType="boolean"
             android:defaultValue="true" />
     </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.geekymusketeers.medify.ui.mainFragments.settings.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>

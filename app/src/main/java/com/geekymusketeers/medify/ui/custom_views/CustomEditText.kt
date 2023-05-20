@@ -13,6 +13,7 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.inputmethod.InputMethodManager
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.widget.doAfterTextChanged
 import com.geekymusketeers.medify.R
@@ -138,10 +139,10 @@ class CustomEditText @JvmOverloads constructor(
         }
     }
 
-    private fun setHint(hint: String?) {
+    fun setHint(hint: String?) {
         binding.editTextBox.apply {
             this.hint = hint
-//            setHintTextColor(ContextCompat.getColor(context, R.color.hint_color))
+            setHintTextColor(ContextCompat.getColor(context, R.color.hint_color))
         }
     }
 

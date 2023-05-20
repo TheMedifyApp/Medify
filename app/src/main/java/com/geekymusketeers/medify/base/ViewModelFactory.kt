@@ -12,6 +12,8 @@ import com.geekymusketeers.medify.ui.mainFragments.appointments.PatientQueueView
 import com.geekymusketeers.medify.ui.mainFragments.home.HomeViewModel
 import com.geekymusketeers.medify.ui.mainFragments.home.appointment_booking.AppointmentBookingViewModel
 import com.geekymusketeers.medify.ui.mainFragments.home.appointment_booking.DoctorDetailsViewModel
+import com.geekymusketeers.medify.ui.mainFragments.settings.SettingsViewModel
+import com.geekymusketeers.medify.ui.mainFragments.settings.profile.ProfileViewModel
 
 class ViewModelFactory : ViewModelProvider.Factory {
     @Suppress("UNCHECKED_CAST")
@@ -46,6 +48,12 @@ class ViewModelFactory : ViewModelProvider.Factory {
                 }
                 isAssignableFrom(PatientQueueViewModel::class.java) -> {
                     PatientQueueViewModel(application)
+                }
+                isAssignableFrom(SettingsViewModel::class.java) -> {
+                    SettingsViewModel(application)
+                }
+                isAssignableFrom(ProfileViewModel::class.java) -> {
+                    ProfileViewModel(application)
                 }
 //                isAssignableFrom(FirebaseViewModel::class.java) -> {
 //                    FirebaseViewModel()
