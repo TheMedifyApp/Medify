@@ -6,7 +6,7 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.geekymusketeers.medify.ui.prescription.AddPrescriptionActivity
+import com.geekymusketeers.medify.ui.mainFragments.settings.prescription.AddPrescriptionActivity
 import com.geekymusketeers.medify.databinding.ActivityEditProfileBinding
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
