@@ -14,10 +14,16 @@ import android.view.ViewGroup
 import android.widget.EditText
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.geekymusketeers.medify.R
+import com.geekymusketeers.medify.base.ViewModelFactory
 import com.geekymusketeers.medify.databinding.FragmentStatisticsBinding
 import com.geekymusketeers.medify.model.HealthData
+import com.geekymusketeers.medify.ui.adapter.StatsListAdapter
+import com.geekymusketeers.medify.utils.Constants
+import com.geekymusketeers.medify.utils.Logger
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import java.util.*
@@ -31,11 +37,9 @@ class StatisticsFragment : Fragment() {
     private var _binding: FragmentStatisticsBinding? = null
     private val binding get() = _binding!!
     private lateinit var sharedPreference: SharedPreferences
+    private val statisticsViewModel by viewModels<StatisticsViewModel> { ViewModelFactory() }
+    private lateinit var statsListAdapter: StatsListAdapter
 
-    //Current User's data
-    private lateinit var userID: String
-    private lateinit var stats: String
-    private lateinit var db: DatabaseReference
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,8 +47,8 @@ class StatisticsFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         _binding = FragmentStatisticsBinding.inflate(inflater, container, false)
-        sharedPreference = requireActivity().getSharedPreferences("UserData", Context.MODE_PRIVATE)
-        db = FirebaseDatabase.getInstance().reference
+        sharedPreference =
+            requireActivity().getSharedPreferences(Constants.UserData, Context.MODE_PRIVATE)
 
         initObserver()
         initView()
@@ -60,11 +64,29 @@ class StatisticsFragment : Fragment() {
                 )
                 findNavController().navigate(action)
             }
+            statsListAdapter = StatsListAdapter {
+                val action = StatisticsFragmentDirections.actionStatsToAddStatsDataFragment(it)
+                findNavController().navigate(action)
+            }
+            recyclerView.apply {
+                layoutManager = LinearLayoutManager(requireContext())
+                adapter = statsListAdapter
+            }
         }
     }
 
     private fun initObserver() {
-
+        statisticsViewModel.run {
+            getDataFromSharedPreference(sharedPreference)
+            userLiveData.observe(viewLifecycleOwner) {
+                setStatsList()
+            }
+            statsList.observe(viewLifecycleOwner) {
+                Logger.debugLog("StatsList from statsFrag: $it")
+                if (it != null)
+                    statsListAdapter.addItems(it)
+            }
+        }
     }
 
 }

@@ -17,7 +17,7 @@ object DateTimeExtension {
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun getCurrentDateAsString(): String {
-        return SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(Date())
+        return SimpleDateFormat(Constants.dateFormat, Locale.getDefault()).format(Date())
     }
 
     @SuppressLint("SimpleDateFormat")
@@ -42,6 +42,15 @@ object DateTimeExtension {
         val zoneId: ZoneId = ZoneId.systemDefault()
         val zonedDateTime = instant.atZone(zoneId)
         return zonedDateTime.toLocalDate()
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun String.convertTimestampToDateTime(): String {
+        val timestampLong = this.toLongOrNull() ?: return "" // Return empty string if parsing fails
+        val instant = Instant.ofEpochMilli(timestampLong)
+        val dateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault())
+        val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm", Locale.getDefault())
+        return dateTime.format(formatter)
     }
 
     fun getTimeStamp(): String {

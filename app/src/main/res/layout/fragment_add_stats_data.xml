@@ -61,7 +61,7 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginHorizontal="20dp"
                     app:header="Test Name"
-                    app:hint="Blood Pressure"
+                    app:hint="eg. Blood Pressure"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -72,7 +72,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     app:header="Test Result"
-                    app:hint="110"
+                    app:hint="eg. 110"
+                    app:inputType="2"
                     app:layout_constraintEnd_toEndOf="@+id/test_Name_edit_text"
                     app:layout_constraintStart_toStartOf="@+id/test_Name_edit_text"
                     app:layout_constraintTop_toBottomOf="@+id/test_Name_edit_text" />
