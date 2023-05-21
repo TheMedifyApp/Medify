@@ -37,6 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="20dp"
+        android:paddingTop="10dp"
         android:background="@drawable/white_bar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -47,15 +48,15 @@
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_margin="10dp"
             android:clipToPadding="false"
             android:nestedScrollingEnabled="false"
             android:paddingBottom="30dp"
+            android:layout_marginBottom="100dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/statisctics_card_list" />
-
 
         <LinearLayout
             android:id="@+id/fab_layout"
@@ -63,7 +64,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="80dp"
+            android:layout_marginBottom="100dp"
             android:animateLayoutChanges="true"
             android:background="@drawable/fab_drawable"
             android:backgroundTint="@color/green_shade_dark_2"

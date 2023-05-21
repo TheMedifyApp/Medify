@@ -198,4 +198,14 @@
         <item name="android:fontFamily">@font/dm_sans_medium</item>
     </style>
 
+<!--    <color name="chart_1_color_1">@color/green_shade_dark_1</color>-->
+
+<!--    <style name="Chart1Line1Style">-->
+<!--        <item name="color">@color/chart_1_color_1</item>-->
+<!--    </style>-->
+
+<!--    <style name="Chart1LineChartStyle">-->
+<!--        <item name="line1Spec">@style/Chart1Line1Style</item>-->
+<!--    </style>-->
+
 </resources>

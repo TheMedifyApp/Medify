@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:id="@+id/parent_layout"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -10,7 +12,6 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:layout_margin="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -66,14 +67,25 @@
                 <com.majorik.sparklinelibrary.SparkLineLayout
                     android:id="@+id/testData_stats"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="150dp"
                     android:layout_margin="10dp"
                     android:layout_marginTop="12dp"
-                    android:background="#ffffff"
+                    android:background="@android:color/transparent"
                     app:s_gradient_line="true"
                     app:s_line_color="@color/green_shade_dark_1"
                     app:s_line_second_color="@color/green_shade_dark_2"
                     app:s_line_thickness="4dp" />
+
+<!--                <com.patrykandpatrick.vico.views.chart.ChartView-->
+<!--                    android:id="@+id/testData_stats"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    app:chart="line"-->
+<!--                    app:showStartAxis="false"-->
+<!--                    app:lineChartStyle="@style/Chart1LineChartStyle" />-->
+<!--                    app:showStartAxis="true"-->
+<!--                    app:showBottomAxis="true"-->
+
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -86,7 +98,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/dm_sans_medium"
-                        android:text="@string/biological_reference_80_120"
+                        tools:text="@string/biological_reference_80_120"
                         android:textColor="@color/black"
                         android:textSize="12sp"
                         app:layout_constraintBottom_toBottomOf="parent"

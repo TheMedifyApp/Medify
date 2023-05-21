@@ -78,6 +78,11 @@ dependencies {
     //Chart / Graph
     implementation 'com.github.majorkik:SparkLineLayout:1.0.1'
 
+    // Includes the core logic for charts and other elements.
+//    implementation "com.patrykandpatrick.vico:core:1.6.5"
+    // For the view system.
+//    implementation "com.patrykandpatrick.vico:views:1.6.5"
+
     // Lottie
     implementation 'com.airbnb.android:lottie:5.2.0'
 
