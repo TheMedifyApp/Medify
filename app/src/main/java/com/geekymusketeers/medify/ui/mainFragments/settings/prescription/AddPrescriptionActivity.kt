@@ -1,4 +1,4 @@
-package com.geekymusketeers.medify.ui.prescription
+package com.geekymusketeers.medify.ui.mainFragments.settings.prescription
 
 import android.Manifest
 import android.annotation.SuppressLint

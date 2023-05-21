@@ -1,4 +1,4 @@
-package com.geekymusketeers.medify.ui.mainFragments
+package com.geekymusketeers.medify.ui.mainFragments.settings.upi
 
 import android.annotation.SuppressLint
 import android.content.Context
