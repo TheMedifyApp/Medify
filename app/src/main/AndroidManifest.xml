@@ -35,13 +35,13 @@
             android:name=".ui.profile.ProfileActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.prescription.AddPrescriptionActivity"
+            android:name=".ui.mainFragments.settings.prescription.AddPrescriptionActivity"
             android:exported="true" />
         <activity
             android:name=".ui.mainFragments.DoctorPatient"
             android:exported="true" />
         <activity
-            android:name=".ui.mainFragments.UPImanager"
+            android:name=".ui.mainFragments.settings.upi.UPImanager"
             android:exported="true" />
         <activity
             android:name=".ui.introduction.Splashscreen"
