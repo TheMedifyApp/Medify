@@ -58,16 +58,21 @@ class SignUpFirstScreen : AppCompatActivity() {
                 showCalendarDialog()
             }
             genderEditText.getSelectedItemFromDialog {
-                Logger.debugLog("Gender value is: $it and converted = ${Gender.getGenderToGender(it).toItemString()}")
+                Logger.debugLog(
+                    "Gender value is: $it and converted = ${
+                        Gender.getGenderToGender(it).toItemString()
+                    }"
+                )
                 signUpFirstViewModel.setUserGender(Gender.getGenderToGender(it).toItemString())
             }
             passwordEditText.apply {
                 setUserInputListener {
                     signUpFirstViewModel.setUserPassword(it)
-                    setEndDrawableIcon(
-                        ResourcesCompat.getDrawable(resources, R.drawable.pass_show, null)
-                    )
                 }
+                setEndDrawableIcon(
+                    ResourcesCompat.getDrawable(resources, R.drawable.pass_show, null)
+                )
+
             }
             bottomDualEditText.apply {
                 firstTextView.text = getString(R.string.already_have_an_account)
@@ -81,7 +86,13 @@ class SignUpFirstScreen : AppCompatActivity() {
             nextButton.setOnClickListener {
                 signUpFirstViewModel.setUpUser()
             }
-            nextButton.setEndDrawableIcon(ResourcesCompat.getDrawable(resources,R.drawable.arrow_forward,null))
+            nextButton.setEndDrawableIcon(
+                ResourcesCompat.getDrawable(
+                    resources,
+                    R.drawable.arrow_forward,
+                    null
+                )
+            )
         }
     }
 
