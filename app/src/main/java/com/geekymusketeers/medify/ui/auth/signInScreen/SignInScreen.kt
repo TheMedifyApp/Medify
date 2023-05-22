@@ -40,10 +40,11 @@ class SignInScreen : AppCompatActivity() {
             passwordEditText.apply {
                 setUserInputListener {
                     signInViewModel.setPassword(it)
-                    setEndDrawableIcon(
-                        ResourcesCompat.getDrawable(resources, R.drawable.pass_show, null)
-                    )
                 }
+                setEndDrawableIcon(
+                    ResourcesCompat.getDrawable(resources, R.drawable.pass_show, null)
+                )
+
             }
             forgotPasswordTextView.setOnClickListener {
                 startActivity(Intent(this@SignInScreen, ForgotPasswordActivity::class.java))
@@ -76,12 +77,17 @@ class SignInScreen : AppCompatActivity() {
                 getUserFromFirebase()
             }
             userLiveData.observe(this@SignInScreen) {
-                val sharedPreferences = getSharedPreferences(Constants.UserData, Context.MODE_PRIVATE)
+                val sharedPreferences =
+                    getSharedPreferences(Constants.UserData, Context.MODE_PRIVATE)
                 saveInSharedPreference(sharedPreferences)
             }
             sharedPreferenceLiveData.observe(this@SignInScreen) {
                 if (it) {
-                    Toast.makeText(this@SignInScreen, getString(R.string.logged_in), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@SignInScreen,
+                        getString(R.string.logged_in),
+                        Toast.LENGTH_SHORT
+                    ).show()
                     startActivity(Intent(this@SignInScreen, HomeActivity::class.java))
                     finishAffinity()
                 }
