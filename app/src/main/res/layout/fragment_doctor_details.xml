@@ -95,6 +95,33 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/address_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/dm_sans_bold"
+            android:text="@string/address"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            app:layout_constraintEnd_toEndOf="@+id/doctor_Specialization"
+            app:layout_constraintStart_toStartOf="@+id/doctor_Specialization"
+            app:layout_constraintTop_toBottomOf="@+id/doctor_Specialization" />
+
+        <TextView
+            android:id="@+id/doctor_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/dm_sans_medium"
+            android:text="@string/address_hint"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/address_text"
+            app:layout_constraintStart_toStartOf="@+id/address_text"
+            app:layout_constraintTop_toBottomOf="@+id/address_text" />
+
+
+        <TextView
             android:id="@+id/working_hour_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -103,9 +130,8 @@
             android:text="@string/working_hours"
             android:textColor="@color/black"
             android:textSize="22sp"
-            app:layout_constraintEnd_toEndOf="@+id/doctor_Specialization"
-            app:layout_constraintStart_toStartOf="@+id/doctor_Specialization"
-            app:layout_constraintTop_toBottomOf="@+id/doctor_Specialization" />
+            app:layout_constraintTop_toBottomOf="@+id/doctor_address"
+            tools:layout_editor_absoluteX="20dp" />
 
         <TextView
             android:id="@+id/working_hour"

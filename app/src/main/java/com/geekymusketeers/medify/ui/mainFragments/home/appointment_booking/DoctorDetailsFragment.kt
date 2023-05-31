@@ -45,6 +45,7 @@ class DoctorDetailsFragment : Fragment() {
         binding.run {
             doctorName.text = detailsViewModel.getDoctor().Name
             doctorSpecialization.text = detailsViewModel.getDoctor().Specialist
+            doctorAddress.text = detailsViewModel.getDoctor().Address
             back.setOnClickListener {
                 findNavController().popBackStack()
             }
