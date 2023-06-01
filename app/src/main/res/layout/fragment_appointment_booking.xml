@@ -177,7 +177,7 @@
             android:layout_width="350dp"
             android:layout_height="60dp"
             android:layout_marginTop="40dp"
-            android:visibility="visible"
+            android:visibility="gone"
             app:inner_color="@color/white"
             app:layout_constraintEnd_toEndOf="@+id/menu_situation"
             app:layout_constraintStart_toStartOf="@+id/menu_situation"

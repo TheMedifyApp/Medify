@@ -113,7 +113,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/dm_sans_medium"
-            android:text="@string/address_hint"
+            android:text="@string/no_address_found"
             android:textColor="@color/black"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="@+id/address_text"

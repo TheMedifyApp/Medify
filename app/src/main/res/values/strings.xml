@@ -216,6 +216,7 @@
     <string name="customize_your_profile">Customize your profile</string>
     <string name="profile_updated_successfully">Profile updated Successfully!</string>
     <string name="failed_to_update_profile">Failed to update Profile!</string>
+    <string name="no_address_found">No address found</string>
 
 
 </resources>

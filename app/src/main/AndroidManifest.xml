@@ -12,8 +12,6 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
-
 
     <application
         android:allowBackup="true"
@@ -36,9 +34,6 @@
             android:exported="true" />
         <activity
             android:name=".ui.mainFragments.settings.prescription.AddPrescriptionActivity"
-            android:exported="true" />
-        <activity
-            android:name=".ui.mainFragments.DoctorPatient"
             android:exported="true" />
         <activity
             android:name=".ui.mainFragments.settings.upi.UPImanager"

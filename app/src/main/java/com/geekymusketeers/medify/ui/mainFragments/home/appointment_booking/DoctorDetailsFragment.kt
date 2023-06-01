@@ -45,7 +45,11 @@ class DoctorDetailsFragment : Fragment() {
         binding.run {
             doctorName.text = detailsViewModel.getDoctor().Name
             doctorSpecialization.text = detailsViewModel.getDoctor().Specialist
-            doctorAddress.text = detailsViewModel.getDoctor().Address
+            Logger.debugLog("Doctor is ${detailsViewModel.getDoctor().Address}")
+            detailsViewModel.getDoctor().let {
+                if (it.Address != "null")
+                    doctorAddress.text = it.Address.toString()
+            }
             back.setOnClickListener {
                 findNavController().popBackStack()
             }
@@ -57,10 +61,18 @@ class DoctorDetailsFragment : Fragment() {
                 findNavController().navigate(action)
             }
             emailId.setOnClickListener {
-                Utils.sendEmailToGmail(activity = requireActivity(), subject = "", body = "", email = detailsViewModel.getDoctor().Email)
+                Utils.sendEmailToGmail(
+                    activity = requireActivity(),
+                    subject = "",
+                    body = "",
+                    email = detailsViewModel.getDoctor().Email
+                )
             }
             phoneCall.setOnClickListener {
-                Utils.makePhoneCall(activity = requireActivity(), phone = detailsViewModel.getDoctor().Phone)
+                Utils.makePhoneCall(
+                    activity = requireActivity(),
+                    phone = detailsViewModel.getDoctor().Phone
+                )
             }
         }
         Logger.debugLog("Doctor is ${detailsViewModel.getDoctor()}")

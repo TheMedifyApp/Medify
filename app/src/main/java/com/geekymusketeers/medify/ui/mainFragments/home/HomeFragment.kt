@@ -68,6 +68,7 @@ class HomeFragment : Fragment() {
 
         doctorListAdapter = DoctorListAdapter {
             val rating = homeViewModel.totalRating.value!!
+            binding.doctorData.setText("")
             onDoctorCardClick(it, rating)
         }
 

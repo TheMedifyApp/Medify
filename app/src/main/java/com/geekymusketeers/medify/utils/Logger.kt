@@ -20,12 +20,6 @@ object Logger {
         }
     }
 
-    fun debugLog(msg: String?) {
-        if (BuildConfig.DEBUG) {
-            Log.d("Log", msg!!)
-        }
-    }
-
     fun logException(tag: String, exception: Exception, logLevel: LogLevel, logToCrashlytics : Boolean = false) {
         when (logLevel) {
             LogLevel.DEBUG -> Log.d(tag, null, exception)

@@ -1,7 +1,6 @@
 package com.geekymusketeers.medify.ui.mainFragments.home.appointment_booking
 
 import android.app.Application
-import android.content.Context
 import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -23,6 +22,11 @@ import java.util.Calendar
 class AppointmentBookingViewModel(application: Application) : BaseViewModel(application) {
     private lateinit var mapOfDiseasesList: HashMap<String, ArrayList<String>>
     private lateinit var diseaseValue: HashMap<String, Float>
+    var appointmentDate = MutableLiveData<String>()
+    var appointmentTime = MutableLiveData<String>()
+    var appointmentDisease = MutableLiveData<String>()
+    var appointmentCondition = MutableLiveData<String>()
+    var appointmentEnableButtonSlider = MutableLiveData<Boolean>()
 
 
     var fireStatusMutableLiveData = MutableLiveData<Boolean>()
@@ -31,12 +35,28 @@ class AppointmentBookingViewModel(application: Application) : BaseViewModel(appl
     private var userLiveData = MutableLiveData<User>()
     val navigateToBookingSummary: LiveData<Summary> get() = _navigateToBookingSummary
 
+    fun setAppointmentDate(date: String) {
+        appointmentDate.value = date
+        updateButtonState()
+    }
+
+    fun setAppointmentTime(time: String) {
+        appointmentTime.value = time
+        updateButtonState()
+    }
+
+    fun setAppointmentDisease(disease: String) {
+        appointmentDisease.value = disease
+        updateButtonState()
+    }
+
+    fun setAppointmentCondition(condition: String) {
+        appointmentCondition.value = condition
+        updateButtonState()
+    }
+
     fun bookAppointment(
         doctorType: String?,
-        selectDate: String,
-        time: String,
-        disease: String,
-        situation: String,
         doctorUid: String,
         doctorName: String,
         doctorEmail: String,
@@ -53,13 +73,13 @@ class AppointmentBookingViewModel(application: Application) : BaseViewModel(appl
             val firstComeFirstServe = 1 + (0.1 * ((currentHourIn24Format / 10) + 1))
 
             Logger.debugLog("firstComeFirstServe: $firstComeFirstServe")
-            Logger.debugLog("diseaseValue: ${diseaseValue[disease]}")
-            Logger.debugLog("conditionValue: ${conditionValue[situation]}")
+            Logger.debugLog("diseaseValue: ${diseaseValue[appointmentDisease.value]}")
+            Logger.debugLog("conditionValue: ${conditionValue[appointmentCondition.value]}")
             Logger.debugLog("currentHourIn24Format: $currentHourIn24Format")
 
-            var temp = diseaseValue[disease]!!
+            var temp = diseaseValue[appointmentDisease.value]!!
             Logger.debugLog("temp value after adding disease value: $temp")
-            temp += conditionValue[situation]!!
+            temp += conditionValue[appointmentCondition.value]!!
             Logger.debugLog("temp value after adding condition value: $temp")
             totalPoint = (temp * firstComeFirstServe).toInt()
             Logger.debugLog("totalPoint: $totalPoint")
@@ -67,10 +87,10 @@ class AppointmentBookingViewModel(application: Application) : BaseViewModel(appl
             val appointmentD: HashMap<String, String> = HashMap()
             appointmentD["PatientName"] = userLiveData.value?.Name.toString()
             appointmentD["PatientPhone"] = userLiveData.value?.Phone.toString()
-            appointmentD["Time"] = time
-            appointmentD["Date"] = selectDate
-            appointmentD["Disease"] = disease
-            appointmentD["PatientCondition"] = situation
+            appointmentD["Time"] = appointmentTime.value.toString()
+            appointmentD["Date"] = appointmentDate.value.toString()
+            appointmentD["Disease"] = appointmentDisease.value.toString()
+            appointmentD["PatientCondition"] = appointmentCondition.value.toString()
             appointmentD["Prescription"] = userLiveData.value?.Prescription.toString()
             appointmentD["TotalPoints"] = totalPoint.toString().trim()
             appointmentD["DoctorUID"] = doctorUid
@@ -80,10 +100,10 @@ class AppointmentBookingViewModel(application: Application) : BaseViewModel(appl
             appointmentP["DoctorUID"] = doctorUid
             appointmentP["DoctorName"] = doctorName
             appointmentP["DoctorPhone"] = doctorPhone
-            appointmentP["Date"] = selectDate
-            appointmentP["Time"] = time
-            appointmentP["Disease"] = disease
-            appointmentP["PatientCondition"] = situation
+            appointmentP["Date"] = appointmentDate.value.toString()
+            appointmentP["Time"] = appointmentTime.value.toString()
+            appointmentP["Disease"] = appointmentDisease.value.toString()
+            appointmentP["PatientCondition"] = appointmentCondition.value.toString()
             appointmentP["Prescription"] = userLiveData.value?.Prescription.toString()
             appointmentP["PatientID"] = userLiveData.value?.UID.toString()
 
@@ -92,10 +112,10 @@ class AppointmentBookingViewModel(application: Application) : BaseViewModel(appl
                 doctorSpeciality = doctorType.toString(),
                 doctorEmail = doctorEmail,
                 doctorPhone = doctorPhone,
-                appointmentDate = selectDate,
-                appointmentTime = time,
-                disease = disease,
-                painLevel = situation,
+                appointmentDate = appointmentDate.value.toString(),
+                appointmentTime = appointmentTime.value.toString(),
+                disease = appointmentDisease.value.toString(),
+                painLevel = appointmentCondition.value.toString(),
                 totalPoint = totalPoint
             )
             _navigateToBookingSummary.value = summary
@@ -149,7 +169,6 @@ class AppointmentBookingViewModel(application: Application) : BaseViewModel(appl
                 .setValue(appointmentP)
                 .addOnSuccessListener {
                     Logger.debugLog("Successfully updated patient appointment")
-                    res
                 }.addOnFailureListener {
                     Logger.debugLog("Failed to update patient appointment")
                     res = false
@@ -172,7 +191,6 @@ class AppointmentBookingViewModel(application: Application) : BaseViewModel(appl
                 .setValue(appointmentD)
                 .addOnSuccessListener {
                     Logger.debugLog("Successfully updated doctor appointment")
-                    result
                 }.addOnFailureListener {
                     Logger.debugLog("Failed to update doctor appointment")
                     result = false
@@ -191,6 +209,15 @@ class AppointmentBookingViewModel(application: Application) : BaseViewModel(appl
 
     fun getDataFromSharedPref(sharedPreference: SharedPreferences) {
         userLiveData.value = sharedPreference.getUserFromSharedPrefs()
+    }
+
+    private fun updateButtonState() {
+        val requiredField =
+            appointmentDate.value.isNullOrEmpty()
+                    || appointmentTime.value.isNullOrEmpty()
+                    || appointmentDisease.value.isNullOrEmpty()
+                    || appointmentCondition.value.isNullOrEmpty()
+        appointmentEnableButtonSlider.value = requiredField.not()
     }
 
 }
