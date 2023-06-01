@@ -21,4 +21,8 @@ object Constants {
     const val Doctor: String = "Doctor"
     const val UserData: String = "UserData"
     const val DatePicker: String = "DatePicker"
+    const val KEY_APP_PREFERENCE = "com.humara.nagar.APP_INFO_PREF"
+    const val USER_PREFERENCE_KEY = "com.humara.nagar.USER_INFO_PREF"
+    const val PREF_DEFAULT_IN_MEMORY_CACHE_SIZE = 15
+    const val English = "en"
 }

@@ -86,6 +86,9 @@ dependencies {
     // Lottie
     implementation 'com.airbnb.android:lottie:5.2.0'
 
+    //Cryptography
+    implementation("androidx.security:security-crypto:1.0.0")
+
     //Requesting permissions at runtime.
     implementation 'com.karumi:dexter:6.2.3'
 
