@@ -14,6 +14,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.geekymusketeers.medify.R
 import com.geekymusketeers.medify.base.ViewModelFactory
+import com.geekymusketeers.medify.databinding.BottomsheetModalBinding
 import com.geekymusketeers.medify.ui.mainFragments.settings.prescription.AddPrescriptionActivity
 import com.geekymusketeers.medify.ui.auth.signInScreen.SignInScreen
 import com.geekymusketeers.medify.databinding.FragmentSettingsBinding
@@ -23,6 +24,8 @@ import com.geekymusketeers.medify.ui.adapter.SettingsAdapter
 import com.geekymusketeers.medify.ui.mainFragments.settings.upi.UPImanager
 import com.geekymusketeers.medify.ui.profile.ProfileActivity
 import com.geekymusketeers.medify.utils.Constants
+import com.geekymusketeers.medify.utils.DialogUtil.createBottomSheet
+import com.geekymusketeers.medify.utils.DialogUtil.setBottomSheet
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -136,11 +139,26 @@ class SettingsFragment : Fragment() {
     }
 
     private fun needHelp() {
-
+        val dialog = BottomsheetModalBinding.inflate(layoutInflater)
+        val bottomSheet = requireActivity().createBottomSheet()
+        dialog.apply {
+            paragraphContent.text = getString(R.string.needHelpDescription)
+            lottieAnimationLayout.apply {
+                setAnimation(R.raw.help_lottie)
+                visibility = View.VISIBLE
+            }
+        }
+        dialog.root.setBottomSheet(bottomSheet)
     }
 
     private fun aboutUs() {
-
+        val aboutUsDialog = BottomsheetModalBinding.inflate(layoutInflater)
+        val aboutUsBottomSheet = requireActivity().createBottomSheet()
+        aboutUsDialog.apply {
+            paragraphHeading.text = getString(R.string.welcome_to_medify)
+            paragraphContent.text = getString(R.string.description)
+        }
+        aboutUsDialog.root.setBottomSheet(aboutUsBottomSheet)
     }
 
     private fun openMail() {

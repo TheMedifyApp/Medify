@@ -217,6 +217,9 @@
     <string name="profile_updated_successfully">Profile updated Successfully!</string>
     <string name="failed_to_update_profile">Failed to update Profile!</string>
     <string name="no_address_found">No address found</string>
+    <string name="welcome_to_medify">Welcome to Medify</string>
+    <string name="description">Medify is an Android application that not only solves the issue of the patients as users, but also solves the problems of the doctors as well.\nThe app offers users to book an appointment with the doctor that are registered in the app already.\nThe waiting queue is sorted according to the priority and not ‘First Come First Serve’ which allows all the patients to get equal priority.\nUsers can monitor their health data which is shown in a chart of last 5 data from their report.</string>
+    <string name="needHelpDescription">Medify is an Android application that not only solves the issue of the patients as users, but also solves the problems of the doctors as well.\nBook an appointment with ease by answering some questions regarding your health issue.\nDo not need the carry the previous prescription to doctor just upload it here and when you book appointment the doctor can easily see your previous prescription.</string>
 
 
 </resources>
