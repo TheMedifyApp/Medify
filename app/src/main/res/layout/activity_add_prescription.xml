@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
-    tools:context=".ui.prescription.AddPrescriptionActivity">
+    tools:context=".ui.mainFragments.settings.prescription.AddPrescriptionActivity">
 
     <TextView
         android:id="@+id/nameDisplay"
@@ -31,12 +31,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nameDisplay">
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/imagebrowse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/button"
+            android:background="@drawable/primary_button"
             android:fontFamily="@font/dm_sans"
+            android:paddingHorizontal="20dp"
             android:stateListAnimator="@null"
             android:text="@string/select_prescription"
             android:textAllCaps="false"
@@ -47,7 +48,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.254" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/imageupload"
             android:layout_width="330dp"
             android:layout_height="wrap_content"

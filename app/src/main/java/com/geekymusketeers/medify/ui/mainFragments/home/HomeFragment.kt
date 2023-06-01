@@ -19,6 +19,7 @@ import com.geekymusketeers.medify.adapter.DoctorListAdapter
 import com.geekymusketeers.medify.base.ViewModelFactory
 import com.geekymusketeers.medify.databinding.FragmentHomeBinding
 import com.geekymusketeers.medify.databinding.RatingDisputeLayoutBinding
+import com.geekymusketeers.medify.model.Doctor
 import com.geekymusketeers.medify.model.User
 import com.geekymusketeers.medify.utils.Constants
 import com.geekymusketeers.medify.utils.DialogUtil.createBottomSheet
@@ -67,6 +68,7 @@ class HomeFragment : Fragment() {
 
         doctorListAdapter = DoctorListAdapter {
             val rating = homeViewModel.totalRating.value!!
+            binding.doctorData.setText("")
             onDoctorCardClick(it, rating)
         }
 
@@ -101,7 +103,7 @@ class HomeFragment : Fragment() {
             user.observe(viewLifecycleOwner) {
                 Logger.debugLog("User Data: $it")
                 binding.nameDisplay.text =
-                    if (it.isDoctor == "Doctor") "Dr. ${it.Name}" else it.Name
+                    if (it.isDoctor == Doctor.IS_DOCTOR.toItemString()) "Dr. ${it.Name}" else it.Name
                 getTotalRating()
             }
             doctorList.observe(viewLifecycleOwner) {

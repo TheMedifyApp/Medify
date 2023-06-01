@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
+    tools:context=".ui.mainFragments.appointments.MyAppointmentFragment">
+
+    <TextView
+        android:id="@+id/your_appointment_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/dm_sans_bold"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="@string/your_appointment" />
+
+    <TextView
+        android:id="@+id/selected_date_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/dm_sans_medium"
+        tools:text="Selected Date : 17/05/2023"
+        android:textColor="@color/green_shade_light_2"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/your_appointment_text"
+        app:layout_constraintTop_toBottomOf="@+id/your_appointment_text" />
+
+    <ImageView
+        android:id="@+id/selectDate"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="120dp"
+        android:src="@drawable/calendar_month"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/your_appointment_text"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/white_bar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selected_date_text">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/appointment_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:listitem="@layout/appointment_list" />
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/selectDateTextToHide"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginBottom="292dp"-->
+        <!--            android:fontFamily="@font/dm_sans_bold"-->
+        <!--            android:text="Select Date First"-->
+        <!--            android:textColor="@color/light_blue"-->
+        <!--            android:textSize="30dp"-->
+        <!--            android:visibility="gone"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toTopOf="@+id/appointment_recyclerview"-->
+        <!--            app:layout_constraintVertical_bias="1.0" />-->
+
+        <TextView
+            android:id="@+id/noAppointmentText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="292dp"
+            android:fontFamily="@font/dm_sans_bold"
+            android:text="No Appointment Found"
+            android:textColor="@color/green_shade_dark_1"
+            android:textSize="30dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/appointment_recyclerview"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/toPatientList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="100dp"
+            android:background="@drawable/primary_button"
+            android:fontFamily="@font/dm_sans"
+            android:paddingHorizontal="20dp"
+            android:text="My patients"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

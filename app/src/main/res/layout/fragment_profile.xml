@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/gradient_background"
+    tools:context=".ui.mainFragments.settings.profile.ProfileFragment">
+
+    <TextView
+        android:id="@+id/nameDisplay"
+        style="@style/DMSans_Bold_20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/profile"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/want_to_book_an_appointment"
+        style="@style/DMSans_Medium_16sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/customize_your_profile"
+        android:textColor="@color/green_shade_light_2"
+        app:layout_constraintStart_toStartOf="@+id/nameDisplay"
+        app:layout_constraintTop_toBottomOf="@+id/nameDisplay" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/white_bar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/want_to_book_an_appointment">
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/update_account_button"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.geekymusketeers.presin.ui.custom_views.CustomEditText
+                    android:id="@+id/name_edit_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="20dp"
+                    app:header="@string/name"
+                    app:hint="@string/name_hint"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.geekymusketeers.presin.ui.custom_views.CustomEditText
+                    android:id="@+id/phone_edit_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:header="@string/phone_number"
+                    app:hint="@string/phone_number_hint"
+                    app:inputType="3"
+                    app:layout_constraintEnd_toEndOf="@+id/name_edit_text"
+                    app:layout_constraintStart_toStartOf="@+id/name_edit_text"
+                    app:layout_constraintTop_toBottomOf="@+id/name_edit_text" />
+
+                <com.geekymusketeers.presin.ui.custom_views.CustomEditText
+                    android:id="@+id/age_edit_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:header="Age"
+                    app:hint="Select Date of Birth"
+                    app:layout_constraintEnd_toEndOf="@+id/phone_edit_text"
+                    app:layout_constraintStart_toStartOf="@+id/phone_edit_text"
+                    app:layout_constraintTop_toBottomOf="@+id/phone_edit_text" />
+
+                <com.geekymusketeers.presin.ui.custom_views.CustomEditText
+                    android:id="@+id/address_edit_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    app:header="@string/address"
+                    app:minimumHeight="250"
+                    app:hint="@string/address_hint"
+                    app:layout_constraintEnd_toEndOf="@id/age_edit_text"
+                    app:layout_constraintStart_toStartOf="@id/age_edit_text"
+                    app:layout_constraintTop_toBottomOf="@id/age_edit_text" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+        <com.geekymusketeers.presin.ui.custom_views.CustomButton
+            android:id="@+id/update_account_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="15dp"
+            app:header="@string/update_profile"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

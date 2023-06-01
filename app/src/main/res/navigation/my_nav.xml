@@ -17,22 +17,35 @@
     </fragment>
     <fragment
         android:id="@+id/settings"
-        android:name="com.geekymusketeers.medify.ui.mainFragments.SettingsFragment"
+        android:name="com.geekymusketeers.medify.ui.mainFragments.settings.SettingsFragment"
         android:label="fragment_settings"
-        tools:layout="@layout/fragment_settings" />
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_settings_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/stats"
-        android:name="com.geekymusketeers.medify.ui.mainFragments.StatisticsFragment"
+        android:name="com.geekymusketeers.medify.ui.mainFragments.stats.StatisticsFragment"
         android:label="fragment_statistics"
-        tools:layout="@layout/fragment_statistics" />
+        tools:layout="@layout/fragment_statistics" >
+        <action
+            android:id="@+id/action_stats_to_addStatsDataFragment"
+            app:destination="@id/addStatsDataFragment"
+            app:popUpTo="@id/stats"/>
+    </fragment>
     <fragment
         android:id="@+id/appointment"
-        android:name="com.geekymusketeers.medify.ui.mainFragments.PatientAppointmentFragment"
+        android:name="com.geekymusketeers.medify.ui.mainFragments.appointments.MyAppointmentFragment"
         android:label="fragment_appointment"
-        tools:layout="@layout/fragment_patient_appointment" />
+        tools:layout="@layout/fragment_my_appointment" >
+        <action
+            android:id="@+id/action_appointment_to_patientQueueFragment"
+            app:destination="@id/patientQueueFragment" />
+    </fragment>
     <fragment
         android:id="@+id/doctorDetailsFragment"
-        android:name="com.geekymusketeers.medify.ui.mainFragments.appointment.DoctorDetailsFragment"
+        android:name="com.geekymusketeers.medify.ui.mainFragments.home.appointment_booking.DoctorDetailsFragment"
         android:label="fragment_doctor_details"
         tools:layout="@layout/fragment_doctor_details" >
         <argument
@@ -44,7 +57,7 @@
     </fragment>
     <fragment
         android:id="@+id/appointmentBookingFragment"
-        android:name="com.geekymusketeers.medify.ui.mainFragments.appointment.AppointmentBookingFragment"
+        android:name="com.geekymusketeers.medify.ui.mainFragments.home.appointment_booking.AppointmentBookingFragment"
         android:label="fragment_appointment_booking"
         tools:layout="@layout/fragment_appointment_booking" >
         <argument
@@ -57,11 +70,41 @@
     </fragment>
     <fragment
         android:id="@+id/bookingSummaryFragment"
-        android:name="com.geekymusketeers.medify.ui.mainFragments.appointment.BookingSummaryFragment"
+        android:name="com.geekymusketeers.medify.ui.mainFragments.home.appointment_booking.BookingSummaryFragment"
         android:label="fragment_booking_summary"
         tools:layout="@layout/fragment_booking_summary" >
         <argument
             android:name="summary"
             app:argType="com.geekymusketeers.medify.model.Summary" />
     </fragment>
+    <fragment
+        android:id="@+id/patientQueueFragment"
+        android:name="com.geekymusketeers.medify.ui.mainFragments.appointments.PatientQueueFragment"
+        android:label="fragment_patient_queue"
+        tools:layout="@layout/fragment_patient_queue" >
+        <argument
+            android:name="selectedDate"
+            app:argType="string" />
+        <argument
+            android:name="doctorUserID"
+            app:argType="string" />
+        <argument
+            android:name="hideSelectedDate"
+            app:argType="boolean"
+            android:defaultValue="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/addStatsDataFragment"
+        android:name="com.geekymusketeers.medify.ui.mainFragments.stats.AddStatsDataFragment"
+        android:label="fragment_add_stats_data"
+        tools:layout="@layout/fragment_add_stats_data" >
+        <argument
+            android:name="stats"
+            app:argType="com.geekymusketeers.medify.model.HealthData" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.geekymusketeers.medify.ui.mainFragments.settings.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>
