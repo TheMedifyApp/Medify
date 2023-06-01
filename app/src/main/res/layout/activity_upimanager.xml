@@ -121,7 +121,7 @@
 
         </LinearLayout>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/generateUPI"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="match_parent"
