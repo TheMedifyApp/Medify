@@ -42,9 +42,7 @@ class SettingsAdapter(
             }
         }
         holder.binding.root.setOnClickListener {
-            if (settingsList.itemID != 4) {
                 listener(position)
-            }
         }
 
         holder.binding.settingsItemIcon.setImageResource(settingsList.drawableInt)

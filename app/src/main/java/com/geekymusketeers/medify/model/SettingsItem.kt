@@ -6,14 +6,14 @@ data class SettingsItem(
     val itemName: String
 )
 
-enum class SettingsState(int: Int) {
-    TO_EDIT_PROFILE(0),
-    TO_UPLOAD_PRESCRIPTION(1),
-    TO_UPI_QR(2),
-    TO_ABOUT_US(3),
-    TO_FEEDBACK(4),
-    TO_NEED_HELP(5),
-    TO_LOGOUT(6);
+enum class SettingsState {
+    TO_EDIT_PROFILE,
+    TO_UPLOAD_PRESCRIPTION,
+    TO_UPI_QR,
+    TO_ABOUT_US,
+    TO_FEEDBACK,
+    TO_NEED_HELP,
+    TO_LOGOUT;
 
     companion object {
         fun getSettingsState(state: SettingsState) : Int {
