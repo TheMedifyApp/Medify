@@ -1,4 +1,5 @@
-![banner](https://user-images.githubusercontent.com/80090908/191109124-9dc614d0-8dde-494d-81de-a3ae1478ff78.png)
+![Cover](https://github.com/aritra-tech/Medify/assets/62587060/7a8cbbf3-d1c9-4e2f-8a6b-fb480a0714d5)
+
 
 # Medify 💊
 Medify is a medical android app which deals and solves issues of both patients and doctors. 
@@ -40,8 +41,8 @@ The patient queue is a list that is sorted using our alogrithm and displayed.
 
 |   |   |   |
 |---|---|---|
-| ![login](https://user-images.githubusercontent.com/80090908/190855454-5fb6b29c-35ff-4329-9bf4-8d772ffa8a46.png) | ![image 30](https://user-images.githubusercontent.com/80090908/190855522-e5eb5231-4154-4842-b3da-a84aaf8494c5.png) | ![image 31](https://user-images.githubusercontent.com/80090908/190855556-c81dba85-c7d0-44b3-bfae-53b3fcbc23dc.png)
-| ![unknown](https://user-images.githubusercontent.com/80090908/191108781-ef708f2e-02c0-4b21-9e77-dbcffa7df8bd.png) |![image 35](https://user-images.githubusercontent.com/80090908/190855621-1f8f6b9e-194a-4ec5-9f1d-e957d45590e1.png) | ![image 34](https://user-images.githubusercontent.com/80090908/190855637-ad04be06-8b9d-495b-a5e8-96954e152a34.png)
+| ![1](https://github.com/aritra-tech/Medify/assets/62587060/57983983-452f-40cc-a1e6-5bea3de252f6) | ![2](https://github.com/aritra-tech/Medify/assets/62587060/fe897a3e-7a73-497c-a15b-fc1ed4737625) | ![3](https://github.com/aritra-tech/Medify/assets/62587060/b095a832-e2ce-4748-8bb4-89f102f5853d)
+| ![4](https://github.com/aritra-tech/Medify/assets/62587060/61f0a2c0-7499-4c33-b3aa-ebdc8fab2487) | ![5](https://github.com/aritra-tech/Medify/assets/62587060/9e4b7d0a-aa6a-4954-afef-257c80fd6487) | ![6](https://github.com/aritra-tech/Medify/assets/62587060/665ae932-e1ee-4dcb-8c83-b5a4ce74150f)
 
 
 # Built With 🔩
@@ -51,12 +52,17 @@ The app was developed in [Android Studio](https://developer.android.com/studio).
 - <b>[Java](https://developer.android.com/guide)</b> - As Java and Kotlin are interoperable, we used a Java class that encrypts the user data while saving in the app storage using <b>AES Encryption</b>. This way we prevent anydata leak.
 - <b>[Firebase](https://firebase.google.com/docs/android/setup)</b> - Firebase is a free tool for developers so we used it to authenticate users using their email and perform similar operations. We also used firebase to store user data as well as their appointment details, and etc.
 Not only that, we also used firebase to store docs that are uploaded by the  users (Prescriptions).
-- <b>[Jetpack](https://developer.android.com/jetpack/?gclid=CjwKCAjwsfuYBhAZEiwA5a6CDNJYBqgSGZjiTgYNqfw0DhgCBrzwsWJh1Hvkr1tKuxDBKX_V8m7cahoCn_wQAvD_BwE&gclsrc=aw.ds)</b> - Jetpack framework is globally used in Android development nowadays.
-  The libraries we used are:
-  - Navigation Fragment
-  - ViewBinding
 - <b>[Figma](https://www.figma.com/)</b> - We used Figma to design the UI / UX during the designing & prototyping phase of our project.
 The design we used is minimal as well as clean. People with colorbindness will have no issues using it.
+- <b>[Coroutines](https://kotlinlang.org/docs/coroutines-overview.html)</b> - For asynchronous calls and tasks to utilize threads.
+- <b>[Android Architecture Components](https://developer.android.com/topic/architecture)</b> - Collection of libraries that help you design testable, and maintainable apps.
+  - <b>[ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)</b> - Stores UI-related data that isn't destroyed on UI changes.
+  - <b>[ViewBinding](https://developer.android.com/topic/libraries/view-binding)</b> - Generates a binding class for each XML layout file present in that module and allows you to more easily write code that interacts with views.
+  - <b>[LiveData](https://developer.android.com/topic/libraries/architecture/livedata)</b> - LiveData was used to save and store values for viewModel calls and response of method calls.
+  - <b>[Navigation Components](https://developer.android.com/guide/navigation/get-started)</b> - Navigation Component was used to navigate between fragments and pass parcelable objects
+- <b>[Material Components for Android](https://github.com/material-components/material-components-android)</b> - Material Components for Android (MDC-Android) help developers execute Material Design. Developed by a core team of engineers and UX designers at Google, these components enable a reliable development workflow to build beautiful and functional Android apps.
+- <b>[ZXing - QR Code Generator](https://github.com/zxing/zxing)</b> - ZXing's QR Code generator library to generate QR Code from Strings.
+
 
 # Project Setup 📝
 - Clone the repository by the following link and open the project in Android Studio or Git Bash
