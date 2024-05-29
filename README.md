@@ -88,7 +88,7 @@ The design we used is minimal as well as clean. People with colorbindness will h
 ```
 MIT License
 
-Copyright (c) 2022 Aritra Das
+Copyright (c) 2022 Medify
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
